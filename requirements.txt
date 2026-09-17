@@ -1,0 +1,10 @@
+transformers>=4.30.0
+torch>=2.0.0
+torchvision
+pillow
+playwright
+pyautogui
+gym
+numpy
+opencv-python
+pandas

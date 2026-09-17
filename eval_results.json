@@ -1,0 +1,91 @@
+{
+  "action_accuracy": 1.0,
+  "action_macro_f1": 1.0,
+  "coord_mae": 0.08930288255214691,
+  "scroll_accuracy": 0.9166666666666666,
+  "per_class_action": {
+    "click": {
+      "accuracy": 1.0,
+      "count": 2
+    },
+    "type": {
+      "accuracy": 1.0,
+      "count": 2
+    },
+    "scroll": {
+      "accuracy": 1.0,
+      "count": 2
+    },
+    "move": {
+      "accuracy": 1.0,
+      "count": 2
+    },
+    "hotkey": {
+      "accuracy": 1.0,
+      "count": 2
+    },
+    "press": {
+      "accuracy": 1.0,
+      "count": 2
+    }
+  },
+  "confusion_matrix": [
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      2,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      2
+    ]
+  ],
+  "action_labels": [
+    "click",
+    "type",
+    "scroll",
+    "move",
+    "hotkey",
+    "press"
+  ],
+  "n_samples": 12
+}

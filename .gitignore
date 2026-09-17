@@ -1,12 +1,41 @@
+# OS
 .DS_Store
+
+# IDE
 .idea
-.ipynb_checkpoints/
 .vscode
+.ipynb_checkpoints/
+
+# Python
 __pycache__/
-*.bin
-*.pkl
-*.pt
 *.pyc
-input.txt
+*.pyo
 env/
 venv/
+.venv/
+
+# Model checkpoints (large binaries)
+*.pth
+*.pt
+*.bin
+*.pkl
+
+# nanoGPT data & outputs
+input.txt
+out-*/
+data/*/train.bin
+data/*/val.bin
+
+# Computer-use datasets (large image sets)
+computer_use_data/
+computer_use_data_advanced/
+computer_use_data_expanded/
+computer_use_data_real_balanced/
+synthetic_data/
+
+# Model / tokenizer caches
+hf_cache/
+
+# Tooling
+.pytest_cache/
+.pymon
