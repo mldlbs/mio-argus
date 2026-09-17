@@ -1,0 +1,117 @@
+{
+  "device": "cuda",
+  "grid": 6,
+  "epochs": 25,
+  "v_epochs": 15,
+  "n_train": 4000,
+  "n_test": 1000,
+  "n_tasks": 300,
+  "Hs": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "rhos": [
+    0.3,
+    1.0
+  ],
+  "params": {
+    "pi_w32": 106112,
+    "pi_w64": 392448,
+    "V_w32": 106113
+  },
+  "single_step": {
+    "pi_w32": 1.0,
+    "pi_w64": 1.0,
+    "v_alone": 1.0
+  },
+  "diagnostics": {
+    "ceiling_topk": 1.0,
+    "v_pick_given_in_topk": 1.0,
+    "joint": 1.0,
+    "topk": 3
+  },
+  "rows": [
+    {
+      "rho": 0.3,
+      "H": 1,
+      "pi_small": 1.0,
+      "pi_big": 1.0,
+      "pi_small_v": 1.0,
+      "step_pi_small": 1.0,
+      "step_pi_big": 1.0,
+      "step_pi_small_v": 1.0
+    },
+    {
+      "rho": 0.3,
+      "H": 2,
+      "pi_small": 1.0,
+      "pi_big": 1.0,
+      "pi_small_v": 1.0,
+      "step_pi_small": 1.0,
+      "step_pi_big": 1.0,
+      "step_pi_small_v": 1.0
+    },
+    {
+      "rho": 0.3,
+      "H": 4,
+      "pi_small": 1.0,
+      "pi_big": 1.0,
+      "pi_small_v": 1.0,
+      "step_pi_small": 1.0,
+      "step_pi_big": 1.0,
+      "step_pi_small_v": 1.0
+    },
+    {
+      "rho": 0.3,
+      "H": 8,
+      "pi_small": 1.0,
+      "pi_big": 1.0,
+      "pi_small_v": 1.0,
+      "step_pi_small": 1.0,
+      "step_pi_big": 1.0,
+      "step_pi_small_v": 1.0
+    },
+    {
+      "rho": 1.0,
+      "H": 1,
+      "pi_small": 1.0,
+      "pi_big": 1.0,
+      "pi_small_v": 1.0,
+      "step_pi_small": 1.0,
+      "step_pi_big": 1.0,
+      "step_pi_small_v": 1.0
+    },
+    {
+      "rho": 1.0,
+      "H": 2,
+      "pi_small": 0.9966666666666667,
+      "pi_big": 0.9966666666666667,
+      "pi_small_v": 1.0,
+      "step_pi_small": 0.9983333333333333,
+      "step_pi_big": 0.9983333333333333,
+      "step_pi_small_v": 1.0
+    },
+    {
+      "rho": 1.0,
+      "H": 4,
+      "pi_small": 0.9966666666666667,
+      "pi_big": 1.0,
+      "pi_small_v": 1.0,
+      "step_pi_small": 0.9991666666666666,
+      "step_pi_big": 1.0,
+      "step_pi_small_v": 1.0
+    },
+    {
+      "rho": 1.0,
+      "H": 8,
+      "pi_small": 1.0,
+      "pi_big": 0.9966666666666667,
+      "pi_small_v": 1.0,
+      "step_pi_small": 1.0,
+      "step_pi_big": 0.9995833333333334,
+      "step_pi_small_v": 1.0
+    }
+  ]
+}
