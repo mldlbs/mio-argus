@@ -1,6 +1,6 @@
 """
 VM 端到端测试 - v3 模型版本
-- 使用 ComputerUseModelV3 (ViT + GPT-2 + LoRA)
+- 使用 MioArgus (ComputerUseModelV3)
 - 读取 balanced_training_data.json
 - 对每张截图做预测，与真实动作/坐标/滚动对比
 - 输出动作准确率、坐标 MAE、滚动准确率
@@ -12,7 +12,7 @@ import torch
 from PIL import Image
 from pathlib import Path
 
-from model_computer_use_v3 import (
+from mio_argus import (
     ComputerUseModelV3,
     ACTION_MAP,
     ACTION_TO_IDX,

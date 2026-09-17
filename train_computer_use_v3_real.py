@@ -12,7 +12,7 @@ import torch
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader, WeightedRandomSampler
 from PIL import Image
-from model_computer_use_v3 import (
+from mio_argus import (
     ComputerUseModelV3,
     ComputerUseModelV3Small,
     ACTION_MAP,

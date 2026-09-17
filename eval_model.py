@@ -19,7 +19,7 @@ from sklearn.metrics import (
 )
 from torch.utils.data import DataLoader
 
-from model_computer_use_v3 import (
+from mio_argus import (
     ComputerUseModelV3,
     ACTION_MAP,
     ACTION_TO_IDX,

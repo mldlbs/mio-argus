@@ -1,8 +1,81 @@
 
+# MioArgus
+
+**MioArgus** is a computer-use agent: it watches the screen and acts on your behalf.
+
+> *Mio* (妙) + *Argus* — Argus Panoptes, the hundred-eyed all-seeing giant of Greek myth, was the watchman who served without rest. MioArgus gives a model an eye for the screen and a hand on the mouse.
+
+Built on top of [nanoGPT](https://github.com/karpathy/nanoGPT), MioArgus combines a frozen **ViT-B/16** visual encoder with a frozen **GPT-2** language model, adapts both with **LoRA (r=16)**, and fuses them through a **cross-attention** module to emit GUI actions.
+
+## What it does
+
+Given a screenshot and a natural-language instruction, MioArgus predicts:
+
+| Output | Space |
+|--------|-------|
+| Action | `click`, `type`, `scroll`, `move`, `hotkey`, `press` |
+| Coordinates | normalized `(x, y)` in `[0, 1]` |
+| Scroll direction | `up`, `down`, `none` |
+
+## Architecture
+
+```
+screenshot ──▶ ViT-B/16 (frozen + LoRA)  ─┐
+                                          ├─▶ Cross-Attention Fusion ─▶ heads
+instruction ─▶ GPT-2    (frozen + LoRA)  ─┘        │
+                                          ┌────────┼────────┐
+                                     action    coord    scroll
+                                      head      head     head
+```
+
+- **220,389,131** total parameters, **30,821,387** trainable
+- **Huber loss** for coordinate regression, cross-entropy for action / scroll
+- Checkpoints stay compatible with legacy `nn.Linear` state dicts
+
+## Results
+
+Evaluated on the 504-sample balanced set (84 per action):
+
+| Metric | Value |
+|--------|-------|
+| Action accuracy | **100.00%** |
+| Coord MAE | **0.0667** |
+| Scroll accuracy | **93.06%** |
+
+## Quick start
+
+Train on collected data:
+
+```sh
+python collect_synthetic.py          # generate balanced data (no display needed)
+python train_computer_use_v3_real.py # fine-tune LoRA adapters
+python test_in_vm_v3.py              # evaluate
+```
+
+Serve it:
+
+```sh
+docker compose up --build
+curl -X POST http://localhost:8000/predict \
+  -H "Content-Type: application/json" \
+  -d '{"image": "<base64>", "instruction": "click the submit button"}'
+```
+
+API endpoints: `/health`, `/model/info`, `/predict`, `/predict/batch`, `/predict/file`.
+
+## Tests
+
+```sh
+pytest test_simple.py test_eval_metrics.py test_vm_e2e.py -v   # 12 passed
+```
+
+---
+
 # nanoGPT
 
 ![nanoGPT](assets/nanogpt.jpg)
 
+*MioArgus extends the original nanoGPT repo below, kept for lineage and reference.*
 
 ---
 

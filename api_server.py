@@ -19,7 +19,7 @@ from pydantic import BaseModel, ConfigDict
 from pydantic_settings import BaseSettings
 
 # 导入模型
-from model_computer_use_v3 import (
+from mio_argus import (
     ComputerUseModelV3,
     ComputerUseModelV3Small,
     ACTION_MAP,

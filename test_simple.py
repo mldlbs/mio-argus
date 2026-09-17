@@ -58,7 +58,7 @@ def test_predict_returns_action_name():
 
 def test_lora_linear_state_dict_keys_and_forward():
     import torch.nn.functional as F
-    from model_computer_use_v3 import LoRALinear
+    from mio_argus import LoRALinear
 
     linear = LoRALinear(4, 3, rank=2)
     x = torch.randn(2, 4)
@@ -78,7 +78,7 @@ def test_lora_linear_state_dict_keys_and_forward():
 def test_apply_lora_is_idempotent_and_targeted():
     import torch
     import torch.nn as nn
-    from model_computer_use_v3 import LoRALinear, apply_lora
+    from mio_argus import LoRALinear, apply_lora
 
     class TinyModel(nn.Module):
         def __init__(self):
@@ -99,7 +99,7 @@ def test_apply_lora_is_idempotent_and_targeted():
 
 def test_v3_constructor_parameters_are_effective(monkeypatch):
     import torch.nn as nn
-    import model_computer_use_v3 as model_module
+    import mio_argus as model_module
 
     class TinyEncoder(nn.Module):
         def __init__(self):
@@ -144,7 +144,7 @@ def test_v3_constructor_parameters_are_effective(monkeypatch):
 def test_compute_loss_accepts_scalar_coord_mask():
     import torch.nn.functional as F
 
-    from model_computer_use_v3 import ComputerUseModelV3
+    from mio_argus import ComputerUseModelV3
 
     model = ComputerUseModelV3.__new__(ComputerUseModelV3)
     model.coord_loss_weight = 1.0
@@ -180,7 +180,7 @@ def test_compute_loss_accepts_scalar_coord_mask():
 
 def test_apply_lora_preserves_legacy_linear_state_dict_keys():
     import torch.nn as nn
-    from model_computer_use_v3 import LoRALinear, apply_lora
+    from mio_argus import LoRALinear, apply_lora
 
     class TinyModel(nn.Module):
         def __init__(self):

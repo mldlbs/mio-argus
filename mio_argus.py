@@ -1,7 +1,10 @@
 """
-Computer Use Model v3: Full ViT + GPT-2 Architecture
-- ViT 视觉编码器
-- GPT-2 语言模型 (指令+动作序列建模)
+MioArgus: screen-watching computer-use agent on nanoGPT.
+
+Mio (妙) + Argus, the hundred-eyed giant who watches and serves.
+
+- ViT-B/16 视觉编码器 (frozen + LoRA)
+- GPT-2 语言模型 (指令建模, frozen + LoRA)
 - Cross-Attention 融合
 - Huber Loss 坐标回归
 - 动作分类 + 坐标回归 + 滚动方向
@@ -358,3 +361,24 @@ def get_tokenizer():
         tok.pad_token = tok.eos_token
         return tok
     return None
+
+
+# 品牌别名 (MioArgus)
+MioArgus = ComputerUseModelV3
+MioArgusSmall = ComputerUseModelV3Small
+
+__all__ = [
+    "ACTION_MAP",
+    "ACTION_TO_IDX",
+    "NUM_ACTIONS",
+    "LoRALinear",
+    "apply_lora",
+    "CrossAttentionFusion",
+    "ComputerUseModelV3",
+    "ComputerUseModelV3Small",
+    "SimpleComputerUseModel",
+    "MioArgus",
+    "MioArgusSmall",
+    "get_image_processor",
+    "get_tokenizer",
+]

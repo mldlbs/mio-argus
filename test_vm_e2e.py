@@ -7,7 +7,7 @@ import pytest
 import torch
 from pathlib import Path
 
-from model_computer_use_v3 import (
+from mio_argus import (
     ComputerUseModelV3,
     ACTION_MAP,
     ACTION_TO_IDX,
@@ -40,8 +40,8 @@ def model_and_data():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     from test_in_vm_v3 import main as _  # ensure imports work
-    from model_computer_use_v3 import get_tokenizer, get_image_processor
-    from model_computer_use_v3 import ComputerUseModelV3
+    from mio_argus import get_tokenizer, get_image_processor
+    from mio_argus import ComputerUseModelV3
 
     tokenizer = get_tokenizer()
     image_processor = get_image_processor()
