@@ -69,6 +69,12 @@ API endpoints: `/health`, `/model/info`, `/predict`, `/predict/batch`, `/predict
 pytest test_simple.py test_eval_metrics.py test_vm_e2e.py -v   # 12 passed
 ```
 
+## Research
+
+MioArgus is not trying to out-scale large VLMs. The bet is that **computer use is a narrow domain** where a small grounded policy — with structured UI state, a compressed action space, and a verifier — can match a monolithic model at lower compute, and the gap **widens with task horizon**.
+
+The falsifiable hypothesis, sub-hypotheses (H1–H4), experiment protocol, and kill criteria are in **[HYPOTHESIS.md](HYPOTHESIS.md)**.
+
 ---
 
 # nanoGPT
