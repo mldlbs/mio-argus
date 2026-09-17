@@ -39,3 +39,7 @@ hf_cache/
 # Tooling
 .pytest_cache/
 .pymon
+
+# P0 experiment cache / previews
+p0_cache/
+_p0_preview.png
