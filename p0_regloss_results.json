@@ -1,0 +1,160 @@
+{
+  "device": "cuda",
+  "epochs": 25,
+  "seeds": 2,
+  "n_train": 4000,
+  "n_test": 1000,
+  "width": 32,
+  "rows": [
+    {
+      "grid": 3,
+      "slots": 9,
+      "head": "cls",
+      "reg_loss": "-",
+      "hit_rate": 1.0,
+      "cell_acc": 1.0,
+      "hit_sd": 0.0,
+      "params": 106112
+    },
+    {
+      "grid": 3,
+      "slots": 9,
+      "head": "reg",
+      "reg_loss": "coord",
+      "hit_rate": 1.0,
+      "cell_acc": 1.0,
+      "hit_sd": 0.0,
+      "params": 106112
+    },
+    {
+      "grid": 3,
+      "slots": 9,
+      "head": "reg",
+      "reg_loss": "gauss",
+      "hit_rate": 0.653,
+      "cell_acc": 0.9135,
+      "hit_sd": 0.14600000000000002,
+      "params": 106112
+    },
+    {
+      "grid": 4,
+      "slots": 16,
+      "head": "cls",
+      "reg_loss": "-",
+      "hit_rate": 1.0,
+      "cell_acc": 1.0,
+      "hit_sd": 0.0,
+      "params": 106112
+    },
+    {
+      "grid": 4,
+      "slots": 16,
+      "head": "reg",
+      "reg_loss": "coord",
+      "hit_rate": 0.962,
+      "cell_acc": 0.999,
+      "hit_sd": 0.0040000000000000036,
+      "params": 106112
+    },
+    {
+      "grid": 4,
+      "slots": 16,
+      "head": "reg",
+      "reg_loss": "gauss",
+      "hit_rate": 0.3195,
+      "cell_acc": 0.7505,
+      "hit_sd": 0.056499999999999995,
+      "params": 106112
+    },
+    {
+      "grid": 5,
+      "slots": 25,
+      "head": "cls",
+      "reg_loss": "-",
+      "hit_rate": 1.0,
+      "cell_acc": 1.0,
+      "hit_sd": 0.0,
+      "params": 106112
+    },
+    {
+      "grid": 5,
+      "slots": 25,
+      "head": "reg",
+      "reg_loss": "coord",
+      "hit_rate": 0.517,
+      "cell_acc": 0.9944999999999999,
+      "hit_sd": 0.0040000000000000036,
+      "params": 106112
+    },
+    {
+      "grid": 5,
+      "slots": 25,
+      "head": "reg",
+      "reg_loss": "gauss",
+      "hit_rate": 0.025,
+      "cell_acc": 0.41000000000000003,
+      "hit_sd": 0.003000000000000001,
+      "params": 106112
+    },
+    {
+      "grid": 6,
+      "slots": 36,
+      "head": "cls",
+      "reg_loss": "-",
+      "hit_rate": 1.0,
+      "cell_acc": 1.0,
+      "hit_sd": 0.0,
+      "params": 106112
+    },
+    {
+      "grid": 6,
+      "slots": 36,
+      "head": "reg",
+      "reg_loss": "coord",
+      "hit_rate": 0.5035000000000001,
+      "cell_acc": 0.9715,
+      "hit_sd": 0.004500000000000004,
+      "params": 106112
+    },
+    {
+      "grid": 6,
+      "slots": 36,
+      "head": "reg",
+      "reg_loss": "gauss",
+      "hit_rate": 0.0045000000000000005,
+      "cell_acc": 0.1095,
+      "hit_sd": 0.0005,
+      "params": 106112
+    },
+    {
+      "grid": 8,
+      "slots": 64,
+      "head": "cls",
+      "reg_loss": "-",
+      "hit_rate": 0.9995,
+      "cell_acc": 0.9995,
+      "hit_sd": 0.0005000000000000004,
+      "params": 106112
+    },
+    {
+      "grid": 8,
+      "slots": 64,
+      "head": "reg",
+      "reg_loss": "coord",
+      "hit_rate": 0.07,
+      "cell_acc": 0.4015,
+      "hit_sd": 0.053,
+      "params": 106112
+    },
+    {
+      "grid": 8,
+      "slots": 64,
+      "head": "reg",
+      "reg_loss": "gauss",
+      "hit_rate": 0.0045000000000000005,
+      "cell_acc": 0.0335,
+      "hit_sd": 0.0015,
+      "params": 106112
+    }
+  ]
+}

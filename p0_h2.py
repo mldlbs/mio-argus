@@ -73,8 +73,14 @@ def build_dataset(n: int, seed: int, cfg: EnvCfg) -> dict:
             "bbox": bbox, "centers": centers}
 
 
+def env_key(cfg) -> str:
+    """缓存 key 必须覆盖**所有**影响数据的 env 参数，否则会读到陈旧数据。"""
+    return (f"g{cfg.grid}_i{cfg.img_size}_v{cfg.label_vocab}"
+            f"_f{cfg.fill}_j{cfg.jitter}_c{int(cfg.color_by_label)}")
+
+
 def load_or_build(n: int, seed: int, cfg: EnvCfg, tag: str) -> dict:
-    path = CACHE / f"{tag}_g{cfg.grid}_n{n}_{seed}.npz"
+    path = CACHE / f"{tag}_{env_key(cfg)}_n{n}_{seed}.npz"
     if path.exists():
         d = np.load(path)
         return {k: d[k] for k in d.files}
@@ -209,14 +215,14 @@ def main():
     for f in fills:
         c = cfg_for(ref_g, fill=f)
         print(f"[fill={f} precision={precision_demand(c):.4f}]")
-        run(c, ref_w, f"fill={f}", [("cls", "-"), ("reg", "gauss")])
+        run(c, ref_w, f"fill={f}", [("cls", "-"), ("reg", "coord")])
 
     # --- 扫描 B：格子数 ---
     print(f"\n########## 扫描 B：格子数 (width={ref_w}, fill=0.40) ##########")
     for g in grids:
         c = cfg_for(g, fill=0.40)
         print(f"[grid={g} slots={c.num_slots}]")
-        run(c, ref_w, f"grid={g}", [("cls", "-"), ("reg", "gauss")])
+        run(c, ref_w, f"grid={g}", [("cls", "-"), ("reg", "coord")])
 
     # --- 扫描 C：参数量（最难配置）---
     hard = cfg_for(grids[-1], fill=fills[-1])
@@ -234,7 +240,7 @@ def main():
         for k in keys:
             c = next((r for r in rs if r["head"] == "cls" and r[ref] == k
                       and not str(r["reg_loss"]).startswith("coord")), None)
-            r_ = next((r for r in rs if r["head"] == "reg" and r["reg_loss"] == "gauss"
+            r_ = next((r for r in rs if r["head"] == "reg" and r["reg_loss"] == "coord"
                        and r[ref] == k), None)
             if not c or not r_:
                 continue

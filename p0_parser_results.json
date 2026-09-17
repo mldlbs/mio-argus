@@ -1,0 +1,114 @@
+{
+  "device": "cuda",
+  "grid": 6,
+  "width": 32,
+  "n_train": 4000,
+  "n_test": 1000,
+  "epochs": 25,
+  "seeds": 2,
+  "reg_hit": 0.49350000000000005,
+  "reg_params": 106112,
+  "levels": [
+    {
+      "level": "Q1-clean",
+      "recall": 1.0,
+      "best_iou": 0.7173336111111112,
+      "n_det": 36.0,
+      "cls_hit": 1.0,
+      "sel_acc": 1.0,
+      "params": 106112,
+      "kw": {}
+    },
+    {
+      "level": "Q2-jit1",
+      "recall": 1.0,
+      "best_iou": 0.6325303846179918,
+      "n_det": 36.0,
+      "cls_hit": 1.0,
+      "sel_acc": 1.0,
+      "params": 106112,
+      "kw": {
+        "jit": 1
+      }
+    },
+    {
+      "level": "Q3-jit2",
+      "recall": 1.0,
+      "best_iou": 0.4992032151188047,
+      "n_det": 36.0,
+      "cls_hit": 0.9995,
+      "sel_acc": 0.9995,
+      "params": 106112,
+      "kw": {
+        "jit": 2
+      }
+    },
+    {
+      "level": "Q4-jit3",
+      "recall": 0.979,
+      "best_iou": 0.3839379154854754,
+      "n_det": 36.0,
+      "cls_hit": 0.9724999999999999,
+      "sel_acc": 0.9784999999999999,
+      "params": 106112,
+      "kw": {
+        "jit": 3
+      }
+    },
+    {
+      "level": "Q5-drop15",
+      "recall": 0.854,
+      "best_iou": 0.4312532917445979,
+      "n_det": 30.601,
+      "cls_hit": 0.8534999999999999,
+      "sel_acc": 0.8534999999999999,
+      "params": 106112,
+      "kw": {
+        "jit": 2,
+        "drop": 0.15
+      }
+    },
+    {
+      "level": "Q6-drop30",
+      "recall": 0.7,
+      "best_iou": 0.35481963057503885,
+      "n_det": 25.236,
+      "cls_hit": 0.6984999999999999,
+      "sel_acc": 0.6984999999999999,
+      "params": 106112,
+      "kw": {
+        "jit": 2,
+        "drop": 0.3
+      }
+    },
+    {
+      "level": "Q7-drop30+spur",
+      "recall": 0.708,
+      "best_iou": 0.28272412561953836,
+      "n_det": 27.282,
+      "cls_hit": 0.702,
+      "sel_acc": 0.703,
+      "params": 106112,
+      "kw": {
+        "jit": 3,
+        "drop": 0.3,
+        "spurious": 2.0
+      }
+    },
+    {
+      "level": "Q8-heavy",
+      "recall": 0.498,
+      "best_iou": 0.16346562693161995,
+      "n_det": 22.94,
+      "cls_hit": 0.472,
+      "sel_acc": 0.475,
+      "params": 106112,
+      "kw": {
+        "jit": 4,
+        "drop": 0.45,
+        "spurious": 3.0,
+        "shrink": 0.15
+      }
+    }
+  ]
+}
