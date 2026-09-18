@@ -196,8 +196,12 @@ def build_data(n, seed, background="flat", rich=True, use_parser=True,
         ne, wr, hr = 20, (26, 80), (16, 36)
     elif layout == "dense":
         ne, wr, hr = 30, (18, 56), (12, 26)
-    else:                        # extreme: 多而小 → 高精度要求（拥挤 UI / 小图标）
+    elif layout == "extreme":
         ne, wr, hr = 42, (13, 42), (10, 22)
+    elif layout == "tiny":       # 同样数量但**元素极小** → 高精度要求
+        ne, wr, hr = 42, (8, 26), (7, 14)
+    else:                        # micro: 更小
+        ne, wr, hr = 48, (7, 20), (6, 12)
     imgs = np.zeros((n, 3, IMG_SIZE, IMG_SIZE), dtype=np.uint8)
     inst = np.zeros((n, len(LABELS)), dtype=np.float32)
     xy = np.zeros((n, 2), dtype=np.float32)
@@ -373,11 +377,12 @@ def main():
           f"n_train={n_tr} n_test={n_te} epochs={epochs} width={args.width}")
 
     if args.quick:
-        combos = [("sparse", "flat", True), ("dense", "flat", True)]
+        combos = [("sparse", "flat", True), ("tiny", "flat", True)]
     else:
         combos = [("sparse", "flat", True), ("medium", "flat", True),
                   ("dense", "flat", True), ("extreme", "flat", True),
-                  ("extreme", "texture", True), ("extreme", "natural", True)]
+                  ("tiny", "flat", True), ("micro", "flat", True),
+                  ("tiny", "texture", True), ("tiny", "natural", True)]
 
     rows = []
     print(f"\n{'layout+bg':<16}{'elems':>7}{'parser recall':>14}{'reg':>9}"

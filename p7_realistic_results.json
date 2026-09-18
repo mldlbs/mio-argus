@@ -25,53 +25,75 @@
       "parser_recall": 0.8633333333333333,
       "reg": 1.0,
       "cls_oracle": 1.0,
-      "cls_parser": 0.855,
+      "cls_parser": 0.8541666666666666,
       "space_effect": 0.0,
-      "parser_cost": 0.14500000000000002
+      "parser_cost": 0.14583333333333337
     },
     {
       "config": "dense+flat",
       "layout": "dense",
       "background": "flat",
       "parser_recall": 0.8483333333333334,
-      "reg": 0.9958333333333333,
+      "reg": 0.9966666666666667,
       "cls_oracle": 1.0,
-      "cls_parser": 0.8341666666666666,
-      "space_effect": 0.004166666666666652,
-      "parser_cost": 0.1658333333333334
+      "cls_parser": 0.8358333333333333,
+      "space_effect": 0.0033333333333332993,
+      "parser_cost": 0.16416666666666668
     },
     {
       "config": "extreme+flat",
       "layout": "extreme",
       "background": "flat",
       "parser_recall": 0.845,
-      "reg": 0.9725,
+      "reg": 0.9766666666666667,
       "cls_oracle": 1.0,
       "cls_parser": 0.8325,
-      "space_effect": 0.02749999999999997,
+      "space_effect": 0.023333333333333317,
       "parser_cost": 0.16749999999999998
     },
     {
-      "config": "extreme+texture",
-      "layout": "extreme",
-      "background": "texture",
-      "parser_recall": 0.01,
-      "reg": 0.9533333333333334,
-      "cls_oracle": 1.0,
-      "cls_parser": 0.006666666666666667,
-      "space_effect": 0.046666666666666634,
-      "parser_cost": 0.9933333333333333
+      "config": "tiny+flat",
+      "layout": "tiny",
+      "background": "flat",
+      "parser_recall": 0.8466666666666667,
+      "reg": 0.7125,
+      "cls_oracle": 0.9991666666666666,
+      "cls_parser": 0.8391666666666666,
+      "space_effect": 0.2866666666666666,
+      "parser_cost": 0.16000000000000003
     },
     {
-      "config": "extreme+natural",
-      "layout": "extreme",
+      "config": "micro+flat",
+      "layout": "micro",
+      "background": "flat",
+      "parser_recall": 0.725,
+      "reg": 0.49666666666666665,
+      "cls_oracle": 0.9875,
+      "cls_parser": 0.7191666666666666,
+      "space_effect": 0.4908333333333334,
+      "parser_cost": 0.2683333333333334
+    },
+    {
+      "config": "tiny+texture",
+      "layout": "tiny",
+      "background": "texture",
+      "parser_recall": 0.025833333333333333,
+      "reg": 0.6375,
+      "cls_oracle": 0.9975,
+      "cls_parser": 0.011666666666666667,
+      "space_effect": 0.3600000000000001,
+      "parser_cost": 0.9858333333333333
+    },
+    {
+      "config": "tiny+natural",
+      "layout": "tiny",
       "background": "natural",
-      "parser_recall": 0.095,
-      "reg": 0.9258333333333333,
-      "cls_oracle": 0.9991666666666666,
-      "cls_parser": 0.07083333333333333,
-      "space_effect": 0.07333333333333336,
-      "parser_cost": 0.9283333333333333
+      "parser_recall": 0.0775,
+      "reg": 0.6058333333333333,
+      "cls_oracle": 0.995,
+      "cls_parser": 0.05583333333333333,
+      "space_effect": 0.38916666666666666,
+      "parser_cost": 0.9391666666666667
     }
   ]
 }
