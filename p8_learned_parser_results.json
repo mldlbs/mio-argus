@@ -1,0 +1,33 @@
+{
+  "device": "cuda",
+  "img": 192,
+  "sel_width": 16,
+  "reg_params": 103040,
+  "epochs": 60,
+  "n_train": 4000,
+  "n_test": 1000,
+  "rows": [
+    {
+      "bg": "flat",
+      "det_w": 16,
+      "det_params": 24003,
+      "sel_params": 30016,
+      "total": 54019,
+      "recall": 0.518,
+      "iou": 0.21267098293908202,
+      "cls": 0.517,
+      "reg": 0.784
+    },
+    {
+      "bg": "flat",
+      "det_w": 32,
+      "det_params": 94083,
+      "sel_params": 30016,
+      "total": 124099,
+      "recall": 0.515,
+      "iou": 0.2359127334441925,
+      "cls": 0.511,
+      "reg": 0.784
+    }
+  ]
+}

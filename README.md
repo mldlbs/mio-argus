@@ -82,7 +82,7 @@ The falsifiable hypothesis, sub-hypotheses (H1–H4), experiment protocol, and k
 | Hypothesis | Status | Key number |
 |-----------|--------|-----------|
 | H1 re-observation replaces parameters | ✅ | gap grows with H: 0.29 → 0.65 → 0.92 |
-| H2 action-space compression | ⚠️ conditional | grid: 12K cls ≈100% vs 392K reg ≈10%. Free-form realistic UI: wins only when parser_recall > reg_accuracy (`tiny`/`micro` +0.13/+0.22; texture −0.63) |
+| H2 action-space compression | ⚠️ conditional | grid: 12K cls ≈100% vs 392K reg ≈10%. Free-form UI: wins iff `parser_recall > reg_accuracy` (tiny/micro +0.13/+0.22; texture −0.63). Small learned detector caps at recall ~0.52 → not enough |
 | H3 verification replaces precision | ⚠️ split | re-grounding ❌ / outcome verification ✅ (17× smaller V) |
 | H3 verifier accuracy required | ✅ | FNR < ~0.8/H; FNR far more costly than FPR |
 | H4 narrow-domain low entropy | ✅ | 4,208 params → 0.938 vs 100K params → 0.889 on natural backgrounds |
@@ -93,9 +93,13 @@ information must be recovered from a high-entropy input, not how large the model
 P7 turns that into a computable inequality: structured action selection beats plain
 coordinate regression **iff `parser_recall > reg_accuracy`** (12/12 configurations). It
 wins on tiny targets against flat backgrounds (+0.13/+0.22) and loses badly where the
-parser collapses on textured ones (−0.55..−0.63).
+parser collapses on textured ones (−0.55..−0.63). P8 then shows a small learned detector
+cannot close the gap: recall saturates at ~0.52 while the bar is >0.78, and a zero-parameter
+classical parser actually beats it on clean backgrounds (0.847 vs 0.518). The practical
+interval for structured action spaces is `{high precision demand} ∩ {reliable parser}` —
+which real desktop/web apps satisfy only via the accessibility/DOM tree, not via pixels.
 
-Individual results: [P0](P0_RESULTS.md) · [P0.5](P0_5_RESULTS.md) · [P1](P1_RESULTS.md) · [P2](P2_RESULTS.md) · [P3](P3_RESULTS.md) · [P4a](P4A_RESULTS.md) · [P4a'](P4B_RESULTS.md) · [P4c](P4C_RESULTS.md) · [P4d](P4D_RESULTS.md) · [P5](P5_RESULTS.md) · [P6](P6_RESULTS.md) · [P7](P7_RESULTS.md)
+Individual results: [P0](P0_RESULTS.md) · [P0.5](P0_5_RESULTS.md) · [P1](P1_RESULTS.md) · [P2](P2_RESULTS.md) · [P3](P3_RESULTS.md) · [P4a](P4A_RESULTS.md) · [P4a'](P4B_RESULTS.md) · [P4c](P4C_RESULTS.md) · [P4d](P4D_RESULTS.md) · [P5](P5_RESULTS.md) · [P6](P6_RESULTS.md) · [P7](P7_RESULTS.md) · [P8](P8_RESULTS.md)
 
 ---
 
