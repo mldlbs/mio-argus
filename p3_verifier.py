@@ -202,12 +202,82 @@ def pi_probs(m, img, label, device):
         return torch.softmax(m(it, oh), -1).cpu().numpy()[0]
 
 
-def v_advanced(v, before, after, device):
+def v_advanced(v, before, after, device, thr: float = 0.5):
+    """
+    判定"进度是否推进"。
+
+    ⚠️ 阈值必须校准：OutcomeVerifier 末端是无归一化的 Linear，
+    其 logit 尺度在训练中会剧烈漂移（实测最优阈值在 0.04 与 0.96 之间摆动）。
+    固定 0.5 会造成偶发的"恒输出正类"崩溃——这是本项目的已知缺陷。
+    用 calibrate_threshold() 在验证集上定阈值。
+    """
     v.eval()
     with torch.no_grad():
         b = torch.from_numpy(before).unsqueeze(0).to(device)
         a = torch.from_numpy(after).unsqueeze(0).to(device)
-        return float(torch.sigmoid(v(b, a)).item()) > 0.5
+        return float(torch.sigmoid(v(b, a)).item()) > thr
+
+
+def v_scores_all(v, data, device, batch=256):
+    v.eval()
+    B = to_t(data["before"], device); A = to_t(data["after"], device)
+    out = []
+    with torch.no_grad():
+        for i in range(0, B.shape[0], batch):
+            out.append(torch.sigmoid(v(B[i:i + batch], A[i:i + batch]))
+                       .cpu().numpy())
+    return np.concatenate(out)
+
+
+def calibrate_threshold(v, val_data, device):
+    """
+    在验证集上取使准确率最大的阈值。
+
+    对准确率而言，最优阈值必落在排序分数的相邻两点之间，
+    因此用相邻点中点做候选是**精确**的
+    （0→1 的均匀网格会漏掉尺度漂移后的最优点——本项目踩过这个坑）。
+    返回 (threshold, val_accuracy, val_auc)。
+    """
+    sc = v_scores_all(v, val_data, device)
+    y = val_data["label"].astype(int)
+    s = np.sort(np.unique(sc))
+    if len(s) == 1:
+        return 0.5, float((y == 0).mean()), 0.5
+    cands = (s[:-1] + s[1:]) / 2.0
+    best_t, best_acc = float(cands[0]), -1.0
+    for t in cands:
+        acc = float(((sc > t).astype(int) == y).mean())
+        if acc > best_acc:
+            best_acc, best_t = acc, float(t)
+
+    order = np.argsort(sc)
+    ranks = np.empty(len(sc), dtype=float)
+    ranks[order] = np.arange(len(sc))
+    n1 = float(y.sum()); n0 = float(len(y) - n1)
+    auc = float("nan") if (n1 == 0 or n0 == 0) else \
+        (ranks[y == 1].sum() - n1 * (n1 - 1) / 2) / (n0 * n1)
+    return best_t, best_acc, auc
+
+
+def train_v_calibrated(width, tr, val, epochs, device, seed=0,
+                       lr=2e-3, batch=64, max_retries=4, min_auc=0.9):
+    """
+    训练 + 阈值校准 + 失败重试。
+    min_auc 用于检测"真的没学到"（实测约 1/6 的 seed 会失败）。
+    返回 (model, record)。
+    """
+    best = None
+    for attempt in range(max_retries):
+        s = seed + attempt * 1000
+        v = train_v(width, tr, epochs, device, seed=s, lr=lr, batch=batch)
+        thr, acc, auc = calibrate_threshold(v, val, device)
+        rec = {"attempt": attempt, "seed": s, "thr": thr,
+               "val_acc": acc, "val_auc": auc}
+        if best is None or (not np.isnan(auc) and auc > best["val_auc"]):
+            best = dict(rec); best["model"] = v
+        if not np.isnan(auc) and auc >= min_auc and acc >= 0.9:
+            break
+    return best["model"], best
 
 
 def rollout(pi, v, cfg, device, H, rho, n_tasks, seed,

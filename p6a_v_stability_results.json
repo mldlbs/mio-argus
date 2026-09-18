@@ -1,0 +1,120 @@
+{
+  "device": "cuda",
+  "variants": [
+    {
+      "name": "baseline  lr=2e-3 ep=15",
+      "auc": 1.0,
+      "acc@0.5": 0.559,
+      "acc@best": 1.0,
+      "best_thr": 0.9848484992980957,
+      "score_max": 1.0,
+      "score_min": 0.350272536277771,
+      "pred_pos_rate@0.5": 0.95,
+      "true_pos_rate": 0.509,
+      "final_gap": 0.2947612404823303,
+      "final_loss": 0.008356035116218751
+    },
+    {
+      "name": "low-lr    lr=5e-4 ep=15",
+      "auc": 1.0,
+      "acc@0.5": 1.0,
+      "acc@best": 1.0,
+      "best_thr": 0.6660180687904358,
+      "score_max": 0.9995065927505493,
+      "score_min": 0.17154352366924286,
+      "pred_pos_rate@0.5": 0.509,
+      "true_pos_rate": 0.509,
+      "final_gap": 0.6751299202442169,
+      "final_loss": 0.10822539247812764
+    },
+    {
+      "name": "long      lr=2e-3 ep=40",
+      "auc": 1.0,
+      "acc@0.5": 1.0,
+      "acc@best": 1.0,
+      "best_thr": 0.5776317715644836,
+      "score_max": 0.9999996423721313,
+      "score_min": 0.016041193157434464,
+      "pred_pos_rate@0.5": 0.509,
+      "true_pos_rate": 0.509,
+      "final_gap": 0.9473135843873024,
+      "final_loss": 0.0008937906686990191
+    }
+  ],
+  "stability": {
+    "auc": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "acc@0.5": [
+      0.979,
+      1.0,
+      1.0,
+      0.62,
+      0.491,
+      0.968
+    ],
+    "acc@best": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "calibrated": [
+    {
+      "seed": 0,
+      "attempts": 1,
+      "val_auc": 1.0,
+      "thr": 0.0012114238925278187,
+      "test@thr": 1.0,
+      "test@0.5": 0.62
+    },
+    {
+      "seed": 1,
+      "attempts": 1,
+      "val_auc": 1.0,
+      "thr": 0.7597438097000122,
+      "test@thr": 1.0,
+      "test@0.5": 0.996
+    },
+    {
+      "seed": 2,
+      "attempts": 1,
+      "val_auc": 1.0,
+      "thr": 0.9844849109649658,
+      "test@thr": 1.0,
+      "test@0.5": 0.509
+    },
+    {
+      "seed": 3,
+      "attempts": 1,
+      "val_auc": 1.0,
+      "thr": 0.0007055623573251069,
+      "test@thr": 1.0,
+      "test@0.5": 0.62
+    },
+    {
+      "seed": 4,
+      "attempts": 1,
+      "val_auc": 1.0,
+      "thr": 0.9999902844429016,
+      "test@thr": 1.0,
+      "test@0.5": 0.509
+    },
+    {
+      "seed": 5,
+      "attempts": 1,
+      "val_auc": 1.0,
+      "thr": 0.00016429055540356785,
+      "test@thr": 1.0,
+      "test@0.5": 0.62
+    }
+  ]
+}
