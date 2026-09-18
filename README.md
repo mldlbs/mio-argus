@@ -75,6 +75,23 @@ MioArgus is not trying to out-scale large VLMs. The bet is that **computer use i
 
 The falsifiable hypothesis, sub-hypotheses (H1–H4), experiment protocol, and kill criteria are in **[HYPOTHESIS.md](HYPOTHESIS.md)**.
 
+### Consolidated report
+
+**[REPORT.md](REPORT.md)** ties everything together. Summary of what was measured:
+
+| Hypothesis | Status | Key number |
+|-----------|--------|-----------|
+| H1 re-observation replaces parameters | ✅ | gap grows with H: 0.29 → 0.65 → 0.92 |
+| H2 action-space compression | ✅ | 12K-param cls ≈100% vs 392K-param reg ≈10% |
+| H3 verification replaces precision | ⚠️ split | re-grounding ❌ / outcome verification ✅ (17× smaller V) |
+| H4 narrow-domain low entropy | ✅ | 4,208 params → 0.938 vs 100K params → 0.889 on natural backgrounds |
+| Population self-evolution | ❌ | confounded; no capability evidence |
+
+All four lines converge on one conclusion: **the bottleneck in computer use is which
+information must be recovered from a high-entropy input, not how large the model is.**
+
+Individual results: [P0](P0_RESULTS.md) · [P0.5](P0_5_RESULTS.md) · [P1](P1_RESULTS.md) · [P2](P2_RESULTS.md) · [P3](P3_RESULTS.md) · [P4a](P4A_RESULTS.md) · [P4a'](P4B_RESULTS.md) · [P4c](P4C_RESULTS.md) · [P4d](P4D_RESULTS.md) · [P5](P5_RESULTS.md)
+
 ---
 
 # nanoGPT
