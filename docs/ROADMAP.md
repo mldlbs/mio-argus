@@ -189,19 +189,31 @@ MoE + 路由器优于等参数单体"，**不构成研究贡献**。
 
 ---
 
-## 4. 相对已有工作的 delta（待核实）
+## 4. 相对已有工作的 delta（已核实，2026-10-01 检索）
 
-⚠️ **GroundCUA / SEA / AlphaEvolve 未能独立核实**（本环境无检索能力）。
-以下 delta 是**暂定**的，必须先读完这三篇再定稿：
+三篇工作均已独立核实（原文 + arXiv）：
 
-| # | Delta | 证据等级 |
-|---|-------|----------|
-| 1 | population（而非单模型） | 需核实 SEA 是否单模型 |
-| 2 | 多目标特化（而非成功率单目标） | 需核实 |
-| 3 | **对抗 curriculum 作用在可度量的难度轴上** | `[实测]` 难度轴由 P0/P1 给出 |
-| 4 | 蒸馏到小模型 | 需核实 |
+| 工作 | 实质 | 关键事实 |
+|------|------|----------|
+| **GroundCUA / GroundNext** (arXiv 2511.07332, ICLR'26) | 桌面 grounding 数据集（56K 截图 / 3.56M 人工标注）+ 3B/7B 单模型（SFT 700K + RL） | 单模型，单目标（grounding acc）；主张**高质量数据 > 数据量**（700K 胜 9M） |
+| **SEA** (arXiv 2508.04037, Lenovo) | 自生成可验证轨迹闭环 + step-wise RL + grounding/planning 模型合并 | **单模型**（7B）；无 population、无 curriculum、单目标（任务成功率） |
+| **SEAgent** (arXiv 2508.04700, ICML'26) | 自探索 + World State Model 步级奖励 + Curriculum Generator + specialist→generalist | 专家池**各自独立训练**后 SFT 蒸馏成单个 generalist（11.3%→34.5%） |
+| **AlphaEvolve** (arXiv 2506.13131, DeepMind) | LLM 进化代码：program database（MAP-Elites + islands）+ 自动评估器 | 进化的是**程序**不是模型；**支持多目标**；无 curriculum、无蒸馏 |
 
-**第 3 条是唯一有本项目实证支撑的差异化点。**
+### delta 逐条裁决
+
+| # | Delta | 裁决 |
+|---|-------|------|
+| 1 | population（而非单模型） | ✅ **成立**（限定为"共演化的模型 population"）。SEA=单模型；GroundNext=单模型；AlphaEvolve 的 population 是程序库；SEAgent 的专家池是**独立训练后蒸馏**，无选择压力、无共演化。SEA 恰好是我们四面实验的 **B 臂**（单模型自生成数据自训练），SEAgent 的 specialist 阶段是弱化的 **C 臂** |
+| 2 | 多目标特化（而非成功率单目标） | ⚠️ **限定成立**。AlphaEvolve 原生多目标（论文明确对比 FunSearch 单目标）——一般进化框架层面不新；但在 **CUA 策略训练**层面，SEA/SEAgent/GroundNext 全部单目标（成功率/grounding），此范围内成立 |
+| 3 | 对抗 curriculum 作用在可度量的难度轴上 | ✅ **成立** `[实测: P0/P1]`。SEAgent 有 Curriculum Generator（简单→复杂），但**不对抗**（proposer 不针对当前策略找弱点）；SEA/AlphaEvolve 无 curriculum。可度量难度轴（fill/H/ρ）仍是本项目独有 |
+| 4 | 蒸馏到小模型 | ❌ **不成立**。SEAgent 已做 specialist→generalist 蒸馏（同为 7B，非"小模型"）；SEA 用 DARE 模型合并。"蒸馏本身"不是 delta；C5 的修正（student 只吃轨迹不吃 population 位置）若做出结果，delta 收窄为**蒸馏与多样性解耦** |
+
+### 附带结论（核实中发现）
+
+- **C1 的对照**：SEAgent 的 World State Model 是**学出来的步级判别器**（LLM 裁判），而我们实测（P2/P3）表明学出来的 verifier 会被策略同构/被 hack，结果验证才有效。若 SEA 系工作在更对抗的任务空间上失稳，这是可检验的分歧点。
+- **GroundCUA 与本项目不构成竞争**：它把钱花在买数据（56K 张人工标注）上；本项目的命题是把钱移到环境/验证器/搜索机制上。两者是同一预算约束下的两种花法，引用时作为"数据路线的最强证据"而非对手。
+
 
 ---
 
@@ -251,7 +263,7 @@ MoE + 路由器优于等参数单体"，**不构成研究贡献**。
 4. ~~P4d 容量扫描~~ ❌ 原因是**域不可识别**，非容量
 5. **P4 路线裁决：无能力证据，暂停。** 唯一站得住的 MoE 结论是已知结果。
 6. 若重启 P4：先在同一渲染管线内做到**信息对称**，并用专精者复现基线（≈0.75）。
-7. 核实 GroundCUA / SEA / AlphaEvolve，定稿第 4 节的 delta
+7. ~~核实 GroundCUA / SEA / AlphaEvolve，定稿第 4 节的 delta~~ ✅ 已核实（含 SEA 近邻工作 SEAgent），见 §4
 8. ~~H4 窄域低熵~~ ✅ 成立（机制被修正为"结构化类元素干扰"，见 P5）
 
 ### 当前可交付成果
