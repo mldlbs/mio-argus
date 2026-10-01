@@ -1,0 +1,2266 @@
+{
+  "n": 64,
+  "m": 8,
+  "cap": 32,
+  "seeds": 20,
+  "Es": [
+    8,
+    16
+  ],
+  "corr": [
+    0.0,
+    0.4
+  ],
+  "repeat": [
+    0.0,
+    0.5
+  ],
+  "beta": [
+    1.0,
+    0.9,
+    0.7,
+    0.5
+  ],
+  "rows": [
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "A_recency",
+      "acc": 0.1224744735391303,
+      "decay_eff": -0.05310177190012255,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "B_kv",
+      "acc": 0.49792065926778684,
+      "decay_eff": -0.05310177190012255,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.7099605784973906,
+      "decay_eff": -0.05310177190012255,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_decay",
+      "acc": 0.656858806597268,
+      "decay_eff": -0.05310177190012255,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.7099605784973906,
+      "decay_eff": -0.05310177190012255,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.656858806597268,
+      "decay_eff": -0.05310177190012255,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.7099685445997047,
+      "decay_eff": -0.05310177190012255,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "A_recency",
+      "acc": 0.17284349778063485,
+      "decay_eff": -0.021973120928095224,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "B_kv",
+      "acc": 0.6023165541376498,
+      "decay_eff": -0.021973120928095224,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.7092372338185602,
+      "decay_eff": -0.021973120928095224,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_decay",
+      "acc": 0.687264112890465,
+      "decay_eff": -0.021973120928095224,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.7092372338185602,
+      "decay_eff": -0.021973120928095224,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.687264112890465,
+      "decay_eff": -0.021973120928095224,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.7092884740795636,
+      "decay_eff": -0.021973120928095224,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "A_recency",
+      "acc": 0.315203726071278,
+      "decay_eff": 0.0400633684698235,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "B_kv",
+      "acc": 0.8058246562060523,
+      "decay_eff": 0.0400633684698235,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.7074991384712843,
+      "decay_eff": 0.0400633684698235,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_decay",
+      "acc": 0.7475625069411078,
+      "decay_eff": 0.0400633684698235,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.7074991384712843,
+      "decay_eff": 0.0400633684698235,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.7475625069411078,
+      "decay_eff": 0.0400633684698235,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.7076215325012751,
+      "decay_eff": 0.0400633684698235,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "A_recency",
+      "acc": 0.49893740946585974,
+      "decay_eff": 0.08737469346244808,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "B_kv",
+      "acc": 0.9410802402475842,
+      "decay_eff": 0.08737469346244808,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.7058601196240617,
+      "decay_eff": 0.08737469346244808,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_decay",
+      "acc": 0.7932348130865098,
+      "decay_eff": 0.08737469346244808,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.7058601196240617,
+      "decay_eff": 0.08737469346244808,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.7932348130865098,
+      "decay_eff": 0.08737469346244808,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.7060184281455848,
+      "decay_eff": 0.08737469346244808,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "A_recency",
+      "acc": 0.22447102339852734,
+      "decay_eff": 0.010183719446843043,
+      "cons_eff": -0.1169328258758483
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "B_kv",
+      "acc": 0.7416048615926654,
+      "decay_eff": 0.010183719446843043,
+      "cons_eff": -0.1169328258758483
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.7810872653786396,
+      "decay_eff": 0.010183719446843043,
+      "cons_eff": -0.1169328258758483
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_decay",
+      "acc": 0.7912709848254826,
+      "decay_eff": 0.010183719446843043,
+      "cons_eff": -0.1169328258758483
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.6641544395027913,
+      "decay_eff": 0.010183719446843043,
+      "cons_eff": -0.1169328258758483
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.6801155238639349,
+      "decay_eff": 0.010183719446843043,
+      "cons_eff": -0.1169328258758483
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.6822970832569306,
+      "decay_eff": 0.010183719446843043,
+      "cons_eff": -0.1169328258758483
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "A_recency",
+      "acc": 0.26821618750760695,
+      "decay_eff": 0.026799533629431216,
+      "cons_eff": -0.12847515032234835
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "B_kv",
+      "acc": 0.793803583894499,
+      "decay_eff": 0.026799533629431216,
+      "cons_eff": -0.12847515032234835
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.7636827205827451,
+      "decay_eff": 0.026799533629431216,
+      "cons_eff": -0.12847515032234835
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_decay",
+      "acc": 0.7904822542121763,
+      "decay_eff": 0.026799533629431216,
+      "cons_eff": -0.12847515032234835
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.6352075702603968,
+      "decay_eff": 0.026799533629431216,
+      "cons_eff": -0.12847515032234835
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.6649750101724081,
+      "decay_eff": 0.026799533629431216,
+      "cons_eff": -0.12847515032234835
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.6578148504728585,
+      "decay_eff": 0.026799533629431216,
+      "cons_eff": -0.12847515032234835
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "A_recency",
+      "acc": 0.393892873490428,
+      "decay_eff": 0.06306426644898944,
+      "cons_eff": -0.15009836563969015
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "B_kv",
+      "acc": 0.8976132159362505,
+      "decay_eff": 0.06306426644898944,
+      "cons_eff": -0.15009836563969015
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.7290667334952345,
+      "decay_eff": 0.06306426644898944,
+      "cons_eff": -0.15009836563969015
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_decay",
+      "acc": 0.792130999944224,
+      "decay_eff": 0.06306426644898944,
+      "cons_eff": -0.15009836563969015
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.5789683678555444,
+      "decay_eff": 0.06306426644898944,
+      "cons_eff": -0.15009836563969015
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.638714558473578,
+      "decay_eff": 0.06306426644898944,
+      "cons_eff": -0.15009836563969015
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.6088509550686989,
+      "decay_eff": 0.06306426644898944,
+      "cons_eff": -0.15009836563969015
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "A_recency",
+      "acc": 0.5569073834147451,
+      "decay_eff": 0.09484528222378041,
+      "cons_eff": -0.16462080884673025
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "B_kv",
+      "acc": 0.9683512487564142,
+      "decay_eff": 0.09484528222378041,
+      "cons_eff": -0.16462080884673025
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.7026768124287329,
+      "decay_eff": 0.09484528222378041,
+      "cons_eff": -0.16462080884673025
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_decay",
+      "acc": 0.7975220946525133,
+      "decay_eff": 0.09484528222378041,
+      "cons_eff": -0.16462080884673025
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.5380560035820027,
+      "decay_eff": 0.09484528222378041,
+      "cons_eff": -0.16462080884673025
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.6239390941112782,
+      "decay_eff": 0.09484528222378041,
+      "cons_eff": -0.16462080884673025
+    },
+    {
+      "E": 8,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.5715692853396598,
+      "decay_eff": 0.09484528222378041,
+      "cons_eff": -0.16462080884673025
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "A_recency",
+      "acc": 0.10859450005957305,
+      "decay_eff": -0.01578519321919858,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "B_kv",
+      "acc": 0.30911664839604175,
+      "decay_eff": -0.01578519321919858,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.272316465798616,
+      "decay_eff": -0.01578519321919858,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_decay",
+      "acc": 0.25653127257941744,
+      "decay_eff": -0.01578519321919858,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.272316465798616,
+      "decay_eff": -0.01578519321919858,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.25653127257941744,
+      "decay_eff": -0.01578519321919858,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.27231018742778007,
+      "decay_eff": -0.01578519321919858,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "A_recency",
+      "acc": 0.15011520763080624,
+      "decay_eff": 0.004710141576257598,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "B_kv",
+      "acc": 0.37460115390122384,
+      "decay_eff": 0.004710141576257598,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.2728489088731191,
+      "decay_eff": 0.004710141576257598,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_decay",
+      "acc": 0.2775590504493767,
+      "decay_eff": 0.004710141576257598,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.2728489088731191,
+      "decay_eff": 0.004710141576257598,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.2775590504493767,
+      "decay_eff": 0.004710141576257598,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.2728694953391294,
+      "decay_eff": 0.004710141576257598,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "A_recency",
+      "acc": 0.2682548247523508,
+      "decay_eff": 0.04823159749577116,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "B_kv",
+      "acc": 0.5048472513383037,
+      "decay_eff": 0.04823159749577116,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.27443856204790235,
+      "decay_eff": 0.04823159749577116,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_decay",
+      "acc": 0.3226701595436735,
+      "decay_eff": 0.04823159749577116,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.27443856204790235,
+      "decay_eff": 0.04823159749577116,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.3226701595436735,
+      "decay_eff": 0.04823159749577116,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.2744992172460987,
+      "decay_eff": 0.04823159749577116,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "A_recency",
+      "acc": 0.42195261700331665,
+      "decay_eff": 0.08535049888739282,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "B_kv",
+      "acc": 0.5962401239150512,
+      "decay_eff": 0.08535049888739282,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.27671448989365866,
+      "decay_eff": 0.08535049888739282,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_decay",
+      "acc": 0.3620649887810515,
+      "decay_eff": 0.08535049888739282,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.27671448989365866,
+      "decay_eff": 0.08535049888739282,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.3620649887810515,
+      "decay_eff": 0.08535049888739282,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.27678940820058506,
+      "decay_eff": 0.08535049888739282,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "A_recency",
+      "acc": 0.1854297493991718,
+      "decay_eff": -0.003452828897979987,
+      "cons_eff": -0.04244674273288018
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "B_kv",
+      "acc": 0.490884051292597,
+      "decay_eff": -0.003452828897979987,
+      "cons_eff": -0.04244674273288018
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.40573485525928926,
+      "decay_eff": -0.003452828897979987,
+      "cons_eff": -0.04244674273288018
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_decay",
+      "acc": 0.4022820263613093,
+      "decay_eff": -0.003452828897979987,
+      "cons_eff": -0.04244674273288018
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.3632881125264091,
+      "decay_eff": -0.003452828897979987,
+      "cons_eff": -0.04244674273288018
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.3692156792986026,
+      "decay_eff": -0.003452828897979987,
+      "cons_eff": -0.04244674273288018
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.3708551543111918,
+      "decay_eff": -0.003452828897979987,
+      "cons_eff": -0.04244674273288018
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "A_recency",
+      "acc": 0.2239804490664397,
+      "decay_eff": 0.01268555345596939,
+      "cons_eff": -0.04913483604504537
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "B_kv",
+      "acc": 0.5318808152287923,
+      "decay_eff": 0.01268555345596939,
+      "cons_eff": -0.04913483604504537
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.38748594655562535,
+      "decay_eff": 0.01268555345596939,
+      "cons_eff": -0.04913483604504537
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_decay",
+      "acc": 0.40017150001159474,
+      "decay_eff": 0.01268555345596939,
+      "cons_eff": -0.04913483604504537
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.33835111051058,
+      "decay_eff": 0.01268555345596939,
+      "cons_eff": -0.04913483604504537
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.35529355693587306,
+      "decay_eff": 0.01268555345596939,
+      "cons_eff": -0.04913483604504537
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.3499131877546481,
+      "decay_eff": 0.01268555345596939,
+      "cons_eff": -0.04913483604504537
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "A_recency",
+      "acc": 0.33379681817231494,
+      "decay_eff": 0.046198190202181355,
+      "cons_eff": -0.06057921269093747
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "B_kv",
+      "acc": 0.6154553454544271,
+      "decay_eff": 0.046198190202181355,
+      "cons_eff": -0.06057921269093747
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.35543268222569946,
+      "decay_eff": 0.046198190202181355,
+      "cons_eff": -0.06057921269093747
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_decay",
+      "acc": 0.4016308724278808,
+      "decay_eff": 0.046198190202181355,
+      "cons_eff": -0.06057921269093747
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.294853469534762,
+      "decay_eff": 0.046198190202181355,
+      "cons_eff": -0.06057921269093747
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.33465502960343907,
+      "decay_eff": 0.046198190202181355,
+      "cons_eff": -0.06057921269093747
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.3125741145606885,
+      "decay_eff": 0.046198190202181355,
+      "cons_eff": -0.06057921269093747
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "A_recency",
+      "acc": 0.4752627809443803,
+      "decay_eff": 0.07368475873251285,
+      "cons_eff": -0.0668414238878231
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "B_kv",
+      "acc": 0.6767448439152376,
+      "decay_eff": 0.07368475873251285,
+      "cons_eff": -0.0668414238878231
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.33629356124162235,
+      "decay_eff": 0.07368475873251285,
+      "cons_eff": -0.0668414238878231
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_decay",
+      "acc": 0.4099783199741352,
+      "decay_eff": 0.07368475873251285,
+      "cons_eff": -0.0668414238878231
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.26945213735379925,
+      "decay_eff": 0.07368475873251285,
+      "cons_eff": -0.0668414238878231
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.32793933845444684,
+      "decay_eff": 0.07368475873251285,
+      "cons_eff": -0.0668414238878231
+    },
+    {
+      "E": 8,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.28978732320435363,
+      "decay_eff": 0.07368475873251285,
+      "cons_eff": -0.0668414238878231
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "A_recency",
+      "acc": 0.062339913983611474,
+      "decay_eff": -0.13635770208188014,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "B_kv",
+      "acc": 0.25392955962377683,
+      "decay_eff": -0.13635770208188014,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.5758419234451919,
+      "decay_eff": -0.13635770208188014,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_decay",
+      "acc": 0.4394842213633118,
+      "decay_eff": -0.13635770208188014,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.5758419234451919,
+      "decay_eff": -0.13635770208188014,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.4394842213633118,
+      "decay_eff": -0.13635770208188014,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.5758535367154674,
+      "decay_eff": -0.13635770208188014,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "A_recency",
+      "acc": 0.12218273769136989,
+      "decay_eff": -0.028473232128475967,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "B_kv",
+      "acc": 0.4249374271010441,
+      "decay_eff": -0.028473232128475967,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.5768651855952924,
+      "decay_eff": -0.028473232128475967,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_decay",
+      "acc": 0.5483919534668165,
+      "decay_eff": -0.028473232128475967,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.5768651855952924,
+      "decay_eff": -0.028473232128475967,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.5483919534668165,
+      "decay_eff": -0.028473232128475967,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.5769461772929424,
+      "decay_eff": -0.028473232128475967,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "A_recency",
+      "acc": 0.29966824533785824,
+      "decay_eff": 0.1356256876414359,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "B_kv",
+      "acc": 0.7634780399002097,
+      "decay_eff": 0.1356256876414359,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.5773494191900539,
+      "decay_eff": 0.1356256876414359,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_decay",
+      "acc": 0.7129751068314898,
+      "decay_eff": 0.1356256876414359,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.5773494191900539,
+      "decay_eff": 0.1356256876414359,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.7129751068314898,
+      "decay_eff": 0.1356256876414359,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.5774819660945855,
+      "decay_eff": 0.1356256876414359,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "A_recency",
+      "acc": 0.4983394207063204,
+      "decay_eff": 0.20686057728989293,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "B_kv",
+      "acc": 0.9377827854374683,
+      "decay_eff": 0.20686057728989293,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.5755741449961584,
+      "decay_eff": 0.20686057728989293,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_decay",
+      "acc": 0.7824347222860514,
+      "decay_eff": 0.20686057728989293,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.5755741449961584,
+      "decay_eff": 0.20686057728989293,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.7824347222860514,
+      "decay_eff": 0.20686057728989293,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.5757149083729056,
+      "decay_eff": 0.20686057728989293,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "A_recency",
+      "acc": 0.12070273657610778,
+      "decay_eff": -0.04085379587717353,
+      "cons_eff": -0.11651059528277563
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "B_kv",
+      "acc": 0.4516968223953269,
+      "decay_eff": -0.04085379587717353,
+      "cons_eff": -0.11651059528277563
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.6854932937105335,
+      "decay_eff": -0.04085379587717353,
+      "cons_eff": -0.11651059528277563
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_decay",
+      "acc": 0.6446394978333599,
+      "decay_eff": -0.04085379587717353,
+      "cons_eff": -0.11651059528277563
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.5689826984277578,
+      "decay_eff": -0.04085379587717353,
+      "cons_eff": -0.11651059528277563
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.5663653948450078,
+      "decay_eff": -0.04085379587717353,
+      "cons_eff": -0.11651059528277563
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.5792631739326717,
+      "decay_eff": -0.04085379587717353,
+      "cons_eff": -0.11651059528277563
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "A_recency",
+      "acc": 0.17571503041314468,
+      "decay_eff": 0.02850051897858874,
+      "cons_eff": -0.13281113084793073
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "B_kv",
+      "acc": 0.5777203305517861,
+      "decay_eff": 0.02850051897858874,
+      "cons_eff": -0.13281113084793073
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.6508330739037266,
+      "decay_eff": 0.02850051897858874,
+      "cons_eff": -0.13281113084793073
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_decay",
+      "acc": 0.6793335928823153,
+      "decay_eff": 0.02850051897858874,
+      "cons_eff": -0.13281113084793073
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.5180219430557959,
+      "decay_eff": 0.02850051897858874,
+      "cons_eff": -0.13281113084793073
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.5670153488690014,
+      "decay_eff": 0.02850051897858874,
+      "cons_eff": -0.13281113084793073
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.5316777017489264,
+      "decay_eff": 0.02850051897858874,
+      "cons_eff": -0.13281113084793073
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "A_recency",
+      "acc": 0.34269798923719635,
+      "decay_eff": 0.13893863433000164,
+      "cons_eff": -0.15217182521873807
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "B_kv",
+      "acc": 0.8263036866265889,
+      "decay_eff": 0.13893863433000164,
+      "cons_eff": -0.15217182521873807
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.6073525717283094,
+      "decay_eff": 0.13893863433000164,
+      "cons_eff": -0.15217182521873807
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_decay",
+      "acc": 0.746291206058311,
+      "decay_eff": 0.13893863433000164,
+      "cons_eff": -0.15217182521873807
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.4551807465095713,
+      "decay_eff": 0.13893863433000164,
+      "cons_eff": -0.15217182521873807
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.5878234793689294,
+      "decay_eff": 0.13893863433000164,
+      "cons_eff": -0.15217182521873807
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.47121279198765353,
+      "decay_eff": 0.13893863433000164,
+      "cons_eff": -0.15217182521873807
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "A_recency",
+      "acc": 0.5306568689243203,
+      "decay_eff": 0.1920593814410556,
+      "cons_eff": -0.15877801416776494
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "B_kv",
+      "acc": 0.9540011514065524,
+      "decay_eff": 0.1920593814410556,
+      "cons_eff": -0.15877801416776494
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.5906945892794393,
+      "decay_eff": 0.1920593814410556,
+      "cons_eff": -0.15877801416776494
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_decay",
+      "acc": 0.7827539707204949,
+      "decay_eff": 0.1920593814410556,
+      "cons_eff": -0.15877801416776494
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.43191657511167436,
+      "decay_eff": 0.1920593814410556,
+      "cons_eff": -0.15877801416776494
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.6062101360104934,
+      "decay_eff": 0.1920593814410556,
+      "cons_eff": -0.15877801416776494
+    },
+    {
+      "E": 16,
+      "corruption": 0.0,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.44822125662437806,
+      "decay_eff": 0.1920593814410556,
+      "cons_eff": -0.15877801416776494
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "A_recency",
+      "acc": 0.048878798535715834,
+      "decay_eff": -0.03814351756868645,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "B_kv",
+      "acc": 0.15520965452797425,
+      "decay_eff": -0.03814351756868645,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.2003527008818593,
+      "decay_eff": -0.03814351756868645,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_decay",
+      "acc": 0.16220918331317286,
+      "decay_eff": -0.03814351756868645,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.2003527008818593,
+      "decay_eff": -0.03814351756868645,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.16220918331317286,
+      "decay_eff": -0.03814351756868645,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 1.0,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.2003604788980989,
+      "decay_eff": -0.03814351756868645,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "A_recency",
+      "acc": 0.09795372061344584,
+      "decay_eff": 0.01409300916603673,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "B_kv",
+      "acc": 0.26012886869537877,
+      "decay_eff": 0.01409300916603673,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.1997296294717049,
+      "decay_eff": 0.01409300916603673,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_decay",
+      "acc": 0.21382263863774162,
+      "decay_eff": 0.01409300916603673,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.1997296294717049,
+      "decay_eff": 0.01409300916603673,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.21382263863774162,
+      "decay_eff": 0.01409300916603673,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.9,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.19977013767565638,
+      "decay_eff": 0.01409300916603673,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "A_recency",
+      "acc": 0.24084443245964943,
+      "decay_eff": 0.10415011739144314,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "B_kv",
+      "acc": 0.4665319038412169,
+      "decay_eff": 0.10415011739144314,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.19789070255979552,
+      "decay_eff": 0.10415011739144314,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_decay",
+      "acc": 0.30204081995123866,
+      "decay_eff": 0.10415011739144314,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.19789070255979552,
+      "decay_eff": 0.10415011739144314,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.30204081995123866,
+      "decay_eff": 0.10415011739144314,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.7,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.1979589183615956,
+      "decay_eff": 0.10415011739144314,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "A_recency",
+      "acc": 0.39833103600179787,
+      "decay_eff": 0.1527310879497764,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "B_kv",
+      "acc": 0.5718692321407131,
+      "decay_eff": 0.1527310879497764,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.19501863553994697,
+      "decay_eff": 0.1527310879497764,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_decay",
+      "acc": 0.3477497234897234,
+      "decay_eff": 0.1527310879497764,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.19501863553994697,
+      "decay_eff": 0.1527310879497764,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.3477497234897234,
+      "decay_eff": 0.1527310879497764,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.0,
+      "beta": 0.5,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.1950954464934787,
+      "decay_eff": 0.1527310879497764,
+      "cons_eff": 0.0
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "A_recency",
+      "acc": 0.09079188162410766,
+      "decay_eff": -0.03535794393641345,
+      "cons_eff": -0.035158228524088675
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "B_kv",
+      "acc": 0.29206768362076596,
+      "decay_eff": -0.03535794393641345,
+      "cons_eff": -0.035158228524088675
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.31541612181995016,
+      "decay_eff": -0.03535794393641345,
+      "cons_eff": -0.035158228524088675
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_decay",
+      "acc": 0.2800581778835367,
+      "decay_eff": -0.03535794393641345,
+      "cons_eff": -0.035158228524088675
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.2802578932958615,
+      "decay_eff": -0.03535794393641345,
+      "cons_eff": -0.035158228524088675
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.2720907513631049,
+      "decay_eff": -0.03535794393641345,
+      "cons_eff": -0.035158228524088675
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 1.0,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.2838848265313481,
+      "decay_eff": -0.03535794393641345,
+      "cons_eff": -0.035158228524088675
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "A_recency",
+      "acc": 0.13530292528767698,
+      "decay_eff": 0.01331978686224411,
+      "cons_eff": -0.04581262554002685
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "B_kv",
+      "acc": 0.37606352219790273,
+      "decay_eff": 0.01331978686224411,
+      "cons_eff": -0.04581262554002685
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.2880511889504817,
+      "decay_eff": 0.01331978686224411,
+      "cons_eff": -0.04581262554002685
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_decay",
+      "acc": 0.3013709758127258,
+      "decay_eff": 0.01331978686224411,
+      "cons_eff": -0.04581262554002685
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.24223856341045485,
+      "decay_eff": 0.01331978686224411,
+      "cons_eff": -0.04581262554002685
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.2677664053586183,
+      "decay_eff": 0.01331978686224411,
+      "cons_eff": -0.04581262554002685
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.9,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.24913289190322713,
+      "decay_eff": 0.01331978686224411,
+      "cons_eff": -0.04581262554002685
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "A_recency",
+      "acc": 0.2664239843185193,
+      "decay_eff": 0.08806070936301769,
+      "cons_eff": -0.05640865562977146
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "B_kv",
+      "acc": 0.5396024729939687,
+      "decay_eff": 0.08806070936301769,
+      "cons_eff": -0.05640865562977146
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.2542235774191568,
+      "decay_eff": 0.08806070936301769,
+      "cons_eff": -0.05640865562977146
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_decay",
+      "acc": 0.3422842867821745,
+      "decay_eff": 0.08806070936301769,
+      "cons_eff": -0.05640865562977146
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.19781492178938534,
+      "decay_eff": 0.08806070936301769,
+      "cons_eff": -0.05640865562977146
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.27294599146744514,
+      "decay_eff": 0.08806070936301769,
+      "cons_eff": -0.05640865562977146
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.7,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.2065018638759612,
+      "decay_eff": 0.08806070936301769,
+      "cons_eff": -0.05640865562977146
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "A_recency",
+      "acc": 0.4135906660632947,
+      "decay_eff": 0.12345758500483292,
+      "cons_eff": -0.05794490256961232
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "B_kv",
+      "acc": 0.6180098078384925,
+      "decay_eff": 0.12345758500483292,
+      "cons_eff": -0.05794490256961232
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay",
+      "acc": 0.24018208685095085,
+      "decay_eff": 0.12345758500483292,
+      "cons_eff": -0.05794490256961232
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_decay",
+      "acc": 0.3636396718557838,
+      "decay_eff": 0.12345758500483292,
+      "cons_eff": -0.05794490256961232
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_nodecay_consol",
+      "acc": 0.18223718428133853,
+      "decay_eff": 0.12345758500483292,
+      "cons_eff": -0.05794490256961232
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_nogate_decay_consol",
+      "acc": 0.27914994645852026,
+      "decay_eff": 0.12345758500483292,
+      "cons_eff": -0.05794490256961232
+    },
+    {
+      "E": 16,
+      "corruption": 0.4,
+      "repeat": 0.5,
+      "beta": 0.5,
+      "arm": "C_gate_nodecay_consol",
+      "acc": 0.1906250597543245,
+      "decay_eff": 0.12345758500483292,
+      "cons_eff": -0.05794490256961232
+    }
+  ]
+}

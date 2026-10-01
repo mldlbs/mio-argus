@@ -1,0 +1,9 @@
+{
+  "n_actions": 583,
+  "instr_to_action_train": 1.0,
+  "instr_to_action_unseen": 0.04273504391312599,
+  "keyword_unseen": 0.8974358974358975,
+  "paraphrase_learned": 1,
+  "paraphrase_keyword": 1,
+  "paraphrase_n": 6
+}

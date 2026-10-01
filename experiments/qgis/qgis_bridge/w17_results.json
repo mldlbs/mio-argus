@@ -1,0 +1,26 @@
+{
+  "states": {
+    "max": {
+      "trials": 3,
+      "success": 3,
+      "ms_median": 9828.558683395386
+    },
+    "max+console": {
+      "trials": 3,
+      "success": 3,
+      "ms_median": 9862.575769424438
+    },
+    "1000x750": {
+      "trials": 3,
+      "success": 3,
+      "ms_median": 9773.36859703064
+    },
+    "1000x750+console": {
+      "trials": 3,
+      "success": 3,
+      "ms_median": 9753.721475601196
+    }
+  },
+  "cold_ms": 9839.827060699463,
+  "total": "12/12"
+}

@@ -1,0 +1,251 @@
+[
+  {
+    "ok": true,
+    "trial": 1,
+    "opened": true,
+    "leftovers": 0,
+    "layer": false,
+    "layer_text": "regions [EPSG:4326]",
+    "expr_ok": true,
+    "run_enabled": true,
+    "pre_label": "",
+    "samples": [
+      {
+        "t": 0.5,
+        "n": 2,
+        "label": ""
+      }
+    ],
+    "final_n": 2
+  },
+  {
+    "ok": false,
+    "trial": 2,
+    "opened": true,
+    "leftovers": 0,
+    "layer": false,
+    "layer_text": "regions [EPSG:4326]",
+    "expr_ok": true,
+    "run_enabled": true,
+    "pre_label": "",
+    "samples": [
+      {
+        "t": 0.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 1.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 1.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 2.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 2.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 3.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 3.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 4.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 4.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 5.0,
+        "n": 0,
+        "label": ""
+      }
+    ],
+    "final_n": 0
+  },
+  {
+    "ok": true,
+    "trial": 3,
+    "opened": true,
+    "leftovers": 0,
+    "layer": false,
+    "layer_text": "regions [EPSG:4326]",
+    "expr_ok": true,
+    "run_enabled": true,
+    "pre_label": "",
+    "samples": [
+      {
+        "t": 0.5,
+        "n": 2,
+        "label": ""
+      }
+    ],
+    "final_n": 2
+  },
+  {
+    "ok": true,
+    "trial": 4,
+    "opened": true,
+    "leftovers": 0,
+    "layer": false,
+    "layer_text": "regions [EPSG:4326]",
+    "expr_ok": true,
+    "run_enabled": true,
+    "pre_label": "",
+    "samples": [
+      {
+        "t": 0.5,
+        "n": 2,
+        "label": ""
+      }
+    ],
+    "final_n": 2
+  },
+  {
+    "ok": false,
+    "trial": 5,
+    "opened": true,
+    "leftovers": 0,
+    "layer": false,
+    "layer_text": "regions [EPSG:4326]",
+    "expr_ok": true,
+    "run_enabled": true,
+    "pre_label": "",
+    "samples": [
+      {
+        "t": 0.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 1.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 1.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 2.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 2.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 3.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 3.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 4.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 4.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 5.0,
+        "n": 0,
+        "label": ""
+      }
+    ],
+    "final_n": 0
+  },
+  {
+    "ok": false,
+    "trial": 6,
+    "opened": true,
+    "leftovers": 0,
+    "layer": false,
+    "layer_text": "regions [EPSG:4326]",
+    "expr_ok": true,
+    "run_enabled": true,
+    "pre_label": "",
+    "samples": [
+      {
+        "t": 0.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 1.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 1.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 2.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 2.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 3.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 3.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 4.0,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 4.5,
+        "n": 0,
+        "label": ""
+      },
+      {
+        "t": 5.0,
+        "n": 0,
+        "label": ""
+      }
+    ],
+    "final_n": 0
+  }
+]

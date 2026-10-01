@@ -1,0 +1,10 @@
+{
+  "same_seed_bitwise": true,
+  "observe_identical": true,
+  "different_seed_differs": true,
+  "sha": {
+    "42a": "4db9dd20acc2340eadbd264bdd085a503a635b53ab495b0a29750fa68f84de99",
+    "42b": "4db9dd20acc2340eadbd264bdd085a503a635b53ab495b0a29750fa68f84de99",
+    "43": "68f70ec9c372e91070b43d85f6932c2d1355aabc7afe2c12f30e952b45845be6"
+  }
+}

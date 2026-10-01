@@ -1,0 +1,31 @@
+{
+  "scenarios": {
+    "none": {
+      "naive": true,
+      "robust": true,
+      "robust_cost": 1.6
+    },
+    "drift": {
+      "naive": false,
+      "robust": true,
+      "robust_cost": 1.6
+    },
+    "dialog": {
+      "naive": false,
+      "robust": true,
+      "robust_cost": 1.9000000000000004
+    },
+    "loading": {
+      "naive": false,
+      "robust": true,
+      "robust_cost": 1.6
+    },
+    "all": {
+      "naive": false,
+      "robust": true,
+      "robust_cost": 1.9000000000000004
+    }
+  },
+  "deterministic": true,
+  "clear_fault_works": true
+}

@@ -1,0 +1,41 @@
+{
+  "name_match": {
+    "train": 0.8357692307692308,
+    "heldout_sites": 0.38590956887486855
+  },
+  "canonical": {
+    "search": {
+      "learned": 0.25,
+      "keyword": 0.5,
+      "n": 4
+    },
+    "login": {
+      "learned": 0.6666666666666666,
+      "keyword": 0.3333333333333333,
+      "n": 3
+    },
+    "home": {
+      "learned": 0.3333333333333333,
+      "keyword": 0.6666666666666666,
+      "n": 3
+    },
+    "logo": {
+      "learned": 0.16666666666666666,
+      "keyword": 0.16666666666666666,
+      "n": 6
+    }
+  },
+  "params": 207264,
+  "n_train": 2600,
+  "n_test": 951,
+  "test_sites": [
+    "github",
+    "hn",
+    "rust",
+    "go",
+    "mozilla",
+    "arxiv",
+    "atom",
+    "huggingface"
+  ]
+}

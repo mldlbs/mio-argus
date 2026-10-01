@@ -1,0 +1,25 @@
+{
+  "in_styles": [
+    "light_blue",
+    "dark_warm",
+    "light_green"
+  ],
+  "ood_style": "dark_purple",
+  "n": {
+    "train": 3600,
+    "in_test": 600,
+    "ood": 400
+  },
+  "results": {
+    "pixel": {
+      "in_domain": 1.0,
+      "ood": 0.367499977350235,
+      "drop": 0.632500022649765
+    },
+    "struct": {
+      "in_domain": 1.0,
+      "ood": 0.9899999499320984,
+      "drop": 0.010000050067901611
+    }
+  }
+}

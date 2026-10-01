@@ -1,0 +1,17 @@
+{
+  "rows": {
+    "in_domain": {
+      "unmasked": 0.8677685856819153,
+      "masked": 0.9338842630386353
+    },
+    "ood_theme": {
+      "unmasked": 0.8885448575019836,
+      "masked": 0.9442723989486694
+    },
+    "ood_app": {
+      "unmasked": 0.0,
+      "masked": 0.0
+    }
+  },
+  "masked_minus_unmasked_in": 0.06611567735671997
+}

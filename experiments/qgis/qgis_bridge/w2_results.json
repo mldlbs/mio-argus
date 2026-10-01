@@ -1,0 +1,20 @@
+{
+  "select_by_expression": {
+    "truth_ok": true,
+    "steps": 3,
+    "ok_steps": 3,
+    "ms": 1658
+  },
+  "toggle_visibility": {
+    "truth_ok": true,
+    "steps": 1,
+    "ok_steps": 1,
+    "ms": 183
+  },
+  "select_all_deselect": {
+    "truth_ok": true,
+    "steps": 2,
+    "ok_steps": 2,
+    "ms": 243
+  }
+}

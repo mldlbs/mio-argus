@@ -1,0 +1,107 @@
+{
+  "sites": {
+    "wikipedia": {
+      "elements_total": 1710,
+      "elements_in_view": 99,
+      "search_found": true,
+      "search_box": [
+        220,
+        11,
+        401.734375,
+        44
+      ],
+      "screen_entropy": 1.4044529235025365,
+      "screen_std": 49.45237434131335,
+      "max_width": 659.5,
+      "min_click_area": 115.75
+    },
+    "mdn": {
+      "elements_total": 203,
+      "elements_in_view": 14,
+      "search_found": true,
+      "search_box": [
+        754.625,
+        97.1875,
+        80,
+        34
+      ],
+      "screen_entropy": 1.7044493938677028,
+      "screen_std": 45.64342947502344,
+      "max_width": 740.875,
+      "min_click_area": 410.125
+    },
+    "python": {
+      "elements_total": 239,
+      "elements_in_view": 27,
+      "search_found": true,
+      "search_box": [
+        549.890625,
+        82.890625,
+        176,
+        37.1875
+      ],
+      "screen_entropy": 3.373723030126932,
+      "screen_std": 40.661163828719225,
+      "max_width": 330,
+      "min_click_area": 1018.063232421875
+    },
+    "pypi": {
+      "elements_total": 82,
+      "elements_in_view": 9,
+      "search_found": true,
+      "search_box": [
+        125,
+        282.28125,
+        650,
+        50
+      ],
+      "screen_entropy": 1.8197195764253855,
+      "screen_std": 63.769808819020994,
+      "max_width": 810,
+      "min_click_area": 2500
+    },
+    "github": {
+      "elements_total": 194,
+      "elements_in_view": 42,
+      "search_found": true,
+      "search_box": [
+        16,
+        444,
+        844,
+        32
+      ],
+      "screen_entropy": 2.6702638797527998,
+      "screen_std": 55.82222128936151,
+      "max_width": 900,
+      "min_click_area": 1
+    },
+    "hn": {
+      "elements_total": 230,
+      "elements_in_view": 125,
+      "search_found": false,
+      "search_box": null,
+      "screen_entropy": 1.6303289917486037,
+      "screen_std": 43.78968642876349,
+      "max_width": 556.5,
+      "min_click_area": 140
+    }
+  },
+  "dom_search_found": {
+    "wikipedia": true,
+    "mdn": true,
+    "python": true,
+    "pypi": true,
+    "github": true,
+    "hn": false
+  },
+  "search_patch_diversity": {
+    "n": 5,
+    "std_spread": 22.34283673117361,
+    "grad_spread": 6.569438234665704,
+    "mean_spread": 92.83280495745073,
+    "std_range": [
+      12.526053473063177,
+      82.34592341714581
+    ]
+  }
+}

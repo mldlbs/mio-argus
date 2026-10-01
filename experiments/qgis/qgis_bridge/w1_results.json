@@ -1,0 +1,12 @@
+{
+  "oracle_all_ok": true,
+  "toolbar_actions": 67,
+  "btn_size_median": [
+    32,
+    31
+  ],
+  "struct_keyword_hit": "4/4",
+  "pixel_appearance_train": 0.11320754885673523,
+  "pixel_appearance_test": 0.0,
+  "pixel_chance": 0.014925373134328358
+}

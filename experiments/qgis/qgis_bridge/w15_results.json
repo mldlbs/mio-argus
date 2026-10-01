@@ -1,0 +1,79 @@
+{
+  "table": {
+    "New": "Ctrl+N",
+    "Open…": "Ctrl+(0",
+    "Save": "Ctrl+S",
+    "Save As…": "Ctrl+Shift+S",
+    "Properties…": "Ctrl+Shift+P",
+    "New Print Layout…": "Ctrl+P",
+    "Exit QGIS": "Ctrl+(Q",
+    "Undo": "Ctrl+Z",
+    "Redo": "Ctrl+Shift+Z",
+    "New Map View": "Ctrl+M",
+    "Zoom In": "Ctrl+Alt++",
+    "Zoom Out": "Ctrl+Alt+-",
+    "Identify Features": "Ctrl+Shift+1",
+    "Zoom Full": "Ctrl+Shift+F",
+    "Zoom to Selection": "Ctrl+J",
+    "New Spatial Bookmark…": "Ctrl+B",
+    "Show Spatial Bookmarks": "Ctrl+Shift+B",
+    "Refresh": "F5",
+    "Toggle Full Screen Mode": "F11",
+    "Toggle Panel Visibility": "Ctrl+Tab",
+    "Toggle Map Only": "Ctrl+Shift+Tab",
+    "Data Source Manager": "Ctrl+L",
+    "Open Attribute Table": "F6",
+    "Remove Layer/Group": "Ctrl+D",
+    "Set CRS of Layer(s)": "Ctrl+Shift+C",
+    "Python Console": "Ctrl+Alt+P",
+    "Toolbox": "Ctrl+Alt+T",
+    "History…": "Ctrl+Alt+H",
+    "Results Viewer": "Ctrl+Alt+R",
+    "Help Contents": "F1",
+    "QGIS Home Page": "Ctrl+Hge"
+  },
+  "table_size": 31,
+  "scan_stats": {
+    "items": 132,
+    "ocr_nonempty": 75,
+    "pattern_ok": 31,
+    "menus": 13,
+    "t": 178.73422145843506
+  },
+  "verify": {
+    "hit": 27,
+    "miss": 4,
+    "fp": 0,
+    "gt_with_sc": 60,
+    "covered": 31
+  },
+  "exec": {
+    "Zoom to Selection": {
+      "keys": [
+        "ctrl",
+        "j"
+      ],
+      "ms": 100.95548629760742,
+      "ok": "3/3"
+    },
+    "Zoom Full": {
+      "keys": [
+        "ctrl",
+        "shift",
+        "f"
+      ],
+      "ms": 101.13787651062012,
+      "ok": "3/3"
+    }
+  },
+  "ref": {
+    "sel_x0": 4.259322033898306,
+    "full_x0": 0.10508474576271176
+  },
+  "live": {
+    "step_rate": 1.0,
+    "ep_all": 1.0,
+    "steps_per_min": 94.16731080797143,
+    "n": 32
+  }
+}

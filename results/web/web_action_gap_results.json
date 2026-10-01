@@ -1,0 +1,34 @@
+{
+  "simple": {
+    "A": true,
+    "B": true,
+    "C": true
+  },
+  "shifting": {
+    "A": true,
+    "B": true,
+    "C": true
+  },
+  "overlay": {
+    "A": false,
+    "A_err": "TimeoutError",
+    "B": false,
+    "C": false
+  },
+  "tiny": {
+    "A": true,
+    "B": true,
+    "C": true
+  },
+  "animating": {
+    "A": false,
+    "A_err": "TimeoutError",
+    "B": true,
+    "C": true
+  },
+  "scroll_off": {
+    "A": true,
+    "B": true,
+    "C": true
+  }
+}

@@ -26,21 +26,13 @@ out-*/
 data/*/train.bin
 data/*/val.bin
 
-# Computer-use datasets (large image sets)
-computer_use_data/
-computer_use_data_advanced/
-computer_use_data_expanded/
-computer_use_data_real_balanced/
-synthetic_data/
-
-# Model / tokenizer caches
-hf_cache/
+# 数据集 / 检查点 / 缓存（大文件统一放 artifacts/，见 STRUCTURE.md）
+artifacts/
 
 # Tooling
 .pytest_cache/
 .pymon
 
-# P0 experiment cache / previews
-p0_cache/
+# 实验预览图
 _p0_preview.png
 _p3_preview.png

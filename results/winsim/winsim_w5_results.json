@@ -1,0 +1,15 @@
+{
+  "n": {
+    "in_domain": 704,
+    "ood_theme": 403,
+    "ood_app": 240,
+    "in_domain_val": 80,
+    "in_domain_tr": 624
+  },
+  "acc": {
+    "in_domain_val": 1.0,
+    "ood_theme": 1.0,
+    "ood_app": 0.5
+  },
+  "chance": 0.1827083333333333
+}

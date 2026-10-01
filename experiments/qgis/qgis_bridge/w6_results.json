@@ -1,0 +1,27 @@
+{
+  "n": 1200,
+  "states": 8,
+  "splits": {
+    "train": 434,
+    "heldout_state": 418,
+    "heldout_name": 348
+  },
+  "chance": 0.0625,
+  "results": {
+    "struct": {
+      "in_domain": 0.9700461030006409,
+      "heldout_state": 0.8540669679641724,
+      "heldout_name": 0.2183908075094223
+    },
+    "pixel": {
+      "in_domain": 0.4124423861503601,
+      "heldout_state": 0.2918660044670105,
+      "heldout_name": 0.04597701132297516
+    },
+    "hybrid": {
+      "in_domain": 0.9723502397537231,
+      "heldout_state": 0.7272726893424988,
+      "heldout_name": 0.1551724076271057
+    }
+  }
+}

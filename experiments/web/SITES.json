@@ -1,0 +1,11 @@
+{
+  "comment": "kind=local 用 file:// 真实渲染（零网络风险）；kind=real 抓真实站点并选取 DOM 元素作为目标。",
+  "sites": [
+    {"name": "local_blue",   "kind": "local", "color": "#2b6cff", "labels": ["Save", "OK", "Send", "Submit"], "variants": ["random", "topleft", "center", "bottomright"]},
+    {"name": "local_green",  "kind": "local", "color": "#1f9d55", "labels": ["Go", "Next"], "variants": ["random", "center"]},
+    {"name": "local_purple", "kind": "local", "color": "#7b3fe4", "labels": ["Apply"], "variants": ["random", "bottomright"]},
+    {"name": "real_mdn",  "kind": "real", "base": "https://developer.mozilla.org/en-US/"},
+    {"name": "real_pypi", "kind": "real", "base": "https://pypi.org/search/"},
+    {"name": "real_hn",   "kind": "real", "base": "https://news.ycombinator.com/"}
+  ]
+}

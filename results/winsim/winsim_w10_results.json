@@ -1,0 +1,19 @@
+{
+  "rows": {
+    "in_domain": {
+      "oracle_box_sel": 0.4255725190839695,
+      "detector_box_sel": 0.7900763358778626
+    },
+    "ood_theme": {
+      "oracle_box_sel": 0.20440251572327045,
+      "detector_box_sel": 0.5
+    },
+    "ood_app": {
+      "oracle_box_sel": 0.09444444444444444,
+      "detector_box_sel": 0.0
+    }
+  },
+  "proposal_selection_rate": 0.9307875894988067,
+  "improvement_in_domain": 0.36450381679389315,
+  "verdict": "分布不匹配是主因（联合后明显抬手）"
+}

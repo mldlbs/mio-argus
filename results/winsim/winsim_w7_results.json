@@ -1,0 +1,12 @@
+{
+  "detector_recall": {
+    "in_domain": 0.30725190839694655,
+    "ood_theme": 0.07547169811320754,
+    "ood_app": 0.0
+  },
+  "n": {
+    "in_domain": 524,
+    "ood_theme": 318,
+    "ood_app": 180
+  }
+}

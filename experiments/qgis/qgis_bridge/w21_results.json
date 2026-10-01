@@ -1,0 +1,148 @@
+{
+  "n_train": 2400,
+  "vocab": 65,
+  "res": {
+    "lexical_known_tpl": 1.0,
+    "lexical_new_value": 1.0,
+    "lexical_novel_tpl": 1.0,
+    "learned_known_tpl": 1.0,
+    "learned_new_value": 0.0,
+    "learned_novel_tpl": 0.0
+  },
+  "e2e": [
+    {
+      "arm": "learned",
+      "instr": "把面积大于400的区域导出",
+      "expr": "\"area\" > 400",
+      "want": [
+        "North"
+      ],
+      "got": [
+        "North"
+      ],
+      "ok": true,
+      "sel_ms": 8978.383302688599,
+      "exp_ms": 9731.35757446289,
+      "note": ""
+    },
+    {
+      "arm": "learned",
+      "instr": "挑出面积不超过250的区",
+      "expr": "\"area\" <= 250",
+      "want": [
+        "East",
+        "West"
+      ],
+      "got": [
+        "East",
+        "West"
+      ],
+      "ok": true,
+      "sel_ms": 9502.541780471802,
+      "exp_ms": 9733.35313796997,
+      "note": ""
+    },
+    {
+      "arm": "learned",
+      "instr": "凡是面积至少300的区都导出来",
+      "expr": "\"a\" > 3000",
+      "want": [
+        "Central",
+        "North",
+        "South"
+      ],
+      "got": [],
+      "ok": false,
+      "sel_ms": 25170.430898666382,
+      "exp_ms": 0,
+      "note": "dialog not found"
+    },
+    {
+      "arm": "learned",
+      "instr": "名称不是West的区请导出",
+      "expr": "\"name\" = 'West'",
+      "want": [
+        "Central",
+        "East",
+        "North",
+        "South"
+      ],
+      "got": [
+        "West"
+      ],
+      "ok": false,
+      "sel_ms": 24698.090314865112,
+      "exp_ms": 9831.709623336792,
+      "note": ""
+    },
+    {
+      "arm": "lexical",
+      "instr": "把面积大于400的区域导出",
+      "expr": "\"area\" > 400",
+      "want": [
+        "North"
+      ],
+      "got": [
+        "North"
+      ],
+      "ok": true,
+      "sel_ms": 9216.729402542114,
+      "exp_ms": 9799.338817596436,
+      "note": ""
+    },
+    {
+      "arm": "lexical",
+      "instr": "挑出面积不超过250的区",
+      "expr": "\"area\" <= 250",
+      "want": [
+        "East",
+        "West"
+      ],
+      "got": [],
+      "ok": false,
+      "sel_ms": 9023.471593856812,
+      "exp_ms": 0,
+      "note": "dialog not found"
+    },
+    {
+      "arm": "lexical",
+      "instr": "凡是面积至少300的区都导出来",
+      "expr": "\"area\" >= 300",
+      "want": [
+        "Central",
+        "North",
+        "South"
+      ],
+      "got": [
+        "Central",
+        "North",
+        "South"
+      ],
+      "ok": true,
+      "sel_ms": 9225.641012191772,
+      "exp_ms": 9950.28281211853,
+      "note": ""
+    },
+    {
+      "arm": "lexical",
+      "instr": "名称不是West的区请导出",
+      "expr": "\"name\" != 'West'",
+      "want": [
+        "Central",
+        "East",
+        "North",
+        "South"
+      ],
+      "got": [
+        "Central",
+        "East",
+        "North",
+        "South"
+      ],
+      "ok": true,
+      "sel_ms": 9025.73275566101,
+      "exp_ms": 9833.292245864868,
+      "note": ""
+    }
+  ]
+}

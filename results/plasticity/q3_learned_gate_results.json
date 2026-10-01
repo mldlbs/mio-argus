@@ -1,0 +1,76 @@
+{
+  "n": 64,
+  "d": 64,
+  "E": 16,
+  "M": 8,
+  "epochs": 40,
+  "n_train": 400,
+  "n_test": 150,
+  "seeds": 1,
+  "summary": {
+    "A_nogate_nodecay|noise0.0|beta1.0": [
+      0.5454460866749287,
+      0.24862760802085784
+    ],
+    "A_nogate_nodecay|noise0.0|beta0.7": [
+      0.5437350388231047,
+      0.7617562712357736
+    ],
+    "A_nogate_nodecay|noise0.4|beta1.0": [
+      0.20581195782870054,
+      0.16525321423095493
+    ],
+    "A_nogate_nodecay|noise0.4|beta0.7": [
+      0.20776128848974426,
+      0.5015764192702811
+    ],
+    "B_learnedgate_nodecay|noise0.0|beta1.0": [
+      0.5415120646357536,
+      0.24862760802085784
+    ],
+    "B_learnedgate_nodecay|noise0.0|beta0.7": [
+      0.5398788209502404,
+      0.7617562712357736
+    ],
+    "B_learnedgate_nodecay|noise0.4|beta1.0": [
+      0.20494111999869347,
+      0.16525321423095493
+    ],
+    "B_learnedgate_nodecay|noise0.4|beta0.7": [
+      0.20581828652682613,
+      0.5015764192702811
+    ],
+    "C_nogate_ldecay|noise0.0|beta1.0": [
+      0.20511148031800985,
+      0.24862760802085784
+    ],
+    "C_nogate_ldecay|noise0.0|beta0.7": [
+      0.4509518752378352,
+      0.7617562712357736
+    ],
+    "C_nogate_ldecay|noise0.4|beta1.0": [
+      0.08530652953777462,
+      0.16525321423095493
+    ],
+    "C_nogate_ldecay|noise0.4|beta0.7": [
+      0.2069560333396255,
+      0.5015764192702811
+    ],
+    "D_learnedgate_ldecay|noise0.0|beta1.0": [
+      0.1739767572726123,
+      0.24862760802085784
+    ],
+    "D_learnedgate_ldecay|noise0.0|beta0.7": [
+      0.4055714265416506,
+      0.7617562712357736
+    ],
+    "D_learnedgate_ldecay|noise0.4|beta1.0": [
+      0.07579830172471702,
+      0.16525321423095493
+    ],
+    "D_learnedgate_ldecay|noise0.4|beta0.7": [
+      0.18921571570902976,
+      0.5015764192702811
+    ]
+  }
+}

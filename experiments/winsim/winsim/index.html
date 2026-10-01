@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WinSim</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #3a86ff; --radius: 6px; }
+  html, body { width: 100%; height: 100%; overflow: hidden;
+    font-family: "Segoe UI", Tahoma, sans-serif; }
+  #desktop { position: absolute; left: 0; top: 0; right: 0; bottom: 40px;
+    background: linear-gradient(180deg, #1b4d7a 0%, #12324f 100%); }
+  .icon { position: absolute; width: 76px; text-align: center; color: #fff;
+    font-size: 12px; padding: 8px 0; cursor: pointer; }
+  .icon .gl { width: 40px; height: 40px; margin: 0 auto 4px; border-radius: 6px; }
+  #taskbar { position: absolute; left: 0; right: 0; bottom: 0; height: 40px;
+    background: #20262e; display: flex; align-items: center; gap: 6px; padding: 0 8px; }
+  #start { width: 34px; height: 30px; background: var(--accent,#3a86ff); border-radius: 5px; cursor: pointer; }
+  .tbapp { background: #333c47; color: #dfe6ee; border-radius: 5px; font-size: 12px;
+    display: flex; align-items: center; padding: 0 10px; height: 30px; cursor: pointer; }
+  #tray { margin-left: auto; color: #dfe6ee; font-size: 12px; display: flex; gap: 10px; }
+  #instr { position: absolute; left: 8px; top: 6px; background: #111827cc; color: #fff;
+    font-size: 12px; padding: 4px 8px; border-radius: 4px; }
+  .win { position: absolute; background: #f4f6f9; border: 1px solid #9aa6b2;
+    border-radius: var(--radius,6px); box-shadow: 0 6px 20px rgba(0,0,0,.35); overflow: hidden;
+    display: flex; flex-direction: column; }
+  .titlebar { height: 26px; background: #dfe6ee; display: flex; align-items: center;
+    padding: 0 6px; font-size: 12px; color: #1f2a36; flex: 0 0 auto; }
+  .titlebar.active { background: var(--accent,#3a86ff); color: #fff; }
+  .titlebar .sp { flex: 1; }
+  .tb { width: 18px; height: 18px; margin-left: 4px; border-radius: 3px;
+    background: #b9c4cf; font-size: 11px; text-align: center; line-height: 18px;
+    color: #1f2a36; cursor: pointer; }
+  .body { padding: 6px; font-size: 12px; color: #22303d; flex: 1 1 auto; overflow: hidden; }
+  .toolbar { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; }
+  .btn { background: #e3e8ee; border-radius: 4px; padding: 2px 8px; cursor: pointer; }
+  .path { margin-left: auto; color: #5b6874; }
+  .rows { border-top: 1px solid #e3e8ee; }
+  .row { padding: 3px 6px; border-bottom: 1px solid #eef1f5; cursor: pointer; }
+  .row.sel { background: #cfe0ff; }
+  .sw { position: relative; display: inline-block; width: 30px; height: 16px;
+    background: #9aa6b2; border-radius: 8px; vertical-align: middle; float: right; }
+  .sw::after { content: ""; position: absolute; left: 2px; top: 2px; width: 12px;
+    height: 12px; background: #fff; border-radius: 50%; }
+  .sw.on { background: var(--accent,#3a86ff); }
+  .sw.on::after { left: 16px; }
+</style>
+</head>
+<body>
+<div id="desktop">
+  <div class="icon" id="ic_explorer" data-role="icon" data-name="Explorer"
+       data-act="launch" data-arg="explorer"
+       style="left:16px;top:16px"><div class="gl" style="background:#ffd166"></div>Explorer</div>
+  <div class="icon" id="ic_settings" data-role="icon" data-name="Settings"
+       data-act="launch" data-arg="settings"
+       style="left:16px;top:110px"><div class="gl" style="background:#8ecae6"></div>Settings</div>
+  <div class="icon" id="ic_terminal" data-role="icon" data-name="Terminal"
+       data-act="launch" data-arg="terminal"
+       style="left:16px;top:204px"><div class="gl" style="background:#222;border:1px solid #555"></div>Terminal</div>
+  <div class="icon" id="ic_canvas" data-role="icon" data-name="Canvas"
+       data-act="launch" data-arg="canvas"
+       style="left:16px;top:298px"><div class="gl" style="background:#8ecae6"></div>Canvas</div>
+  <div id="instr"></div>
+</div>
+<div id="taskbar">
+  <div id="start" data-act="launch" data-arg="notepad" title="Start"></div>
+  <div id="tbapps"></div>
+  <div id="tray"><span>Net</span><span>Vol</span><span id="clock">9:00 AM</span></div>
+</div>
+<script>
+// ---------- 确定性基础 ----------
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0;
+  let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t;
+  return ((t^t>>>14)>>>0)/4294967296; }; }
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+
+const THEMES = {
+  a:{ bg:"linear-gradient(180deg,#1b4d7a,#12324f)", accent:"#3a86ff", font:"'Segoe UI',sans-serif", radius:6 },
+  b:{ bg:"linear-gradient(180deg,#3a2f4f,#241f36)", accent:"#9b5de5", font:"Georgia,serif", radius:14 },
+  c:{ bg:"linear-gradient(180deg,#204034,#12241d)", accent:"#2a9d8f", font:"Verdana,sans-serif", radius:2 },
+  d:{ bg:"#0d1013", accent:"#ff3b3b", font:"'Courier New',monospace", radius:0 },   // OOD
+};
+function setTheme(name){ S.theme = THEMES[name] ? name : "a"; render(); }
+
+const DESC = { explorer:{title:"File Explorer",w:340,h:230},
+  settings:{title:"Settings",w:280,h:180}, notepad:{title:"Notepad",w:280,h:160},
+  terminal:{title:"Terminal",w:300,h:170},
+  canvas:{title:"Canvas Board",w:360,h:230} };
+const CANVAS_NAMES = ["red", "green", "blue"];
+const CANVAS_COLORS = ["#d33", "#3a7", "#37c"];
+
+const TASKS = {
+  move_notes: { instr:"Move notes.md into Documents",
+    check:(S)=> !!S.fs.children.Documents.children["notes.md"] && !S.fs.children["notes.md"] },
+  wifi_off: { instr:"Turn off Wi-Fi", check:(S)=> S.settings.wifi === false },
+};
+
+const S = {};
+let rng = mulberry32(0);
+
+function canonicalFs(){
+  return { name:"Home", type:"dir", children:{
+    "Documents":{ name:"Documents", type:"dir", children:{} },
+    "Pictures": { name:"Pictures", type:"dir", children:{} },
+    "Downloads":{ name:"Downloads", type:"dir", children:{} },
+    "report.txt":{ name:"report.txt", type:"file" },
+    "notes.md":{ name:"notes.md", type:"file" },
+  }};
+}
+
+function fmtClock(ms){ const b = 9*60 + Math.floor(ms/60000);
+  let h=Math.floor(b/60)%24, m=b%60, ap=h<12?"AM":"PM", hh=h%12||12;
+  return `${hh}:${String(m).padStart(2,"0")} ${ap}`; }
+
+function initState(){
+  S.clock=0; S.nextId=1; S.z=1; S.windows=[]; S.active=null;
+  S.fs = canonicalFs(); S.path=[]; S.selected=null; S.clipboard=null;
+  S.settings = { wifi:true, bluetooth:true, brightness:60 };
+  S.task = null; S.cost = 0; S.theme = "a";
+  S.renaming = null; S.textbuf = "";
+  S.canvasShapes = null; S.canvasTarget = 0;
+  S.faults = []; S.dialog = null; S.pending = null; S.nextFid = 1;
+}
+// 成本模型（元认知需要：观察/动作/等待都有代价）
+const COST = { pixels: 1.0, uia: 0.2, act: 0.1, waitPerSec: 0.1 };
+function reset(seed){ rng=mulberry32(seed>>>0); S.seed=seed>>>0; initState(); render(); }
+function setTask(id){ initState(); S.task=id; render(); }
+
+// ---------- 故障注入（一等公民，可 seed/清除/回放）----------
+function injectFault(spec){ const id=S.nextFid++; S.faults.push({id, ...spec});
+  if(spec.kind==="dialog") S.dialog={text:spec.text||"A dialog appeared. Click OK to continue."};
+  render(); return id; }
+function clearFault(id){ S.faults=S.faults.filter(f=>f.id!==id);
+  if(!S.faults.some(f=>f.kind==="dialog")) S.dialog=null; render(); }
+
+// ---------- 文件树 ----------
+function resolve(path){ let n=S.fs; for(const p of path) n=n.children[p]; return n; }
+function detach(name){                    // 从树中摘除并返回节点
+  for(const k in S.fs.children){
+    if(k===name){ const n=S.fs.children[k]; delete S.fs.children[k]; return n; }
+  }
+  const walk=(node)=>{ for(const k in node.children||{}){ const c=node.children[k];
+    if(c.type==="dir"){ if(c.children[name]){ const n=c.children[name]; delete c.children[name]; return n; } const r=walk(c); if(r) return r; } } return null; };
+  return walk(S.fs);
+}
+
+// ---------- 窗口 ----------
+function openApp(appId){ const d=DESC[appId];
+  const win={ id:S.nextId++, appId, title:d.title, x:60+Math.floor(rng()*180),
+    y:40+Math.floor(rng()*70), w:d.w, h:d.h, min:false, max:false, z:S.z++ };
+  S.windows.push(win); S.active=win.id;
+  if(appId==="canvas"){                       // 画在 canvas 上：不进 elements()
+    S.canvasShapes = [];
+    for(let i=0;i<3;i++){ S.canvasShapes.push({
+      x:20+i*105+Math.floor(rng()*15), y:30+Math.floor(rng()*80),
+      w:70, h:32, color:CANVAS_COLORS[i], name:CANVAS_NAMES[i] }); }
+    S.canvasTarget = Math.floor(rng()*3);
+  }
+  render(); }
+function byId(id){ return S.windows.find(w=>w.id===id); }
+function closeWindow(id){ S.windows=S.windows.filter(w=>w.id!==id);
+  if(S.active===id) S.active=S.windows.length?S.windows[S.windows.length-1].id:null; render(); }
+function focusWindow(id){ const w=byId(id); if(!w) return; w.z=S.z++; w.min=false; S.active=id; render(); }
+function minimizeWindow(id){ const w=byId(id); if(!w) return; w.min=true; if(S.active===id) S.active=null; render(); }
+function maximizeWindow(id){ const w=byId(id); if(!w) return; w.max=!w.max; render(); }
+function moveWindow(id,x,y){ const w=byId(id); if(!w) return; w.x=x; w.y=y; render(); }
+function step(ms){ S.clock+=ms;
+  if(S.pending && S.clock>=S.pending.at){ const d=resolve(S.pending.destPath);
+    const n=detach(S.pending.name); if(n) d.children[S.pending.name]=n; S.pending=null; }
+  render(); }
+function wait(ms){ S.cost += ms/1000*COST.waitPerSec; step(ms); }
+function click(x,y){ S.cost += COST.act;
+  const el=document.elementFromPoint(x,y);
+  if(el && el.tagName==="CANVAS"){            // canvas 无子元素：带坐标派发
+    el.dispatchEvent(new MouseEvent("click",{clientX:x,clientY:y,bubbles:true}));
+  } else if(el) el.click();
+  const drift=S.faults.find(f=>f.kind==="drift");
+  if(drift){ const w=byId(S.active); if(w){ w.x = 60 + ((w.x-60+(drift.dx||14)) % 200); } }
+  render(); }
+function type_text(s){ S.cost += COST.act; if(S.renaming){ S.textbuf = String(s); render(); } }
+
+// ---------- 应用行为 ----------
+function appOp(appId, act, arg){
+  if(appId==="explorer"){
+    const node=resolve(S.path);
+    if(act==="open"){ const c=node.children[arg];
+      if(c && c.type==="dir"){ S.path.push(arg); S.selected=null; }
+      else S.selected=arg;
+    } else if(act==="up"){ if(S.path.length>0){ S.path.pop(); S.selected=null; } }
+    else if(act==="cut"){ if(S.selected) S.clipboard={name:S.selected}; }
+    else if(act==="paste"){ if(S.clipboard){
+      const loading=S.faults.find(f=>f.kind==="loading");
+      if(loading){ S.pending={ at:S.clock+(loading.delay||3000),
+        name:S.clipboard.name, destPath:S.path.slice() }; }
+      else { const n=detach(S.clipboard.name);
+        if(n) node.children[S.clipboard.name]=n; }
+      S.clipboard=null; S.selected=null; } }
+    else if(act==="del"){ if(S.selected){ detach(S.selected); S.selected=null; } }
+    else if(act==="rename"){ if(S.selected && !S.renaming){ S.renaming={old:S.selected}; S.textbuf=""; } }
+    else if(act==="rename_ok"){ if(S.renaming && S.textbuf){
+        const old=S.renaming.old; const n=node.children[old];
+        if(n){ delete node.children[old]; n.name=S.textbuf; node.children[S.textbuf]=n; }
+        S.renaming=null; S.selected=null; S.textbuf=""; } }
+  } else if(appId==="settings"){
+    if(act==="toggle") S.settings[arg] = !S.settings[arg];
+  } else if(appId==="terminal"){
+    if(act==="run") S.fs.children["output.log"] = { name:"output.log", type:"file" };
+  }
+}
+
+// ---------- 渲染 ----------
+function explorerBody(){
+  const node=resolve(S.path);
+  const rows=Object.keys(node.children).map(name=>{ const c=node.children[name];
+    const sel=S.selected===name?" sel":"";
+    return `<div class="row${sel}" data-role="${c.type==="dir"?"dir":"file"}"
+      data-name="${name}" data-act="open" data-arg="${name}">${c.type==="dir"?"[D]":"[F]"} ${name}</div>`;
+  }).join("");
+  return `<div class="toolbar">
+    <span class="btn" data-role="button" data-name="Up" data-act="up">Up</span>
+    <span class="btn" data-role="button" data-name="Cut" data-act="cut">Cut</span>
+    <span class="btn" data-role="button" data-name="Paste" data-act="paste">Paste</span>
+    <span class="btn" data-role="button" data-name="Delete" data-act="del">Delete</span>
+    <span class="btn" data-role="button" data-name="Rename" data-act="rename">Rename</span>
+    <span class="path">${["Home", ...S.path].join(" / ")}</span></div>
+    ${S.renaming ? `<div class="toolbar">
+      <span class="btn" data-role="textbox" data-name="Name">Name: ${S.textbuf || "_"}</span>
+      <span class="btn" data-role="button" data-name="Confirm" data-act="rename_ok">Confirm</span></div>` : ""}
+    <div class="rows">${rows}</div>`;
+}
+function settingsBody(){
+  const L={wifi:"Wi-Fi",bluetooth:"Bluetooth",brightness:"Brightness"};
+  return Object.keys(S.settings).map(k=>{ const v=S.settings[k];
+    return (typeof v==="boolean")
+      ? `<div class="row" data-role="switch" data-name="${L[k]}" data-act="toggle" data-arg="${k}">${L[k]}<span class="sw ${v?"on":""}"></span></div>`
+      : `<div class="row">${L[k]}: ${v}</div>`;
+  }).join("");
+}
+function notepadBody(){ return `<div class="row">Meeting at 10:30</div><div class="row">Buy milk</div>`; }
+function terminalBody(){ return `<div class="row" style="font-family:monospace">$ ./build.sh</div>`
+  + `<div class="toolbar"><span class="btn" data-role="button" data-name="Run" data-act="run">Run</span></div>`; }
+function canvasBody(){ return `<canvas data-role="canvas-surface" data-name="Canvas"
+  width="330" height="170" style="background:#eef1f5;border:1px solid #9aa6b2"></canvas>`; }
+function bodyFor(appId){ return appId==="explorer"?explorerBody():appId==="settings"?settingsBody()
+  :appId==="terminal"?terminalBody():appId==="canvas"?canvasBody():notepadBody(); }
+
+function drawCanvas(){
+  const cv=document.querySelector('canvas[data-role="canvas-surface"]');
+  if(!cv || !S.canvasShapes) return;
+  const x=cv.getContext("2d"); x.fillStyle="#eef1f5"; x.fillRect(0,0,cv.width,cv.height);
+  for(const s of S.canvasShapes){
+    x.fillStyle=s.color; x.fillRect(s.x,s.y,s.w,s.h);
+    x.strokeStyle="#222"; x.strokeRect(s.x,s.y,s.w,s.h);
+    x.fillStyle="#fff"; x.font="13px Arial"; x.fillText(s.name, s.x+8, s.y+21);
+  }
+  cv.onclick=(e)=>{ const r=cv.getBoundingClientRect();
+    const px=e.clientX-r.left, py=e.clientY-r.top;
+    for(const s of S.canvasShapes){
+      if(px>=s.x&&px<=s.x+s.w&&py>=s.y&&py<=s.y+s.h){
+        if(s.name===CANVAS_NAMES[S.canvasTarget])
+          S.fs.children["canvas.done"]={name:"canvas.done",type:"file"}; } } };
+}
+
+function render(){
+  const d=document.getElementById("desktop");
+  const th=THEMES[S.theme]||THEMES.a;
+  document.documentElement.style.setProperty("--accent", th.accent);
+  document.documentElement.style.setProperty("--radius", th.radius+"px");
+  document.body.style.fontFamily = th.font;
+  d.style.background = th.bg;
+  d.querySelectorAll(".win, .dialog-overlay, .loading").forEach(e=>e.remove());
+  const DW=d.clientWidth, DH=d.clientHeight;
+  for(const w of S.windows){ if(w.min) continue;
+    const el=document.createElement("div"); el.className="win";
+    el.dataset.winid=w.id; el.dataset.app=w.appId;
+    if(w.max){ el.style.left="0px"; el.style.top="0px";
+      el.style.width=DW+"px"; el.style.height=DH+"px"; }
+    else { el.style.left=w.x+"px"; el.style.top=w.y+"px";
+      el.style.width=w.w+"px"; el.style.height=w.h+"px"; }
+    el.style.zIndex=w.z;
+    el.innerHTML=
+      `<div class="titlebar${w.id===S.active?" active":""}">
+        <span>${w.title}</span><span class="sp"></span>
+        <span class="tb" data-act="min" data-arg="${w.id}">_</span>
+        <span class="tb" data-act="max" data-arg="${w.id}">o</span>
+        <span class="tb" data-act="close" data-arg="${w.id}">x</span></div>
+      <div class="body">${bodyFor(w.appId)}</div>`;
+    d.appendChild(el);
+  }
+  document.getElementById("tbapps").innerHTML = S.windows.map(w=>
+    `<span class="tbapp" data-act="focus" data-arg="${w.id}">${w.title}</span>`).join("");
+  document.getElementById("clock").textContent = fmtClock(S.clock);
+  document.getElementById("instr").textContent =
+    S.task ? ("Task: " + TASKS[S.task].instr) : "";
+  if(S.dialog){
+    const ov=document.createElement("div");
+    ov.className="dialog-overlay";
+    ov.style.cssText="position:absolute;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,.35);z-index:99999";
+    ov.innerHTML=`<div style="position:absolute;left:50%;top:45%;margin-left:-130px;margin-top:-60px;
+      width:260px;background:#fff;border-radius:8px;padding:14px;box-shadow:0 8px 30px rgba(0,0,0,.5)">
+      <div style="font-size:13px;margin-bottom:12px">${S.dialog.text}</div>
+      <div style="text-align:right"><span class="btn" data-role="button" data-name="OK" data-act="dlg_ok">OK</span></div></div>`;
+    d.appendChild(ov);
+  }
+  if(S.pending){
+    const p=document.createElement("div");
+    p.className="loading";
+    p.style.cssText="position:absolute;left:50%;top:8px;margin-left:-40px;background:#111827cc;color:#fff;font-size:11px;padding:2px 8px;border-radius:4px";
+    p.textContent="loading..."; d.appendChild(p);
+  }
+  drawCanvas();
+}
+
+// ---------- 事件委托 ----------
+document.addEventListener("click", (e)=>{
+  const el = e.target.closest && e.target.closest("[data-act]");
+  if(!el) return;
+  const act = el.dataset.act, arg = el.dataset.arg;
+  if(act==="launch"){ openApp(arg); return; }
+  if(act==="min"){ minimizeWindow(+arg); return; }
+  if(act==="max"){ maximizeWindow(+arg); return; }
+  if(act==="close"){ closeWindow(+arg); return; }
+  if(act==="focus"){ focusWindow(+arg); return; }
+  if(act==="dlg_ok"){ S.dialog=null;
+    S.faults=S.faults.filter(f=>f.kind!=="dialog"); render(); return; }
+  const win = el.closest(".win");
+  if(win){ appOp(win.dataset.app, act, arg); render(); }
+});
+
+// ---------- 观测 / 真值 ----------
+function truth(){ return { clock:S.clock, cost:S.cost, fs:clone(S.fs), settings:clone(S.settings),
+  faults:S.faults.map(f=>f.kind), dialog:S.dialog?S.dialog.text:null, pending:!!S.pending,
+  active:S.active, selected:S.selected, theme:S.theme,
+  renaming:S.renaming?S.renaming.old:null, textbuf:S.textbuf,
+  windows:S.windows.map(w=>({id:w.id,appId:w.appId,x:w.x,y:w.y,w:w.w,h:w.h,min:w.min,max:w.max,z:w.z})),
+  path:S.path.slice(), clipboard:S.clipboard?S.clipboard.name:null,
+  canvas:S.canvasShapes?clone(S.canvasShapes):null,
+  canvasTarget:S.canvasShapes?CANVAS_NAMES[S.canvasTarget]:null,
+  canvasDone:!!S.fs.children["canvas.done"] }; }
+function checkTask(id){ id=id||S.task; return id? !!TASKS[id].check(S) : false; }
+function elements(){
+  const out=[];
+  document.querySelectorAll("[data-role]").forEach(el=>{ const r=el.getBoundingClientRect();
+    if(r.width===0 || r.height===0) return;
+    const w=el.closest(".win");
+    out.push({win: w?+w.dataset.winid:0, app: w?w.dataset.app:"shell",
+      role:el.dataset.role, name:el.dataset.name||"",
+      x:r.x,y:r.y,w:r.width,h:r.height});
+  });
+  return out;
+}
+function observe(opts){
+  if(opts && opts.channel){                       // 计费观测（像素 or UIA 特权）
+    S.cost += (COST[opts.channel] || 0);
+    return { channel:opts.channel, clock:S.clock, active:S.active, task:S.task,
+             cost:S.cost, uia: opts.channel==="uia" ? elements() : null };
+  }
+  return { clock:S.clock, active:S.active, task:S.task, cost:S.cost,   // 免费状态快照
+    windows:S.windows.map(w=>({id:w.id,appId:w.appId,x:w.x,y:w.y,w:w.w,h:w.h,min:w.min,max:w.max,z:w.z})) };
+}
+window.WinSim = { reset, setTheme, setTask, injectFault, clearFault, openApp, closeWindow,
+  focusWindow, minimizeWindow, maximizeWindow, moveWindow, step, wait, click, type_text,
+  observe, truth, checkTask, elements, get state(){ return S; } };
+reset(0);
+</script>
+</body>
+</html>

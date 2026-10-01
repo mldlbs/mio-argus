@@ -1,0 +1,82 @@
+{
+  "toolbar_coverage": {
+    "hit": 17,
+    "n": 28,
+    "names": [
+      "Zoom Full",
+      "Zoom to Selection",
+      "Zoom Last",
+      "Zoom Next",
+      "Zoom to Native Resolution (100%)",
+      "Pan Map to Selection",
+      "Refresh",
+      "Undo",
+      "Redo",
+      "Expand All",
+      "Collapse All",
+      "Copy Features",
+      "Cut Features",
+      "Paste Features",
+      "Delete Selected",
+      "Save Layer Edits",
+      "Current Edits"
+    ]
+  },
+  "menu_scan": {
+    "items": 131,
+    "seconds": 60.154218912124634,
+    "ms_per_menu": 869.680643081665
+  },
+  "menu_coverage": {
+    "hit": 23,
+    "only_menu": [
+      "Zoom In",
+      "Zoom Out",
+      "Pan Map",
+      "Identify Features",
+      "Show Map Tips",
+      "Python Console",
+      "Toggle Editing",
+      "Add Polygon Feature"
+    ],
+    "neither": [
+      "Show/Hide Labels and Diagrams",
+      "Show Unplaced Labels",
+      "Temporal Controller"
+    ],
+    "union": 25
+  },
+  "accel_samples": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "menu_exec": {
+    "Zoom In": {
+      "top": "View",
+      "ms": 752.9244422912598,
+      "ok": "3/3"
+    },
+    "Identify Features": {
+      "top": "View",
+      "ms": 719.0773487091064,
+      "ok": "3/3"
+    },
+    "Python Console": {
+      "top": "Plugins",
+      "ms": 701.5347480773926,
+      "ok": "2/3"
+    }
+  },
+  "live": {
+    "step_rate": 1.0,
+    "ep_all": 1.0,
+    "steps_per_min": 44.8846323471385,
+    "n": 15
+  }
+}

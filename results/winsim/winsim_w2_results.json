@@ -1,0 +1,32 @@
+{
+  "move_notes": {
+    "uia": {
+      "ok": true,
+      "cost": 1.2500000000000002
+    },
+    "pixels": {
+      "ok": true,
+      "cost": 4.45
+    },
+    "blind": {
+      "ok": false,
+      "cost": 0.55
+    },
+    "cost_deterministic": true
+  },
+  "wifi_off": {
+    "uia": {
+      "ok": true,
+      "cost": 0.35000000000000003
+    },
+    "pixels": {
+      "ok": true,
+      "cost": 1.1500000000000001
+    },
+    "blind": {
+      "ok": false,
+      "cost": 0.55
+    },
+    "cost_deterministic": true
+  }
+}

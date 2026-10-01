@@ -1,0 +1,11 @@
+{
+  "n": 140,
+  "success_rate": 0.5,
+  "policy_acc": 0.5,
+  "V_auc": 1.0,
+  "V_acc": 0.5142857142857142,
+  "V_fnr": 0.0,
+  "V_fpr": 1.0,
+  "retry3_no_V": 0.87025,
+  "retry3_with_V": 0.8705
+}

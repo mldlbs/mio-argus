@@ -1,0 +1,14 @@
+{
+  "move_notes": {
+    "oracle": true,
+    "noop": false,
+    "deterministic": true,
+    "truth": true
+  },
+  "wifi_off": {
+    "oracle": true,
+    "noop": false,
+    "deterministic": true,
+    "truth": false
+  }
+}

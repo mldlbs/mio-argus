@@ -47,9 +47,9 @@ Evaluated on the 504-sample balanced set (84 per action):
 Train on collected data:
 
 ```sh
-python collect_synthetic.py          # generate balanced data (no display needed)
-python train_computer_use_v3_real.py # fine-tune LoRA adapters
-python test_in_vm_v3.py              # evaluate
+python experiments/computer_use/collect_synthetic.py          # generate balanced data (no display needed)
+python experiments/computer_use/train_computer_use_v3_real.py # fine-tune LoRA adapters
+python experiments/computer_use/test_in_vm_v3.py              # evaluate
 ```
 
 Serve it:
@@ -66,18 +66,18 @@ API endpoints: `/health`, `/model/info`, `/predict`, `/predict/batch`, `/predict
 ## Tests
 
 ```sh
-pytest test_simple.py test_eval_metrics.py test_vm_e2e.py -v   # 12 passed
+pytest experiments/computer_use/test_simple.py test_eval_metrics.py test_vm_e2e.py -v   # 12 passed
 ```
 
 ## Research
 
 MioArgus is not trying to out-scale large VLMs. The bet is that **computer use is a narrow domain** where a small grounded policy — with structured UI state, a compressed action space, and a verifier — can match a monolithic model at lower compute, and the gap **widens with task horizon**.
 
-The falsifiable hypothesis, sub-hypotheses (H1–H4), experiment protocol, and kill criteria are in **[HYPOTHESIS.md](HYPOTHESIS.md)**.
+The falsifiable hypothesis, sub-hypotheses (H1–H4), experiment protocol, and kill criteria are in **[docs/HYPOTHESIS.md](docs\HYPOTHESIS.md)**.
 
 ### Consolidated report
 
-**[REPORT.md](REPORT.md)** ties everything together. Summary of what was measured:
+**[docs/REPORT.md](docs\REPORT.md)** ties everything together. Summary of what was measured:
 
 | Hypothesis | Status | Key number |
 |-----------|--------|-----------|
@@ -99,7 +99,7 @@ classical parser actually beats it on clean backgrounds (0.847 vs 0.518). The pr
 interval for structured action spaces is `{high precision demand} ∩ {reliable parser}` —
 which real desktop/web apps satisfy only via the accessibility/DOM tree, not via pixels.
 
-Individual results: [P0](P0_RESULTS.md) · [P0.5](P0_5_RESULTS.md) · [P1](P1_RESULTS.md) · [P2](P2_RESULTS.md) · [P3](P3_RESULTS.md) · [P4a](P4A_RESULTS.md) · [P4a'](P4B_RESULTS.md) · [P4c](P4C_RESULTS.md) · [P4d](P4D_RESULTS.md) · [P5](P5_RESULTS.md) · [P6](P6_RESULTS.md) · [P7](P7_RESULTS.md) · [P8](P8_RESULTS.md)
+Individual results: [P0](results\paper\P0_RESULTS.md) · [P0.5](results\paper\P0_5_RESULTS.md) · [P1](results\paper\P1_RESULTS.md) · [P2](results\paper\P2_RESULTS.md) · [P3](results\paper\P3_RESULTS.md) · [P4a](results\paper\P4A_RESULTS.md) · [P4a'](results\paper\P4B_RESULTS.md) · [P4c](results\paper\P4C_RESULTS.md) · [P4d](results\paper\P4D_RESULTS.md) · [P5](results\paper\P5_RESULTS.md) · [P6](results\paper\P6_RESULTS.md) · [P7](results\paper\P7_RESULTS.md) · [P8](results\paper\P8_RESULTS.md)
 
 ---
 

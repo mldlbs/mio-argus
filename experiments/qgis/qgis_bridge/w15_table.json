@@ -1,0 +1,126 @@
+{
+ "New": [
+  "Project",
+  "Ctrl+N"
+ ],
+ "Open…": [
+  "Project",
+  "Ctrl+(0"
+ ],
+ "Save": [
+  "Project",
+  "Ctrl+S"
+ ],
+ "Save As…": [
+  "Project",
+  "Ctrl+Shift+S"
+ ],
+ "Properties…": [
+  "Project",
+  "Ctrl+Shift+P"
+ ],
+ "New Print Layout…": [
+  "Project",
+  "Ctrl+P"
+ ],
+ "Exit QGIS": [
+  "Project",
+  "Ctrl+(Q"
+ ],
+ "Undo": [
+  "Edit",
+  "Ctrl+Z"
+ ],
+ "Redo": [
+  "Edit",
+  "Ctrl+Shift+Z"
+ ],
+ "New Map View": [
+  "View",
+  "Ctrl+M"
+ ],
+ "Zoom In": [
+  "View",
+  "Ctrl+Alt++"
+ ],
+ "Zoom Out": [
+  "View",
+  "Ctrl+Alt+-"
+ ],
+ "Identify Features": [
+  "View",
+  "Ctrl+Shift+1"
+ ],
+ "Zoom Full": [
+  "View",
+  "Ctrl+Shift+F"
+ ],
+ "Zoom to Selection": [
+  "View",
+  "Ctrl+J"
+ ],
+ "New Spatial Bookmark…": [
+  "View",
+  "Ctrl+B"
+ ],
+ "Show Spatial Bookmarks": [
+  "View",
+  "Ctrl+Shift+B"
+ ],
+ "Refresh": [
+  "View",
+  "F5"
+ ],
+ "Toggle Full Screen Mode": [
+  "View",
+  "F11"
+ ],
+ "Toggle Panel Visibility": [
+  "View",
+  "Ctrl+Tab"
+ ],
+ "Toggle Map Only": [
+  "View",
+  "Ctrl+Shift+Tab"
+ ],
+ "Data Source Manager": [
+  "Layer",
+  "Ctrl+L"
+ ],
+ "Open Attribute Table": [
+  "Layer",
+  "F6"
+ ],
+ "Remove Layer/Group": [
+  "Layer",
+  "Ctrl+D"
+ ],
+ "Set CRS of Layer(s)": [
+  "Layer",
+  "Ctrl+Shift+C"
+ ],
+ "Python Console": [
+  "Plugins",
+  "Ctrl+Alt+P"
+ ],
+ "Toolbox": [
+  "Processing",
+  "Ctrl+Alt+T"
+ ],
+ "History…": [
+  "Processing",
+  "Ctrl+Alt+H"
+ ],
+ "Results Viewer": [
+  "Processing",
+  "Ctrl+Alt+R"
+ ],
+ "Help Contents": [
+  "Help",
+  "F1"
+ ],
+ "QGIS Home Page": [
+  "Help",
+  "Ctrl+Hge"
+ ]
+}

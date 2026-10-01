@@ -1,0 +1,51 @@
+{
+  "rows": [
+    {
+      "ok": true,
+      "sel_ms": 9158.782005310059,
+      "exp_ms": 9816.328525543213,
+      "n": 2,
+      "sel": true,
+      "exp": true,
+      "note": "",
+      "first": true,
+      "tries": 1
+    },
+    {
+      "ok": true,
+      "sel_ms": 9014.564990997314,
+      "exp_ms": 9716.578960418701,
+      "n": 2,
+      "sel": true,
+      "exp": true,
+      "note": "",
+      "first": true,
+      "tries": 1
+    },
+    {
+      "ok": true,
+      "sel_ms": 9108.355045318604,
+      "exp_ms": 9716.00317955017,
+      "n": 2,
+      "sel": true,
+      "exp": true,
+      "note": "",
+      "first": true,
+      "tries": 1
+    },
+    {
+      "ok": true,
+      "sel_ms": 9106.328010559082,
+      "exp_ms": 9750.657320022583,
+      "n": 2,
+      "sel": true,
+      "exp": true,
+      "note": "",
+      "first": true,
+      "tries": 1
+    }
+  ],
+  "success": "4/4",
+  "first_try": "4/4",
+  "expr": "\"area\" > 300"
+}
