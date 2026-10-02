@@ -1,0 +1,420 @@
+{
+  "records": [
+    {
+      "site": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Operating_system",
+      "load_ok": true,
+      "tasks": [
+        {
+          "task": "search",
+          "oracle": {
+            "x": 220,
+            "y": 11,
+            "w": 502,
+            "h": 44
+          },
+          "_drift": false,
+          "oracle_in_view": true,
+          "det": false,
+          "ocr_named": true,
+          "geom_pick": false,
+          "ocr_pick": true,
+          "ocr_is_oracle": false,
+          "ocr_hit": false,
+          "ocr_occluder": "ui-element:f0_0",
+          "ocr_clicked": true,
+          "ocr_url_changed": true
+        },
+        {
+          "task": "login",
+          "oracle": {
+            "x": 831,
+            "y": 25,
+            "w": 95,
+            "h": 16
+          },
+          "_drift": false,
+          "oracle_in_view": true,
+          "det": true,
+          "ocr_named": true,
+          "geom_pick": true,
+          "geom_is_oracle": false,
+          "geom_hit": false,
+          "geom_occluder": "ui-element:f0_3",
+          "ocr_pick": true,
+          "ocr_is_oracle": true,
+          "ocr_hit": true,
+          "ocr_occluder": "",
+          "ocr_clicked": true,
+          "ocr_url_changed": false
+        },
+        {
+          "task": "home",
+          "oracle": {
+            "x": 495,
+            "y": 13080,
+            "w": 121,
+            "h": 17
+          },
+          "_drift": false,
+          "oracle_in_view": false,
+          "det": false,
+          "ocr_named": false,
+          "geom_pick": true,
+          "geom_is_oracle": false,
+          "geom_hit": false,
+          "geom_occluder": "ui-element:f0_0",
+          "ocr_pick": false
+        },
+        {
+          "task": "logo",
+          "oracle": false,
+          "_drift": false
+        }
+      ],
+      "n_boxes": 160,
+      "det_ms": 37.40589998778887,
+      "n_ocr": 39,
+      "ocr_ms": 4321.2244999886025,
+      "n_struct": 1412,
+      "snap_ms": 196.33939999039285,
+      "drift": 0.0
+    },
+    {
+      "site": "mdn",
+      "url": "https://developer.mozilla.org/en-US/",
+      "load_ok": true,
+      "tasks": [
+        {
+          "task": "search",
+          "oracle": {
+            "x": 2,
+            "y": -320,
+            "w": 981,
+            "h": 50
+          },
+          "_drift": false,
+          "oracle_in_view": false,
+          "det": false,
+          "ocr_named": false,
+          "geom_pick": false,
+          "ocr_pick": true,
+          "ocr_is_oracle": false,
+          "ocr_hit": false,
+          "ocr_occluder": "mdn-homepage-search.",
+          "ocr_clicked": true,
+          "ocr_url_changed": false
+        },
+        {
+          "task": "login",
+          "oracle": false,
+          "_drift": false
+        },
+        {
+          "task": "home",
+          "oracle": false,
+          "_drift": false
+        },
+        {
+          "task": "logo",
+          "oracle": {
+            "x": 16,
+            "y": 2785,
+            "w": 83,
+            "h": 24
+          },
+          "_drift": false,
+          "oracle_in_view": false,
+          "det": false,
+          "ocr_named": false,
+          "geom_pick": true,
+          "geom_is_oracle": false,
+          "geom_hit": false,
+          "geom_occluder": "mdn-placement-top.",
+          "ocr_pick": false
+        }
+      ],
+      "n_boxes": 67,
+      "det_ms": 7.734499988146126,
+      "n_ocr": 15,
+      "ocr_ms": 1183.4769999841228,
+      "n_struct": 85,
+      "snap_ms": 11.457699991296977,
+      "drift": 0.0
+    },
+    {
+      "site": "python",
+      "url": "https://www.python.org/",
+      "load_ok": true,
+      "tasks": [
+        {
+          "task": "search",
+          "oracle": {
+            "x": 602,
+            "y": 90,
+            "w": 224,
+            "h": 37
+          },
+          "_drift": false,
+          "oracle_in_view": true,
+          "det": true,
+          "ocr_named": true,
+          "geom_pick": true,
+          "geom_is_oracle": false,
+          "geom_hit": false,
+          "geom_occluder": "ui-element:f0_4",
+          "ocr_pick": true,
+          "ocr_is_oracle": true,
+          "ocr_hit": true,
+          "ocr_occluder": "",
+          "ocr_clicked": true,
+          "ocr_url_changed": false
+        },
+        {
+          "task": "login",
+          "oracle": false,
+          "_drift": false
+        },
+        {
+          "task": "home",
+          "oracle": false,
+          "_drift": false
+        },
+        {
+          "task": "logo",
+          "oracle": {
+            "x": 1,
+            "y": 3,
+            "w": 165,
+            "h": 42
+          },
+          "_drift": false,
+          "oracle_in_view": true,
+          "det": false,
+          "ocr_named": true,
+          "geom_pick": true,
+          "geom_is_oracle": false,
+          "geom_hit": false,
+          "geom_occluder": "ui-element:f0_7",
+          "ocr_pick": false
+        }
+      ],
+      "n_boxes": 35,
+      "det_ms": 7.0909000060055405,
+      "n_ocr": 36,
+      "ocr_ms": 2666.61089999252,
+      "n_struct": 214,
+      "snap_ms": 28.638199990382418,
+      "drift": 0.0
+    },
+    {
+      "site": "pypi",
+      "url": "https://pypi.org/",
+      "load_ok": true,
+      "tasks": [
+        {
+          "task": "search",
+          "oracle": {
+            "x": 175,
+            "y": 282,
+            "w": 650,
+            "h": 50
+          },
+          "_drift": false,
+          "oracle_in_view": true,
+          "det": true,
+          "ocr_named": true,
+          "geom_pick": false,
+          "ocr_pick": true,
+          "ocr_is_oracle": false,
+          "ocr_hit": false,
+          "ocr_occluder": "h1.homepage-banner__title",
+          "ocr_clicked": true,
+          "ocr_url_changed": false
+        },
+        {
+          "task": "login",
+          "oracle": false,
+          "_drift": false
+        },
+        {
+          "task": "home",
+          "oracle": false,
+          "_drift": false
+        },
+        {
+          "task": "logo",
+          "oracle": {
+            "x": 30,
+            "y": 0,
+            "w": 65,
+            "h": 87
+          },
+          "_drift": false,
+          "oracle_in_view": true,
+          "det": false,
+          "ocr_named": false,
+          "geom_pick": false,
+          "ocr_pick": false
+        }
+      ],
+      "n_boxes": 17,
+      "det_ms": 6.171800021547824,
+      "n_ocr": 11,
+      "ocr_ms": 1622.9119999916293,
+      "n_struct": 53,
+      "snap_ms": 8.6748999892734,
+      "drift": 0.0
+    },
+    {
+      "site": "github",
+      "url": "https://github.com/",
+      "load_ok": true,
+      "tasks": [
+        {
+          "task": "search",
+          "oracle": false,
+          "_drift": true
+        },
+        {
+          "task": "login",
+          "oracle": {
+            "x": 0,
+            "y": 0,
+            "w": 1000,
+            "h": 64
+          },
+          "_drift": true,
+          "oracle_in_view": true,
+          "det": true,
+          "ocr_named": true,
+          "geom_pick": true,
+          "geom_is_oracle": true,
+          "geom_hit": true,
+          "geom_occluder": "",
+          "ocr_pick": true,
+          "ocr_is_oracle": true,
+          "ocr_hit": true,
+          "ocr_occluder": "",
+          "ocr_clicked": true,
+          "ocr_url_changed": true
+        },
+        {
+          "task": "home",
+          "oracle": false,
+          "_drift": true
+        },
+        {
+          "task": "logo",
+          "oracle": {
+            "x": 484,
+            "y": 16,
+            "w": 32,
+            "h": 32
+          },
+          "_drift": true,
+          "oracle_in_view": true,
+          "det": true,
+          "ocr_named": false,
+          "geom_pick": false,
+          "ocr_pick": false
+        }
+      ],
+      "n_boxes": 46,
+      "det_ms": 5.4382999951485544,
+      "n_ocr": 8,
+      "ocr_ms": 1040.6039000081364,
+      "n_struct": 112,
+      "snap_ms": 26.223199995001778,
+      "drift": 4.674632857142857
+    },
+    {
+      "site": "hn",
+      "url": "https://news.ycombinator.com/",
+      "load_ok": true,
+      "tasks": [
+        {
+          "task": "search",
+          "oracle": false,
+          "_drift": false
+        },
+        {
+          "task": "login",
+          "oracle": {
+            "x": 880,
+            "y": 12,
+            "w": 32,
+            "h": 16
+          },
+          "_drift": false,
+          "oracle_in_view": true,
+          "det": false,
+          "ocr_named": true,
+          "geom_pick": false,
+          "ocr_pick": true,
+          "ocr_is_oracle": true,
+          "ocr_hit": true,
+          "ocr_occluder": "",
+          "ocr_clicked": true,
+          "ocr_url_changed": true
+        },
+        {
+          "task": "home",
+          "oracle": false,
+          "_drift": false
+        },
+        {
+          "task": "logo",
+          "oracle": false,
+          "_drift": false
+        }
+      ],
+      "n_boxes": 1,
+      "det_ms": 7.721899979515001,
+      "n_ocr": 37,
+      "ocr_ms": 6551.012699987041,
+      "n_struct": 228,
+      "snap_ms": 33.092500001657754,
+      "drift": 0.0
+    }
+  ],
+  "summary": {
+    "sites": 6,
+    "tasks_oracle": 12,
+    "in_view": 9,
+    "offscreen": 3,
+    "det_in_view": 5,
+    "ocr_named_in_view": 7,
+    "geom": {
+      "pick": 4,
+      "pick_rate": 0.4444444444444444,
+      "pick_is_oracle": 1,
+      "hit": 1,
+      "hit_rate": 0.25,
+      "hit_clean": 0,
+      "hit_clean_rate": 0.0,
+      "n_clean": 3,
+      "url_changed": 0,
+      "url_rate": 0.0
+    },
+    "ocr": {
+      "pick": 6,
+      "pick_rate": 0.6666666666666666,
+      "pick_is_oracle": 4,
+      "hit": 4,
+      "hit_rate": 0.6666666666666666,
+      "hit_clean": 3,
+      "hit_clean_rate": 0.6,
+      "n_clean": 5,
+      "url_changed": 3,
+      "url_rate": 0.5
+    },
+    "drift_median": 0.0,
+    "drift_tasks": 2,
+    "det_ms_median": 7.721899979515001,
+    "ocr_ms_median": 2666.61089999252,
+    "snap_ms_median": 28.638199990382418,
+    "n_boxes_median": 46,
+    "n_ocr_median": 36
+  }
+}
