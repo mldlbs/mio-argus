@@ -1,7 +1,7 @@
 # 可塑性 vs 上下文：快速权重到底是不是注意力的换皮
 
-> **状态**：设计草案 v0.4（§5.7 Q1、§5.8 Q2、§5.9 Q3 实测已补；写入侧命题已测完）
-> **日期**：2026-09-19（v0.4：2026-10-02）
+> **状态**：设计草案 v0.5（Q1–Q4 实测已补，**写入侧命题测完并收线**）
+> **日期**：2026-09-19（v0.4：2026-10-02；v0.5：2026-10-02 Q4 收线）
 > **前置**：[docs/HYPOTHESIS.md](HYPOTHESIS.md) / [docs/ARCHITECTURE.md](ARCHITECTURE.md) / [results/paper/P9_RESULTS.md](..\results\paper\P9_RESULTS.md)
 > **约束**：拒绝"认知大杂烩"。本文档只钉**一个**可证伪支柱：**在线可塑记忆**。
 > **验收目标**：出现 crossing——见 §5.4 判据。
@@ -192,6 +192,22 @@ for episode e = 1..E:
 sanity 与距离/容量结构成立；`C > B` 只在"超容量 + 查询不偏近因"区域成立；
 **选择写入、遗忘、巩固、可学门控——四项机制主张全部未兑现。**
 站得住的结论：压缩式状态是**容量受限下的召回工程**，不是新机制。
+（Q4 对"选择性写入"补了 oracle 上界与收线裁决，见 §5.10。）
+
+### 5.10 Q4 实测（2026-10-02，见 [results/plasticity/Q4_RESULTS.md](..\results\plasticity\Q4_RESULTS.md)）
+
+回答 Q3 遗留的"headroom 在哪"：重要性偏置查询（hot 分层到各距离，
+与 Q2 的偏近因轴无关）× {nogate, learnedgate, oraclegate}，完整协议 3 seeds：
+
+- **oracle 重要性写入有效**：加权召回 +0.018（干净）/ **+0.093（噪声）**——
+  选择性写入的价值是**信噪比重分配**，真实存在；
+- **learned gate 仍 ≈0**（+0.0001 ~ +0.0008）：hot/cold 是写时不可观测的潜变量，
+  Q3 的"该记什么学不出来"在新查询分布下复现；
+- **KvOracle（精确+真值淘汰）> O（压缩+真值写入）**：0.600>0.571、0.386>0.303；
+- 代价：O 的均匀召回崩到 0.305/0.128——重分配不是免费午餐。
+
+**写入侧最终裁决**：可塑性写入侧的价值是**真实的、次优的、且不可学习的**——
+不构成能力主张。**本线收线**（遗留仅剩低优 λ 解耦，不改方向）。
 
 ---
 
@@ -202,7 +218,8 @@ sanity 与距离/容量结构成立；`C > B` 只在"超容量 + 查询不偏近
 | **Q1** ✅ | `q1_plasticity.py` → `results/plasticity/q1_plasticity_results.json` + `Q1_RESULTS.md` | 四臂 + 扫参 + crossing 判据；门控/衰减否定（杀死条件 3 触发） |
 | **Q2** ✅ | `q2_plasticity_query.py` → `q2_plasticity_query_results.json` + `Q2_RESULTS.md` | 查询分布拆刀：衰减条件性转正、巩固有害 |
 | **Q3** ✅ | `q3_learned_gate.py` → `q3_learned_gate_results.json` + `Q3_RESULTS.md` | 可学门控/衰减端到端：**训练不翻案**，写入侧命题收口 |
-| （遗留） | 任务相关重要性查询 + λ 解耦训练 | 见 Q3_RESULTS §6；不改判则按"机制不成立、工程权衡成立"收线 |
+| **Q4** ✅ | `q4_importance_gate.py` → `q4_importance_gate_results.json` + `Q4_RESULTS.md` | oracle headroom（+0.02~+0.09）与不可学性（≈0）、KvOracle 终态分水岭 → **收线** |
+| （低优遗留） | λ 解耦训练 / 非平稳重要性 | 不改裁决方向，有在线记忆需求再开 |
 
 `q1_plasticity.py` 骨架（与 P 系列同风格）：
 

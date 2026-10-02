@@ -574,7 +574,7 @@ WinSim 是对这条的正面回应：一个**可重放、有外部真值、可�
 | `p9_active_zoom.py` | 顺序缩放 vs 等算力单体（iso-FLOPs 边界；mono-R 胜 11/12，§1.5 非首创） | [results/paper/P9_RESULTS.md](..\results\paper\P9_RESULTS.md) |
 | `winsim/` + `winsim_w0..w8.py` | WinSim 桌面沙箱：确定性/真值/双通道/成本/故障/held-out/端到端（结构 1.00 vs 像素 0.26） | [results/winsim/WINSIM_RESULTS.md](..\results\winsim\WINSIM_RESULTS.md) |
 | `experiments/qgis/qgis_bridge/` + `run_w1..w19.py` | 真桌面应用 QGIS 全 19 轮：通道对照 → 验证科学（V 的伪迹/条件价值）→ 真实通道（UIA/OCR/Processing）→ 真工作流（零特权选择+导出，4/4）与可靠性（UIA Invoke）。汇总 + playbook 见 | [results/qgis/QGIS_FINDINGS.md](..\results\qgis\QGIS_FINDINGS.md) |
-| `q1_plasticity.py` / `q2_plasticity_query.py` / `q3_learned_gate.py` | 可塑性三问：无训练消融 → 查询分布拆刀 → 可学门控（训练不翻案，写入侧收口） | [results/plasticity/Q3_RESULTS.md](..\results\plasticity\Q3_RESULTS.md) |
+| `q1_plasticity.py` / `q2_plasticity_query.py` / `q3_learned_gate.py` / `q4_importance_gate.py` | 可塑性四问：无训练消融 → 查询分布 → 可学门控（不翻案）→ oracle headroom（收线） | [results/plasticity/Q4_RESULTS.md](..\results\plasticity\Q4_RESULTS.md) |
 | `docs/HYPOTHESIS.md` / `docs/ROADMAP.md` | 假设与路线（含证据分级） | — |
 
 **规模**：模型 4K–1.5M 参数；全部实验在单张消费级 GPU 上完成；无外部 API。
