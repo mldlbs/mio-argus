@@ -61,15 +61,15 @@ def find_child(qg, title_kw, ctype="Window"):
     return None
 
 
-def selected_count():
+def selected_count(layer=SCENE):
     t = call({"op": "truth"})["truth"]
     for l in t.get("layers", []):
-        if l["name"] == SCENE:
+        if l["name"] == layer:
             return l["selected"]
     return None
 
 
-def select_via_gui(expr, timeout=30, expect_n=N_EXP, run_mode="invoke"):
+def select_via_gui(expr, timeout=30, expect_n=N_EXP, run_mode="invoke", layer=SCENE):
     """Processing → Select by expression。返回 (ok, stages)。expect_n = 期望选中的要素数。"""
     st = {}
     t0 = time.time()
@@ -106,7 +106,24 @@ def select_via_gui(expr, timeout=30, expect_n=N_EXP, run_mode="invoke"):
             pass
     if tgt is None:
         return False, st
-    tgt.double_click_input()
+    # UIA 双击在多窗/失焦时不稳（W23 实测：时灵时不灵）→ 像素双击兜底，再轮询
+    try:
+        tgt.double_click_input()
+    except Exception:
+        pass
+    dlg = None
+    for k in range(6):
+        time.sleep(0.5)
+        qg = acquire()
+        dlg = find_child(qg, "Select by expression") if qg else None
+        if dlg is not None:
+            break
+    if dlg is None:
+        try:
+            r = tgt.rectangle()
+            pyautogui.doubleClick(r.left + r.width() // 2, r.top + r.height() // 2)
+        except Exception:
+            pass
     st["search_ms"] = (time.time() - t1) * 1000
 
     # 等算法对话框
@@ -127,13 +144,21 @@ def select_via_gui(expr, timeout=30, expect_n=N_EXP, run_mode="invoke"):
     qg = acquire(); dlg = find_child(qg, "Select by expression")
     combos = sorted([x for x in dlg.descendants(control_type="ComboBox")], key=lambda x: R(x)[1])
     if len(combos) >= 1:
-        # 永远显式重选：reset 会重建图层，旧的选择记的是旧 layer id（W16 同型陷阱）
+        # 永远显式重选：reset 会重建图层，旧的选择记的是旧 layer id（W16 同型陷阱）；
+        # # 真坑（W23）：下拉弹层是独立顶层窗，主窗子树里搜不到 ListItem，旧代码静默落空
         picked = False
         try:
             combos[0].click_input(); time.sleep(0.6)
-            for it in qg.descendants(control_type="ListItem"):
+            all_items = []
+            for w in Desktop(backend="uia").windows(visible_only=True):
                 try:
-                    if (it.window_text() or "").strip() == SCENE:
+                    all_items += list(w.descendants(control_type="ListItem"))
+                except Exception:
+                    pass
+            for it in all_items:
+                try:
+                    txt = (it.window_text() or "").strip()
+                    if txt == layer or txt.startswith(layer + " "):
                         it.click_input(); picked = True; time.sleep(0.5); break
                 except Exception:
                     continue
@@ -143,7 +168,7 @@ def select_via_gui(expr, timeout=30, expect_n=N_EXP, run_mode="invoke"):
             pass
         if not picked:
             try:
-                combos[0].select(SCENE)
+                combos[0].select(layer)
             except Exception:
                 pass
     edits = [x for x in dlg.descendants(control_type="Edit") if R(x)[2] > 120]
@@ -210,7 +235,7 @@ def select_via_gui(expr, timeout=30, expect_n=N_EXP, run_mode="invoke"):
     for attempt in range(attempts):
         for _ in range(int(4 / 0.3)):
             time.sleep(0.3)
-            if selected_count() == expect_n:
+            if selected_count(layer) == expect_n:
                 ok = True
                 break
         if ok or run_mode == "blind":

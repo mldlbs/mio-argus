@@ -145,6 +145,50 @@ def reset_env(scene="cities"):
             dp.addFeature(f)
         vl.updateExtents()
         lyr = vl
+    elif scene == "scenario":
+        # W23 场景集：投影坐标（米，EPSG:3857）的 regions + data/scenario 下 4 个 GeoJSON
+        vl = QgsVectorLayer("Polygon?crs=EPSG:3857", "regions", "memory")
+        dp = vl.dataProvider()
+        dp.addAttributes([QgsField("name", QVariant.String),
+                          QgsField("area", QVariant.Double)])
+        vl.updateFields()
+        rects = [("North", 600000, 4400000, 1400000, 5000000, 500.0),
+                 ("South", 1200000, 3600000, 2000000, 4400000, 400.0),
+                 ("Central", 600000, 3800000, 1200000, 4400000, 300.0),
+                 ("West", 200000, 4000000, 600000, 4400000, 150.0),
+                 ("East", 2000000, 3800000, 2500000, 4200000, 120.0)]
+        for name, x0, y0, x1, y1, area in rects:
+            f = QgsFeature(vl.fields())
+            f.setGeometry(QgsGeometry.fromPolygonXY([[
+                QgsPointXY(x0, y0), QgsPointXY(x1, y0),
+                QgsPointXY(x1, y1), QgsPointXY(x0, y1)]]))
+            f["name"] = name
+            f["area"] = area
+            dp.addFeature(f)
+        vl.updateExtents()
+        layers = [vl]
+        scn = _bridge_dir() / "data" / "scenario"
+        for fn in ("roads", "hospitals", "pois", "floods"):
+            p = scn / f"{fn}.geojson"
+            lyr2 = QgsVectorLayer(str(p), fn, "ogr")
+            if not lyr2.isValid():
+                return {"ok": False, "err": f"layer invalid: {p}"}
+            layers.append(lyr2)
+        for l in layers:
+            project.addMapLayer(l)
+            l.removeSelection()
+        c = _canvas()
+        if c is not None:
+            xs0, ys0, xs1, ys1 = [], [], [], []
+            for l in layers:
+                e = l.extent()
+                xs0.append(e.xMinimum()); ys0.append(e.yMinimum())
+                xs1.append(e.xMaximum()); ys1.append(e.yMaximum())
+            from qgis.core import QgsRectangle
+            c.setExtent(QgsRectangle(min(xs0), min(ys0), max(xs1), max(ys1)))
+            c.refresh()
+        return {"ok": True, "scene": scene,
+                "features": {l.name(): l.featureCount() for l in layers}}
     else:
         lyr = QgsVectorLayer(DATA_GPKG + "|layername=cities", "cities", "ogr")
         if not lyr.isValid():
@@ -169,12 +213,38 @@ def truth():
             sel = None
         item = tree.findLayer(lyr.id())
         ext = lyr.extent()
+        # S1 symbology 真值：渲染器类型 + 分类字段 + 类目（W23）
+        rend_info = None
+        try:
+            rend = lyr.renderer()
+            if rend is None:
+                rend_info = {"type": None}
+            else:
+                rend_info = {"type": rend.type()}
+                if rend.type() == "categorizedSymbol":
+                    try:
+                        rend_info["attr"] = rend.classAttribute()
+                    except Exception as e:
+                        rend_info["attr_err"] = str(e)
+                    try:
+                        cats = []
+                        for c in rend.categories():
+                            try:
+                                cats.append(c.value())
+                            except Exception as e:
+                                cats.append(f"<err {e}>")
+                        rend_info["cats"] = sorted(cats, key=str)
+                    except Exception as e:
+                        rend_info["cats_err"] = str(e)
+        except Exception as e:
+            rend_info = {"type": "error", "msg": str(e)}
         out["layers"].append({
             "name": lyr.name(),
             "crs": lyr.crs().authid(),
             "features": lyr.featureCount(),
             "selected": sel,
             "visible": bool(item.itemVisibilityChecked()) if item else None,
+            "renderer": rend_info,
             "extent": [float(ext.xMinimum()), float(ext.yMinimum()),
                        float(ext.xMaximum()), float(ext.yMaximum())],
         })
@@ -320,6 +390,38 @@ def close_dialogs():
             n += 1
     QApplication.processEvents()
     return {"ok": True, "closed": n}
+
+
+def menu_items():
+    """读当前打开的弹出菜单（QMenu）的动作序列 + 当前高亮项 —— 结构通道。
+    W23：UIA 看不见 Qt 弹出菜单；键盘导航需按 currentAction 反馈走（Home/环绕都不可靠）。"""
+    m = QApplication.instance().activePopupWidget()
+    menus = []
+    if m is not None and m.metaObject().className() in ("QMenu", "QWidgetMenu"):
+        menus = [m]
+    if not menus:
+        for w in QApplication.instance().topLevelWidgets():
+            if (w.metaObject().className() in ("QMenu", "QWidgetMenu")
+                    and w.isVisible()):
+                menus.append(w)
+    for m in menus:
+        items = []
+        for a in m.actions():
+            items.append({"text": a.text().replace("&", "").strip(),
+                          "sep": bool(a.isSeparator()),
+                          "enabled": bool(a.isEnabled()),
+                          "submenu": bool(a.menu())})
+        if items:
+            cur = None
+            try:
+                a = m.activeAction()        # QMenu API：activeAction()（currentAction 不存在）
+                if a is not None:
+                    cur = "<sep>" if a.isSeparator() else \
+                        a.text().replace("&", "").strip()
+            except Exception:
+                cur = None
+            return {"ok": True, "items": items, "current": cur}
+    return {"ok": True, "items": [], "current": None}
 
 
 def _find_widget(cls=None, text=None, index=0):
@@ -529,6 +631,8 @@ def _handle(req):
         return {"ok": True, "shortcuts": out}
     if op == "close_dialogs":
         return close_dialogs()
+    if op == "menu_items":
+        return menu_items()
     if op == "select_expr":
         return select_expr(req.get("expr", ""), req.get("layer", "cities"))
     if op == "zoom_to_selection":

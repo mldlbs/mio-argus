@@ -1,4 +1,4 @@
-# QGIS 线发现汇总（W1–W5）
+# QGIS 线发现汇总（W1–W23）
 
 > 复现：`experiments/qgis/qgis_bridge/`（`bridge.py` + `run_w1..w5.py`）　细目：[W1_RESULTS.md](W1_RESULTS.md)
 > 环境：QGIS LTR **3.44.15**（装于 `D:\QGIS`，2.3 GB，管理安装免提权）
@@ -847,3 +847,44 @@ W18→W19 的故事是：选择段的 Run 点击有 ~25% 概率被"激活窗口"
 语言盲区只测了两种错型（无效字段 / 否定丢失）。
 **本轮之后，V 的完整画像**：需要依赖式子目标（W9/W10）、需要弱且随机的策略（W11/W12）、
 需要可观测结果（W10）、且**对参数化错误无能为力**（W22）。
+
+# QGIS W23：场景化任务集第一批（6 个矢量场景）执行基线 ✅
+
+> 复现：`python experiments/qgis/qgis_bridge/run_w23.py --trials 3`　数据：`experiments/qgis/qgis_bridge/w23_results.json`　场景数据/真值：`data/scenario/` + `data/scenario_truth.json`　链构建块：`scn_gui.py`
+
+W16–W19 验证的是单点链（选择、导出）。本轮把它们与新构建块（`scn_gui`：Processing 算法对话框 / 层属性的 GUI 驱动）合成为 **6 个具体 GIS 业务场景**，每场景 3 次独立试跑 —— 目标是立**执行基线**（机械可靠性 + 分段耗时）；指令文本（见 `w23_results.json` 的 `meta.instructions`）留给后续语言层采集。
+
+| 场景 | 链 | 成功 | 总耗时中位 | 分段中位 |
+|---|---|---|---|---|
+| s1 专题渲染：roads 按 class 分类（4 类） | 层属性 → Categorized → Classify | 3/3 | 12.1 s | 12.0 |
+| s2 选择导出：筛 primary 6 条 → 导出选中 | 表达式选择 → 导出 | 3/3 | 23.1 s | 12.8 / 10.4 |
+| s3 缓冲：5 医院 × 150 km | Buffer → 导出 | 3/3 | 25.9 s | 16.1 / 9.8 |
+| s4 组合：被服务区覆盖的 regions | Buffer → Extract by location → 导出 | 3/3 | 44.7 s | 16.1 / 18.9 / 9.7 |
+| s5 空间查询：POI in regions | Extract → 导出 | 3/3 | 28.4 s | 18.6 / 9.8 |
+| s6 空间查询：floods in regions | Extract → 导出 | 3/3 | 28.7 s | 18.8 / 9.8 |
+
+**18/18 全绿、失败分层全空** —— W18 的 ~75% 选择段可靠性（W19 invoke 修复后）在场景级保持；
+导出段 9.7–10.4 s 与 W16（9.5 s）一致，可视为该链的稳定成本。
+
+**本轮探明的三个新坑**（已沉进 `scn_gui.py` / `run_w16.py` 机械）：
+
+1. **QMenu 高亮反馈是 `activeAction()`，不是 `currentAction()`** —— QMenu 上根本没有后者，
+   Python 抛 AttributeError 被兜底吞掉 → 反馈恒为 None，键盘导航看着"永远找不对项"
+   （截图证明 Down 实际在正常移动高亮）。修法后按 current 反馈步进；
+   W16 的固定 Down 计数在 **item0 已被悬停高亮**时会越位（首 Down 落到下一项），
+   而 QMenu 首项按 Up **不环绕**、Home **无效**。
+2. **combo 选值失败时的 Esc 兜底会关掉整个对话框** —— 弹层已经关了，Esc 就落到对话框上
+   （S1 实测：属性对话框被关 → 崩）。改法：只在桌面**真有** Qt 弹层 ListItem 时才按 Esc；
+   前缀匹配放宽为 case-insensitive `startswith`（`categ` 要能命中 `Categorized`）。
+3. **"Open output file after running algorithm" 必须保持勾选** —— 名字像"导出后打开文件"，
+   实际控制**结果是否载入工程**；取消勾选 → 算法跑完却没有图层可导。
+
+其它可复用机械：同名算法窗的**参数页/结果页并存**（只认带 Run 的，重试前先
+Change Parameters 回退）；UIA 右键偶发不弹 → 3 次重试；临时输出层名 `Buffered_<uuid>`
+与实际加载名可能不一致 → `resolve_layer` 前缀解析；算法等待 6 s 不够 → 20 s；
+层属性的 Value/渲染器选择用 **combo type-ahead + 读回验证**（全桌面搜 ListItem 会串台到
+别的应用，必须按 class 含 "Qt" 过滤）。
+
+**局限**：每场景仅 3 试、单一米制数据集（EPSG:3857）、指令未过语言层
+（W21 的表达式还不会从这 6 条中文指令生成）。
+**下一步**：语言层接场景（指令 → 参数 → 链），把 18/18 的机械基线变成端到端训练/评测。

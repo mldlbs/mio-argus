@@ -1,0 +1,15 @@
+{
+"type": "FeatureCollection",
+"name": "w23_s6_t2",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{"type":"Feature","properties":{"name":"f01"},"geometry":{"type":"Point","coordinates":[250000.0,4050000.0]}},
+{"type":"Feature","properties":{"name":"f02"},"geometry":{"type":"Point","coordinates":[300000.0,4300000.0]}},
+{"type":"Feature","properties":{"name":"f03"},"geometry":{"type":"Point","coordinates":[550000.0,4100000.0]}},
+{"type":"Feature","properties":{"name":"f04"},"geometry":{"type":"Point","coordinates":[500000.0,4350000.0]}},
+{"type":"Feature","properties":{"name":"f05"},"geometry":{"type":"Point","coordinates":[2050000.0,3850000.0]}},
+{"type":"Feature","properties":{"name":"f06"},"geometry":{"type":"Point","coordinates":[2150000.0,3900000.0]}},
+{"type":"Feature","properties":{"name":"f07"},"geometry":{"type":"Point","coordinates":[2400000.0,4150000.0]}},
+{"type":"Feature","properties":{"name":"f08"},"geometry":{"type":"Point","coordinates":[2450000.0,3850000.0]}}
+]
+}

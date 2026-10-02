@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "w23_s2_t0",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{"type":"Feature","properties":{"name":"r05","class":"primary"},"geometry":{"type":"LineString","coordinates":[[150000.0,3750000.0],[830000.0,3790000.0]]}},
+{"type":"Feature","properties":{"name":"r06","class":"primary"},"geometry":{"type":"LineString","coordinates":[[360000.0,3880000.0],[780000.0,3840000.0]]}},
+{"type":"Feature","properties":{"name":"r07","class":"primary"},"geometry":{"type":"LineString","coordinates":[[570000.0,4010000.0],[1120000.0,4050000.0]]}},
+{"type":"Feature","properties":{"name":"r08","class":"primary"},"geometry":{"type":"LineString","coordinates":[[780000.0,4140000.0],[1460000.0,4100000.0]]}},
+{"type":"Feature","properties":{"name":"r09","class":"primary"},"geometry":{"type":"LineString","coordinates":[[990000.0,4270000.0],[1410000.0,4310000.0]]}},
+{"type":"Feature","properties":{"name":"r10","class":"primary"},"geometry":{"type":"LineString","coordinates":[[150000.0,4400000.0],[700000.0,4360000.0]]}}
+]
+}

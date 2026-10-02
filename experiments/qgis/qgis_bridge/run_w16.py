@@ -50,17 +50,17 @@ def acquire(retries=8):
     return None
 
 
-def find_layer_item(qg):
+def find_layer_item(qg, layer=SCENE):
     for x in qg.descendants(control_type="TreeItem"):
         try:
-            if (x.window_text() or "").strip() == "regions":
+            if (x.window_text() or "").strip() == layer:
                 return x
         except Exception:
             continue
     return None
 
 
-def export_via_gui(path, selected_only=True):
+def export_via_gui(path, selected_only=True, layer=SCENE):
     """全 GUI 导出。返回 (ok, stages_ms, note)。"""
     st = {}
     t_all = time.time()
@@ -70,20 +70,66 @@ def export_via_gui(path, selected_only=True):
     qg = acquire()
     if qg is None:
         return False, st, "no window"
-    item = find_layer_item(qg)
+    item = find_layer_item(qg, layer)
     if item is None:
         return False, st, "no layer item"
 
-    # 1) 上下文菜单 → Export → 子菜单（用类型前导定位，避免数 Down 次数的脆弱性）
+    # 1) 上下文菜单 → Export → 子菜单（W23：pyautogui 右键在失焦时不弹 → UIA 右键；
+    #    Down 次数不再写死 —— Qt 弹出菜单 UIA 看不见，改由桥 menu_items 读序）
     t0 = time.time()
-    qg.set_focus(); time.sleep(0.25)
-    r = item.rectangle()
-    pyautogui.rightClick(r.left + 150, r.top + r.height() // 2); time.sleep(0.8)
-    for _ in range(17):            # 渲染顺序里 Export 是第 17 项（UIA 列表漏了 Toggle Editing）
-        pyautogui.press("down"); time.sleep(0.05)
-    pyautogui.press("right"); time.sleep(1.0)          # 子菜单打开时第一项已聚焦
-    if selected_only:
-        pyautogui.press("down"); time.sleep(0.25)      # → Save Selected Features As…
+    items = []
+    for attempt in range(3):              # UIA 右键也偶发不弹 → 重试
+        qg.set_focus(); time.sleep(0.25)
+        item.right_click_input()
+        for _ in range(8):
+            time.sleep(0.25)
+            mi = call({"op": "menu_items"})
+            items = mi.get("items") or []
+            if items:
+                break
+        if items:
+            break
+        pyautogui.press("esc"); time.sleep(0.3)
+    if not items:
+        pyautogui.press("esc")
+        return False, st, "context menu not open"
+    # 反馈导航（W23 终解）：Home/环绕计数都不可靠 → 逐步 Down 并核对 currentAction
+    n_main = len([it for it in items if not it["sep"]])
+    on_target = False
+    for _ in range(n_main + 3):
+        cur = (call({"op": "menu_items"}).get("current") or "")
+        if cur == "Export":
+            on_target = True
+            break
+        pyautogui.press("down"); time.sleep(0.08)
+    if not on_target:
+        pyautogui.press("esc")
+        return False, st, "not on Export"
+    pyautogui.press("right"); time.sleep(1.0)   # 打开 Export 子菜单
+    # 子菜单：读序 + 反馈步进到目标项
+    sub = []
+    for _ in range(8):
+        time.sleep(0.25)
+        sub = (call({"op": "menu_items"}).get("items") or [])
+        if sub:
+            break
+    want = ("Save Selected Features As" if selected_only
+            else "Save Features As")
+    ssep = [it for it in sub if not it["sep"]]
+    if not ssep:                            # 右键没进子菜单 → 再试一次
+        pyautogui.press("right"); time.sleep(1.0)
+        sub = (call({"op": "menu_items"}).get("items") or sub)
+        ssep = [it for it in sub if not it["sep"]]
+    on_target = False
+    for _ in range(len(ssep) + 3):
+        cur = (call({"op": "menu_items"}).get("current") or "")
+        if cur and cur.startswith(want):
+            on_target = True
+            break
+        pyautogui.press("down"); time.sleep(0.12)
+    if not on_target:
+        pyautogui.press("esc")
+        return False, st, f"no {want} item"
     pyautogui.press("enter")
     st["menu_ms"] = (time.time() - t0) * 1000
 
@@ -222,24 +268,44 @@ def export_via_gui(path, selected_only=True):
         return False, st, "no OK button"
     top_max = max(t for t, _, _ in btns)
     row = sorted([x for x in btns if abs(x[0] - top_max) < 12], key=lambda z: z[1])
-    row[0][2].click_input()
+    okb = row[0][2]
+    # W23：真鼠标点击会被"激活窗口"吃掉（W19 同族静默失败）→ UIA invoke 修低层（C6）
+    ok_invoked = False
+    try:
+        okb.invoke()
+        ok_invoked = True
+    except Exception:
+        try:
+            okb.click_input()
+        except Exception:
+            pass
     st["dialog_ms"] = (time.time() - t1) * 1000
 
-    # 5) 等文件落盘
+    # 5) 等文件落盘；没落盘就再触发一次 OK（最多 2 次）
     t2 = time.time()
     ok = False
-    for _ in range(40):
-        time.sleep(0.25)
-        if p.exists():
+    for attempt in range(2):
+        for _ in range(40):
+            time.sleep(0.25)
+            if p.exists():
+                try:
+                    d = json.loads(p.read_text(encoding="utf-8"))
+                    ok = isinstance(d, dict) and "features" in d
+                    if ok:
+                        break
+                except Exception:
+                    pass
+        if ok:
+            break
+        if attempt == 0:                       # 二次触发：invoke → Enter 兜底
             try:
-                d = json.loads(p.read_text(encoding="utf-8"))
-                ok = isinstance(d, dict) and "features" in d
-                if ok:
-                    break
+                okb.invoke()
             except Exception:
-                pass
+                pyautogui.press("enter")
+            time.sleep(0.5)
     st["wait_ms"] = (time.time() - t2) * 1000
     st["total_ms"] = (time.time() - t_all) * 1000
+    st["ok_invoked"] = ok_invoked
     if not ok:
         pyautogui.screenshot().save(str(HERE / f"_w16_fail_{'sel' if selected_only else 'all'}.png"))
         pyautogui.press("enter")
