@@ -1,0 +1,887 @@
+{
+  "records": [
+    {
+      "site": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Operating_system",
+      "load_ok": true,
+      "v2": {
+        "n": 1412,
+        "snap_ms": 140.0597000028938
+      },
+      "v3": {
+        "n": 1412,
+        "snap_ms": 133.5753999883309
+      },
+      "frames": [
+        {
+          "idx": 0,
+          "host": "en.wikipedia.org",
+          "n": 1412,
+          "cross_origin": false
+        }
+      ],
+      "overlay": {
+        "tag": "p",
+        "id": "mwIQ",
+        "cls": "",
+        "fullscreen": false
+      },
+      "funnel": [
+        {
+          "task": "search",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": true,
+          "scrolled": true
+        },
+        {
+          "task": "login",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": true,
+          "scrolled": true
+        },
+        {
+          "task": "home",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": false,
+          "scrolled": true
+        },
+        {
+          "task": "logo",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": false,
+          "scrolled": true
+        }
+      ],
+      "click": [
+        {
+          "task": "search",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": false,
+          "reason": "ok"
+        },
+        {
+          "task": "login",
+          "attempted": true,
+          "click_ok": false,
+          "click_err": "Locator.click: Timeout 2000ms exceeded.",
+          "hit": true,
+          "occluder": "",
+          "url_changed": false,
+          "reason": "click_timeout"
+        },
+        {
+          "task": "home",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": true,
+          "reason": "ok"
+        },
+        {
+          "task": "logo",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": true,
+          "reason": "ok"
+        }
+      ],
+      "v3_cross": 0,
+      "reach_sample": {
+        "n": 57,
+        "hit": 57
+      }
+    },
+    {
+      "site": "mdn",
+      "url": "https://developer.mozilla.org/en-US/",
+      "load_ok": true,
+      "v2": {
+        "n": 85,
+        "snap_ms": 8.777699986239895
+      },
+      "v3": {
+        "n": 85,
+        "snap_ms": 9.2585000093095
+      },
+      "frames": [
+        {
+          "idx": 0,
+          "host": "developer.mozilla.org",
+          "n": 85,
+          "cross_origin": false
+        }
+      ],
+      "overlay": {
+        "tag": "a",
+        "id": "",
+        "cls": "",
+        "fullscreen": false
+      },
+      "funnel": [
+        {
+          "task": "search",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": false,
+          "occluder": "offscreen",
+          "is_target": false,
+          "in_view": false,
+          "scrolled": true
+        },
+        {
+          "task": "login",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": true,
+          "hit": false,
+          "occluder": "offscreen",
+          "is_target": false,
+          "in_view": false,
+          "scrolled": true
+        },
+        {
+          "task": "home",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        },
+        {
+          "task": "logo",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": false,
+          "scrolled": true
+        }
+      ],
+      "click": [
+        {
+          "task": "search",
+          "attempted": true,
+          "click_ok": false,
+          "click_err": "Locator.click: Timeout 2000ms exceeded.",
+          "hit": false,
+          "occluder": "offscreen",
+          "url_changed": false,
+          "reason": "click_timeout"
+        },
+        {
+          "task": "login",
+          "attempted": true,
+          "click_ok": false,
+          "click_err": "Locator.click: Timeout 2000ms exceeded.",
+          "hit": false,
+          "occluder": "offscreen",
+          "url_changed": false,
+          "reason": "click_timeout"
+        },
+        {
+          "task": "home",
+          "attempted": false,
+          "reason": "no_pick"
+        },
+        {
+          "task": "logo",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": true,
+          "reason": "ok"
+        }
+      ],
+      "v3_cross": 0,
+      "reach_sample": {
+        "n": 14,
+        "hit": 7
+      }
+    },
+    {
+      "site": "python",
+      "url": "https://www.python.org/",
+      "load_ok": true,
+      "v2": {
+        "n": 214,
+        "snap_ms": 23.386499990010634
+      },
+      "v3": {
+        "n": 214,
+        "snap_ms": 33.0705999804195
+      },
+      "frames": [
+        {
+          "idx": 0,
+          "host": "www.python.org",
+          "n": 214,
+          "cross_origin": false
+        }
+      ],
+      "overlay": {
+        "tag": "div",
+        "id": "",
+        "cls": "slide-copy",
+        "fullscreen": false
+      },
+      "funnel": [
+        {
+          "task": "search",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": true,
+          "scrolled": true
+        },
+        {
+          "task": "login",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": false,
+          "scrolled": true
+        },
+        {
+          "task": "home",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        },
+        {
+          "task": "logo",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": false,
+          "scrolled": true
+        }
+      ],
+      "click": [
+        {
+          "task": "search",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": false,
+          "reason": "ok"
+        },
+        {
+          "task": "login",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": true,
+          "reason": "ok"
+        },
+        {
+          "task": "home",
+          "attempted": false,
+          "reason": "no_pick"
+        },
+        {
+          "task": "logo",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": true,
+          "reason": "ok"
+        }
+      ],
+      "v3_cross": 0,
+      "reach_sample": {
+        "n": 28,
+        "hit": 27
+      }
+    },
+    {
+      "site": "pypi",
+      "url": "https://pypi.org/",
+      "load_ok": true,
+      "v2": {
+        "n": 53,
+        "snap_ms": 6.9843000092078
+      },
+      "v3": {
+        "n": 53,
+        "snap_ms": 5.817400000523776
+      },
+      "frames": [
+        {
+          "idx": 0,
+          "host": "pypi.org",
+          "n": 53,
+          "cross_origin": false
+        }
+      ],
+      "overlay": {
+        "tag": "div",
+        "id": "",
+        "cls": "homepage-banner",
+        "fullscreen": false
+      },
+      "funnel": [
+        {
+          "task": "search",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": true,
+          "scrolled": true
+        },
+        {
+          "task": "login",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": false,
+          "scrolled": true
+        },
+        {
+          "task": "home",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        },
+        {
+          "task": "logo",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": false,
+          "scrolled": true
+        }
+      ],
+      "click": [
+        {
+          "task": "search",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": false,
+          "reason": "ok"
+        },
+        {
+          "task": "login",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": false,
+          "reason": "ok"
+        },
+        {
+          "task": "home",
+          "attempted": false,
+          "reason": "no_pick"
+        },
+        {
+          "task": "logo",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": true,
+          "reason": "ok"
+        }
+      ],
+      "v3_cross": 0,
+      "reach_sample": {
+        "n": 8,
+        "hit": 8
+      }
+    },
+    {
+      "site": "github",
+      "url": "https://github.com/",
+      "load_ok": true,
+      "v2": {
+        "n": 112,
+        "snap_ms": 11.400699993828312
+      },
+      "v3": {
+        "n": 112,
+        "snap_ms": 11.907999985851347
+      },
+      "frames": [
+        {
+          "idx": 0,
+          "host": "github.com",
+          "n": 112,
+          "cross_origin": false
+        }
+      ],
+      "overlay": {
+        "tag": "p",
+        "id": "",
+        "cls": "Primer_Brand__Text-module__Text___XeGJJ",
+        "fullscreen": false
+      },
+      "funnel": [
+        {
+          "task": "search",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": true,
+          "scrolled": true
+        },
+        {
+          "task": "login",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": true,
+          "scrolled": true
+        },
+        {
+          "task": "home",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": true,
+          "scrolled": true
+        },
+        {
+          "task": "logo",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": true,
+          "scrolled": true
+        }
+      ],
+      "click": [
+        {
+          "task": "search",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": false,
+          "reason": "ok"
+        },
+        {
+          "task": "login",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": false,
+          "reason": "ok"
+        },
+        {
+          "task": "home",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": false,
+          "reason": "ok"
+        },
+        {
+          "task": "logo",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": false,
+          "reason": "ok"
+        }
+      ],
+      "v3_cross": 0,
+      "reach_sample": {
+        "n": 8,
+        "hit": 7
+      }
+    },
+    {
+      "site": "hn",
+      "url": "https://news.ycombinator.com/",
+      "load_ok": true,
+      "v2": {
+        "n": 227,
+        "snap_ms": 25.683199986815453
+      },
+      "v3": {
+        "n": 227,
+        "snap_ms": 18.65780001389794
+      },
+      "frames": [
+        {
+          "idx": 0,
+          "host": "news.ycombinator.com",
+          "n": 227,
+          "cross_origin": false
+        }
+      ],
+      "overlay": {
+        "tag": "td",
+        "id": "",
+        "cls": "subtext",
+        "fullscreen": false
+      },
+      "funnel": [
+        {
+          "task": "search",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": true,
+          "scrolled": true
+        },
+        {
+          "task": "login",
+          "found_v2": true,
+          "found_v3": true,
+          "pick": true,
+          "hit": true,
+          "occluder": "",
+          "is_target": true,
+          "in_view": true,
+          "scrolled": true
+        },
+        {
+          "task": "home",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        },
+        {
+          "task": "logo",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        }
+      ],
+      "click": [
+        {
+          "task": "search",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": true,
+          "reason": "ok"
+        },
+        {
+          "task": "login",
+          "attempted": true,
+          "click_ok": true,
+          "click_err": "",
+          "hit": true,
+          "occluder": "",
+          "url_changed": true,
+          "reason": "ok"
+        },
+        {
+          "task": "home",
+          "attempted": false,
+          "reason": "no_pick"
+        },
+        {
+          "task": "logo",
+          "attempted": false,
+          "reason": "no_pick"
+        }
+      ],
+      "v3_cross": 0,
+      "reach_sample": {
+        "n": 100,
+        "hit": 100
+      }
+    },
+    {
+      "site": "yt_embed",
+      "url": "https://www.youtube.com/embed/jNQXAC9IVRw",
+      "load_ok": true,
+      "v2": {
+        "n": 10,
+        "snap_ms": 2.594899997347966
+      },
+      "v3": {
+        "n": 10,
+        "snap_ms": 2.372499991906807
+      },
+      "frames": [
+        {
+          "idx": 0,
+          "host": "www.youtube.com",
+          "n": 10,
+          "cross_origin": false
+        }
+      ],
+      "overlay": {
+        "tag": "div",
+        "id": "",
+        "cls": "interstitialViewModelModelContainer",
+        "fullscreen": false
+      },
+      "funnel": [
+        {
+          "task": "search",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        },
+        {
+          "task": "login",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        },
+        {
+          "task": "home",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        },
+        {
+          "task": "logo",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        }
+      ],
+      "click": [
+        {
+          "task": "search",
+          "attempted": false,
+          "reason": "no_pick"
+        },
+        {
+          "task": "login",
+          "attempted": false,
+          "reason": "no_pick"
+        },
+        {
+          "task": "home",
+          "attempted": false,
+          "reason": "no_pick"
+        },
+        {
+          "task": "logo",
+          "attempted": false,
+          "reason": "no_pick"
+        }
+      ],
+      "v3_cross": 0,
+      "reach_sample": {
+        "n": 10,
+        "hit": 7
+      }
+    },
+    {
+      "site": "harness_xf",
+      "url": null,
+      "load_ok": true,
+      "v2": {
+        "n": 0,
+        "snap_ms": 2.3194999957922846
+      },
+      "v3": {
+        "n": 7,
+        "snap_ms": 4.377600009320304
+      },
+      "frames": [
+        {
+          "idx": 0,
+          "host": "about:blank",
+          "n": 0,
+          "cross_origin": false
+        },
+        {
+          "idx": 1,
+          "host": "www.openstreetmap.org",
+          "n": 7,
+          "cross_origin": true
+        }
+      ],
+      "overlay": {
+        "tag": "iframe",
+        "id": "",
+        "cls": "",
+        "fullscreen": false
+      },
+      "funnel": [
+        {
+          "task": "search",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        },
+        {
+          "task": "login",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        },
+        {
+          "task": "home",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        },
+        {
+          "task": "logo",
+          "found_v2": false,
+          "found_v3": false,
+          "pick": false,
+          "hit": false,
+          "occluder": "",
+          "is_target": false,
+          "in_view": false
+        }
+      ],
+      "click": [],
+      "v3_cross": 7,
+      "reach_sample": {
+        "n": 7,
+        "hit": 7
+      }
+    }
+  ],
+  "summary": {
+    "found_v2": 0.375,
+    "found_v3": 0.375,
+    "pick": 0.59375,
+    "hit": 0.53125,
+    "click_ok": 0.8421052631578947,
+    "n_click": 19,
+    "click_reasons": {
+      "ok": 16,
+      "click_timeout": 3,
+      "no_pick": 9
+    },
+    "cross_entries": 7,
+    "snap_ms_v2": 11.400699993828312,
+    "snap_ms_v3": 11.907999985851347
+  }
+}
