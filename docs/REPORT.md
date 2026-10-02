@@ -575,7 +575,7 @@ WinSim 是对这条的正面回应：一个**可重放、有外部真值、可�
 | `winsim/` + `winsim_w0..w8.py` | WinSim 桌面沙箱：确定性/真值/双通道/成本/故障/held-out/端到端（结构 1.00 vs 像素 0.26） | [results/winsim/WINSIM_RESULTS.md](..\results\winsim\WINSIM_RESULTS.md) |
 | `experiments/qgis/qgis_bridge/` + `run_w1..w19.py` | 真桌面应用 QGIS 全 19 轮：通道对照 → 验证科学（V 的伪迹/条件价值）→ 真实通道（UIA/OCR/Processing）→ 真工作流（零特权选择+导出，4/4）与可靠性（UIA Invoke）。汇总 + playbook 见 | [results/qgis/QGIS_FINDINGS.md](..\results\qgis\QGIS_FINDINGS.md) |
 | `q1_plasticity.py` / `q2_plasticity_query.py` / `q3_learned_gate.py` / `q4_importance_gate.py` | 可塑性四问：无训练消融 → 查询分布 → 可学门控（不翻案）→ oracle headroom（收线） | [results/plasticity/Q4_RESULTS.md](..\results\plasticity\Q4_RESULTS.md) |
-| `experiments/web/`（`web_*` / `site_holdout` / `real_site_*`） | 真实站点结构通道：DOM 补贴与像素对照、站点 held-out、学习型策略 vs 关键词（接近持平未翻案）、v3 跨 frame 闭合与可点性漏斗（表级可达 0.95、pick→click 0.85+） | [results/web/REAL_SITE.md](..\results\web\REAL_SITE.md) |
+| `experiments/web/`（`web_*` / `site_holdout` / `real_site_*`） | 真实站点结构通道：DOM 补贴与像素对照、站点 held-out、学习型策略 vs 关键词（接近持平未翻案）、v3 跨 frame 闭合与可点性漏斗（表级可达 0.95、pick→click 0.85+）、端到端通道对照（struct 0.500 vs 经典像素 0.417，valid 12，失败分层：策略错选 vs 命名缺失） | [results/web/REAL_SITE.md](..\results\web\REAL_SITE.md) |
 | `docs/HYPOTHESIS.md` / `docs/ROADMAP.md` | 假设与路线（含证据分级） | — |
 
 **规模**：模型 4K–1.5M 参数；全部实验在单张消费级 GPU 上完成；无外部 API。
@@ -587,7 +587,7 @@ WinSim 是对这条的正面回应：一个**可重放、有外部真值、可�
 | 优先级 | 事项 | 说明 |
 |--------|------|------|
 | 高 | **a11y / DOM 路径** | 真实世界里"廉价结构"的正确来源；**WinSim W12 已量化**：结构可用时 1.00，不可得时只能拿 0.6 |
-| 高 | **WinSim → 真实站点/桌面迁移** | WinSim 已给出端到端数字（0.79）；下一步接到真实环境（Playwright/真桌面） |
+| 高 | **WinSim → 真实站点/桌面迁移** | WinSim 已给出端到端数字（0.79）；真站通道对照已做第一格（struct 0.500 vs 经典像素 0.417，REAL_SITE §3.8）；WinSim 训练检测器的移植与真桌面仍未做 |
 | 高 | **像素端到端剩余 0.21 的归因** | 检测质量 vs 真实接地难度（W10 已排除分布不匹配） |
 | 中 | **真实截图迁移** | P7/P8 已推到自由布局+纹理；仍缺真图 |
 | 中 | **干扰项重叠度** | 把 H4 修正后的机制量化 |
