@@ -1,7 +1,7 @@
 # 可塑性 vs 上下文：快速权重到底是不是注意力的换皮
 
-> **状态**：设计草案 v0.3（§5.7 Q1、§5.8 Q2 实测已补）
-> **日期**：2026-09-19
+> **状态**：设计草案 v0.4（§5.7 Q1、§5.8 Q2、§5.9 Q3 实测已补；写入侧命题已测完）
+> **日期**：2026-09-19（v0.4：2026-10-02）
 > **前置**：[docs/HYPOTHESIS.md](HYPOTHESIS.md) / [docs/ARCHITECTURE.md](ARCHITECTURE.md) / [results/paper/P9_RESULTS.md](..\results\paper\P9_RESULTS.md)
 > **约束**：拒绝"认知大杂烩"。本文档只钉**一个**可证伪支柱：**在线可塑记忆**。
 > **验收目标**：出现 crossing——见 §5.4 判据。
@@ -175,15 +175,34 @@ for episode e = 1..E:
   按频率放大写入会加剧干扰。**"该记什么"仍未被兑现**。
 - 修正表述：**遗忘的价值 = f(查询分布)**；不是普适机制，也不是无用。
 
+### 5.9 Q3 实测（2026-10-02，见 [results/plasticity/Q3_RESULTS.md](..\results\plasticity\Q3_RESULTS.md)）
+
+把 Q1/Q2 的手工门控/衰减换成**可学版本**（端到端，梯度穿过写入，
+2×2 消融 × noise × beta，完整协议 150 epoch / 1500 流 / 3 seeds）：
+
+- **learned gate ≈ 0**（|Δ| ≤ 0.0004，全部 4 个条件）——
+  **杀死条件 3 在训练下稳健成立**："选择性写入"给梯度也学不出来。
+- learned decay 只在偏近因下 +0.012 ~ +0.023，均匀 ≈0——
+  **维持 Q2 的条件性裁决**，幅度还小于手工衰减。
+- 分水岭不变：超容量均匀时 fw(0.55) ≫ KV(0.25)；偏近因时 KV(0.76) 赢。
+- 方法学：quick（1 seed/40 epoch）曾给 decay −0.09 ~ −0.34 的**欠训练假象**，
+  完整协议翻为 ~0/+0.02 → 单 seed quick 不可作裁决。
+
+**写入侧终态**（§3 命题 a/b/c + §5.5 五条杀死条件的现状）：
+sanity 与距离/容量结构成立；`C > B` 只在"超容量 + 查询不偏近因"区域成立；
+**选择写入、遗忘、巩固、可学门控——四项机制主张全部未兑现。**
+站得住的结论：压缩式状态是**容量受限下的召回工程**，不是新机制。
+
 ---
 
 ## 6. 实施计划
 
 | 阶段 | 产出 | 说明 |
 |---|---|---|
-| **Q1** | `q1_plasticity.py` → `results/plasticity/q1_plasticity_results.json` + `results/plasticity/Q1_RESULTS.md` | 四臂 + 扫参 + crossing 判据；复用现有小模型/确定性种子纪律 |
-| Q2 | 门控/衰减消融细化 | 若 C0≈C，转向"写入门控"设计 |
-| Q3 | 世界模型/验证 | **仅在 Q1 通过后**再考虑，且必须先有成本模型 |
+| **Q1** ✅ | `q1_plasticity.py` → `results/plasticity/q1_plasticity_results.json` + `Q1_RESULTS.md` | 四臂 + 扫参 + crossing 判据；门控/衰减否定（杀死条件 3 触发） |
+| **Q2** ✅ | `q2_plasticity_query.py` → `q2_plasticity_query_results.json` + `Q2_RESULTS.md` | 查询分布拆刀：衰减条件性转正、巩固有害 |
+| **Q3** ✅ | `q3_learned_gate.py` → `q3_learned_gate_results.json` + `Q3_RESULTS.md` | 可学门控/衰减端到端：**训练不翻案**，写入侧命题收口 |
+| （遗留） | 任务相关重要性查询 + λ 解耦训练 | 见 Q3_RESULTS §6；不改判则按"机制不成立、工程权衡成立"收线 |
 
 `q1_plasticity.py` 骨架（与 P 系列同风格）：
 

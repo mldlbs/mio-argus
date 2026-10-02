@@ -481,6 +481,7 @@ WinSim 是对这条的正面回应：一个**可重放、有外部真值、可�
 | **W18** 零特权完整工作流（Processing 选择 + GUI 导出） | Processing 工具箱（独立顶层、UIA 完整可见）搜 "Select by Expression" → 算法对话框填 Input layer/Expression → Run → 再走 W16 导出：**端到端 3/4 全对、~19.2 s**（选择 9.3 s + 导出 9.8 s），产物真值 2 要素；**选择段可靠性仅 ~75%**（后由 W19 根因修复） |
 | **W19** 根因 W18 偶发失败 | 失败时参数全对/无报错/动作未发生 ⇒ **Run 的鼠标点击被"激活窗口"吃掉**；修法 A（聚焦+重试）4/4 但 +6 s；**修法 B（UIA `Invoke`）4/4 全首试、选择段回 9.1 s** ⇒ 零特权工作流 **4/4、~18.9 s**；可复用结论：**按钮优先用 UIA Invoke，合成鼠标点击会静默丢失** |
 | **W21** 自然语言 → 工作流参数（语言层） | 指令→表达式（2400 语料，6 训练句式 / 4 未见句式）：**lexical（词表+抽取）1.000/1.000/1.000** vs **learned（0.9M 字符级）1.000/0.000/0.000**；失败模式：未见算子词退化为最频繁模式（`至少300`→`> 3000`、**否定丢失**）、未见数字不会抄写；端到端（真 QGIS，真值按指令语义手写）learned **2/4** / lexical **3/4** ⇒ **语言层复现 W3 的教训：结构全胜、代价是领域知识；且语言错误直接污染产物** |
+| **W22** "修低层" vs "加验证" vs "盲跑" + 语言层盲区 | 同一条端到端链（指令→表达式→Processing 选择→GUI 导出→文件真值）：blind **7/8**（21.6 s）/ v-gated **8/8**（19.7 s）/ **invoke 低层修复 8/8（19.5 s）**⇒ 能修低层就别加验证；**语言层错误步骤级 V 拦下 0/2**（V 用同一个错参数算预期 → 循环论证：`"a">3000` 预期空集="通过"、`"name"='West'` 语义反了也"通过"）⇒ **V 抓不到参数化错误，只有"以指令语义核验产物"才行，而那要求先解决语言层** |
 
 **QGIS 线最终留下的四条结论**（取代早期的"H1/H3 已有真值证据"的粗结论）：
 
@@ -573,6 +574,7 @@ WinSim 是对这条的正面回应：一个**可重放、有外部真值、可�
 | `p9_active_zoom.py` | 顺序缩放 vs 等算力单体（iso-FLOPs 边界；mono-R 胜 11/12，§1.5 非首创） | [results/paper/P9_RESULTS.md](..\results\paper\P9_RESULTS.md) |
 | `winsim/` + `winsim_w0..w8.py` | WinSim 桌面沙箱：确定性/真值/双通道/成本/故障/held-out/端到端（结构 1.00 vs 像素 0.26） | [results/winsim/WINSIM_RESULTS.md](..\results\winsim\WINSIM_RESULTS.md) |
 | `experiments/qgis/qgis_bridge/` + `run_w1..w19.py` | 真桌面应用 QGIS 全 19 轮：通道对照 → 验证科学（V 的伪迹/条件价值）→ 真实通道（UIA/OCR/Processing）→ 真工作流（零特权选择+导出，4/4）与可靠性（UIA Invoke）。汇总 + playbook 见 | [results/qgis/QGIS_FINDINGS.md](..\results\qgis\QGIS_FINDINGS.md) |
+| `q1_plasticity.py` / `q2_plasticity_query.py` / `q3_learned_gate.py` | 可塑性三问：无训练消融 → 查询分布拆刀 → 可学门控（训练不翻案，写入侧收口） | [results/plasticity/Q3_RESULTS.md](..\results\plasticity\Q3_RESULTS.md) |
 | `docs/HYPOTHESIS.md` / `docs/ROADMAP.md` | 假设与路线（含证据分级） | — |
 
 **规模**：模型 4K–1.5M 参数；全部实验在单张消费级 GPU 上完成；无外部 API。
