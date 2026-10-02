@@ -1,23 +1,22 @@
-
 # MioArgus
 
-**MioArgus** is a computer-use agent: it watches the screen and acts on your behalf.
+**MioArgus** 是一个 computer-use 智能体：看屏幕，替你操作。
 
-> *Mio* (妙) + *Argus* — Argus Panoptes, the hundred-eyed all-seeing giant of Greek myth, was the watchman who served without rest. MioArgus gives a model an eye for the screen and a hand on the mouse.
+> *Mio*（妙）+ *Argus* — Argus Panoptes（百眼巨人），希腊神话中不眠的看守者。MioArgus 给模型一双看屏幕的眼、一只操作鼠标的手。
 
-Built on top of [nanoGPT](https://github.com/karpathy/nanoGPT), MioArgus combines a frozen **ViT-B/16** visual encoder with a frozen **GPT-2** language model, adapts both with **LoRA (r=16)**, and fuses them through a **cross-attention** module to emit GUI actions.
+构建于 [nanoGPT](https://github.com/karpathy/nanoGPT) 之上：冻结的 **ViT-B/16** 视觉编码器 + 冻结的 **GPT-2** 语言模型，各用 **LoRA (r=16)** 适配，经**跨注意力（cross-attention）**融合模块输出 GUI 动作。
 
-## What it does
+## 它做什么
 
-Given a screenshot and a natural-language instruction, MioArgus predicts:
+给定一张截图和一句自然语言指令，MioArgus 预测：
 
-| Output | Space |
-|--------|-------|
-| Action | `click`, `type`, `scroll`, `move`, `hotkey`, `press` |
-| Coordinates | normalized `(x, y)` in `[0, 1]` |
-| Scroll direction | `up`, `down`, `none` |
+| 输出 | 空间 |
+|------|------|
+| 动作 | `click`、`type`、`scroll`、`move`、`hotkey`、`press` |
+| 坐标 | `[0, 1]` 归一化 `(x, y)` |
+| 滚动方向 | `up`、`down`、`none` |
 
-## Architecture
+## 架构
 
 ```
 screenshot ──▶ ViT-B/16 (frozen + LoRA)  ─┐
@@ -28,78 +27,74 @@ instruction ─▶ GPT-2    (frozen + LoRA)  ─┘        │
                                       head      head     head
 ```
 
-- **220,389,131** total parameters, **30,821,387** trainable
-- **Huber loss** for coordinate regression, cross-entropy for action / scroll
-- Checkpoints stay compatible with legacy `nn.Linear` state dicts
+- 总参数 **220,389,131**，可训练 **30,821,387**
+- 坐标回归用 **Huber loss**，动作/滚动用交叉熵
+- checkpoint 与旧版 `nn.Linear` state dict 兼容
 
-## Results
+## 结果
 
-Evaluated on the 504-sample balanced set (84 per action):
+在 504 条均衡评测集（每动作 84 条）上：
 
-| Metric | Value |
-|--------|-------|
-| Action accuracy | **100.00%** |
-| Coord MAE | **0.0667** |
-| Scroll accuracy | **93.06%** |
+| 指标 | 数值 |
+|------|------|
+| 动作准确率 | **100.00%** |
+| 坐标 MAE | **0.0667** |
+| 滚动准确率 | **93.06%** |
 
-## Quick start
+## 快速开始
 
-Train on collected data:
+训练：
 
 ```sh
-python experiments/computer_use/collect_synthetic.py          # generate balanced data (no display needed)
-python experiments/computer_use/train_computer_use_v3_real.py # fine-tune LoRA adapters
-python experiments/computer_use/test_in_vm_v3.py              # evaluate
+python experiments/computer_use/collect_synthetic.py          # 生成均衡数据（无需显示器）
+python experiments/computer_use/train_computer_use_v3_real.py # 微调 LoRA adapters
+python experiments/computer_use/test_in_vm_v3.py              # 评测
 ```
 
-Serve it:
+起服务：
 
 ```sh
-docker compose up --build
+docker compose -f infra/docker-compose.yml up --build
 curl -X POST http://localhost:8000/predict \
   -H "Content-Type: application/json" \
   -d '{"image": "<base64>", "instruction": "click the submit button"}'
 ```
 
-API endpoints: `/health`, `/model/info`, `/predict`, `/predict/batch`, `/predict/file`.
+API 端点：`/health`、`/model/info`、`/predict`、`/predict/batch`、`/predict/file`。
 
-## Tests
+## 测试
 
 ```sh
-pytest experiments/computer_use/test_simple.py test_eval_metrics.py test_vm_e2e.py -v   # 12 passed
+pytest experiments/computer_use/test_simple.py experiments/computer_use/test_eval_metrics.py experiments/computer_use/test_vm_e2e.py -q   # 12 passed
 ```
 
-## Research
+全量基线：`python -m pytest -q` → **13 passed / 1 failed / 1 error**（`test_model` 为预存 state_dict 的已知失败，`test_vm_e2e` 需网络；设 `TRANSFORMERS_OFFLINE=1` 后为 14 passed / 1 failed）——见 [AGENTS.md](AGENTS.md)。
 
-MioArgus is not trying to out-scale large VLMs. The bet is that **computer use is a narrow domain** where a small grounded policy — with structured UI state, a compressed action space, and a verifier — can match a monolithic model at lower compute, and the gap **widens with task horizon**.
+## 研究
 
-The falsifiable hypothesis, sub-hypotheses (H1–H4), experiment protocol, and kill criteria are in **[docs/HYPOTHESIS.md](docs\HYPOTHESIS.md)**.
+MioArgus 不追求与大 VLM 比规模。赌注是：**computer use 是一个窄域**——一个带结构化 UI 状态、压缩动作空间和验证器的小型接地策略，能以更低算力匹配整体大模型，且差距**随任务时距（horizon）拉大**。
 
-### Consolidated report
+可证伪假设、子假设（H1–H4）、实验协议与杀死条件见 **[docs/HYPOTHESIS.md](docs/HYPOTHESIS.md)**；仓库结构与文件纪律见 **[STRUCTURE.md](STRUCTURE.md)**。
 
-**[docs/REPORT.md](docs\REPORT.md)** ties everything together. Summary of what was measured:
+### 综合报告
 
-| Hypothesis | Status | Key number |
-|-----------|--------|-----------|
-| H1 re-observation replaces parameters | ✅ | gap grows with H: 0.29 → 0.65 → 0.92 |
-| H2 action-space compression | ⚠️ conditional | grid: 12K cls ≈100% vs 392K reg ≈10%. Free-form UI: wins iff `parser_recall > reg_accuracy` (tiny/micro +0.13/+0.22; texture −0.63). Small learned detector caps at recall ~0.52 → not enough |
-| H3 verification replaces precision | ⚠️ split | re-grounding ❌ / outcome verification ✅ (17× smaller V) |
-| H3 verifier accuracy required | ✅ | FNR < ~0.8/H; FNR far more costly than FPR |
-| H4 narrow-domain low entropy | ✅ | 4,208 params → 0.938 vs 100K params → 0.889 on natural backgrounds |
-| Population self-evolution | ❌ | confounded; no capability evidence |
+**[docs/REPORT.md](docs/REPORT.md)** 把所有线收拢在一起。已测内容摘要：
 
-All four lines converge on one conclusion: **the bottleneck in computer use is which
-information must be recovered from a high-entropy input, not how large the model is.**
-P7 turns that into a computable inequality: structured action selection beats plain
-coordinate regression **iff `parser_recall > reg_accuracy`** (12/12 configurations). It
-wins on tiny targets against flat backgrounds (+0.13/+0.22) and loses badly where the
-parser collapses on textured ones (−0.55..−0.63). P8 then shows a small learned detector
-cannot close the gap: recall saturates at ~0.52 while the bar is >0.78, and a zero-parameter
-classical parser actually beats it on clean backgrounds (0.847 vs 0.518). The practical
-interval for structured action spaces is `{high precision demand} ∩ {reliable parser}` —
-which real desktop/web apps satisfy only via the accessibility/DOM tree, not via pixels.
+| 假设 | 状态 | 关键数字 |
+|------|------|----------|
+| H1 重观察替代参数 | ✅ | 差距随 H 增大：0.29 → 0.65 → 0.92 |
+| H2 动作空间压缩 | ⚠️ 有条件 | grid：12K 分类 ≈100% vs 392K 回归 ≈10%。自由布局 UI：当且仅当 `parser_recall > reg_accuracy` 时胜（tiny/micro +0.13/+0.22；texture −0.63）。小型学习型检测器 recall 上限 ~0.52 → 不够 |
+| H3 验证替代精度 | ⚠️ 分裂 | 重新接地 ❌ / 结果验证 ✅（V 小 17 倍） |
+| H3 验证器精度要求 | ✅ | FNR < ~0.8/H；FNR 远比 FPR 代价高 |
+| H4 窄域低熵 | ✅ | 4,208 参数 → 0.938 vs 100K 参数 → 0.889（自然背景） |
+| 种群自进化 | ❌ | 混杂；无能力证据 |
 
-Individual results: [P0](results\paper\P0_RESULTS.md) · [P0.5](results\paper\P0_5_RESULTS.md) · [P1](results\paper\P1_RESULTS.md) · [P2](results\paper\P2_RESULTS.md) · [P3](results\paper\P3_RESULTS.md) · [P4a](results\paper\P4A_RESULTS.md) · [P4a'](results\paper\P4B_RESULTS.md) · [P4c](results\paper\P4C_RESULTS.md) · [P4d](results\paper\P4D_RESULTS.md) · [P5](results\paper\P5_RESULTS.md) · [P6](results\paper\P6_RESULTS.md) · [P7](results\paper\P7_RESULTS.md) · [P8](results\paper\P8_RESULTS.md)
+四条线收敛到同一结论：**瓶颈不在模型多大，而在必须从高熵输入里恢复哪些信息。**
+P7 把它写成可计算的不等式：结构化动作选择胜过裸坐标回归**当且仅当 `parser_recall > reg_accuracy`**（12/12 配置）——平坦背景上的小目标它赢（+0.13/+0.22），纹理背景上解析器崩掉就输得重（−0.55..−0.63）。P8 说明小型学习型检测器补不上这个缺口：recall 饱和在 ~0.52 而门槛 >0.78，零参数的经典解析器在干净背景上反而更强（0.847 vs 0.518）。结构化动作空间的实用区间是 `{高精度要求} ∩ {可靠解析器}`——真实桌面/网页应用只有无障碍/DOM 树满足它，像素不满足。
+
+单项结果：[P0](results/paper/P0_RESULTS.md) · [P0.5](results/paper/P0_5_RESULTS.md) · [P1](results/paper/P1_RESULTS.md) · [P2](results/paper/P2_RESULTS.md) · [P3](results/paper/P3_RESULTS.md) · [P4a](results/paper/P4A_RESULTS.md) · [P4a'](results/paper/P4B_RESULTS.md) · [P4c](results/paper/P4C_RESULTS.md) · [P4d](results/paper/P4D_RESULTS.md) · [P5](results/paper/P5_RESULTS.md) · [P6](results/paper/P6_RESULTS.md) · [P7](results/paper/P7_RESULTS.md) · [P8](results/paper/P8_RESULTS.md) · [P9](results/paper/P9_RESULTS.md)
+
+其他实验线：[WinSim 桌面沙箱](results/winsim/WINSIM_RESULTS.md) · [QGIS 真桌面](results/qgis/QGIS_FINDINGS.md) · [可塑性四问](results/plasticity/Q4_RESULTS.md) · [真实站点结构通道](results/web/REAL_SITE.md) · [路线图](docs/ROADMAP.md)
 
 ---
 
@@ -107,7 +102,7 @@ Individual results: [P0](results\paper\P0_RESULTS.md) · [P0.5](results\paper\P0
 
 ![nanoGPT](assets/nanogpt.jpg)
 
-*MioArgus extends the original nanoGPT repo below, kept for lineage and reference.*
+*以下为原始 nanoGPT README，保留英文原文以存真（MioArgus 基于其上构建）。*
 
 ---
 
