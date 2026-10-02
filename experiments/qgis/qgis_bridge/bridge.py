@@ -690,6 +690,26 @@ def _handle(req):
                 "scale": float(ms.scale()),
                 "extent": [float(e.xMinimum()), float(e.yMinimum()),
                            float(e.xMaximum()), float(e.yMaximum())]}
+    if op == "layouts":
+        from qgis.core import (QgsProject, QgsLayoutItemLabel,
+                               QgsLayoutItemMap)
+        out = []
+        for l in QgsProject.instance().layoutManager().layouts():
+            items = []
+            for it in l.items():
+                d = {"type": type(it).__name__}
+                try:
+                    if isinstance(it, QgsLayoutItemLabel):
+                        d["text"] = it.text()
+                    if isinstance(it, QgsLayoutItemMap):
+                        e = it.extent()
+                        d["extent"] = [float(e.xMinimum()), float(e.yMinimum()),
+                                       float(e.xMaximum()), float(e.yMaximum())]
+                except Exception:
+                    pass
+                items.append(d)
+            out.append({"name": l.name(), "items": items})
+        return {"ok": True, "layouts": out}
     if op == "windows":
         return {"ok": True, "windows": windows()}
     if op == "win":

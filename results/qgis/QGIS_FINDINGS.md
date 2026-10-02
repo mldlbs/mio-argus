@@ -923,3 +923,38 @@ r5 因"点数×面数"大（1047×42）更慢，并出现一次 53.9 s 的 extra
 
 局限：Natural Earth 无医院/POI 类图层（本轮以机场/城市/港口替代语义）；每场景仍 3 试；
 r5 长尾未归因（疑为 Processing 首次大几何开销）。**下一步**：与 W23 并列作为语言层接场景的输入端。
+
+# QGIS W25：复杂示例 —— 真实数据的主题地图（Print Layout 全链）✅
+
+> 复现：`python experiments/qgis/qgis_bridge/fetch_real_data.py` → `python experiments/qgis/qgis_bridge/run_w25.py --trials 3`　产物：`artifacts/qgis_real/out/w25_t*.png`　结果：`experiments/qgis/qgis_bridge/w25_results.json`　机械：`map_gui.py`
+
+W23/W24 的链止于**数据产物**（GeoJSON）；本轮爬上一层到**制图产物**：
+真实数据（W24 中国 ROI）→ roads 按 type 分类设色 → Print Layout（地图项 + 图例 +
+标题，全数值定位）→ 导出 **300 dpi PNG**（3507×2480）。分段中位（3/3 全绿）：
+
+| 段 | categorized | new_layout | add_map | add_label | add_legend | export | close | 总计 |
+|---|---|---|---|---|---|---|---|---|
+| 中位 | 12.0 s | 15.7 s | 8.5 s | 9.4 s | 8.7 s | 13.9 s | 1.4 s | **70.8 s** |
+
+产物自检：图例含 4 个道路等级子项（Major Highway / Road / Track / Unknown），
+标题"中国公路等级专题图"在版面上方，地图项满幅（8,26,195,176 mm）+ 图例（232,26,57,90 mm）；
+真值来自 bridge 新 op `layouts`（布局项类型 + Label 文本）+ PNG 文件/像素检查。
+
+**本轮探明的四条硬经验**（都沉进 `map_gui.py`）：
+
+1. **菜单加项统一走"单击 → New Item Properties 对话框"**：`Add Item → Add Map/Label/Legend`
+   后单击页面，QGIS 弹出**内嵌子窗口** New Item Properties（X/Y/Width/Height +
+   参考点 + 确定）——数值定位，不靠拖拽像素；而拖动放置反而不弹此框（map 的两种落法实测不同）。
+2. **原生保存对话框会吃掉逐字键入的反斜杠**（中文 IME 环境）：`Export as Image…` 弹的是
+   原生 `#32770` 保存对话框，`pyautogui.write("D:\\...")` 打进去变成
+   `D:workcode...` → "文件名无效"警告；**必须剪贴板粘贴**（`win32clipboard` + Ctrl+V）。
+3. **焦点陷阱升级版**：其它应用会抢前台，之后所有按键/点击静默打到别人身上 →
+   操作对话框前先 `win32gui.SetForegroundWindow(hwnd)` 显式置前（本机实测被
+   AI 客户端抢过两次）；另外鼠标停在屏幕角落会触发 pyautogui fail-safe。
+4. **关闭/保存提示的中文按钮是"丢弃"**：布局未保存关闭 → 保存/丢弃/取消；
+   残留提示会阻断后续所有 GUI 流程（实测挡住 Processing Toolbox → categorized 'open' 失败）
+   → reset 里做防御性 `dismiss_prompts()`。
+
+**局限**：单个复杂场景（未做多风格布局变体）；图例字体/标题字号用默认值（未走字体对话框）；
+导出选项全用默认（300 dpi）；查询到的图层依赖 W24 真实数据链。
+**下一步**：布局变体族（横/纵版、图例位置×标题字号×分级方式）作为"复杂示例"的第一批扩展。

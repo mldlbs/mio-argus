@@ -1,0 +1,311 @@
+{
+  "meta": {
+    "trials": 3,
+    "title": "中国公路等级专题图",
+    "rects": {
+      "map": [
+        8,
+        26,
+        195,
+        176
+      ],
+      "title": [
+        8,
+        6,
+        150,
+        14
+      ],
+      "legend": [
+        232,
+        26,
+        57,
+        90
+      ]
+    }
+  },
+  "rows": [
+    {
+      "trial": 1,
+      "ok": true,
+      "fail": null,
+      "total_s": 70.8,
+      "steps": [
+        {
+          "name": "categorized",
+          "ok": true,
+          "ms": 11944.9,
+          "st": {
+            "open_s": 2.5,
+            "rend": true,
+            "val": true,
+            "total_s": 11.9
+          }
+        },
+        {
+          "name": "new_layout",
+          "ok": true,
+          "ms": 15943.5,
+          "st": {
+            "menu_ms": 4903.7,
+            "total_ms": 15943.5
+          }
+        },
+        {
+          "name": "add_map",
+          "ok": true,
+          "ms": 8483.3,
+          "st": {
+            "extent": true
+          }
+        },
+        {
+          "name": "add_label",
+          "ok": true,
+          "ms": 9360.6,
+          "st": {
+            "text": true
+          }
+        },
+        {
+          "name": "add_legend",
+          "ok": true,
+          "ms": 8673.8,
+          "st": {}
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 13932.9,
+          "st": {
+            "export_ms": 3657.3,
+            "png_bytes": 1415911
+          }
+        },
+        {
+          "name": "close",
+          "ok": true,
+          "ms": 1350.7,
+          "st": {}
+        }
+      ],
+      "truth": {
+        "n_layouts": 1,
+        "items": [
+          "QGraphicsRectItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QgsLayoutItemLegend",
+          "QgsLayoutItemLabel",
+          "QgsLayoutItemMap",
+          "QGraphicsRectItem",
+          "QgsLayoutItemPage"
+        ],
+        "label_ok": true,
+        "legend": true,
+        "map": true,
+        "png_bytes": 1415911,
+        "png_size": [
+          3507,
+          2480
+        ],
+        "luma_spread": 255
+      }
+    },
+    {
+      "trial": 2,
+      "ok": true,
+      "fail": null,
+      "total_s": 70.1,
+      "steps": [
+        {
+          "name": "categorized",
+          "ok": true,
+          "ms": 11946.9,
+          "st": {
+            "open_s": 2.6,
+            "rend": true,
+            "val": true,
+            "total_s": 11.9
+          }
+        },
+        {
+          "name": "new_layout",
+          "ok": true,
+          "ms": 15282.8,
+          "st": {
+            "menu_ms": 5024.3,
+            "total_ms": 15282.8
+          }
+        },
+        {
+          "name": "add_map",
+          "ok": true,
+          "ms": 8483.1,
+          "st": {
+            "extent": true
+          }
+        },
+        {
+          "name": "add_label",
+          "ok": true,
+          "ms": 9354.7,
+          "st": {
+            "text": true
+          }
+        },
+        {
+          "name": "add_legend",
+          "ok": true,
+          "ms": 8645.5,
+          "st": {}
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 13883.0,
+          "st": {
+            "export_ms": 3654.1,
+            "png_bytes": 1460829
+          }
+        },
+        {
+          "name": "close",
+          "ok": true,
+          "ms": 1350.5,
+          "st": {}
+        }
+      ],
+      "truth": {
+        "n_layouts": 1,
+        "items": [
+          "QGraphicsRectItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QgsLayoutItemLegend",
+          "QgsLayoutItemLabel",
+          "QgsLayoutItemMap",
+          "QGraphicsRectItem",
+          "QgsLayoutItemPage"
+        ],
+        "label_ok": true,
+        "legend": true,
+        "map": true,
+        "png_bytes": 1460829,
+        "png_size": [
+          3507,
+          2480
+        ],
+        "luma_spread": 255
+      }
+    },
+    {
+      "trial": 3,
+      "ok": true,
+      "fail": null,
+      "total_s": 71.0,
+      "steps": [
+        {
+          "name": "categorized",
+          "ok": true,
+          "ms": 12111.3,
+          "st": {
+            "open_s": 2.5,
+            "rend": true,
+            "val": true,
+            "total_s": 12.1
+          }
+        },
+        {
+          "name": "new_layout",
+          "ok": true,
+          "ms": 15912.8,
+          "st": {
+            "menu_ms": 4832.2,
+            "total_ms": 15912.8
+          }
+        },
+        {
+          "name": "add_map",
+          "ok": true,
+          "ms": 8600.4,
+          "st": {
+            "extent": true
+          }
+        },
+        {
+          "name": "add_label",
+          "ok": true,
+          "ms": 9320.7,
+          "st": {
+            "text": true
+          }
+        },
+        {
+          "name": "add_legend",
+          "ok": true,
+          "ms": 8763.1,
+          "st": {}
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 13800.1,
+          "st": {
+            "export_ms": 3651.3,
+            "png_bytes": 1442954
+          }
+        },
+        {
+          "name": "close",
+          "ok": true,
+          "ms": 1349.3,
+          "st": {}
+        }
+      ],
+      "truth": {
+        "n_layouts": 1,
+        "items": [
+          "QGraphicsRectItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QgsLayoutItemLegend",
+          "QgsLayoutItemLabel",
+          "QgsLayoutItemMap",
+          "QGraphicsRectItem",
+          "QgsLayoutItemPage"
+        ],
+        "label_ok": true,
+        "legend": true,
+        "map": true,
+        "png_bytes": 1442954,
+        "png_size": [
+          3507,
+          2480
+        ],
+        "luma_spread": 255
+      }
+    }
+  ],
+  "summary": {
+    "trials": 3,
+    "pass": 3,
+    "rate": 1.0,
+    "total_s_median": 70.8,
+    "step_ms_median": {
+      "categorized": 11946.9,
+      "new_layout": 15912.8,
+      "add_map": 8483.3,
+      "add_label": 9354.7,
+      "add_legend": 8673.8,
+      "export": 13883.0,
+      "close": 1350.5
+    },
+    "fails": {}
+  }
+}
