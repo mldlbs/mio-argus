@@ -1,0 +1,61 @@
+{
+  "arms": {
+    "blind": {
+      "success": "7/8",
+      "sel_ok": "7/8",
+      "ms_median": 21641.61777496338,
+      "sel_ms_median": 11689.624786376953,
+      "exp_ms_median": 9932.46853351593
+    },
+    "v-gated": {
+      "success": "8/8",
+      "sel_ok": "8/8",
+      "ms_median": 19662.052989006042,
+      "sel_ms_median": 9719.853043556213,
+      "exp_ms_median": 9941.949009895325
+    },
+    "invoke": {
+      "success": "8/8",
+      "sel_ok": "8/8",
+      "ms_median": 19527.058959007263,
+      "sel_ms_median": 9577.231287956238,
+      "exp_ms_median": 9941.584825515747
+    }
+  },
+  "language": [
+    {
+      "instr": "凡是面积至少300的区都导出来",
+      "expr": "\"a\" > 3000",
+      "note": "无效表达式（字段 a 不存在）",
+      "expr_sel": null,
+      "file": [],
+      "want_by_instr": [
+        "Central",
+        "North",
+        "South"
+      ],
+      "step_v": true,
+      "instr_truth": false
+    },
+    {
+      "instr": "名称不是West的区请导出",
+      "expr": "\"name\" = 'West'",
+      "note": "合法但语义反了",
+      "expr_sel": [
+        "West"
+      ],
+      "file": [
+        "West"
+      ],
+      "want_by_instr": [
+        "Central",
+        "East",
+        "North",
+        "South"
+      ],
+      "step_v": true,
+      "instr_truth": false
+    }
+  ],
+  "trials": 8
+}
