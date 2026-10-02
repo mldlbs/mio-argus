@@ -108,8 +108,15 @@ def structure():
     return {"widgets": widgets, "actions": actions}
 
 
+def _bridge_dir():
+    f = globals().get("__file__")
+    if f:
+        return Path(f).resolve().parent
+    return Path(r"D:\work\code\nanoGPT\experiments\qgis\qgis_bridge")
+
+
 DATA_GPKG = os.environ.get(
-    "QGIS_BRIDGE_GPKG", r"D:\work\code\nanoGPT\qgis_bridge\data\sample.gpkg")
+    "QGIS_BRIDGE_GPKG", str(_bridge_dir() / "data" / "sample.gpkg"))
 
 
 def reset_env(scene="cities"):

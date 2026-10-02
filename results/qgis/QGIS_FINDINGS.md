@@ -1,6 +1,6 @@
 # QGIS 线发现汇总（W1–W5）
 
-> 复现：`experiments/qgis/qgis_bridge/`（`bridge.py` + `run_w1..w5.py`）　细目：[experiments/qgis/qgis_bridge/W1_RESULTS.md](../../experiments/qgis/qgis_bridge/W1_RESULTS.md)
+> 复现：`experiments/qgis/qgis_bridge/`（`bridge.py` + `run_w1..w5.py`）　细目：[W1_RESULTS.md](W1_RESULTS.md)
 > 环境：QGIS LTR **3.44.15**（装于 `D:\QGIS`，2.3 GB，管理安装免提权）
 > 目的：把 H1/H3 与"结构 vs 像素"搬到**第一个真桌面应用**（不是网页、不是自建沙箱）
 

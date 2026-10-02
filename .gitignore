@@ -36,3 +36,7 @@ artifacts/
 # 实验预览图
 _p0_preview.png
 _p3_preview.png
+
+# QGIS 桥运行时草稿（脚本再生，见 STRUCTURE.md §3）
+experiments/qgis/qgis_bridge/_*.log
+experiments/qgis/qgis_bridge/_*.png

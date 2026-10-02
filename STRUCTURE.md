@@ -9,6 +9,7 @@
 |---|---|---|
 | 阶段 1 | 文档 → `docs/`、结果产物 → `results/<line>/`、数据与大文件 → `artifacts/`；脚本留根目录，只改路径字符串 | ✅ 已完成 |
 | 阶段 2 | 实验脚本按线迁入 `experiments/`、部署迁入 `infra/`、mio 归组；根 `conftest.py` + 8 处 CLI 路径引导修跨线 import；winsim 结果改指 `results/winsim/` | ✅ 已完成 |
+| 阶段 3 | 收尾：`W1_RESULTS.md` 归位 `results/qgis/`、qgis_bridge 启动引导旧绝对路径改 HERE 优先、桥内草稿不入库、本文件树同步 | ✅ 已完成 |
 
 ## 1. 当前布局（阶段 2 完成态）
 
@@ -29,15 +30,15 @@ nanoGPT/
 │
 ├── results/                                # 实验产物（json 由脚本生成，勿手改）
 │   ├── paper/          # P0–P9：*_results.json + P*_RESULTS.md
-│   ├── plasticity/     # Q1–Q3：q*_results.json + Q*_RESULTS.md
+│   ├── plasticity/     # Q1–Q4：q*_results.json + Q*_RESULTS.md
 │   ├── web/            # web_*/site_*/real_site_* 结果 + WEB_*.md + SITE_HOLDOUT.md + REAL_SITE.md
 │   ├── computer_use/   # eval_results.json
 │   ├── winsim/         # WINSIM.md + WINSIM_RESULTS.md + winsim_w*_results.json
-│   └── qgis/           # QGIS_FINDINGS.md（qgis_bridge 运行产物就地，见 §4 例外）
+│   └── qgis/           # QGIS_FINDINGS.md + W1_RESULTS.md（qgis_bridge 运行产物就地，见 §3 例外）
 │
 ├── experiments/                            # 实验脚本按线分目录（线内扁平 import）
 │   ├── paper/          # p0–p9 脚本 + p0_env.py/p0_models.py/p3_env.py（线内共享）+ *_report.py
-│   ├── plasticity/     # q1_plasticity / q2_plasticity_query / q3_learned_gate
+│   ├── plasticity/     # q1_plasticity / q2_plasticity_query / q3_learned_gate / q4_importance_gate
 │   ├── computer_use/   # collect_* / make_synthetic_data / split_data / model_computer_use
 │   │                   # train_computer_use* / eval_model / gen_report / vlm_adapter / test_*
 │   ├── winsim/         # winsim_w0..w12.py + winsim/index.html（结果写 results/winsim/）
@@ -72,7 +73,9 @@ nanoGPT/
 
 ## 3. 例外与遗留
 
-- **qgis_bridge 自包含**：`experiments/qgis/qgis_bridge/` 内的 `w*_results.json`、`*_actor_data.npz`、`.pt`、临时截图等运行产物**就地保存**（HERE 链读写、波次间 npz 交接），不迁 `results/qgis/`；只有总发现文档 `QGIS_FINDINGS.md` 在 `results/qgis/`。
+- **qgis_bridge 自包含**：`experiments/qgis/qgis_bridge/` 内的 `w*_results.json`、`*_actor_data.npz`、`.pt`、临时截图等运行产物**就地保存**（HERE 链读写、波次间 npz 交接），不迁 `results/qgis/`；发现/细目文档（`QGIS_FINDINGS.md`、`W1_RESULTS.md`）在 `results/qgis/`。
+- **桥内草稿不入库**：`qgis_bridge/` 的 `_*.png`、`_*.log` 为运行时草稿（`.gitignore` 登记、`git rm --cached` 反跟踪），脚本运行时再生。
+- **桥启动引导路径**：`_boot.py`/`_startup.py`/`bridge.py` 用 `__file__` 解析目录、绝对路径回退（QGIS `--code`/`PYQGIS_STARTUP` 执行时可能无 `__file__`）。
 - `SITES.json` 实际随线数据放在 `experiments/web/`（代码内嵌 SITES 字典，该文件为原始输入数据）。
 - `out-shakespeare-char/` 等 `out-*` 为 nanoGPT 训练输出，保持根级（README 有示例命令）。
 

@@ -1,12 +1,12 @@
 """
 QGIS 桥客户端：truth / structure / act / shot
 
-用法：
-    python qgis_bridge\\client.py ping
-    python qgis_bridge\\client.py truth
-    python qgis_bridge\\client.py structure --limit 20
-    python qgis_bridge\\client.py act-json "{\"kind\":\"action\",\"text\":\"Zoom In\"}"
-    python qgis_bridge\\client.py shot D:\\work\\code\\nanoGPT\\qgis_bridge\\_shot.png
+用法（从仓库根运行）：
+    python experiments/qgis/qgis_bridge/client.py ping
+    python experiments/qgis/qgis_bridge/client.py truth
+    python experiments/qgis/qgis_bridge/client.py structure --limit 20
+    python experiments/qgis/qgis_bridge/client.py act-json "{\"kind\":\"action\",\"text\":\"Zoom In\"}"
+    python experiments/qgis/qgis_bridge/client.py shot experiments/qgis/qgis_bridge/_shot.png
 """
 import argparse
 import json

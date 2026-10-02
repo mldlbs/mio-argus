@@ -4,8 +4,12 @@ import sys
 import traceback
 from pathlib import Path
 
-LOG = Path(r"D:\work\code\nanoGPT\qgis_bridge\_startup.log")
-BRIDGE = r"D:\work\code\nanoGPT\qgis_bridge\bridge.py"
+try:
+    HERE = Path(__file__).resolve().parent
+except NameError:
+    HERE = Path(r"D:\work\code\nanoGPT\experiments\qgis\qgis_bridge")
+LOG = HERE / "_startup.log"
+BRIDGE = str(HERE / "bridge.py")
 
 
 def log(m):
