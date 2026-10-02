@@ -1,0 +1,859 @@
+{
+  "meta": {
+    "trials": 3,
+    "only": [],
+    "dataset": "natural-earth-v5.1.2-china-roi",
+    "truth_counts": {
+      "roads": 11967,
+      "cities": 1047,
+      "airports": 37,
+      "ports": 87,
+      "provinces": 42
+    },
+    "instructions": {
+      "r1": "把 roads 图层按 type 道路等级做分类专题图",
+      "r2": "筛出人口超过 1000 万的大城市，把选中要素导出为 GeoJSON",
+      "r3": "给 airports 的每个机场建 300 km 服务半径缓冲区，输出并导出",
+      "r4": "找出被机场 300 km 服务圈覆盖到的省份（provinces），结果导出",
+      "r5": "找出区域内落在中国省级行政区内的城市（cities），结果导出",
+      "r6": "找出区域内位于省级行政区内的港口（ports），结果导出"
+    },
+    "layers": {
+      "r1": [
+        "roads"
+      ],
+      "r2": [
+        "cities"
+      ],
+      "r3": [
+        "airports"
+      ],
+      "r4": [
+        "airports",
+        "provinces"
+      ],
+      "r5": [
+        "cities",
+        "provinces"
+      ],
+      "r6": [
+        "ports",
+        "provinces"
+      ]
+    }
+  },
+  "rows": [
+    {
+      "scenario": "r1",
+      "trial": 1,
+      "ok": true,
+      "fail": null,
+      "total_s": 12.0,
+      "steps": [
+        {
+          "name": "categorized",
+          "ok": true,
+          "ms": 11981.6,
+          "st": {
+            "open_s": 2.5,
+            "rend": true,
+            "val": true,
+            "total_s": 12.0
+          }
+        }
+      ],
+      "truth": {
+        "renderer": {
+          "type": "categorizedSymbol",
+          "attr": "type",
+          "cats": [
+            "Major Highway",
+            null,
+            "Road",
+            "Track",
+            "Unknown"
+          ]
+        },
+        "cats": [
+          "Major Highway",
+          "Road",
+          "Track",
+          "Unknown"
+        ]
+      }
+    },
+    {
+      "scenario": "r1",
+      "trial": 2,
+      "ok": true,
+      "fail": null,
+      "total_s": 12.2,
+      "steps": [
+        {
+          "name": "categorized",
+          "ok": true,
+          "ms": 12136.1,
+          "st": {
+            "open_s": 2.6,
+            "rend": true,
+            "val": true,
+            "total_s": 12.1
+          }
+        }
+      ],
+      "truth": {
+        "renderer": {
+          "type": "categorizedSymbol",
+          "attr": "type",
+          "cats": [
+            "Major Highway",
+            null,
+            "Road",
+            "Track",
+            "Unknown"
+          ]
+        },
+        "cats": [
+          "Major Highway",
+          "Road",
+          "Track",
+          "Unknown"
+        ]
+      }
+    },
+    {
+      "scenario": "r1",
+      "trial": 3,
+      "ok": true,
+      "fail": null,
+      "total_s": 12.1,
+      "steps": [
+        {
+          "name": "categorized",
+          "ok": true,
+          "ms": 12018.1,
+          "st": {
+            "open_s": 2.6,
+            "rend": true,
+            "val": true,
+            "total_s": 12.0
+          }
+        }
+      ],
+      "truth": {
+        "renderer": {
+          "type": "categorizedSymbol",
+          "attr": "type",
+          "cats": [
+            "Major Highway",
+            null,
+            "Road",
+            "Track",
+            "Unknown"
+          ]
+        },
+        "cats": [
+          "Major Highway",
+          "Road",
+          "Track",
+          "Unknown"
+        ]
+      }
+    },
+    {
+      "scenario": "r2",
+      "trial": 1,
+      "ok": true,
+      "fail": null,
+      "total_s": 23.7,
+      "steps": [
+        {
+          "name": "select",
+          "ok": true,
+          "ms": 12956.9,
+          "st": {
+            "open_ms": 1010.8344554901123,
+            "search_ms": 4509.4099044799805,
+            "dialog_ms": 1321.4185237884521,
+            "run_ms": 4181.9093227386475,
+            "invoked": true,
+            "wait_ms": 347.7299213409424,
+            "total_ms": 12956.861019134521
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 10698.6,
+          "note": "",
+          "layer": "cities",
+          "st": {
+            "menu_ms": 6106.311559677124,
+            "dialog_ms": 3187.788963317871,
+            "wait_ms": 502.09975242614746,
+            "total_ms": 10698.607206344604,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 8,
+        "want": 8
+      }
+    },
+    {
+      "scenario": "r2",
+      "trial": 2,
+      "ok": true,
+      "fail": null,
+      "total_s": 23.5,
+      "steps": [
+        {
+          "name": "select",
+          "ok": true,
+          "ms": 12900.7,
+          "st": {
+            "open_ms": 972.2440242767334,
+            "search_ms": 4529.506206512451,
+            "dialog_ms": 1299.6509075164795,
+            "run_ms": 4163.007974624634,
+            "invoked": true,
+            "wait_ms": 363.05880546569824,
+            "total_ms": 12900.702476501465
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 10527.5,
+          "note": "",
+          "layer": "cities",
+          "st": {
+            "menu_ms": 6017.047882080078,
+            "dialog_ms": 3163.405179977417,
+            "wait_ms": 501.8594264984131,
+            "total_ms": 10527.549743652344,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 8,
+        "want": 8
+      }
+    },
+    {
+      "scenario": "r2",
+      "trial": 3,
+      "ok": true,
+      "fail": null,
+      "total_s": 23.6,
+      "steps": [
+        {
+          "name": "select",
+          "ok": true,
+          "ms": 12835.0,
+          "st": {
+            "open_ms": 989.2411231994629,
+            "search_ms": 4510.769367218018,
+            "dialog_ms": 1331.7224979400635,
+            "run_ms": 4052.182912826538,
+            "invoked": true,
+            "wait_ms": 364.4282817840576,
+            "total_ms": 12834.954261779785
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 10724.9,
+          "note": "",
+          "layer": "cities",
+          "st": {
+            "menu_ms": 6105.910301208496,
+            "dialog_ms": 3181.7920207977295,
+            "wait_ms": 502.46262550354004,
+            "total_ms": 10724.94649887085,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 8,
+        "want": 8
+      }
+    },
+    {
+      "scenario": "r3",
+      "trial": 1,
+      "ok": true,
+      "fail": null,
+      "total_s": 26.0,
+      "steps": [
+        {
+          "name": "buffer",
+          "ok": true,
+          "ms": 16129.3,
+          "st": {
+            "open": "uia dblclick",
+            "pick": true,
+            "dist": true,
+            "run_ms": 1466.2859439849854,
+            "ok": true,
+            "total_s": 16.1
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 9828.8,
+          "note": "",
+          "layer": "Buffered",
+          "st": {
+            "menu_ms": 5579.9407958984375,
+            "dialog_ms": 3135.118246078491,
+            "wait_ms": 251.47747993469238,
+            "total_ms": 9828.776597976685,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 37,
+        "want": 37
+      }
+    },
+    {
+      "scenario": "r3",
+      "trial": 2,
+      "ok": true,
+      "fail": null,
+      "total_s": 25.9,
+      "steps": [
+        {
+          "name": "buffer",
+          "ok": true,
+          "ms": 15992.5,
+          "st": {
+            "open": "uia dblclick",
+            "pick": true,
+            "dist": true,
+            "run_ms": 1454.0424346923828,
+            "ok": true,
+            "total_s": 16.0
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 9830.3,
+          "note": "",
+          "layer": "Buffered",
+          "st": {
+            "menu_ms": 5513.70906829834,
+            "dialog_ms": 3207.3278427124023,
+            "wait_ms": 251.8026828765869,
+            "total_ms": 9830.303430557251,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 37,
+        "want": 37
+      }
+    },
+    {
+      "scenario": "r3",
+      "trial": 3,
+      "ok": true,
+      "fail": null,
+      "total_s": 26.0,
+      "steps": [
+        {
+          "name": "buffer",
+          "ok": true,
+          "ms": 16088.5,
+          "st": {
+            "open": "uia dblclick",
+            "pick": true,
+            "dist": true,
+            "run_ms": 1467.2276973724365,
+            "ok": true,
+            "total_s": 16.1
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 9809.9,
+          "note": "",
+          "layer": "Buffered",
+          "st": {
+            "menu_ms": 5526.269912719727,
+            "dialog_ms": 3183.640956878662,
+            "wait_ms": 252.32958793640137,
+            "total_ms": 9809.869527816772,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 37,
+        "want": 37
+      }
+    },
+    {
+      "scenario": "r4",
+      "trial": 1,
+      "ok": true,
+      "fail": null,
+      "total_s": 45.6,
+      "steps": [
+        {
+          "name": "buffer",
+          "ok": true,
+          "ms": 16117.3,
+          "st": {
+            "open": "uia dblclick",
+            "pick": true,
+            "dist": true,
+            "run_ms": 1516.5419578552246,
+            "ok": true,
+            "total_s": 16.1
+          }
+        },
+        {
+          "name": "extract",
+          "ok": true,
+          "ms": 19551.6,
+          "st": {
+            "open": "uia dblclick",
+            "pick_in": true,
+            "pick_ref": true,
+            "pred": true,
+            "run_ms": 2026.1292457580566,
+            "ok": true,
+            "total_s": 19.6
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 9759.5,
+          "note": "",
+          "layer": "Extracted (location)",
+          "st": {
+            "menu_ms": 5481.025218963623,
+            "dialog_ms": 3156.40926361084,
+            "wait_ms": 260.8189582824707,
+            "total_ms": 9759.535074234009,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 34,
+        "want": 34
+      }
+    },
+    {
+      "scenario": "r4",
+      "trial": 2,
+      "ok": true,
+      "fail": null,
+      "total_s": 45.6,
+      "steps": [
+        {
+          "name": "buffer",
+          "ok": true,
+          "ms": 15945.4,
+          "st": {
+            "open": "uia dblclick",
+            "pick": true,
+            "dist": true,
+            "run_ms": 1478.9743423461914,
+            "ok": true,
+            "total_s": 15.9
+          }
+        },
+        {
+          "name": "extract",
+          "ok": true,
+          "ms": 19670.2,
+          "st": {
+            "open": "uia dblclick",
+            "pick_in": true,
+            "pick_ref": true,
+            "pred": true,
+            "run_ms": 2002.3136138916016,
+            "ok": true,
+            "total_s": 19.7
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 9823.1,
+          "note": "",
+          "layer": "Extracted (location)",
+          "st": {
+            "menu_ms": 5539.580583572388,
+            "dialog_ms": 3190.1516914367676,
+            "wait_ms": 262.36438751220703,
+            "total_ms": 9823.084354400635,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 34,
+        "want": 34
+      }
+    },
+    {
+      "scenario": "r4",
+      "trial": 3,
+      "ok": true,
+      "fail": null,
+      "total_s": 45.2,
+      "steps": [
+        {
+          "name": "buffer",
+          "ok": true,
+          "ms": 15812.6,
+          "st": {
+            "open": "uia dblclick",
+            "pick": true,
+            "dist": true,
+            "run_ms": 1456.7475318908691,
+            "ok": true,
+            "total_s": 15.8
+          }
+        },
+        {
+          "name": "extract",
+          "ok": true,
+          "ms": 19581.9,
+          "st": {
+            "open": "uia dblclick",
+            "pick_in": true,
+            "pick_ref": true,
+            "pred": true,
+            "run_ms": 2021.775484085083,
+            "ok": true,
+            "total_s": 19.6
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 9629.3,
+          "note": "",
+          "layer": "Extracted (location)",
+          "st": {
+            "menu_ms": 5473.921775817871,
+            "dialog_ms": 3144.2670822143555,
+            "wait_ms": 260.9894275665283,
+            "total_ms": 9629.334688186646,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 34,
+        "want": 34
+      }
+    },
+    {
+      "scenario": "r5",
+      "trial": 1,
+      "ok": true,
+      "fail": null,
+      "total_s": 33.9,
+      "steps": [
+        {
+          "name": "extract",
+          "ok": true,
+          "ms": 24039.2,
+          "st": {
+            "open": "uia dblclick",
+            "pick_in": true,
+            "pick_ref": true,
+            "pred": true,
+            "run_ms": 6595.391035079956,
+            "ok": true,
+            "total_s": 24.0
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 9726.8,
+          "note": "",
+          "layer": "Extracted (location)",
+          "st": {
+            "menu_ms": 5446.474075317383,
+            "dialog_ms": 3176.707983016968,
+            "wait_ms": 263.34118843078613,
+            "total_ms": 9726.794958114624,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 390,
+        "want": 390
+      }
+    },
+    {
+      "scenario": "r5",
+      "trial": 2,
+      "ok": true,
+      "fail": null,
+      "total_s": 34.0,
+      "steps": [
+        {
+          "name": "extract",
+          "ok": true,
+          "ms": 23829.8,
+          "st": {
+            "open": "uia dblclick",
+            "pick_in": true,
+            "pick_ref": true,
+            "pred": true,
+            "run_ms": 6467.340469360352,
+            "ok": true,
+            "total_s": 23.8
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 10066.9,
+          "note": "",
+          "layer": "Extracted (location)",
+          "st": {
+            "menu_ms": 5443.746566772461,
+            "dialog_ms": 3593.440294265747,
+            "wait_ms": 262.2857093811035,
+            "total_ms": 10065.894365310669,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 390,
+        "want": 390
+      }
+    },
+    {
+      "scenario": "r5",
+      "trial": 3,
+      "ok": true,
+      "fail": null,
+      "total_s": 63.7,
+      "steps": [
+        {
+          "name": "extract",
+          "ok": true,
+          "ms": 53940.1,
+          "st": {
+            "open": "uia dblclick",
+            "pick_in": true,
+            "pick_ref": true,
+            "pred": true,
+            "run_ms": 6524.240493774414,
+            "ok": true,
+            "total_s": 53.9
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 9643.7,
+          "note": "",
+          "layer": "Extracted (location)",
+          "st": {
+            "menu_ms": 5411.485433578491,
+            "dialog_ms": 3214.5590782165527,
+            "wait_ms": 263.7524604797363,
+            "total_ms": 9642.69495010376,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 390,
+        "want": 390
+      }
+    },
+    {
+      "scenario": "r6",
+      "trial": 1,
+      "ok": true,
+      "fail": null,
+      "total_s": 28.9,
+      "steps": [
+        {
+          "name": "extract",
+          "ok": true,
+          "ms": 19144.9,
+          "st": {
+            "open": "uia dblclick",
+            "pick_in": true,
+            "pick_ref": true,
+            "pred": true,
+            "run_ms": 1538.1009578704834,
+            "ok": true,
+            "total_s": 19.1
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 9718.5,
+          "note": "",
+          "layer": "Extracted (location)",
+          "st": {
+            "menu_ms": 5442.334413528442,
+            "dialog_ms": 3176.1045455932617,
+            "wait_ms": 250.64563751220703,
+            "total_ms": 9718.45030784607,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 15,
+        "want": 15
+      }
+    },
+    {
+      "scenario": "r6",
+      "trial": 2,
+      "ok": true,
+      "fail": null,
+      "total_s": 28.5,
+      "steps": [
+        {
+          "name": "extract",
+          "ok": true,
+          "ms": 18652.5,
+          "st": {
+            "open": "uia dblclick",
+            "pick_in": true,
+            "pick_ref": true,
+            "pred": true,
+            "run_ms": 1361.217737197876,
+            "ok": true,
+            "total_s": 18.7
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 9826.1,
+          "note": "",
+          "layer": "Extracted (location)",
+          "st": {
+            "menu_ms": 5469.050168991089,
+            "dialog_ms": 3152.52947807312,
+            "wait_ms": 250.77414512634277,
+            "total_ms": 9826.061725616455,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 15,
+        "want": 15
+      }
+    },
+    {
+      "scenario": "r6",
+      "trial": 3,
+      "ok": true,
+      "fail": null,
+      "total_s": 28.8,
+      "steps": [
+        {
+          "name": "extract",
+          "ok": true,
+          "ms": 18884.6,
+          "st": {
+            "open": "uia dblclick",
+            "pick_in": true,
+            "pick_ref": true,
+            "pred": true,
+            "run_ms": 1471.4539051055908,
+            "ok": true,
+            "total_s": 18.9
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 9819.9,
+          "note": "",
+          "layer": "Extracted (location)",
+          "st": {
+            "menu_ms": 5526.356935501099,
+            "dialog_ms": 3127.7105808258057,
+            "wait_ms": 250.37002563476562,
+            "total_ms": 9819.878339767456,
+            "ok_invoked": true
+          }
+        }
+      ],
+      "truth": {
+        "n": 15,
+        "want": 15
+      }
+    }
+  ],
+  "summary": {
+    "r1": {
+      "trials": 3,
+      "pass": 3,
+      "rate": 1.0,
+      "total_s_median": 12.1,
+      "fails": {}
+    },
+    "r2": {
+      "trials": 3,
+      "pass": 3,
+      "rate": 1.0,
+      "total_s_median": 23.6,
+      "fails": {}
+    },
+    "r3": {
+      "trials": 3,
+      "pass": 3,
+      "rate": 1.0,
+      "total_s_median": 26.0,
+      "fails": {}
+    },
+    "r4": {
+      "trials": 3,
+      "pass": 3,
+      "rate": 1.0,
+      "total_s_median": 45.6,
+      "fails": {}
+    },
+    "r5": {
+      "trials": 3,
+      "pass": 3,
+      "rate": 1.0,
+      "total_s_median": 34.0,
+      "fails": {}
+    },
+    "r6": {
+      "trials": 3,
+      "pass": 3,
+      "rate": 1.0,
+      "total_s_median": 28.8,
+      "fails": {}
+    }
+  }
+}

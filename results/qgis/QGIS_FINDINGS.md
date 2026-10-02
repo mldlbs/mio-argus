@@ -888,3 +888,38 @@ Change Parameters 回退）；UIA 右键偶发不弹 → 3 次重试；临时输
 **局限**：每场景仅 3 试、单一米制数据集（EPSG:3857）、指令未过语言层
 （W21 的表达式还不会从这 6 条中文指令生成）。
 **下一步**：语言层接场景（指令 → 参数 → 链），把 18/18 的机械基线变成端到端训练/评测。
+
+# QGIS W24：真实地理数据场景集（Natural Earth 中国 ROI）执行基线 ✅
+
+> 复现：`python experiments/qgis/qgis_bridge/fetch_real_data.py`（取数+真值）→ `python experiments/qgis/qgis_bridge/run_w24.py --trials 3`　数据：`artifacts/qgis_real/`（gitignored）　结果：`experiments/qgis/qgis_bridge/w24_results.json`
+
+W23 的 6 场景跑在程序化"纸面几何"上。本轮同型场景换**真实地理数据**：
+Natural Earth v5.1.2（公有领域，tag 固定 + sha256 存档）→ 中国 ROI
+（省/机场/道路裁到国界，城市/港口裁到 bbox 以保留空间查询区分度），投影 EPSG:3857
+（与 W23 同 CRS、米制缓冲语义）；真值在取数时由 **shapely**（与 QGIS 同 GEOS 引擎；
+buffer quad_segs=5 对齐 QGIS SEGMENTS=5）一次算好。
+
+| 场景 | 数据（真实） | 链 | 成功 | 总耗时中位 | 分段中位 |
+|---|---|---|---|---|---|
+| r1 专题渲染 | roads 11967 条，type 4 类 | 层属性 → Categorized | 3/3 | 12.1 s | 12.1 |
+| r2 选择导出 | cities 1047，pop_max>1000万 = 8 | 选择 → 导出 | 3/3 | 23.6 s | 12.9 / 10.6 |
+| r3 缓冲 | airports 37 × 300 km | Buffer → 导出 | 3/3 | 26.0 s | 16.1 / 9.8 |
+| r4 组合 | 被机场圈覆盖的省份 34/42 | Buffer → Extract → 导出 | 3/3 | 45.6 s | 16.0 / 19.6 / 9.7 |
+| r5 空间查询 | 区域内城市 ∩ 省界 390/1047 | Extract → 导出 | 3/3 | 34.0 s | 23.9 / 9.8 |
+| r6 空间查询 | 区域内港口 ∩ 省界 15/87 | Extract → 导出 | 3/3 | 28.8 s | 18.9 / 9.8 |
+
+**18/18 全绿**：W23 的机械在真实数据上**原样成立、无新增 Qt 坑**；分段耗时与 W23 同量级，
+r5 因"点数×面数"大（1047×42）更慢，并出现一次 53.9 s 的 extract 长尾（中位 23.9 s）。
+
+真实数据的"真实性"注释：
+- **r2 的 8 个"大城市"含周边国家**（Delhi/Mumbai/Kolkata/Dhaka/Manila/Ōsaka）——bbox 取数
+  天然含境外点；r5/r6 同样含 657/72 个界外点被过滤（真值 390/1047，重名去重后）。
+- **省份 42 个含争议区**（如 Arunachal Pradesh）、NE 的拼写错误（"Chengdushuang Liu"）
+  照单全收——真实数据的真实歧义。
+- **"300 km"是 Web Mercator 米**（中国纬度下真实地面距离约小 ×1.2–1.4）——GUI 与真值在
+  同一 CRS 下一致，属投影语义而非测量误差。
+- 获取脚本带**直连 → 代理回退**（raw.githubusercontent 直连实测被重置，本机 7890 代理可达）；
+  属性键统一小写（NE 各图层大小写不一：cities 全大写）以对齐 W23 机械。
+
+局限：Natural Earth 无医院/POI 类图层（本轮以机场/城市/港口替代语义）；每场景仍 3 试；
+r5 长尾未归因（疑为 Processing 首次大几何开销）。**下一步**：与 W23 并列作为语言层接场景的输入端。

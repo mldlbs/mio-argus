@@ -304,7 +304,7 @@ def wait_layer(name, feat=None, timeout=25):
     return False
 
 
-def buffer_via_gui(layer, dist=150000):
+def buffer_via_gui(layer, dist=150000, expect_n=None):
     """Buffer：输入层 layer，Distance=dist（米）。返回 (ok, st)。"""
     st = {}
     t0 = time.time()
@@ -324,7 +324,7 @@ def buffer_via_gui(layer, dist=150000):
     uncheck_open_output(dlg)
     qg = acquire(); dlg = find_alg_win(qg, "Buffer", need_combo=True)
     ok, rst = run_alg_close(dlg, "Buffer",
-                            lambda: wait_layer(BUF_OUT, feat=5))
+                            lambda: wait_layer(BUF_OUT, feat=expect_n))
     st.update(rst)
     st["total_s"] = round(time.time() - t0, 1)
     return ok and st.get("pick") and st.get("dist"), st

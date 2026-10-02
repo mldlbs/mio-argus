@@ -189,6 +189,36 @@ def reset_env(scene="cities"):
             c.refresh()
         return {"ok": True, "scene": scene,
                 "features": {l.name(): l.featureCount() for l in layers}}
+    elif scene == "real":
+        # W24 真实数据场景：Natural Earth 中国 ROI（fetch_real_data.py 产物 → artifacts/qgis_real）
+        real_dir = Path(os.environ.get(
+            "QGIS_REAL_DIR",
+            str(_bridge_dir().parents[2] / "artifacts" / "qgis_real")))
+        layers = []
+        for fn in ("provinces", "airports", "cities", "ports", "roads"):
+            p = real_dir / f"{fn}.geojson"
+            if not p.exists():
+                return {"ok": False,
+                        "err": f"missing {p}（先跑 fetch_real_data.py）"}
+            lyr2 = QgsVectorLayer(str(p), fn, "ogr")
+            if not lyr2.isValid():
+                return {"ok": False, "err": f"layer invalid: {p}"}
+            layers.append(lyr2)
+        for l in layers:
+            project.addMapLayer(l)
+            l.removeSelection()
+        c = _canvas()
+        if c is not None:
+            xs0, ys0, xs1, ys1 = [], [], [], []
+            for l in layers:
+                e = l.extent()
+                xs0.append(e.xMinimum()); ys0.append(e.yMinimum())
+                xs1.append(e.xMaximum()); ys1.append(e.yMaximum())
+            from qgis.core import QgsRectangle
+            c.setExtent(QgsRectangle(min(xs0), min(ys0), max(xs1), max(ys1)))
+            c.refresh()
+        return {"ok": True, "scene": scene,
+                "features": {l.name(): l.featureCount() for l in layers}}
     else:
         lyr = QgsVectorLayer(DATA_GPKG + "|layername=cities", "cities", "ogr")
         if not lyr.isValid():

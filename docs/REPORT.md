@@ -451,14 +451,14 @@ WinSim 是对这条的正面回应：一个**可重放、有外部真值、可�
 
 ---
 
-## 8.6 真桌面应用上的复验：QGIS（W1–W23）
+## 8.6 真桌面应用上的复验：QGIS（W1–W24）
 
 §8.5 是自建沙箱；QGIS 线把它推到**第一个真桌面应用**（Qt/C++，非网页），
 并有 **PyQGIS** 作为外部真值通道。细目与"可复用 playbook"见 [results/qgis/QGIS_FINDINGS.md](..\results\qgis\QGIS_FINDINGS.md)。
 
 19 轮的弧线：**通道对照（W1–W7）→ 验证科学（W8–W12）→ 真实通道与工作流（W13–W16）
 → 鲁棒性与可靠性（W17–W19）**；其中 W9/W12/W13 三轮各自**推翻了本线此前的结论**；
-W21–W23 再把链推到**语言层与场景级组合**。
+W21–W24 再把链推到**语言层与场景级组合**（含真实地理数据）。
 
 | 轮 | 结果 |
 |---|---|
@@ -484,6 +484,7 @@ W21–W23 再把链推到**语言层与场景级组合**。
 | **W21** 自然语言 → 工作流参数（语言层） | 指令→表达式（2400 语料，6 训练句式 / 4 未见句式）：**lexical（词表+抽取）1.000/1.000/1.000** vs **learned（0.9M 字符级）1.000/0.000/0.000**；失败模式：未见算子词退化为最频繁模式（`至少300`→`> 3000`、**否定丢失**）、未见数字不会抄写；端到端（真 QGIS，真值按指令语义手写）learned **2/4** / lexical **3/4** ⇒ **语言层复现 W3 的教训：结构全胜、代价是领域知识；且语言错误直接污染产物** |
 | **W22** "修低层" vs "加验证" vs "盲跑" + 语言层盲区 | 同一条端到端链（指令→表达式→Processing 选择→GUI 导出→文件真值）：blind **7/8**（21.6 s）/ v-gated **8/8**（19.7 s）/ **invoke 低层修复 8/8（19.5 s）**⇒ 能修低层就别加验证；**语言层错误步骤级 V 拦下 0/2**（V 用同一个错参数算预期 → 循环论证：`"a">3000` 预期空集="通过"、`"name"='West'` 语义反了也"通过"）⇒ **V 抓不到参数化错误，只有"以指令语义核验产物"才行，而那要求先解决语言层** |
 | **W23** 场景化任务集第一批（6 矢量场景）执行基线 | 单点链合成 6 个具体 GIS 业务场景（专题渲染 / 选择导出 / 缓冲 / 缓冲+空间提取组合 / 空间查询×2），3 trials × 6 = **18/18 全绿**、失败分层全空；总耗时中位 **12.1–44.7 s**（导出段 9.7–10.4 s 与 W16 一致）⇒ **场景级组合是机械可得的**；新坑三个：QMenu 反馈是 `activeAction()`（`currentAction` 不存在 → 恒 None 假死）、combo 失败兜底 Esc 会关掉整个对话框、"Open output file after running algorithm" 实为"**结果是否载入工程**"的开关 ⇒ 坑从通道/焦点移向 **Qt API 与控件语义** |
+| **W24** 真实地理数据场景集（Natural Earth 中国 ROI） | 同型 6 场景换**真实数据**（Natural Earth v5.1.2 公有领域 tag 快照 → 中国 ROI 切片，EPSG:3857；真值 shapely 取数时算好、与 QGIS 同 GEOS）：**18/18 全绿**，总耗时中位 **12.1–45.6 s** 与 W23 同量级（r5 空间查询 1047 点×42 面更慢，含一次 53.9 s 长尾）；**W23 机械原样成立、零新增 Qt 坑**；真实数据自带歧义（争议省份、Ne 拼写错、境外点 657/72 被过滤）照单全收 ⇒ **场景集从"纸面几何"升级到真实地理数据，机械可迁移** |
 
 **QGIS 线最终留下的五条结论**（取代早期的"H1/H3 已有真值证据"的粗结论）：
 
@@ -579,7 +580,7 @@ W21–W23 再把链推到**语言层与场景级组合**。
 | `p8_learned_parser.py` | 学习式检测器 + 参数预算判据 | [results/paper/P8_RESULTS.md](..\results\paper\P8_RESULTS.md) |
 | `p9_active_zoom.py` | 顺序缩放 vs 等算力单体（iso-FLOPs 边界；mono-R 胜 11/12，§1.5 非首创） | [results/paper/P9_RESULTS.md](..\results\paper\P9_RESULTS.md) |
 | `winsim/` + `winsim_w0..w8.py` | WinSim 桌面沙箱：确定性/真值/双通道/成本/故障/held-out/端到端（结构 1.00 vs 像素 0.26） | [results/winsim/WINSIM_RESULTS.md](..\results\winsim\WINSIM_RESULTS.md) |
-| `experiments/qgis/qgis_bridge/` + `run_w1..w23.py` | 真桌面应用 QGIS 全 23 轮：通道对照 → 验证科学（V 的伪迹/条件价值）→ 真实通道（UIA/OCR/Processing）→ 真工作流（零特权选择+导出，4/4）→ 语言层与场景级组合（6 场景 18/18）。汇总 + playbook 见 | [results/qgis/QGIS_FINDINGS.md](..\results\qgis\QGIS_FINDINGS.md) |
+| `experiments/qgis/qgis_bridge/` + `run_w1..w24.py` | 真桌面应用 QGIS 全 24 轮：通道对照 → 验证科学（V 的伪迹/条件价值）→ 真实通道（UIA/OCR/Processing）→ 真工作流（零特权选择+导出，4/4）→ 语言层与场景级组合（合成 6 场景 18/18 + 真实数据 6 场景 18/18）。汇总 + playbook 见 | [results/qgis/QGIS_FINDINGS.md](..\results\qgis\QGIS_FINDINGS.md) |
 | `q1_plasticity.py` / `q2_plasticity_query.py` / `q3_learned_gate.py` / `q4_importance_gate.py` | 可塑性四问：无训练消融 → 查询分布 → 可学门控（不翻案）→ oracle headroom（收线） | [results/plasticity/Q4_RESULTS.md](..\results\plasticity\Q4_RESULTS.md) |
 | `experiments/web/`（`web_*` / `site_holdout` / `real_site_*`） | 真实站点结构通道：DOM 补贴与像素对照、站点 held-out、学习型策略 vs 关键词（接近持平未翻案）、v3 跨 frame 闭合与可点性漏斗（表级可达 0.95、pick→click 0.85+）、端到端通道对照两份独立实现（struct 0.500 vs 经典像素 0.33–0.42，valid 12；失败分层：策略错选 vs 命名缺失；geom 无文本先验 0.08、OCR 漂移 2/12） | [results/web/REAL_SITE.md](..\results\web\REAL_SITE.md) |
 | `docs/HYPOTHESIS.md` / `docs/ROADMAP.md` | 假设与路线（含证据分级） | — |

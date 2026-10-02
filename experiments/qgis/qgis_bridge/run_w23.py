@@ -157,7 +157,8 @@ def truth_s2(out_p):
 def chain_s3(i, out_p):
     steps = []
     t0 = time.time()
-    ok, st = buffer_via_gui("hospitals", TRUTH["buffer_r"])
+    ok, st = buffer_via_gui("hospitals", TRUTH["buffer_r"],
+                            expect_n=TRUTH["s3_n"])
     steps.append({"name": "buffer", "ok": bool(ok),
                   "ms": round((time.time() - t0) * 1000, 1), "st": st})
     if not ok:
@@ -175,7 +176,8 @@ def truth_s3(out_p):
 def chain_s4(i, out_p):
     steps = []
     t0 = time.time()
-    ok, st = buffer_via_gui("hospitals", TRUTH["buffer_r"])
+    ok, st = buffer_via_gui("hospitals", TRUTH["buffer_r"],
+                            expect_n=TRUTH["s3_n"])
     steps.append({"name": "buffer", "ok": bool(ok),
                   "ms": round((time.time() - t0) * 1000, 1), "st": st})
     if not ok:
