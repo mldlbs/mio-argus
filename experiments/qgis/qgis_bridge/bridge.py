@@ -266,6 +266,41 @@ def truth():
                         rend_info["cats"] = sorted(cats, key=str)
                     except Exception as e:
                         rend_info["cats_err"] = str(e)
+                elif rend.type() == "graduatedSymbol":
+                    try:
+                        rend_info["attr"] = rend.classAttribute()
+                    except Exception as e:
+                        rend_info["attr_err"] = str(e)
+                    try:
+                        rend_info["ranges"] = len(rend.ranges())
+                    except Exception as e:
+                        rend_info["ranges_err"] = str(e)
+                    try:
+                        v = None
+                        for cand in ("graduatedMethod", "method", "sizeMethod"):
+                            if hasattr(rend, cand):
+                                v = getattr(rend, cand)
+                                v = v() if callable(v) else v
+                                break
+                        if v is None:
+                            rend_info["method_err"] = "no method attr"
+                        else:
+                            try:
+                                v = int(v)
+                            except Exception:
+                                pass
+                            rend_info["method"] = {0: "color", 1: "size"}.get(v, v)
+                    except Exception as e:
+                        rend_info["method_err"] = str(e)
+                    try:
+                        rend_info["mode"] = int(rend.mode())
+                    except Exception:
+                        pass
+                elif rend.type() == "heatmapRenderer":
+                    try:
+                        rend_info["radius"] = float(rend.radius())
+                    except Exception:
+                        pass
         except Exception as e:
             rend_info = {"type": "error", "msg": str(e)}
         out["layers"].append({

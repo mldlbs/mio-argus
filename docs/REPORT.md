@@ -451,14 +451,14 @@ WinSim 是对这条的正面回应：一个**可重放、有外部真值、可�
 
 ---
 
-## 8.6 真桌面应用上的复验：QGIS（W1–W25）
+## 8.6 真桌面应用上的复验：QGIS（W1–W26）
 
 §8.5 是自建沙箱；QGIS 线把它推到**第一个真桌面应用**（Qt/C++，非网页），
 并有 **PyQGIS** 作为外部真值通道。细目与"可复用 playbook"见 [results/qgis/QGIS_FINDINGS.md](..\results\qgis\QGIS_FINDINGS.md)。
 
 19 轮的弧线：**通道对照（W1–W7）→ 验证科学（W8–W12）→ 真实通道与工作流（W13–W16）
 → 鲁棒性与可靠性（W17–W19）**；其中 W9/W12/W13 三轮各自**推翻了本线此前的结论**；
-W21–W25 再把链推到**语言层、场景级组合与制图产物**（含真实地理数据）。
+W21–W26 再把链推到**语言层、场景级组合、制图产物与主题表达族**（含真实地理数据）。
 
 | 轮 | 结果 |
 |---|---|
@@ -486,6 +486,7 @@ W21–W25 再把链推到**语言层、场景级组合与制图产物**（含真
 | **W23** 场景化任务集第一批（6 矢量场景）执行基线 | 单点链合成 6 个具体 GIS 业务场景（专题渲染 / 选择导出 / 缓冲 / 缓冲+空间提取组合 / 空间查询×2），3 trials × 6 = **18/18 全绿**、失败分层全空；总耗时中位 **12.1–44.7 s**（导出段 9.7–10.4 s 与 W16 一致）⇒ **场景级组合是机械可得的**；新坑三个：QMenu 反馈是 `activeAction()`（`currentAction` 不存在 → 恒 None 假死）、combo 失败兜底 Esc 会关掉整个对话框、"Open output file after running algorithm" 实为"**结果是否载入工程**"的开关 ⇒ 坑从通道/焦点移向 **Qt API 与控件语义** |
 | **W24** 真实地理数据场景集（Natural Earth 中国 ROI） | 同型 6 场景换**真实数据**（Natural Earth v5.1.2 公有领域 tag 快照 → 中国 ROI 切片，EPSG:3857；真值 shapely 取数时算好、与 QGIS 同 GEOS）：**18/18 全绿**，总耗时中位 **12.1–45.6 s** 与 W23 同量级（r5 空间查询 1047 点×42 面更慢，含一次 53.9 s 长尾）；**W23 机械原样成立、零新增 Qt 坑**；真实数据自带歧义（争议省份、Ne 拼写错、境外点 657/72 被过滤）照单全收 ⇒ **场景集从"纸面几何"升级到真实地理数据，机械可迁移** |
 | **W25** 复杂示例：真实数据的主题地图（Print Layout 全链） | 制图产物链：真实 roads 按 type 分类设色 → Project→New Print Layout → **Add Item 菜单 + New Item Properties 数值定位**（map 8,26,195,176 / 标题 / 图例）→ 标题中文文本 → **Export as Image → 原生保存对话框 → Image Export Options → 300 dpi PNG（3507×2480）**：**3/3 全绿、中位 70.8 s**（12.0/15.7/8.5/9.4/8.7/13.9/1.4）；真值 = bridge `layouts` op（布局项+Label 文本）+ PNG 像素检查。四条硬经验：菜单加项统一弹**内嵌 New Item Properties**（数值定位）、**原生保存框吃掉逐字键入的反斜杠（中文 IME）→ 必须剪贴板粘贴**、**抢前台应用吃掉输入 → SetForegroundWindow 显式置前**、**关闭提示按钮="丢弃"**（残留提示会阻断后续所有 GUI 流程） |
+| **W26** 主题表达族（同一批数据 × 4 种专题表达） | 分类图（categorized）/ 分级设色（graduated Color+Quantile 5）/ 比例符号（graduated Size）/ 热力图，各出一张 300dpi PNG（复用 W25 布局模板）：**12/12 全绿**，每张 69–81 s（renderer 段 9–22 s）；图例自动携带分级（v3 五级圆径+人口区间、v4 色带）；真值 = renderer 段（type/attr/method/ranges）+ 布局项 + PNG。两条新经验：**控件定位必须"标签+同行"而非序号**（Method 切换会重排控件）、**QGIS 3.44 graduated method 属性改名**（多候选探测）；域映射：材质→分类、管径/能力→比例符号、健康度→分级设色、积水点→热力 ⇒ **排水业务专题图同族换列即可** |
 
 **QGIS 线最终留下的五条结论**（取代早期的"H1/H3 已有真值证据"的粗结论）：
 
@@ -581,7 +582,7 @@ W21–W25 再把链推到**语言层、场景级组合与制图产物**（含真
 | `p8_learned_parser.py` | 学习式检测器 + 参数预算判据 | [results/paper/P8_RESULTS.md](..\results\paper\P8_RESULTS.md) |
 | `p9_active_zoom.py` | 顺序缩放 vs 等算力单体（iso-FLOPs 边界；mono-R 胜 11/12，§1.5 非首创） | [results/paper/P9_RESULTS.md](..\results\paper\P9_RESULTS.md) |
 | `winsim/` + `winsim_w0..w8.py` | WinSim 桌面沙箱：确定性/真值/双通道/成本/故障/held-out/端到端（结构 1.00 vs 像素 0.26） | [results/winsim/WINSIM_RESULTS.md](..\results\winsim\WINSIM_RESULTS.md) |
-| `experiments/qgis/qgis_bridge/` + `run_w1..w25.py` | 真桌面应用 QGIS 全 25 轮：通道对照 → 验证科学（V 的伪迹/条件价值）→ 真实通道（UIA/OCR/Processing）→ 真工作流（零特权选择+导出，4/4）→ 语言层、场景级组合（合成+真实数据各 18/18）→ 制图产物（主题地图 Print Layout，3/3，70.8 s）。汇总 + playbook 见 | [results/qgis/QGIS_FINDINGS.md](..\results\qgis\QGIS_FINDINGS.md) |
+| `experiments/qgis/qgis_bridge/` + `run_w1..w26.py` | 真桌面应用 QGIS 全 26 轮：通道对照 → 验证科学（V 的伪迹/条件价值）→ 真实通道（UIA/OCR/Processing）→ 真工作流（零特权选择+导出，4/4）→ 语言层、场景级组合（合成+真实数据各 18/18）→ 制图产物与主题表达族（主题地图 3/3；分类/分级/比例符号/热力 12/12）。汇总 + playbook 见 | [results/qgis/QGIS_FINDINGS.md](..\results\qgis\QGIS_FINDINGS.md) |
 | `q1_plasticity.py` / `q2_plasticity_query.py` / `q3_learned_gate.py` / `q4_importance_gate.py` | 可塑性四问：无训练消融 → 查询分布 → 可学门控（不翻案）→ oracle headroom（收线） | [results/plasticity/Q4_RESULTS.md](..\results\plasticity\Q4_RESULTS.md) |
 | `experiments/web/`（`web_*` / `site_holdout` / `real_site_*`） | 真实站点结构通道：DOM 补贴与像素对照、站点 held-out、学习型策略 vs 关键词（接近持平未翻案）、v3 跨 frame 闭合与可点性漏斗（表级可达 0.95、pick→click 0.85+）、端到端通道对照两份独立实现（struct 0.500 vs 经典像素 0.33–0.42，valid 12；失败分层：策略错选 vs 命名缺失；geom 无文本先验 0.08、OCR 漂移 2/12） | [results/web/REAL_SITE.md](..\results\web\REAL_SITE.md) |
 | `docs/HYPOTHESIS.md` / `docs/ROADMAP.md` | 假设与路线（含证据分级） | — |

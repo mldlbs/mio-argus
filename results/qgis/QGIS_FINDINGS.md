@@ -958,3 +958,44 @@ W23/W24 的链止于**数据产物**（GeoJSON）；本轮爬上一层到**制�
 **局限**：单个复杂场景（未做多风格布局变体）；图例字体/标题字号用默认值（未走字体对话框）；
 导出选项全用默认（300 dpi）；查询到的图层依赖 W24 真实数据链。
 **下一步**：布局变体族（横/纵版、图例位置×标题字号×分级方式）作为"复杂示例"的第一批扩展。
+
+# QGIS W26：主题表达族 —— 同一批数据的四种专题地图 ✅
+
+> 复现：`python experiments/qgis/qgis_bridge/run_w26.py --trials 3`　产物：`artifacts/qgis_real/out/w26_v*_t*.png`　结果：`w26_results.json`　机械：`scn_theme.py`（渲染器）+ `map_gui.py`（制图）
+
+"根据业务指标，把空间对象用颜色、符号、大小、密度表达"——同一份真实数据（W24）上，
+四种渲染机制各出一张主题地图（复用 W25 布局模板，300 dpi PNG）：
+
+| 主题 | 数据 / 指标 | 渲染机制 | 成功 | 总中位 | renderer 段中位 |
+|---|---|---|---|---|---|
+| v1 分类图 | roads.type（4 类） | categorizedSymbol | 3/3 | 70.8 s | 11.9 s |
+| v2 分级设色 | cities.pop_max | graduated（Color, Quantile 5） | 3/3 | 81.4 s | 21.7 s |
+| v3 比例符号 | cities.pop_max | graduated（Size, Quantile 5） | 3/3 | 81.3 s | 21.6 s |
+| v4 热力图 | cities 点密度 | heatmapRenderer | 3/3 | 69.3 s | 9.4 s（一次 19.3 长尾） |
+
+**12/12 全绿**。每张图例自动携带分级信息：v3 呈现 5 级圆径 + 人口区间（10–1.9e7），
+v4 呈现 Maximum/Minimum 色带；真值 = bridge renderer 段（type/attr/method/ranges）
++ 布局项（layouts op）+ PNG 文件/像素检查。
+
+**本轮两条新经验**：
+
+1. **控件定位不能按序号**——W23/S1 的"ComboBox 排序取第 n 个"在 Graduated 面板里
+   会被"Method 切换后重排的控件"骗到（本轮 mode 首测即因此失败）；
+   改"标签 Text + 同行 ComboBox"定位（`combo_by_label`/`spinner_by_label`），每步后重取对话框。
+2. **QGIS 3.44 的 graduated method 取不到 `renderer.method()`** → 真值端多候选探测
+   （`graduatedMethod → method → sizeMethod`，bridge 已兼容）。
+
+**与排水管网业务域的映射**（同族机械，换列即可）：
+
+| 业务指标 | 主题类型 | 机械 |
+|---|---|---|
+| 管道材质（混凝土/钢/HDPE/铸铁） | 分类图 | `categorized_via_gui` |
+| 管径 / 排水能力 | 比例符号 | `graduated_via_gui(method="size")` |
+| 健康度 0–100 | 分级设色 | `graduated_via_gui(method="color")` |
+| 积水点 / 缺陷点 | 热力图 | `heatmap_via_gui` |
+| 风险等级（红橙黄蓝） | 分类图（固定色板待换） | `categorized_via_gui` |
+
+"城市基础设施风险一张图" = 多图层叠加 + 多指标表达，属下一步（布局层已完成）。
+
+**局限**：色带/字号用默认（未走色带选择与字体对话框）；柱状/饼图地图（QGIS Diagrams 族）
+未做；多指标同图未做。
