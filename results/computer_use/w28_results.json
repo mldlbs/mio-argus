@@ -1,0 +1,731 @@
+{
+  "meta": {
+    "model": "artifacts\\checkpoints\\computer_use_model_v3_real.pth",
+    "ckpt_bytes": 881724512,
+    "device": "cuda",
+    "screen": [
+      2560,
+      1440
+    ],
+    "qgis_rect": [
+      -8,
+      -8,
+      2568,
+      1400
+    ],
+    "trials": 3,
+    "ts": "2026-10-03T19:00:09"
+  },
+  "dry": [
+    {
+      "trial": 1,
+      "instruction": "click the Zoom Full button",
+      "target": "Zoom Full",
+      "rect": [
+        359,
+        49,
+        391,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005110700731165707,
+          0.0003016139380633831
+        ],
+        "scroll": "down",
+        "ms": 361.5
+      },
+      "px": [
+        1.3,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 361.0,
+      "action_ok": false
+    },
+    {
+      "trial": 1,
+      "instruction": "click the Zoom to Selection button",
+      "target": "Zoom to Selection",
+      "rect": [
+        392,
+        49,
+        424,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005034387577325106,
+          0.00025905127404257655
+        ],
+        "scroll": "down",
+        "ms": 55.5
+      },
+      "px": [
+        1.3,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 393.7,
+      "action_ok": false
+    },
+    {
+      "trial": 1,
+      "instruction": "click the Zoom Last button",
+      "target": "Zoom Last",
+      "rect": [
+        491,
+        49,
+        523,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005802185623906553,
+          0.00029640947468578815
+        ],
+        "scroll": "down",
+        "ms": 55.9
+      },
+      "px": [
+        1.5,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 491.9,
+      "action_ok": false
+    },
+    {
+      "trial": 1,
+      "instruction": "click the Zoom to Native Resolution button",
+      "target": "Zoom to Native Resolution (100%)",
+      "rect": [
+        458,
+        49,
+        490,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005407772841863334,
+          0.0003029921790584922
+        ],
+        "scroll": "down",
+        "ms": 61.6
+      },
+      "px": [
+        1.4,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 459.2,
+      "action_ok": false
+    },
+    {
+      "trial": 1,
+      "instruction": "click the Refresh button",
+      "target": "Refresh",
+      "rect": [
+        722,
+        49,
+        754,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          2.8694086722680368e-05,
+          3.892766471835785e-06
+        ],
+        "scroll": "down",
+        "ms": 55.5
+      },
+      "px": [
+        0.1,
+        0.0
+      ],
+      "hit": false,
+      "dist_px": 723.6,
+      "action_ok": false
+    },
+    {
+      "trial": 1,
+      "instruction": "click the Undo button",
+      "target": "Undo",
+      "rect": [
+        647,
+        88,
+        679,
+        119
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.00028561431099660695,
+          0.00012144492211518809
+        ],
+        "scroll": "down",
+        "ms": 59.5
+      },
+      "px": [
+        0.7,
+        0.2
+      ],
+      "hit": false,
+      "dist_px": 652.2,
+      "action_ok": false
+    },
+    {
+      "trial": 2,
+      "instruction": "click the Zoom Full button",
+      "target": "Zoom Full",
+      "rect": [
+        359,
+        49,
+        391,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005110700731165707,
+          0.0003016139380633831
+        ],
+        "scroll": "down",
+        "ms": 54.0
+      },
+      "px": [
+        1.3,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 361.0,
+      "action_ok": false
+    },
+    {
+      "trial": 2,
+      "instruction": "click the Zoom to Selection button",
+      "target": "Zoom to Selection",
+      "rect": [
+        392,
+        49,
+        424,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005034387577325106,
+          0.00025905127404257655
+        ],
+        "scroll": "down",
+        "ms": 54.0
+      },
+      "px": [
+        1.3,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 393.7,
+      "action_ok": false
+    },
+    {
+      "trial": 2,
+      "instruction": "click the Zoom Last button",
+      "target": "Zoom Last",
+      "rect": [
+        491,
+        49,
+        523,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005802185623906553,
+          0.00029640947468578815
+        ],
+        "scroll": "down",
+        "ms": 52.9
+      },
+      "px": [
+        1.5,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 491.9,
+      "action_ok": false
+    },
+    {
+      "trial": 2,
+      "instruction": "click the Zoom to Native Resolution button",
+      "target": "Zoom to Native Resolution (100%)",
+      "rect": [
+        458,
+        49,
+        490,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005407772841863334,
+          0.0003029921790584922
+        ],
+        "scroll": "down",
+        "ms": 58.6
+      },
+      "px": [
+        1.4,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 459.2,
+      "action_ok": false
+    },
+    {
+      "trial": 2,
+      "instruction": "click the Refresh button",
+      "target": "Refresh",
+      "rect": [
+        722,
+        49,
+        754,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          2.8694086722680368e-05,
+          3.892766471835785e-06
+        ],
+        "scroll": "down",
+        "ms": 63.6
+      },
+      "px": [
+        0.1,
+        0.0
+      ],
+      "hit": false,
+      "dist_px": 723.6,
+      "action_ok": false
+    },
+    {
+      "trial": 2,
+      "instruction": "click the Undo button",
+      "target": "Undo",
+      "rect": [
+        647,
+        88,
+        679,
+        119
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.00028561431099660695,
+          0.00012144492211518809
+        ],
+        "scroll": "down",
+        "ms": 59.6
+      },
+      "px": [
+        0.7,
+        0.2
+      ],
+      "hit": false,
+      "dist_px": 652.2,
+      "action_ok": false
+    },
+    {
+      "trial": 3,
+      "instruction": "click the Zoom Full button",
+      "target": "Zoom Full",
+      "rect": [
+        359,
+        49,
+        391,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005110700731165707,
+          0.0003016139380633831
+        ],
+        "scroll": "down",
+        "ms": 65.1
+      },
+      "px": [
+        1.3,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 361.0,
+      "action_ok": false
+    },
+    {
+      "trial": 3,
+      "instruction": "click the Zoom to Selection button",
+      "target": "Zoom to Selection",
+      "rect": [
+        392,
+        49,
+        424,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005034387577325106,
+          0.00025905127404257655
+        ],
+        "scroll": "down",
+        "ms": 66.5
+      },
+      "px": [
+        1.3,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 393.7,
+      "action_ok": false
+    },
+    {
+      "trial": 3,
+      "instruction": "click the Zoom Last button",
+      "target": "Zoom Last",
+      "rect": [
+        491,
+        49,
+        523,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005802185623906553,
+          0.00029640947468578815
+        ],
+        "scroll": "down",
+        "ms": 52.6
+      },
+      "px": [
+        1.5,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 491.9,
+      "action_ok": false
+    },
+    {
+      "trial": 3,
+      "instruction": "click the Zoom to Native Resolution button",
+      "target": "Zoom to Native Resolution (100%)",
+      "rect": [
+        458,
+        49,
+        490,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005407772841863334,
+          0.0003029921790584922
+        ],
+        "scroll": "down",
+        "ms": 53.3
+      },
+      "px": [
+        1.4,
+        0.4
+      ],
+      "hit": false,
+      "dist_px": 459.2,
+      "action_ok": false
+    },
+    {
+      "trial": 3,
+      "instruction": "click the Refresh button",
+      "target": "Refresh",
+      "rect": [
+        722,
+        49,
+        754,
+        80
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          2.8694086722680368e-05,
+          3.892766471835785e-06
+        ],
+        "scroll": "down",
+        "ms": 57.5
+      },
+      "px": [
+        0.1,
+        0.0
+      ],
+      "hit": false,
+      "dist_px": 723.6,
+      "action_ok": false
+    },
+    {
+      "trial": 3,
+      "instruction": "click the Undo button",
+      "target": "Undo",
+      "rect": [
+        647,
+        88,
+        679,
+        119
+      ],
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.00028561431099660695,
+          0.00012144492211518809
+        ],
+        "scroll": "down",
+        "ms": 56.0
+      },
+      "px": [
+        0.7,
+        0.2
+      ],
+      "hit": false,
+      "dist_px": 652.2,
+      "action_ok": false
+    }
+  ],
+  "live": [
+    {
+      "task": "oracle_zoom_full",
+      "trial": 0,
+      "instruction": "click the Zoom Full button",
+      "clicked": true,
+      "px": [
+        375,
+        64
+      ],
+      "success": true,
+      "fail": null
+    },
+    {
+      "task": "zoom_full",
+      "trial": 1,
+      "instruction": "click the Zoom Full button",
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005392816965468228,
+          0.0003284029371570796
+        ],
+        "scroll": "down",
+        "ms": 54.0
+      },
+      "px": [
+        1.4,
+        0.5
+      ],
+      "in_window": true,
+      "clicked": false,
+      "success": false,
+      "fail": "action_wrong"
+    },
+    {
+      "task": "zoom_last",
+      "trial": 1,
+      "instruction": "click the Zoom Last button",
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005697308224625885,
+          0.0002918802492786199
+        ],
+        "scroll": "down",
+        "ms": 61.6
+      },
+      "px": [
+        1.5,
+        0.4
+      ],
+      "in_window": true,
+      "clicked": false,
+      "success": false,
+      "fail": "action_wrong"
+    },
+    {
+      "task": "zoom_native",
+      "trial": 1,
+      "instruction": "click the Zoom to Native Resolution button",
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005462754634208977,
+          0.0003115806612186134
+        ],
+        "scroll": "down",
+        "ms": 65.7
+      },
+      "px": [
+        1.4,
+        0.4
+      ],
+      "in_window": true,
+      "clicked": false,
+      "success": false,
+      "fail": "action_wrong"
+    },
+    {
+      "task": "zoom_full",
+      "trial": 2,
+      "instruction": "click the Zoom Full button",
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005392816965468228,
+          0.0003284029371570796
+        ],
+        "scroll": "down",
+        "ms": 62.6
+      },
+      "px": [
+        1.4,
+        0.5
+      ],
+      "in_window": true,
+      "clicked": false,
+      "success": false,
+      "fail": "action_wrong"
+    },
+    {
+      "task": "zoom_last",
+      "trial": 2,
+      "instruction": "click the Zoom Last button",
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005697308224625885,
+          0.00029188080225139856
+        ],
+        "scroll": "down",
+        "ms": 65.6
+      },
+      "px": [
+        1.5,
+        0.4
+      ],
+      "in_window": true,
+      "clicked": false,
+      "success": false,
+      "fail": "action_wrong"
+    },
+    {
+      "task": "zoom_native",
+      "trial": 2,
+      "instruction": "click the Zoom to Native Resolution button",
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005462751723825932,
+          0.0003115803701803088
+        ],
+        "scroll": "down",
+        "ms": 64.6
+      },
+      "px": [
+        1.4,
+        0.4
+      ],
+      "in_window": true,
+      "clicked": false,
+      "success": false,
+      "fail": "action_wrong"
+    },
+    {
+      "task": "zoom_full",
+      "trial": 3,
+      "instruction": "click the Zoom Full button",
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005392804159782827,
+          0.00032840200583450496
+        ],
+        "scroll": "down",
+        "ms": 62.0
+      },
+      "px": [
+        1.4,
+        0.5
+      ],
+      "in_window": true,
+      "clicked": false,
+      "success": false,
+      "fail": "action_wrong"
+    },
+    {
+      "task": "zoom_last",
+      "trial": 3,
+      "instruction": "click the Zoom Last button",
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005697308224625885,
+          0.00029188080225139856
+        ],
+        "scroll": "down",
+        "ms": 64.0
+      },
+      "px": [
+        1.5,
+        0.4
+      ],
+      "in_window": true,
+      "clicked": false,
+      "success": false,
+      "fail": "action_wrong"
+    },
+    {
+      "task": "zoom_native",
+      "trial": 3,
+      "instruction": "click the Zoom to Native Resolution button",
+      "pred": {
+        "action": "scroll",
+        "coord": [
+          0.0005462751723825932,
+          0.0003115803701803088
+        ],
+        "scroll": "down",
+        "ms": 65.1
+      },
+      "px": [
+        1.4,
+        0.4
+      ],
+      "in_window": true,
+      "clicked": false,
+      "success": false,
+      "fail": "action_wrong"
+    }
+  ],
+  "summary": {
+    "dry_n": 18,
+    "dry_action_acc": 0.0,
+    "dry_hit_rate": 0.0,
+    "dry_dist_px_median": 475.5,
+    "live_n": 9,
+    "live_success_rate": 0.0,
+    "live_fails": {
+      "action_wrong": 9
+    },
+    "oracle_ok": true
+  }
+}

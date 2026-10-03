@@ -66,6 +66,7 @@ nanoGPT/
 | 实验结果 json | `results/<line>/` | 脚本写出路径必须指向此处，勿写根目录 |
 | 实验结果/发现文档（`*_RESULTS.md`、`*_FINDINGS.md`） | `results/<line>/` | 与其 json 同目录 |
 | 规范/架构/路线/总报告类手写文档 | `docs/` | 禁止放根目录 |
+| taskhub 任务文档链（requirement/architecture/spec/data-model/api/test/runbook/plan） | `docs/taskhub/<task_id>/` | 由 taskhub scaffold 生成骨架后填充；与任务 doc_paths 保持一致 |
 | 数据集、checkpoint、缓存 | `artifacts/` | 不入 git；`.gitignore` 以 `artifacts/` 整体登记 |
 | 部署文件（Docker、api、依赖清单、bat/sh） | `infra/` | compose 相对路径以 `infra/` 为基准，build context 指回仓库根 |
 | mio 相关脚本 | `mio/` | 跨线用 `p0_env` 时在文件头加路径引导 |
