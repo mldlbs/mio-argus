@@ -320,6 +320,10 @@ def truth():
             e = canvas.mapSettings().visibleExtent()
             out["extent"] = [float(e.xMinimum()), float(e.yMinimum()),
                              float(e.xMaximum()), float(e.yMaximum())]
+            try:
+                out["bg"] = canvas.mapSettings().backgroundColor().name()
+            except Exception:
+                pass
             mt = canvas.mapTool()
             if mt is not None:
                 try:

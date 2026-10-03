@@ -1,0 +1,467 @@
+{
+  "meta": {
+    "trials": 3,
+    "bg": "#0A1220",
+    "palette": {
+      "provinces": "#16283F",
+      "roads": "#2C4A6E",
+      "airports": "#4A6B8A",
+      "ports": "#556B8C"
+    },
+    "ramp": "Inferno",
+    "title": "中国城市人口分级 · 数字孪生主题图"
+  },
+  "rows": [
+    {
+      "trial": 1,
+      "ok": true,
+      "fail": null,
+      "total_s": 167.1,
+      "steps": [
+        {
+          "name": "canvas_bg",
+          "ok": true,
+          "ms": 10431.8,
+          "st": {
+            "hex": "#0A1220"
+          }
+        },
+        {
+          "name": "color_provinces",
+          "ok": true,
+          "ms": 8416.3,
+          "st": {
+            "hex": "#16283F"
+          }
+        },
+        {
+          "name": "color_roads",
+          "ok": true,
+          "ms": 9001.4,
+          "st": {
+            "hex": "#2C4A6E"
+          }
+        },
+        {
+          "name": "color_airports",
+          "ok": true,
+          "ms": 8349.3,
+          "st": {
+            "hex": "#4A6B8A"
+          }
+        },
+        {
+          "name": "color_ports",
+          "ok": true,
+          "ms": 8118.5,
+          "st": {
+            "hex": "#556B8C"
+          }
+        },
+        {
+          "name": "cities_inferno",
+          "ok": true,
+          "ms": 32072.7,
+          "st": {
+            "rend": true,
+            "field": true,
+            "ramp": true,
+            "method": true,
+            "mode": true,
+            "classes": true,
+            "total_s": 32.1
+          }
+        },
+        {
+          "name": "new_layout",
+          "ok": true,
+          "ms": 16572.0,
+          "st": {
+            "menu_ms": 5638.7,
+            "total_ms": 16572.0
+          }
+        },
+        {
+          "name": "add_map",
+          "ok": true,
+          "ms": 8583.4,
+          "st": {
+            "extent": true
+          }
+        },
+        {
+          "name": "add_title",
+          "ok": true,
+          "ms": 10388.7,
+          "st": {
+            "html": true
+          }
+        },
+        {
+          "name": "add_legend",
+          "ok": true,
+          "ms": 38370.5,
+          "st": {
+            "style": {
+              "bg_visible": true,
+              "bg_color": true,
+              "font_color": true
+            }
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 14175.5,
+          "st": {
+            "export_ms": 3653.6,
+            "png_bytes": 1910242
+          }
+        },
+        {
+          "name": "close",
+          "ok": true,
+          "ms": 1350.2,
+          "st": {}
+        }
+      ],
+      "truth": {
+        "renderer": {
+          "type": "graduatedSymbol",
+          "attr": "pop_max",
+          "ranges": 5,
+          "method": "color",
+          "mode": 1
+        },
+        "render_ok": true,
+        "bg": "#0a1220",
+        "n_layouts": 1,
+        "items": [
+          "QGraphicsRectItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QgsLayoutItemLegend",
+          "QgsLayoutItemLabel",
+          "QgsLayoutItemMap",
+          "QGraphicsRectItem",
+          "QgsLayoutItemPage"
+        ],
+        "label_ok": true,
+        "legend": true,
+        "map": true,
+        "png_bytes": 1910242,
+        "png_size": [
+          3507,
+          2480
+        ],
+        "mean_luma": 26.4,
+        "luma_spread": 244
+      }
+    },
+    {
+      "trial": 2,
+      "ok": true,
+      "fail": null,
+      "total_s": 167.8,
+      "steps": [
+        {
+          "name": "canvas_bg",
+          "ok": true,
+          "ms": 10538.0,
+          "st": {
+            "hex": "#0A1220"
+          }
+        },
+        {
+          "name": "color_provinces",
+          "ok": true,
+          "ms": 8416.7,
+          "st": {
+            "hex": "#16283F"
+          }
+        },
+        {
+          "name": "color_roads",
+          "ok": true,
+          "ms": 8984.4,
+          "st": {
+            "hex": "#2C4A6E"
+          }
+        },
+        {
+          "name": "color_airports",
+          "ok": true,
+          "ms": 8435.6,
+          "st": {
+            "hex": "#4A6B8A"
+          }
+        },
+        {
+          "name": "color_ports",
+          "ok": true,
+          "ms": 8214.6,
+          "st": {
+            "hex": "#556B8C"
+          }
+        },
+        {
+          "name": "cities_inferno",
+          "ok": true,
+          "ms": 32081.9,
+          "st": {
+            "rend": true,
+            "field": true,
+            "ramp": true,
+            "method": true,
+            "mode": true,
+            "classes": true,
+            "total_s": 32.1
+          }
+        },
+        {
+          "name": "new_layout",
+          "ok": true,
+          "ms": 16652.1,
+          "st": {
+            "menu_ms": 5615.3,
+            "total_ms": 16652.1
+          }
+        },
+        {
+          "name": "add_map",
+          "ok": true,
+          "ms": 8568.1,
+          "st": {
+            "extent": true
+          }
+        },
+        {
+          "name": "add_title",
+          "ok": true,
+          "ms": 10251.2,
+          "st": {
+            "html": true
+          }
+        },
+        {
+          "name": "add_legend",
+          "ok": true,
+          "ms": 38898.6,
+          "st": {
+            "style": {
+              "bg_visible": true,
+              "bg_color": true,
+              "font_color": true
+            }
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 14182.1,
+          "st": {
+            "export_ms": 3652.0,
+            "png_bytes": 1910242
+          }
+        },
+        {
+          "name": "close",
+          "ok": true,
+          "ms": 1351.1,
+          "st": {}
+        }
+      ],
+      "truth": {
+        "renderer": {
+          "type": "graduatedSymbol",
+          "attr": "pop_max",
+          "ranges": 5,
+          "method": "color",
+          "mode": 1
+        },
+        "render_ok": true,
+        "bg": "#0a1220",
+        "n_layouts": 1,
+        "items": [
+          "QGraphicsRectItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QgsLayoutItemLegend",
+          "QgsLayoutItemLabel",
+          "QgsLayoutItemMap",
+          "QGraphicsRectItem",
+          "QgsLayoutItemPage"
+        ],
+        "label_ok": true,
+        "legend": true,
+        "map": true,
+        "png_bytes": 1910242,
+        "png_size": [
+          3507,
+          2480
+        ],
+        "mean_luma": 26.4,
+        "luma_spread": 244
+      }
+    },
+    {
+      "trial": 3,
+      "ok": true,
+      "fail": null,
+      "total_s": 167.8,
+      "steps": [
+        {
+          "name": "canvas_bg",
+          "ok": true,
+          "ms": 10541.1,
+          "st": {
+            "hex": "#0A1220"
+          }
+        },
+        {
+          "name": "color_provinces",
+          "ok": true,
+          "ms": 8415.1,
+          "st": {
+            "hex": "#16283F"
+          }
+        },
+        {
+          "name": "color_roads",
+          "ok": true,
+          "ms": 8885.6,
+          "st": {
+            "hex": "#2C4A6E"
+          }
+        },
+        {
+          "name": "color_airports",
+          "ok": true,
+          "ms": 8451.1,
+          "st": {
+            "hex": "#4A6B8A"
+          }
+        },
+        {
+          "name": "color_ports",
+          "ok": true,
+          "ms": 8096.6,
+          "st": {
+            "hex": "#556B8C"
+          }
+        },
+        {
+          "name": "cities_inferno",
+          "ok": true,
+          "ms": 32056.2,
+          "st": {
+            "rend": true,
+            "field": true,
+            "ramp": true,
+            "method": true,
+            "mode": true,
+            "classes": true,
+            "total_s": 32.1
+          }
+        },
+        {
+          "name": "new_layout",
+          "ok": true,
+          "ms": 16677.1,
+          "st": {
+            "menu_ms": 5719.0,
+            "total_ms": 16676.1
+          }
+        },
+        {
+          "name": "add_map",
+          "ok": true,
+          "ms": 8567.2,
+          "st": {
+            "extent": true
+          }
+        },
+        {
+          "name": "add_title",
+          "ok": true,
+          "ms": 10335.7,
+          "st": {
+            "html": true
+          }
+        },
+        {
+          "name": "add_legend",
+          "ok": true,
+          "ms": 39085.8,
+          "st": {
+            "style": {
+              "bg_visible": true,
+              "bg_color": true,
+              "font_color": true
+            }
+          }
+        },
+        {
+          "name": "export",
+          "ok": true,
+          "ms": 14161.4,
+          "st": {
+            "export_ms": 3643.9,
+            "png_bytes": 1910242
+          }
+        },
+        {
+          "name": "close",
+          "ok": true,
+          "ms": 1350.6,
+          "st": {}
+        }
+      ],
+      "truth": {
+        "renderer": {
+          "type": "graduatedSymbol",
+          "attr": "pop_max",
+          "ranges": 5,
+          "method": "color",
+          "mode": 1
+        },
+        "render_ok": true,
+        "bg": "#0a1220",
+        "n_layouts": 1,
+        "items": [
+          "QGraphicsRectItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QGraphicsLineItem",
+          "QgsLayoutItemLegend",
+          "QgsLayoutItemLabel",
+          "QgsLayoutItemMap",
+          "QGraphicsRectItem",
+          "QgsLayoutItemPage"
+        ],
+        "label_ok": true,
+        "legend": true,
+        "map": true,
+        "png_bytes": 1910242,
+        "png_size": [
+          3507,
+          2480
+        ],
+        "mean_luma": 26.4,
+        "luma_spread": 244
+      }
+    }
+  ],
+  "summary": {
+    "trials": 3,
+    "pass": 3,
+    "rate": 1.0,
+    "total_s_median": 167.8,
+    "fails": {}
+  }
+}

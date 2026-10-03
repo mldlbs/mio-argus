@@ -125,6 +125,8 @@ def pick_combo(combo, text, tries=3):
         try:
             combo.click_input()
             time.sleep(0.6)
+            pyautogui.hotkey("ctrl", "a")   # 防追加（可编辑 combo 会把新值拼在旧值后）
+            time.sleep(0.1)
             pyautogui.write(text, interval=0.06)
             time.sleep(0.3)
             pyautogui.press("enter")

@@ -999,3 +999,43 @@ v4 呈现 Maximum/Minimum 色带；真值 = bridge renderer 段（type/attr/meth
 
 **局限**：色带/字号用默认（未走色带选择与字体对话框）；柱状/饼图地图（QGIS Diagrams 族）
 未做；多指标同图未做。
+
+# QGIS W27：暗色科技风主题地图（视觉重构）✅
+
+> 复现：`python experiments/qgis/qgis_bridge/run_w27.py --trials 3`　产物：`artifacts/qgis_real/out/w27_t*.png`　结果：`w27_results.json`　机械：`scn_style.py`（样式）+ `map_gui.py`（制图）
+
+W25/W26 把"能出图"做到了；本轮把**视觉**推到"智慧城市数字孪生/指挥中心"风格：
+暗色画布 + 基础层弱化（藏青省界 `#16283F` / 暗蓝道路 `#2C4A6E` / 灰蓝机场港口 `#4A6B8A`·`#556B8C`）
++ 核心层 cities **内置 Inferno 渐进**（黑→紫→红→橙，冷端到暖端，无大面积纯红）
++ 满幅地图 (0,0,297,210) + HTML 白标题 + 暗色图例面板（`#0F1E33`）浅色字（`#DCE9F7`）。
+**3/3 全绿、中位 167.8 s**（三试 167.1/167.8/167.8，方差极小）：
+
+| 段 | canvas_bg | 4 层改色（每层） | cities+Inferno | new_layout | add_map | add_title | add_legend | export | close | 总计 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 中位 | 10.5 s | 8.1–9.0 s | 32.1 s | 16.7 s | 8.6 s | 10.3 s | 38.9 s | 14.2 s | 1.4 s | **167.8 s** |
+
+真值（三试逐位一致）：renderer = graduated(pop_max, Color, Quantile 5)、画布 bg = `#0a1220`、
+布局项含 Map+Label(HTML 标题)+Legend、PNG 3507×2480 @300dpi / 1.91 MB、**平均亮度 26.4（<140 暗底）**、亮度跨度 244。
+
+**本轮探明的四条硬经验**：
+
+1. **拾色器有两种形态，先查模态再查内联**：图层属性里的颜色是**模态 'Select Color'**
+   （主窗口树里的 child 窗口，HTML notation + 确定）；而**布局设计器右栏的颜色是"内联拾色器"**
+   ——点击色块后拾色器**替换整个 Item Properties 面板**（头部 'Select … Color' + 底部
+   `HTML notation` 编辑框），写 hex + **Enter 即生效**，再点**头部左侧返回箭头**退出。
+   两者共用 `apply_color_dialog`（本轮两种形态各跑通：画布底/层色=模态，图例底/字色=内联）。
+2. **色带按钮的菜单在右端**：`QgsColorRampButton` 点**中间**打开的是 'Select Color Ramp'
+   编辑器（Color1/Color2 提交不落盘，实测弃）；点**右边缘**（rect.right−6）才出菜单：
+   常用色带直列 + 'All Color Ramps' 子菜单（Inferno/Magma/Plasma/Mako…）→ 反馈导航 + Enter。
+3. **分区头是 16×16 箭头 Button（文本=分区名）**：图例 Item Properties 的长分区列表里，
+   **折叠**上方分区（Main Properties / Legend Items / Fonts…）可把深处分区（Background）
+   "挤"进可视区——比滚动（实测滚不动）可靠；`Background` 启用是**宽 CheckBox**、
+   颜色是宽 256 的 Button；`Fonts → Item font` 会把面板换成 Text Format 组件
+   （Color 行色块 = 该行**最左**的空文本宽带按钮，别选最右的 '…' 数据定义按钮）。
+4. **QGIS 3.44 在"关掉带图例的布局设计器"后可能异步崩溃**（Qt 延迟析构；两次砸在
+   后续的 reset 调用上）→ 关设计器后留 2 s 缓冲 + `ensure_qgis()` 探测/自动重启
+   （`PYQGIS_STARTUP` 重启后自动重连桥 + 重最大化窗口），基线三试零中断。
+
+**局限**：色带只用内置（自定义渐变编辑器未通）；标题字号/图例字体走 HTML 与 Text Format
+组件而非字体对话框；单主题（风格族、多指标同图未做）。**下一步**：风格族（暗/亮/复古）
+参数化 + 排水业务图层（管段健康度 = Inferno 同族换列）。
