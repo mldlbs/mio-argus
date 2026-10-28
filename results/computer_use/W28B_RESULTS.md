@@ -1,0 +1,157 @@
+# W28b 结果：跨软件迁移（A' 路线门控）
+
+> 复现：
+> ```
+> # 0) 一次性：抓 QGIS 评测集（唯一需要 QGIS 在跑的步骤）
+> python experiments/computer_use/eval_transfer.py --capture-qgis
+> # 1) 微调（Notepad / QGIS 各一臂）
+> python experiments/computer_use/train_inloop.py --apps notepad --epochs 60
+> python experiments/computer_use/train_inloop.py --apps qgis    --epochs 60
+> # 2) 三臂评测
+> python experiments/computer_use/eval_transfer.py --ckpt artifacts/checkpoints/inloop_notepad.pth \
+>     --app notepad --train-meta artifacts/checkpoints/inloop_notepad.json --split val --tag E1_notepad_in_domain
+> python experiments/computer_use/eval_transfer.py --ckpt artifacts/checkpoints/inloop_qgis.pth \
+>     --app notepad --train-meta artifacts/checkpoints/inloop_notepad.json --split val --tag E2_qgis_to_notepad
+> python experiments/computer_use/eval_transfer.py --ckpt artifacts/checkpoints/inloop_notepad.pth \
+>     --app qgis --mix-demos 6 --tag E3b_notepad_to_qgis_mixed
+> ```
+> 脚本：`experiments/computer_use/train_inloop.py`、`experiments/computer_use/eval_transfer.py`
+> 数据：`results/computer_use/transfer.json`
+> 设计：[docs/taskhub/c3ecabb0/plan.md](../../docs/taskhub/c3ecabb0/plan.md) §2 W28b
+
+---
+
+## 1. 一句话结论
+
+> **门控不通过：跨软件迁移没有被测到，测到的只有标签先验。**
+> Notepad 微调后模型在 QGIS 上"动作准确率 100%"，但（a）6 条标签全是 click，
+> 预测 click 不要钱；（b）换成 7 click + 2 press 的混合集后准确率 **77.8% = 多数类基线**，lift **恰好 0**；
+> （c）坐标命中 **0/6**，预测点全部塌到屏幕中心附近（≈1250,730），离目标按钮 600–1150px；
+> （d）把指令在样本间打乱，结果几乎不变（1434px → 1375px）——**模型没有在用指令定位**。
+> 同时域内控制（E1）也不成立：Notepad 留出任务上坐标命中 0/2、中位误差 206px，
+> 训练集内 188px，**加到 150 epoch 反而更差（290px）——不是训练不足，是学不到**。
+> **"先改表征/坐标目标，再谈数据规模"**（plan 的 `<10%` 分支）。
+
+---
+
+## 2. 设置与量具
+
+### 2.1 数据
+
+| 集合 | 条数 | 任务数 | 动作分布 | 用途 |
+|---|---|---|---|---|
+| Notepad 采集（`collect_notepad.py`） | 93 | 11 | click 37 / type 22 / hotkey 19 / press 12 | E1 训练与留出 |
+| QGIS 采集（`collect_inloop.py` v00） | 32 | 1 | **click 1 / press 31**（同一指令重复） | E2 训练（**退化，见 §5**） |
+| QGIS 评测（`--capture-qgis`） | 6 | 1 | click 6（6 条工具栏指令，W28 同题） | E3 主评测 |
+| QGIS 混合评测 | 9 | — | click 7 / press 2 | E3 动作指标去偏 |
+
+- Notepad 扰动覆盖四类：drift 44 / occlusion 22 / focus_error 16 / nominal 8；17 条不同指令。
+- **QGIS 评测集的 rect 是现场 UIA 实测的**，与 W28 `w28_results.json` 记录的 6 个按钮 rect 逐像素一致
+  （`Zoom Full [359,49,391,80]` 等），因此 E0/E3 与 W28 的 0% 可直接对比。
+- 采集只落"动作前截图 + 动作标签 + 目标 rect"，评测全程离线，不需要软件在跑。
+
+### 2.2 训练
+
+- 架构沿用 `ComputerUseModelV3`：ViT + GPT-2 冻结，LoRA r=16 + 三个头可训练（30.8M / 220M）。
+- 坐标目标用 **`norm_coord`**（屏无关，x/W、y/H），不再按 1920×1080 硬编码。
+- 按任务切分 train/val（避免同屏泄漏），类权重采样，Adam lr 1e-4，60 epoch。
+- 两处必须记录的实现事实：
+  1. **梯度裁剪是必需的**：不裁剪时坐标头在几十步内饱和到 (0,1) 并卡死（8 样本过拟合测试复现）。
+  2. 模型选择不能只看动作准确率：早期 epoch 动作已 100% 但坐标头还没学，联合指标
+     `action_acc − 0.5·coord_mae` 才不会选到废点。
+
+---
+
+## 3. 结果
+
+| 臂 | 训练数据 | 评测集 | 动作准确率 | 多数类基线 | 坐标中位误差 | 命中率 |
+|---|---|---|---|---|---|---|
+| **E0** 基线 v3（W28 复现） | — | QGIS 6 指令 | **0.000** | 1.000 | — | — |
+| **E0b** 基线 v3（去偏） | — | QGIS 混合 9 | 0.000 | 0.778 | 486 px | 0/6 |
+| **E1** Notepad 域内 | Notepad 82 | Notepad 留出 11 | 1.000 | 0.455 | 206 px | **0/2** |
+| **E1b** 同臂训练集内 | Notepad 82 | Notepad 训练 82 | 1.000 | 0.390 | 188 px | **0/10** |
+| **E2** QGIS→Notepad | QGIS 32（退化） | Notepad 留出 11 | 0.364 | 0.455 | 1425 px | 0/2 |
+| **E3** Notepad→QGIS | Notepad 82 | QGIS 6 指令 | 1.000 | 1.000 | **1434 px** | **0/6** |
+| **E3b** 同上（去偏） | Notepad 82 | QGIS 混合 9 | 0.778 | 0.778 | 1442 px | 0/6 |
+| **C1** 指令打乱对照 | Notepad 82 | QGIS 6（指令轮换） | 1.000 | 1.000 | 1375 px | 0/6 |
+
+- E0 与 W28 一致（动作 0%、坐标中位 475.6px → 本轮 486px），说明量具可复现。
+- E3 的 100% 与 E3b 的 77.8% 是同一模型：**前者是标签单一造成的假象，后者才是可比的口径**（lift = 0.000）。
+- E2 低于多数类基线（0.364 < 0.455），且训练集只有 1 个有效动作样本，**不构成证据**。
+
+---
+
+## 4. 三条诊断
+
+### 4.1 动作层：模型学到的是"该点"，不是"点哪里"
+
+QGIS 6 条指令全为 click，任何"全押 click"的模型都能拿 100%。把真实采集的 press 样本混进来后，
+准确率精确落在多数类基线上（0.778 vs 0.778），**增益为零**。
+结论：Notepad 微调确实把基线的 scroll 偏置改成了 click 偏置（E0 全 scroll → E3 全 click），
+但这属于输出先验的迁移，不是能力迁移。
+
+### 4.2 坐标层：预测塌到屏幕中心，且与指令无关
+
+- E3 六个预测点：`[1277,765] [1246,731] [1203,764] [1274,739] [1116,563] [1295,730]`
+  —— 集中在 (1280,720) 附近，即**屏幕几何中心**。
+- 目标按钮在 `y≈49–119`、`x≈359–754`，距离 626–1142px。
+- 把指令打乱后，坐标中位误差 1434 → 1375px（变化 4%），**指令几乎不影响预测**。
+- 一个更硬的对照：Notepad 训练集 click 质心是 (730,538)，离按钮中位 531px；
+  模型给出的 1434px 说明它不是输出训练集先验，而是对 OOD 帧退化成"输出 0.5"。
+
+### 4.3 域内控制也不成立
+
+E1 动作 100%，但坐标留出 0/2、206px；**训练集内**也只有 188px（0/10 命中），
+加到 150 epoch 反而更差（290px）。所以这不是"训练不够"，而是**连训练集都没拟合**——
+坐标目标/表征这一层就没打通，E3 的坐标失败**不能**归因于跨软件。
+这也是本轮最重要的方法学结论：
+**没有域内坐标控制，跨软件坐标迁移的数字不可解释**。
+
+---
+
+## 5. 局限与数据缺口（必须记住）
+
+- QGIS 采集（`collect_inloop.py` v00）只跑通了 symbology 开头，产出 1 click + 31 条重复 press，
+  **不能用作训练集**；E2 因此无效。
+- QGIS 评测集 n=6（单帧、单窗口状态）。0/6 仍足以否掉"≥30% 命中"，但无法给出细粒度置信区间。
+- Notepad 留出只有 11 条（2 条带 rect），坐标指标方差大。
+- 未做超参搜索；60/150 epoch 的差别见 §6。
+
+---
+
+## 6. 长训练对照（150 epoch）
+
+见 `artifacts/checkpoints/inloop_notepad_long.json`；用于区分"没学会"与"不会泛化"。
+
+| 指标 | 60 epoch | 150 epoch |
+|---|---|---|
+| 训练集内坐标中位误差 | 188 px | **290 px** |
+| 留出坐标中位误差 | 206 px | **239 px** |
+| QGIS 坐标中位误差（E3） | 1434 px | **1570 px** |
+| QGIS 动作准确率（混合集） | 0.778 | **0.778 = 基线** |
+| 最佳 epoch | 52 | 43 |
+
+**长训练没有改善，反而略差**：训练集内误差都降不到 100px 以内（命中 0/10），
+说明这不是"训练不足"，而是**当前坐标目标 + 表征下学不到屏幕位置**。
+150 epoch 后 QGIS 上仍退化到屏幕中心（1570px），动作准确率依旧精确等于多数类基线。
+
+---
+
+## 7. 判定与下一步
+
+按 plan §2 的判定规则：
+
+- 字面上的"E3 动作准确率 ≥ 30%"被满足（100%），但该指标在单一标签集上**没有判别力**，
+  且在去偏口径下 lift = 0 —— **不作为通过依据**。
+- 坐标口径（真正测"看没看见该点的地方"）E3 = **0% < 10%**，进入 plan 的
+  **"先改表征，复测后再定数据规模"** 分支。
+
+具体动作（按顺序）：
+
+1. **先修坐标目标**：改为 affordance 中心 + 控件相对坐标（相对窗口/工具栏，而非全屏归一），
+   UI 树文本进指令；并加"域内坐标控制必须显著 > 0"作为一切迁移实验的前置门。
+2. **量具升级**（本轮已落地，后续沿用）：动作指标必须同时报 (a) lift over majority、
+   (b) 指令打乱对照、(c) 坐标命中率，三者缺一不得下结论。
+3. **补 QGIS 示范**：修正 `collect_inloop.py` 的早期中断（Project Properties 菜单循环），
+   让 QGIS 既有训练集也有可用的留出任务；否则 E2/E3 只能停在 6 条工具栏指令上。
+4. **W29 维持 gated**：以上 1–3 未过之前不扩数据规模。

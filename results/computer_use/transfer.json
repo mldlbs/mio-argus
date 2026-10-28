@@ -1,0 +1,4277 @@
+{
+  "meta": {
+    "updated_at": "2026-10-28T12:22:18",
+    "qgis_eval": "artifacts\\computer_use_inloop\\eval_qgis\\frames.json"
+  },
+  "runs": {
+    "E0_base_v3_qgis": {
+      "n": 6,
+      "action_acc": 0.0,
+      "per_class": {
+        "click": {
+          "n": 6,
+          "correct": 0
+        },
+        "type": {
+          "n": 0,
+          "correct": 0
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 0,
+          "correct": 0
+        },
+        "press": {
+          "n": 0,
+          "correct": 0
+        }
+      },
+      "coord_n": 0,
+      "coord_mae_norm": null,
+      "coord_med_norm": null,
+      "coord_med_px": null,
+      "hit_n": 0,
+      "hit_rate": null,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "qgis_eval:00",
+          "instruction": "click the Zoom Full button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            1.3,
+            0.4
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            359,
+            49,
+            391,
+            80
+          ],
+          "dist_center_px": 379.1
+        },
+        {
+          "id": "qgis_eval:01",
+          "instruction": "click the Zoom to Selection button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            1.3,
+            0.4
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            392,
+            49,
+            424,
+            80
+          ],
+          "dist_center_px": 411.7
+        },
+        {
+          "id": "qgis_eval:02",
+          "instruction": "click the Zoom Last button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            1.5,
+            0.4
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            491,
+            49,
+            523,
+            80
+          ],
+          "dist_center_px": 509.6
+        },
+        {
+          "id": "qgis_eval:03",
+          "instruction": "click the Zoom to Native Resolution button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            1.4,
+            0.4
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            458,
+            49,
+            490,
+            80
+          ],
+          "dist_center_px": 476.9
+        },
+        {
+          "id": "qgis_eval:04",
+          "instruction": "click the Refresh button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            0.1,
+            0.0
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            722,
+            49,
+            754,
+            80
+          ],
+          "dist_center_px": 740.7
+        },
+        {
+          "id": "qgis_eval:05",
+          "instruction": "click the Undo button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            0.7,
+            0.2
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            647,
+            88,
+            679,
+            119
+          ],
+          "dist_center_px": 670.3
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 1.0
+      },
+      "app": "qgis",
+      "split": "all",
+      "n_rows": 6,
+      "ckpt": "artifacts\\checkpoints\\computer_use_model_v3_real.pth",
+      "note": "W28 baseline ckpt, zero-shot QGIS dry protocol (6 toolbar commands)",
+      "ts": "2026-10-28T11:41:45"
+    },
+    "E3_notepad_to_qgis": {
+      "n": 6,
+      "action_acc": 1.0,
+      "per_class": {
+        "click": {
+          "n": 6,
+          "correct": 6
+        },
+        "type": {
+          "n": 0,
+          "correct": 0
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 0,
+          "correct": 0
+        },
+        "press": {
+          "n": 0,
+          "correct": 0
+        }
+      },
+      "coord_n": 6,
+      "coord_mae_norm": 0.527465765674909,
+      "coord_med_norm": 0.5600442886352539,
+      "coord_med_px": 1433.71337890625,
+      "hit_n": 6,
+      "hit_rate": 0.0,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "qgis_eval:00",
+          "instruction": "click the Zoom Full button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1277.6,
+            764.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            359,
+            49,
+            391,
+            80
+          ],
+          "dist_center_px": 1142.4
+        },
+        {
+          "id": "qgis_eval:01",
+          "instruction": "click the Zoom to Selection button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1246.5,
+            731.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            392,
+            49,
+            424,
+            80
+          ],
+          "dist_center_px": 1071.3
+        },
+        {
+          "id": "qgis_eval:02",
+          "instruction": "click the Zoom Last button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1203.1,
+            764.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            491,
+            49,
+            523,
+            80
+          ],
+          "dist_center_px": 987.0
+        },
+        {
+          "id": "qgis_eval:03",
+          "instruction": "click the Zoom to Native Resolution button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1274.5,
+            739.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            458,
+            49,
+            490,
+            80
+          ],
+          "dist_center_px": 1046.9
+        },
+        {
+          "id": "qgis_eval:04",
+          "instruction": "click the Refresh button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1116.0,
+            563.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            722,
+            49,
+            754,
+            80
+          ],
+          "dist_center_px": 625.8
+        },
+        {
+          "id": "qgis_eval:05",
+          "instruction": "click the Undo button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1295.0,
+            730.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            647,
+            88,
+            679,
+            119
+          ],
+          "dist_center_px": 890.0
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 1.0
+      },
+      "app": "qgis",
+      "split": "all",
+      "n_rows": 6,
+      "ckpt": "artifacts\\checkpoints\\inloop_notepad.pth",
+      "note": "E3: train Notepad only -> zero-shot QGIS toolbar (W28 dry protocol)",
+      "ts": "2026-10-28T12:01:33"
+    },
+    "E1_notepad_in_domain": {
+      "n": 11,
+      "action_acc": 1.0,
+      "per_class": {
+        "click": {
+          "n": 5,
+          "correct": 5
+        },
+        "type": {
+          "n": 3,
+          "correct": 3
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 1,
+          "correct": 1
+        },
+        "press": {
+          "n": 2,
+          "correct": 2
+        }
+      },
+      "coord_n": 5,
+      "coord_mae_norm": 0.0965572215616703,
+      "coord_med_norm": 0.08055898547172546,
+      "coord_med_px": 206.2310028076172,
+      "hit_n": 2,
+      "hit_rate": 0.0,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "np_0001:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            889.1,
+            561.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            895.7,
+            561.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:1",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            393.8,
+            448.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            91.7,
+            38.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:3",
+          "instruction": "Type 'cross software transfer experiment sample note'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            511.7,
+            535.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:4",
+          "instruction": "Press ctrl+f",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            195.4,
+            71.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:5",
+          "instruction": "Close the stray Find bar with Escape",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            919.0,
+            473.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:6",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            420.8,
+            363.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            192,
+            224,
+            240,
+            256
+          ],
+          "dist_center_px": 239.0
+        },
+        {
+          "id": "np_0010:7",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            455.0,
+            390.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            197,
+            458,
+            419,
+            487
+          ],
+          "dist_center_px": 168.2
+        },
+        {
+          "id": "np_0010:8",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            896.9,
+            693.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            324,
+            749,
+            1355,
+            768
+          ],
+          "dist_center_px": 87.1
+        },
+        {
+          "id": "rp_0002:0",
+          "instruction": "Type 'notepad teacher chain writes and saves this text'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            349.6,
+            439.0
+          ],
+          "scroll_pred": 2
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 0.45454545454545453
+      },
+      "app": "notepad",
+      "split": "val",
+      "n_rows": 11,
+      "ckpt": "artifacts\\checkpoints\\inloop_notepad.pth",
+      "note": "E1 control: train Notepad, held-out Notepad tasks",
+      "ts": "2026-10-28T12:00:45"
+    },
+    "E2_qgis_to_notepad": {
+      "n": 11,
+      "action_acc": 0.36363636363636365,
+      "per_class": {
+        "click": {
+          "n": 5,
+          "correct": 2
+        },
+        "type": {
+          "n": 3,
+          "correct": 0
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 1,
+          "correct": 0
+        },
+        "press": {
+          "n": 2,
+          "correct": 2
+        }
+      },
+      "coord_n": 5,
+      "coord_mae_norm": 0.4769668608903885,
+      "coord_med_norm": 0.5564793944358826,
+      "coord_med_px": 1424.5872497558594,
+      "hit_n": 2,
+      "hit_rate": 0.0,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "np_0001:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            15.8,
+            8.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            16.1,
+            9.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:1",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "press",
+          "action_ok": false,
+          "xy_pred_px": [
+            20.4,
+            6.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            5.0,
+            0.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:3",
+          "instruction": "Type 'cross software transfer experiment sample note'",
+          "action_true": "type",
+          "action_pred": "press",
+          "action_ok": false,
+          "xy_pred_px": [
+            13.9,
+            4.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:4",
+          "instruction": "Press ctrl+f",
+          "action_true": "hotkey",
+          "action_pred": "click",
+          "action_ok": false,
+          "xy_pred_px": [
+            179.9,
+            18.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:5",
+          "instruction": "Close the stray Find bar with Escape",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            105.3,
+            7.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:6",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "press",
+          "action_ok": false,
+          "xy_pred_px": [
+            8.9,
+            3.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            192,
+            224,
+            240,
+            256
+          ],
+          "dist_center_px": 314.2
+        },
+        {
+          "id": "np_0010:7",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "press",
+          "action_ok": false,
+          "xy_pred_px": [
+            6.7,
+            3.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            197,
+            458,
+            419,
+            487
+          ],
+          "dist_center_px": 557.8
+        },
+        {
+          "id": "np_0010:8",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "press",
+          "action_ok": false,
+          "xy_pred_px": [
+            3.1,
+            0.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            324,
+            749,
+            1355,
+            768
+          ],
+          "dist_center_px": 1128.7
+        },
+        {
+          "id": "rp_0002:0",
+          "instruction": "Type 'notepad teacher chain writes and saves this text'",
+          "action_true": "type",
+          "action_pred": "press",
+          "action_ok": false,
+          "xy_pred_px": [
+            19.6,
+            5.4
+          ],
+          "scroll_pred": 2
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 0.45454545454545453
+      },
+      "app": "notepad",
+      "split": "val",
+      "n_rows": 11,
+      "ckpt": "artifacts\\checkpoints\\inloop_qgis.pth",
+      "note": "E2: train QGIS only (32 demos: 1 click + 31 press) -> Notepad held-out",
+      "ts": "2026-10-28T12:01:09"
+    },
+    "C1_E3_shuffled": {
+      "n": 6,
+      "action_acc": 1.0,
+      "per_class": {
+        "click": {
+          "n": 6,
+          "correct": 6
+        },
+        "type": {
+          "n": 0,
+          "correct": 0
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 0,
+          "correct": 0
+        },
+        "press": {
+          "n": 0,
+          "correct": 0
+        }
+      },
+      "coord_n": 6,
+      "coord_mae_norm": 0.527392789721489,
+      "coord_med_norm": 0.5371989607810974,
+      "coord_med_px": 1375.2293395996094,
+      "hit_n": 6,
+      "hit_rate": 0.0,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "qgis_eval:00",
+          "instruction": "click the Zoom to Selection button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1246.5,
+            731.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            359,
+            49,
+            391,
+            80
+          ],
+          "dist_center_px": 1097.4
+        },
+        {
+          "id": "qgis_eval:01",
+          "instruction": "click the Zoom Last button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1203.1,
+            764.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            392,
+            49,
+            424,
+            80
+          ],
+          "dist_center_px": 1059.1
+        },
+        {
+          "id": "qgis_eval:02",
+          "instruction": "click the Zoom to Native Resolution button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1274.5,
+            739.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            491,
+            49,
+            523,
+            80
+          ],
+          "dist_center_px": 1021.9
+        },
+        {
+          "id": "qgis_eval:03",
+          "instruction": "click the Refresh button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1116.0,
+            563.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            458,
+            49,
+            490,
+            80
+          ],
+          "dist_center_px": 812.9
+        },
+        {
+          "id": "qgis_eval:04",
+          "instruction": "click the Undo button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1295.0,
+            730.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            722,
+            49,
+            754,
+            80
+          ],
+          "dist_center_px": 868.0
+        },
+        {
+          "id": "qgis_eval:05",
+          "instruction": "click the Zoom Full button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1277.6,
+            764.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            647,
+            88,
+            679,
+            119
+          ],
+          "dist_center_px": 902.8
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 1.0
+      },
+      "app": "qgis",
+      "split": "all",
+      "n_rows": 6,
+      "ckpt": "artifacts\\checkpoints\\inloop_notepad.pth",
+      "note": "control: instructions rotated across QGIS samples",
+      "ts": "2026-10-28T12:02:59"
+    },
+    "E3b_notepad_to_qgis_mixed": {
+      "n": 9,
+      "action_acc": 0.7777777777777778,
+      "per_class": {
+        "click": {
+          "n": 7,
+          "correct": 7
+        },
+        "type": {
+          "n": 0,
+          "correct": 0
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 0,
+          "correct": 0
+        },
+        "press": {
+          "n": 2,
+          "correct": 0
+        }
+      },
+      "coord_n": 7,
+      "coord_mae_norm": 0.5333117204053062,
+      "coord_med_norm": 0.5632879734039307,
+      "coord_med_px": 1442.0172119140625,
+      "hit_n": 6,
+      "hit_rate": 0.0,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "qgis_eval:00",
+          "instruction": "click the Zoom Full button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1277.6,
+            764.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            359,
+            49,
+            391,
+            80
+          ],
+          "dist_center_px": 1142.4
+        },
+        {
+          "id": "qgis_eval:01",
+          "instruction": "click the Zoom to Selection button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1246.5,
+            731.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            392,
+            49,
+            424,
+            80
+          ],
+          "dist_center_px": 1071.3
+        },
+        {
+          "id": "qgis_eval:02",
+          "instruction": "click the Zoom Last button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1203.1,
+            764.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            491,
+            49,
+            523,
+            80
+          ],
+          "dist_center_px": 987.0
+        },
+        {
+          "id": "qgis_eval:03",
+          "instruction": "click the Zoom to Native Resolution button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1274.5,
+            739.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            458,
+            49,
+            490,
+            80
+          ],
+          "dist_center_px": 1046.9
+        },
+        {
+          "id": "qgis_eval:04",
+          "instruction": "click the Refresh button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1116.0,
+            563.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            722,
+            49,
+            754,
+            80
+          ],
+          "dist_center_px": 625.8
+        },
+        {
+          "id": "qgis_eval:05",
+          "instruction": "click the Undo button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1295.0,
+            730.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            647,
+            88,
+            679,
+            119
+          ],
+          "dist_center_px": 890.0
+        },
+        {
+          "id": "qgis-v00-00000",
+          "instruction": "click the Project menu",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1052.5,
+            616.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "qgis-v00-00001",
+          "instruction": "press Down to highlight the Properties… menu item",
+          "action_true": "press",
+          "action_pred": "click",
+          "action_ok": false,
+          "xy_pred_px": [
+            650.2,
+            483.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "qgis-v00-00031",
+          "instruction": "press Escape to close the menu",
+          "action_true": "press",
+          "action_pred": "click",
+          "action_ok": false,
+          "xy_pred_px": [
+            928.0,
+            682.9
+          ],
+          "scroll_pred": 2
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 0.7777777777777778
+      },
+      "app": "qgis",
+      "split": "all",
+      "n_rows": 9,
+      "ckpt": "artifacts\\checkpoints\\inloop_notepad.pth",
+      "note": "E3 with mixed actions (6 toolbar clicks + real QGIS press samples); lift over majority = 0",
+      "ts": "2026-10-28T12:09:54"
+    },
+    "E0b_base_v3_mixed": {
+      "n": 9,
+      "action_acc": 0.0,
+      "per_class": {
+        "click": {
+          "n": 7,
+          "correct": 0
+        },
+        "type": {
+          "n": 0,
+          "correct": 0
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 0,
+          "correct": 0
+        },
+        "press": {
+          "n": 2,
+          "correct": 0
+        }
+      },
+      "coord_n": 7,
+      "coord_mae_norm": 0.1851986420473882,
+      "coord_med_norm": 0.1899004727602005,
+      "coord_med_px": 486.1452102661133,
+      "hit_n": 6,
+      "hit_rate": 0.0,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "qgis_eval:00",
+          "instruction": "click the Zoom Full button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            1.3,
+            0.4
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            359,
+            49,
+            391,
+            80
+          ],
+          "dist_center_px": 379.1
+        },
+        {
+          "id": "qgis_eval:01",
+          "instruction": "click the Zoom to Selection button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            1.3,
+            0.4
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            392,
+            49,
+            424,
+            80
+          ],
+          "dist_center_px": 411.7
+        },
+        {
+          "id": "qgis_eval:02",
+          "instruction": "click the Zoom Last button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            1.5,
+            0.4
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            491,
+            49,
+            523,
+            80
+          ],
+          "dist_center_px": 509.6
+        },
+        {
+          "id": "qgis_eval:03",
+          "instruction": "click the Zoom to Native Resolution button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            1.4,
+            0.4
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            458,
+            49,
+            490,
+            80
+          ],
+          "dist_center_px": 476.9
+        },
+        {
+          "id": "qgis_eval:04",
+          "instruction": "click the Refresh button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            0.1,
+            0.0
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            722,
+            49,
+            754,
+            80
+          ],
+          "dist_center_px": 740.7
+        },
+        {
+          "id": "qgis_eval:05",
+          "instruction": "click the Undo button",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            0.7,
+            0.2
+          ],
+          "scroll_pred": 1,
+          "target_rect": [
+            647,
+            88,
+            679,
+            119
+          ],
+          "dist_center_px": 670.3
+        },
+        {
+          "id": "qgis-v00-00000",
+          "instruction": "click the Project menu",
+          "action_true": "click",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            0.2,
+            0.0
+          ],
+          "scroll_pred": 1
+        },
+        {
+          "id": "qgis-v00-00001",
+          "instruction": "press Down to highlight the Properties… menu item",
+          "action_true": "press",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            19.6,
+            14.2
+          ],
+          "scroll_pred": 1
+        },
+        {
+          "id": "qgis-v00-00031",
+          "instruction": "press Escape to close the menu",
+          "action_true": "press",
+          "action_pred": "scroll",
+          "action_ok": false,
+          "xy_pred_px": [
+            5.9,
+            2.5
+          ],
+          "scroll_pred": 1
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 0.7777777777777778
+      },
+      "app": "qgis",
+      "split": "all",
+      "n_rows": 9,
+      "ckpt": "artifacts\\checkpoints\\computer_use_model_v3_real.pth",
+      "note": "baseline v3 on mixed QGIS set",
+      "ts": "2026-10-28T12:10:52"
+    },
+    "E1b_notepad_insample": {
+      "n": 82,
+      "action_acc": 1.0,
+      "per_class": {
+        "click": {
+          "n": 32,
+          "correct": 32
+        },
+        "type": {
+          "n": 22,
+          "correct": 22
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 18,
+          "correct": 18
+        },
+        "press": {
+          "n": 10,
+          "correct": 10
+        }
+      },
+      "coord_n": 32,
+      "coord_mae_norm": 0.08606793824583292,
+      "coord_med_norm": 0.0733407475054264,
+      "coord_med_px": 187.7523136138916,
+      "hit_n": 10,
+      "hit_rate": 0.0,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "np_0002:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            850.2,
+            533.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:1",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            360.7,
+            423.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            65.1,
+            52.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:3",
+          "instruction": "Type 'grounding verification and recovery loop'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            453.4,
+            428.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            213.0,
+            209.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            494,
+            126,
+            542,
+            158
+          ],
+          "dist_center_px": 312.5
+        },
+        {
+          "id": "np_0002:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            272.5,
+            254.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            499,
+            360,
+            721,
+            389
+          ],
+          "dist_center_px": 358.3
+        },
+        {
+          "id": "np_0002:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            990.8,
+            722.8
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            626,
+            651,
+            1657,
+            670
+          ],
+          "dist_center_px": 163.1
+        },
+        {
+          "id": "np_0002:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            502.5,
+            275.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            332.5,
+            154.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1310.9,
+            734.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1477,
+            753,
+            1565,
+            779
+          ],
+          "dist_center_px": 212.5
+        },
+        {
+          "id": "np_0002:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            460.3,
+            246.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            870.9,
+            540.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:1",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            301.7,
+            375.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            68.5,
+            55.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:3",
+          "instruction": "Type 'model in the loop deterministic execution demo'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            503.5,
+            400.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            225.7,
+            216.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            128,
+            146,
+            176,
+            178
+          ],
+          "dist_center_px": 91.5
+        },
+        {
+          "id": "np_0003:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            285.3,
+            259.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            133,
+            380,
+            355,
+            409
+          ],
+          "dist_center_px": 141.1
+        },
+        {
+          "id": "np_0003:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            949.1,
+            698.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            260,
+            671,
+            1291,
+            690
+          ],
+          "dist_center_px": 174.6
+        },
+        {
+          "id": "np_0003:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            507.2,
+            282.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            322.8,
+            156.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1298.5,
+            727.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1111,
+            773,
+            1199,
+            799
+          ],
+          "dist_center_px": 154.9
+        },
+        {
+          "id": "np_0003:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            437.1,
+            248.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            850.5,
+            535.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:1",
+          "instruction": "Type 'model in the loop deterministic execution demo'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            514.8,
+            408.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            63.8,
+            48.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:3",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            364.1,
+            431.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            227.9,
+            218.8
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            114,
+            146,
+            162,
+            178
+          ],
+          "dist_center_px": 106.4
+        },
+        {
+          "id": "np_0004:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            290.1,
+            266.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            119,
+            380,
+            341,
+            409
+          ],
+          "dist_center_px": 141.5
+        },
+        {
+          "id": "np_0004:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            932.8,
+            703.8
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            246,
+            671,
+            1277,
+            690
+          ],
+          "dist_center_px": 172.9
+        },
+        {
+          "id": "np_0004:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            473.8,
+            252.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            297.7,
+            141.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1303.6,
+            734.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1097,
+            773,
+            1185,
+            799
+          ],
+          "dist_center_px": 170.5
+        },
+        {
+          "id": "np_0004:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            411.7,
+            229.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            885.1,
+            554.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:1",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            326.8,
+            385.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            62.0,
+            44.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:3",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            327.4,
+            389.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:4",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            332.3,
+            395.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:5",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            54.4,
+            34.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:6",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            336.4,
+            401.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            843.7,
+            532.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:1",
+          "instruction": "Type 'notepad teacher chain writes and saves this text'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            347.0,
+            435.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            51.5,
+            33.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:3",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            377.4,
+            448.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:4",
+          "instruction": "Type 'notepad teacher chain writes and saves this text'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            377.3,
+            470.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:5",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            48.6,
+            28.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:6",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            377.4,
+            436.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1060.2,
+            653.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:1",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            543.8,
+            526.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            108.8,
+            35.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:3",
+          "instruction": "Type 'grounding verification and recovery loop'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            740.0,
+            562.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            469.2,
+            389.8
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            609,
+            211,
+            657,
+            243
+          ],
+          "dist_center_px": 230.9
+        },
+        {
+          "id": "np_0007:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            586.8,
+            463.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            614,
+            445,
+            836,
+            474
+          ],
+          "dist_center_px": 138.3
+        },
+        {
+          "id": "np_0007:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1215.9,
+            843.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            741,
+            736,
+            1772,
+            755
+          ],
+          "dist_center_px": 106.1
+        },
+        {
+          "id": "np_0007:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            605.6,
+            239.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            400.1,
+            138.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1448.5,
+            810.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1592,
+            838,
+            1680,
+            864
+          ],
+          "dist_center_px": 191.9
+        },
+        {
+          "id": "np_0007:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            510.6,
+            218.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            856.4,
+            538.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:1",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            363.7,
+            426.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            67.4,
+            54.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:3",
+          "instruction": "Type 'model in the loop deterministic execution demo'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            519.8,
+            396.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            338.2,
+            308.8
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            182,
+            319,
+            230,
+            351
+          ],
+          "dist_center_px": 134.8
+        },
+        {
+          "id": "np_0008:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            405.2,
+            361.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            187,
+            553,
+            409,
+            582
+          ],
+          "dist_center_px": 232.1
+        },
+        {
+          "id": "np_0008:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1053.0,
+            775.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            314,
+            844,
+            1345,
+            863
+          ],
+          "dist_center_px": 236.9
+        },
+        {
+          "id": "np_0008:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            520.2,
+            231.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            307.1,
+            146.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1380.8,
+            775.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1165,
+            946,
+            1253,
+            972
+          ],
+          "dist_center_px": 251.6
+        },
+        {
+          "id": "np_0008:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            429.3,
+            195.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            874.5,
+            548.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:1",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            378.4,
+            435.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            70.1,
+            53.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:3",
+          "instruction": "Type 'grounding verification and recovery loop'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            478.1,
+            441.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            227.8,
+            224.8
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            88,
+            120,
+            136,
+            152
+          ],
+          "dist_center_px": 145.9
+        },
+        {
+          "id": "np_0009:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            297.5,
+            276.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            93,
+            354,
+            315,
+            383
+          ],
+          "dist_center_px": 131.5
+        },
+        {
+          "id": "np_0009:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            909.5,
+            700.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            220,
+            645,
+            1251,
+            664
+          ],
+          "dist_center_px": 179.9
+        },
+        {
+          "id": "np_0009:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            510.5,
+            286.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            312.4,
+            155.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1279.1,
+            726.8
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1071,
+            747,
+            1159,
+            773
+          ],
+          "dist_center_px": 167.4
+        },
+        {
+          "id": "np_0009:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            425.6,
+            250.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "rp_0001:0",
+          "instruction": "Type 'notepad teacher chain writes and saves this text'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            368.1,
+            449.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "rp_0003:0",
+          "instruction": "Type 'notepad teacher chain writes and saves this text'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            529.8,
+            559.5
+          ],
+          "scroll_pred": 2
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 0.3902439024390244
+      },
+      "app": "notepad",
+      "split": "train",
+      "n_rows": 82,
+      "ckpt": "artifacts\\checkpoints\\inloop_notepad.pth",
+      "note": "in-sample coordinate control (same ckpt as E1)",
+      "ts": "2026-10-28T11:57:51"
+    },
+    "E1c_long_insample": {
+      "n": 82,
+      "action_acc": 1.0,
+      "per_class": {
+        "click": {
+          "n": 32,
+          "correct": 32
+        },
+        "type": {
+          "n": 22,
+          "correct": 22
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 18,
+          "correct": 18
+        },
+        "press": {
+          "n": 10,
+          "correct": 10
+        }
+      },
+      "coord_n": 32,
+      "coord_mae_norm": 0.11592305946396664,
+      "coord_med_norm": 0.11324046179652214,
+      "coord_med_px": 289.8955821990967,
+      "hit_n": 10,
+      "hit_rate": 0.0,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "np_0002:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            939.0,
+            678.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:1",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            368.3,
+            322.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            81.5,
+            14.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:3",
+          "instruction": "Type 'grounding verification and recovery loop'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            334.0,
+            264.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            490.5,
+            379.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            494,
+            126,
+            542,
+            158
+          ],
+          "dist_center_px": 239.0
+        },
+        {
+          "id": "np_0002:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            551.5,
+            433.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            499,
+            360,
+            721,
+            389
+          ],
+          "dist_center_px": 82.8
+        },
+        {
+          "id": "np_0002:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            876.6,
+            725.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            626,
+            651,
+            1657,
+            670
+          ],
+          "dist_center_px": 272.6
+        },
+        {
+          "id": "np_0002:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            414.6,
+            217.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            268.8,
+            122.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0002:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1295.4,
+            866.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1477,
+            753,
+            1565,
+            779
+          ],
+          "dist_center_px": 246.9
+        },
+        {
+          "id": "np_0002:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            369.9,
+            198.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            926.8,
+            672.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:1",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            382.5,
+            364.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            81.0,
+            15.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:3",
+          "instruction": "Type 'model in the loop deterministic execution demo'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            499.0,
+            273.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            477.5,
+            371.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            128,
+            146,
+            176,
+            178
+          ],
+          "dist_center_px": 387.3
+        },
+        {
+          "id": "np_0003:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            537.7,
+            425.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            133,
+            380,
+            355,
+            409
+          ],
+          "dist_center_px": 295.3
+        },
+        {
+          "id": "np_0003:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            856.5,
+            715.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            260,
+            671,
+            1291,
+            690
+          ],
+          "dist_center_px": 88.2
+        },
+        {
+          "id": "np_0003:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            411.5,
+            212.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            258.2,
+            111.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0003:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1295.3,
+            866.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1111,
+            773,
+            1199,
+            799
+          ],
+          "dist_center_px": 161.6
+        },
+        {
+          "id": "np_0003:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            351.1,
+            178.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            915.4,
+            672.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:1",
+          "instruction": "Type 'model in the loop deterministic execution demo'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            497.3,
+            257.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            66.7,
+            10.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:3",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            357.5,
+            303.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            483.8,
+            378.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            114,
+            146,
+            162,
+            178
+          ],
+          "dist_center_px": 408.0
+        },
+        {
+          "id": "np_0004:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            549.6,
+            434.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            119,
+            380,
+            341,
+            409
+          ],
+          "dist_center_px": 322.1
+        },
+        {
+          "id": "np_0004:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            853.6,
+            716.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            246,
+            671,
+            1277,
+            690
+          ],
+          "dist_center_px": 98.9
+        },
+        {
+          "id": "np_0004:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            398.2,
+            201.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            249.2,
+            104.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0004:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1304.6,
+            872.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1097,
+            773,
+            1185,
+            799
+          ],
+          "dist_center_px": 185.1
+        },
+        {
+          "id": "np_0004:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            341.4,
+            171.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            925.8,
+            674.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:1",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            380.2,
+            361.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            73.9,
+            12.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:3",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            373.4,
+            348.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:4",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            373.9,
+            347.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:5",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            65.1,
+            10.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0005:6",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            371.6,
+            348.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            913.8,
+            670.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:1",
+          "instruction": "Type 'notepad teacher chain writes and saves this text'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            393.2,
+            374.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            63.0,
+            10.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:3",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            351.4,
+            298.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:4",
+          "instruction": "Type 'notepad teacher chain writes and saves this text'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            388.1,
+            363.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:5",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            67.1,
+            11.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0006:6",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            362.6,
+            311.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            988.7,
+            699.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:1",
+          "instruction": "Type 'qgis is a free and open source geographic information system'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            397.4,
+            377.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            113.9,
+            23.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:3",
+          "instruction": "Type 'grounding verification and recovery loop'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            353.0,
+            280.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            594.8,
+            436.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            609,
+            211,
+            657,
+            243
+          ],
+          "dist_center_px": 213.0
+        },
+        {
+          "id": "np_0007:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            674.0,
+            498.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            614,
+            445,
+            836,
+            474
+          ],
+          "dist_center_px": 64.3
+        },
+        {
+          "id": "np_0007:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            990.2,
+            771.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            741,
+            736,
+            1772,
+            755
+          ],
+          "dist_center_px": 267.5
+        },
+        {
+          "id": "np_0007:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            490.4,
+            273.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            317.9,
+            151.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0007:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1355.1,
+            894.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1592,
+            838,
+            1680,
+            864
+          ],
+          "dist_center_px": 284.1
+        },
+        {
+          "id": "np_0007:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            403.3,
+            219.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            913.4,
+            671.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:1",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            358.4,
+            312.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            72.8,
+            13.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:3",
+          "instruction": "Type 'model in the loop deterministic execution demo'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            495.9,
+            263.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            519.4,
+            398.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            182,
+            319,
+            230,
+            351
+          ],
+          "dist_center_px": 319.7
+        },
+        {
+          "id": "np_0008:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            580.1,
+            454.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            187,
+            553,
+            409,
+            582
+          ],
+          "dist_center_px": 303.8
+        },
+        {
+          "id": "np_0008:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            882.2,
+            737.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            314,
+            844,
+            1345,
+            863
+          ],
+          "dist_center_px": 127.7
+        },
+        {
+          "id": "np_0008:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            409.3,
+            217.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            245.9,
+            107.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0008:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1332.9,
+            888.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1165,
+            946,
+            1253,
+            972
+          ],
+          "dist_center_px": 142.6
+        },
+        {
+          "id": "np_0008:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            328.8,
+            164.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            925.7,
+            673.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:1",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            365.1,
+            321.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            78.1,
+            15.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:3",
+          "instruction": "Type 'grounding verification and recovery loop'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            330.7,
+            262.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:4",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            478.1,
+            374.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            88,
+            120,
+            136,
+            152
+          ],
+          "dist_center_px": 436.7
+        },
+        {
+          "id": "np_0009:5",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            548.5,
+            432.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            93,
+            354,
+            315,
+            383
+          ],
+          "dist_center_px": 350.4
+        },
+        {
+          "id": "np_0009:6",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            834.7,
+            707.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            220,
+            645,
+            1251,
+            664
+          ],
+          "dist_center_px": 112.7
+        },
+        {
+          "id": "np_0009:7",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            395.3,
+            211.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:8",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            245.5,
+            109.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0009:9",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1287.0,
+            864.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1071,
+            747,
+            1159,
+            773
+          ],
+          "dist_center_px": 201.2
+        },
+        {
+          "id": "np_0009:10",
+          "instruction": "Press alt+f4",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            334.6,
+            173.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "rp_0001:0",
+          "instruction": "Type 'notepad teacher chain writes and saves this text'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            389.7,
+            361.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "rp_0003:0",
+          "instruction": "Type 'notepad teacher chain writes and saves this text'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            442.5,
+            410.2
+          ],
+          "scroll_pred": 2
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 0.3902439024390244
+      },
+      "app": "notepad",
+      "split": "train",
+      "n_rows": 82,
+      "ckpt": "artifacts\\checkpoints\\inloop_notepad_long.pth",
+      "note": "150-epoch ckpt, in-sample coordinate control",
+      "ts": "2026-10-28T12:19:22"
+    },
+    "E3c_long_to_qgis": {
+      "n": 6,
+      "action_acc": 1.0,
+      "per_class": {
+        "click": {
+          "n": 6,
+          "correct": 6
+        },
+        "type": {
+          "n": 0,
+          "correct": 0
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 0,
+          "correct": 0
+        },
+        "press": {
+          "n": 0,
+          "correct": 0
+        }
+      },
+      "coord_n": 6,
+      "coord_mae_norm": 0.5795893222093582,
+      "coord_med_norm": 0.6134586930274963,
+      "coord_med_px": 1570.4542541503906,
+      "hit_n": 6,
+      "hit_rate": 0.0,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "qgis_eval:00",
+          "instruction": "click the Zoom Full button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1234.8,
+            861.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            359,
+            49,
+            391,
+            80
+          ],
+          "dist_center_px": 1172.1
+        },
+        {
+          "id": "qgis_eval:01",
+          "instruction": "click the Zoom to Selection button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1210.9,
+            836.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            392,
+            49,
+            424,
+            80
+          ],
+          "dist_center_px": 1114.1
+        },
+        {
+          "id": "qgis_eval:02",
+          "instruction": "click the Zoom Last button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1209.3,
+            849.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            491,
+            49,
+            523,
+            80
+          ],
+          "dist_center_px": 1053.0
+        },
+        {
+          "id": "qgis_eval:03",
+          "instruction": "click the Zoom to Native Resolution button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1230.1,
+            844.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            458,
+            49,
+            490,
+            80
+          ],
+          "dist_center_px": 1086.2
+        },
+        {
+          "id": "qgis_eval:04",
+          "instruction": "click the Refresh button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            455.9,
+            640.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            722,
+            49,
+            754,
+            80
+          ],
+          "dist_center_px": 640.9
+        },
+        {
+          "id": "qgis_eval:05",
+          "instruction": "click the Undo button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1244.1,
+            852.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            647,
+            88,
+            679,
+            119
+          ],
+          "dist_center_px": 948.0
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 1.0
+      },
+      "app": "qgis",
+      "split": "all",
+      "n_rows": 6,
+      "ckpt": "artifacts\\checkpoints\\inloop_notepad_long.pth",
+      "note": "150-epoch notepad ckpt -> QGIS zero-shot",
+      "ts": "2026-10-28T12:20:29"
+    },
+    "E3d_long_mixed": {
+      "n": 9,
+      "action_acc": 0.7777777777777778,
+      "per_class": {
+        "click": {
+          "n": 7,
+          "correct": 7
+        },
+        "type": {
+          "n": 0,
+          "correct": 0
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 0,
+          "correct": 0
+        },
+        "press": {
+          "n": 2,
+          "correct": 0
+        }
+      },
+      "coord_n": 7,
+      "coord_mae_norm": 0.5915142595767975,
+      "coord_med_norm": 0.6168777346611023,
+      "coord_med_px": 1579.2070007324219,
+      "hit_n": 6,
+      "hit_rate": 0.0,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "qgis_eval:00",
+          "instruction": "click the Zoom Full button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1234.8,
+            861.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            359,
+            49,
+            391,
+            80
+          ],
+          "dist_center_px": 1172.1
+        },
+        {
+          "id": "qgis_eval:01",
+          "instruction": "click the Zoom to Selection button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1210.9,
+            836.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            392,
+            49,
+            424,
+            80
+          ],
+          "dist_center_px": 1114.1
+        },
+        {
+          "id": "qgis_eval:02",
+          "instruction": "click the Zoom Last button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1209.3,
+            849.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            491,
+            49,
+            523,
+            80
+          ],
+          "dist_center_px": 1053.0
+        },
+        {
+          "id": "qgis_eval:03",
+          "instruction": "click the Zoom to Native Resolution button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1230.1,
+            844.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            458,
+            49,
+            490,
+            80
+          ],
+          "dist_center_px": 1086.2
+        },
+        {
+          "id": "qgis_eval:04",
+          "instruction": "click the Refresh button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            455.9,
+            640.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            722,
+            49,
+            754,
+            80
+          ],
+          "dist_center_px": 640.9
+        },
+        {
+          "id": "qgis_eval:05",
+          "instruction": "click the Undo button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1244.1,
+            852.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            647,
+            88,
+            679,
+            119
+          ],
+          "dist_center_px": 948.0
+        },
+        {
+          "id": "qgis-v00-00000",
+          "instruction": "click the Project menu",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1110.4,
+            770.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "qgis-v00-00001",
+          "instruction": "press Down to highlight the Properties… menu item",
+          "action_true": "press",
+          "action_pred": "click",
+          "action_ok": false,
+          "xy_pred_px": [
+            785.5,
+            623.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "qgis-v00-00031",
+          "instruction": "press Escape to close the menu",
+          "action_true": "press",
+          "action_pred": "click",
+          "action_ok": false,
+          "xy_pred_px": [
+            934.5,
+            720.1
+          ],
+          "scroll_pred": 2
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 0.7777777777777778
+      },
+      "app": "qgis",
+      "split": "all",
+      "n_rows": 9,
+      "ckpt": "artifacts\\checkpoints\\inloop_notepad_long.pth",
+      "note": "150-epoch notepad ckpt -> mixed QGIS set",
+      "ts": "2026-10-28T12:21:29"
+    },
+    "E1d_long_val": {
+      "n": 11,
+      "action_acc": 1.0,
+      "per_class": {
+        "click": {
+          "n": 5,
+          "correct": 5
+        },
+        "type": {
+          "n": 3,
+          "correct": 3
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 1,
+          "correct": 1
+        },
+        "press": {
+          "n": 2,
+          "correct": 2
+        }
+      },
+      "coord_n": 5,
+      "coord_mae_norm": 0.09292404614388942,
+      "coord_med_norm": 0.09323079138994217,
+      "coord_med_px": 238.67082595825195,
+      "hit_n": 2,
+      "hit_rate": 0.0,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "np_0001:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            932.5,
+            681.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:0",
+          "instruction": "click in the text editor",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            928.0,
+            675.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:1",
+          "instruction": "Type 'the quick brown fox jumps over the lazy dog'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            364.8,
+            321.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:2",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            97.1,
+            18.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:3",
+          "instruction": "Type 'cross software transfer experiment sample note'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            368.8,
+            356.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:4",
+          "instruction": "Press ctrl+f",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            179.4,
+            88.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:5",
+          "instruction": "Close the stray Find bar with Escape",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            755.6,
+            345.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "np_0010:6",
+          "instruction": "Click the '文件' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            571.6,
+            427.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            192,
+            224,
+            240,
+            256
+          ],
+          "dist_center_px": 401.7
+        },
+        {
+          "id": "np_0010:7",
+          "instruction": "Click the '另存为' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            601.7,
+            464.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            197,
+            458,
+            419,
+            487
+          ],
+          "dist_center_px": 293.8
+        },
+        {
+          "id": "np_0010:8",
+          "instruction": "Click the '文件名:' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            821.4,
+            702.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            324,
+            749,
+            1355,
+            768
+          ],
+          "dist_center_px": 58.9
+        },
+        {
+          "id": "rp_0002:0",
+          "instruction": "Type 'notepad teacher chain writes and saves this text'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            397.6,
+            378.2
+          ],
+          "scroll_pred": 2
+        }
+      ],
+      "majority_baseline": {
+        "action": "click",
+        "acc": 0.45454545454545453
+      },
+      "app": "notepad",
+      "split": "val",
+      "n_rows": 11,
+      "ckpt": "artifacts\\checkpoints\\inloop_notepad_long.pth",
+      "note": "150-epoch ckpt held-out notepad",
+      "ts": "2026-10-28T12:22:18"
+    }
+  }
+}
