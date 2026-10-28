@@ -22,9 +22,11 @@ W28b 表征改造复测：把"回归全屏坐标"换成"在候选控件里选一
 """
 import argparse
 import json
+import math
 import re
 import sys
 import time
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -44,17 +46,31 @@ except Exception:
 OUT = ROOT / "results" / "computer_use" / "affordance_pick.json"
 TOKEN_RE = re.compile(r"[a-z0-9]+|[\u4e00-\u9fff]")
 
+# 无泄漏指令：不出现控件名，只描述意图。用于测"真实 grounding"而不是开卷匹配。
+NO_LEAK = {
+    "click the Zoom Full button": "zoom the map to show the whole layer",
+    "click the Zoom to Selection button": "zoom the map to the currently selected features",
+    "click the Zoom Last button": "go back to the previous map view",
+    "click the Zoom to Native Resolution button": "show the map at its native resolution",
+    "click the Refresh button": "redraw the map view",
+    "click the Undo button": "undo the last edit",
+}
+
 
 def tokens(text):
     return TOKEN_RE.findall((text or "").lower())
 
 
-def bow_vec(text):
-    v = np.zeros(4096, dtype=np.float32)
-    for tok in tokens(text):
-        v[hash(tok) % 4096] += 1.0
-    n = np.linalg.norm(v)
-    return v / n if n else v
+def bow_cos(a_text, b_text):
+    """确定性词袋余弦：不做哈希降维，直接对稀疏计数求余弦（避免 PYTHONHASHSEED 影响结果）。"""
+    a = Counter(tokens(a_text))
+    b = Counter(tokens(b_text))
+    if not a or not b:
+        return 0.0
+    dot = sum(v * b[k] for k, v in a.items() if k in b)
+    na = math.sqrt(sum(v * v for v in a.values()))
+    nb = math.sqrt(sum(v * v for v in b.values()))
+    return dot / (na * nb)
 
 
 def cos(a, b):
@@ -183,12 +199,17 @@ def main():
     ap.add_argument("--ckpt", default=str(ROOT / "artifacts" / "checkpoints" / "inloop_notepad.pth"))
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--device", default="")
+    ap.add_argument("--no-leak", action="store_true",
+                    help="用不含控件名的改写指令复测（测真实 grounding，而不是开卷匹配）")
     args = ap.parse_args()
 
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
     all_rows, _ = load_demos(DATA_ROOT, ["notepad"])
     train_rows, val_rows = notepad_candidates(all_rows)
     qgis_rows = qgis_candidates()
+    if args.no_leak:
+        for r in qgis_rows:
+            r["instruction"] = NO_LEAK.get(r["instruction"], r["instruction"])
     print(f"[data] notepad usable={len(train_rows) + len(val_rows)} (train={len(train_rows)} val={len(val_rows)})")
     print(f"[data] qgis zero-shot n={len(qgis_rows)} K={len(qgis_rows[0]['cands']) if qgis_rows else 0}")
 
@@ -204,7 +225,7 @@ def main():
         return cos(cache[instr], cache[key])
 
     arms = {
-        "P1_bow": lambda i, c: cos(bow_vec(i), bow_vec(c)),
+        "P1_bow": lambda i, c: bow_cos(i, c),
         "P2_gpt2": gpt2_cos,
     }
 
@@ -212,11 +233,13 @@ def main():
                        "notepad_train": len(train_rows), "notepad_val": len(val_rows),
                        "qgis_n": len(qgis_rows)}, "arms": {}}
 
-    for split_name, rows in (("notepad_val", val_rows), ("qgis_zero_shot", qgis_rows)):
+    qgis_split = "qgis_no_leak" if args.no_leak else "qgis_zero_shot"
+    for split_name, rows in (("notepad_val", val_rows), (qgis_split, qgis_rows)):
         for arm, fn in arms.items():
             res = [rank(fn, r) for r in rows]
             s = summarize(arm, res)
             report["arms"][f"{arm}@{split_name}"] = s
+            report.setdefault("detail", {})[f"{arm}@{split_name}"] = res
             print(f"[{split_name}] {arm}: top1={s['top1']:.3f} top3={s['top3']:.3f} "
                   f"mrr={s['mrr']:.3f} chance={s['chance']:.3f} (n={s['n']})")
 
@@ -229,7 +252,8 @@ def main():
         qrows = []
         for r in payload["rows"]:
             names = list(rects.keys())
-            qrows.append({"instruction": r["instruction"], "cands": names,
+            instr = NO_LEAK.get(r["instruction"], r["instruction"]) if args.no_leak else r["instruction"]
+            qrows.append({"instruction": instr, "cands": names,
                           "_screenshot": frame, "_rects": list(rects.values()),
                           "_label": names.index(r["meta"]["uia_name"]), "_task": "qgis_eval",
                           "screen": payload["screen"]})
@@ -239,7 +263,7 @@ def main():
                 "target": p["cands"][p["label"]]} for p in picks]
         s = summarize("P0_coord", res)
         s["note"] = "预测点不落在任何候选框时记 top1=False（W28b 的坐标塌缩）"
-        report["arms"]["P0_coord@qgis_zero_shot"] = s
+        report["arms"][f"P0_coord@{qgis_split}"] = s
         report["P0_detail"] = picks
         print(f"[qgis_zero_shot] P0_coord: top1={s['top1']:.3f} (n={s['n']}) "
               f"picks={[p['cands'][p['pick_idx']] if p['pick_idx'] is not None else None for p in picks]}")

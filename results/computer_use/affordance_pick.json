@@ -1,6 +1,6 @@
 {
   "meta": {
-    "ts": "2026-10-28T12:32:28",
+    "ts": "2026-10-28T12:38:28",
     "notepad_train": 19,
     "notepad_val": 8,
     "qgis_n": 6,
@@ -51,6 +51,268 @@
       "chance": 0.018181818181818184,
       "note": "预测点不落在任何候选框时记 top1=False（W28b 的坐标塌缩）"
     }
+  },
+  "detail": {
+    "P1_bow@notepad_val": [
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 20,
+        "pick": "文件",
+        "target": "文件"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 33,
+        "pick": "另存为",
+        "target": "另存为"
+      },
+      {
+        "top1": false,
+        "top3": true,
+        "rr": 0.5,
+        "rank": 2,
+        "k": 40,
+        "pick": "文件名:",
+        "target": "文件名:"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 40,
+        "pick": "保存(S)",
+        "target": "保存(S)"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 20,
+        "pick": "文件",
+        "target": "文件"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 33,
+        "pick": "另存为",
+        "target": "另存为"
+      },
+      {
+        "top1": false,
+        "top3": true,
+        "rr": 0.5,
+        "rank": 2,
+        "k": 40,
+        "pick": "文件名:",
+        "target": "文件名:"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 40,
+        "pick": "保存(S)",
+        "target": "保存(S)"
+      }
+    ],
+    "P2_gpt2@notepad_val": [
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.05555555555555555,
+        "rank": 18,
+        "k": 20,
+        "pick": "the quick brown fox jumps over the. 已修改。",
+        "target": "文件"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.05,
+        "rank": 20,
+        "k": 33,
+        "pick": "the quick brown fox jumps over the. 已修改。",
+        "target": "另存为"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.05,
+        "rank": 20,
+        "k": 40,
+        "pick": "the quick brown fox jumps over the. 已修改。",
+        "target": "文件名:"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.038461538461538464,
+        "rank": 26,
+        "k": 40,
+        "pick": "the quick brown fox jumps over the. 已修改。",
+        "target": "保存(S)"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.05555555555555555,
+        "rank": 18,
+        "k": 20,
+        "pick": "qgis is a free and open source geographic information system",
+        "target": "文件"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.05,
+        "rank": 20,
+        "k": 33,
+        "pick": "qgis is a free and open source geographic information system",
+        "target": "另存为"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.05,
+        "rank": 20,
+        "k": 40,
+        "pick": "qgis is a free and open source geographic information system",
+        "target": "文件名:"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.038461538461538464,
+        "rank": 26,
+        "k": 40,
+        "pick": "qgis is a free and open source geographic information system",
+        "target": "保存(S)"
+      }
+    ],
+    "P1_bow@qgis_zero_shot": [
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 55,
+        "pick": "Zoom Full",
+        "target": "Zoom Full"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 55,
+        "pick": "Zoom to Selection",
+        "target": "Zoom to Selection"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 55,
+        "pick": "Zoom Last",
+        "target": "Zoom Last"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 55,
+        "pick": "Zoom to Native Resolution (100%)",
+        "target": "Zoom to Native Resolution (100%)"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 55,
+        "pick": "Refresh",
+        "target": "Refresh"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "rank": 1,
+        "k": 55,
+        "pick": "Undo",
+        "target": "Undo"
+      }
+    ],
+    "P2_gpt2@qgis_zero_shot": [
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.024390243902439025,
+        "rank": 41,
+        "k": 55,
+        "pick": "EPSG:4326",
+        "target": "Zoom Full"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.038461538461538464,
+        "rank": 26,
+        "k": 55,
+        "pick": "EPSG:4326",
+        "target": "Zoom to Selection"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.02564102564102564,
+        "rank": 39,
+        "k": 55,
+        "pick": "EPSG:4326",
+        "target": "Zoom Last"
+      },
+      {
+        "top1": false,
+        "top3": true,
+        "rr": 0.3333333333333333,
+        "rank": 3,
+        "k": 55,
+        "pick": "EPSG:4326",
+        "target": "Zoom to Native Resolution (100%)"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.018867924528301886,
+        "rank": 53,
+        "k": 55,
+        "pick": "Modify Attributes of Selected Features",
+        "target": "Refresh"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.019230769230769232,
+        "rank": 52,
+        "k": 55,
+        "pick": "EPSG:4326",
+        "target": "Undo"
+      }
+    ]
   },
   "P0_detail": [
     {
