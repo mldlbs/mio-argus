@@ -86,6 +86,19 @@ def build_queue(chains):
     return q
 
 
+def next_round(out_root, name):
+    """已有 {name}_rNN 目录时从下一个编号继续，避免重复调用覆盖上一轮数据。"""
+    import re
+    mx = -1
+    d = Path(out_root) / "qgis"
+    if d.exists():
+        for p in d.glob(f"{name}_r*"):
+            m = re.match(rf"{re.escape(name)}_r(\d+)$", p.name)
+            if m:
+                mx = max(mx, int(m.group(1)))
+    return mx + 1
+
+
 def signature(demo):
     return (demo.get("action"), demo.get("instruction"),
             tuple(demo.get("target_rect") or ()), tuple(demo.get("norm_coord") or ()))
@@ -115,11 +128,14 @@ def main():
     print(f"[plan] {len(chains)} 链 × {args.rounds} 轮 = {len(queue) * args.rounds} 次执行")
 
     rows = []
+    counters = {name: next_round(out_root, name) for name, _, _ in queue}
+    print(f"[plan] 起始轮次 " + ", ".join(f"{k}=r{v:02d}" for k, v in counters.items()))
     rec.install()
     try:
         for r in range(args.rounds):
             for name, fn, reset in queue:
-                task_id = f"{name}_r{r:02d}"
+                task_id = f"{name}_r{counters[name]:02d}"
+                counters[name] += 1
                 out_p = OUT / "exports" / f"{task_id}.png"
                 out_p.parent.mkdir(parents=True, exist_ok=True)
                 reset()
