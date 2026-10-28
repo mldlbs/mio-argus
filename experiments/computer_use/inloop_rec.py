@@ -240,12 +240,12 @@ class Recorder:
             patched.__name__ = name
             setattr(mod, name, patched)
 
-        def b_click(x=None, y=None):
+        def b_click(x=None, y=None, *a, **k):
             x, y = self._xy(x, y)
             return ("click", {"x": int(x), "y": int(y)},
                     self._instr_phase("click", x, y))
 
-        def b_dblclick(x=None, y=None):
+        def b_dblclick(x=None, y=None, *a, **k):
             x, y = self._xy(x, y)
             return ("click", {"x": int(x), "y": int(y)},
                     self._instr_phase("double-click", x, y))
