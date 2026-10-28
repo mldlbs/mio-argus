@@ -265,11 +265,10 @@ class Recorder:
         cx, cy = l + w // 2, t + h // 2
         self.click(cx, cy,
                    f"click the {layer} layer in the layers panel", phase)
-        time.sleep(0.1)
-        self.click(cx, cy,
-                   f"click the {layer} layer again to open its properties",
-                   phase)
-        for _ in range(20):
+        # 必须是一次真正的双击：两次独立单击（中间有截图/落盘延迟）只会重复选中，
+        # QGIS 不会打开图层属性框 —— W29 采集第一批 32 条就是卡在这里。
+        pyautogui.doubleClick(cx, cy, interval=0.08)
+        for _ in range(30):
             time.sleep(0.4)
             qg = acquire()
             dlg = find_props(qg, layer)
@@ -346,6 +345,9 @@ class Recorder:
                     "select all text in the HTML notation field", phase)
         self.type_text(hexv,
                        f"type {hexv} into the HTML notation field", phase)
+        # HTML notation 需要失焦/回车才提交，直接点 OK 会沿用旧颜色（W29 首轮 bg 一直是 #ffffff）。
+        self.press("tab", "press Tab to commit the color value", phase)
+        time.sleep(0.25)
         ok = btn(sc, "确定")
         if ok is None:
             return False
@@ -457,11 +459,17 @@ class Recorder:
 
     def pick_ramp(self, ramp_btn, ramp_name, phase):
         r = R(ramp_btn)
-        self.click(r[0] + r[2] - 6, r[1] + r[3] // 2,
-                   "click the right edge of the Color ramp button to open the ramp menu",
-                   phase)
-        time.sleep(0.8)
-        items = (call({"op": "menu_items"}, timeout=5) or {}).get("items") or []
+        items = []
+        # 右侧下拉箭头的位置随控件宽度/DPI 变化，单次点击容易落空（W29 首轮即卡在这里）。
+        # 按 6/14/24px 三种内缩各点一次，直到弹出菜单。
+        for dx in (6, 14, 24):
+            self.click(r[0] + r[2] - dx, r[1] + r[3] // 2,
+                       "click the right edge of the Color ramp button to open the ramp menu",
+                       phase)
+            time.sleep(0.8)
+            items = (call({"op": "menu_items"}, timeout=5) or {}).get("items") or []
+            if items:
+                break
         names = [it["text"] for it in items if not it["sep"]]
         if any(n == ramp_name for n in names):
             if self.nav_menu(ramp_name, items, phase):
@@ -628,7 +636,7 @@ class Recorder:
             if not cand:
                 return False
             e = cand[0][1]
-            rr = e[0]
+            rr = cand[0][0]
             self.click((rr.left + rr.right) // 2, (rr.top + rr.bottom) // 2,
                        f"click the {name} field", phase)
             self.hotkey(["ctrl", "a"],
@@ -1127,6 +1135,8 @@ def main():
         try:
             ok, fail = rec.run_variant(i, params)
         except Exception as e:
+            import traceback
+            traceback.print_exc()
             ok, fail = False, f"exception: {e}"
         total = round(time.time() - t0, 1)
         path = OUT / f"demo_v{i:02d}.json"
