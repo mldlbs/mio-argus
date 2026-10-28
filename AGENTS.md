@@ -7,11 +7,11 @@
 
 <!-- MIO_CONTEXT_BEGIN -->
 ## Mio 最近上下文（自动注入）
-- 2026/9/22 21:09:38 | success | 已创建 docs/PLASTICITY.md （设计草案 v0.1，未写实现代码）。 核心设计 ：把"可塑性"这个模糊概念压成唯一可能成立的命题—— > 快速权重与线性注
+- 2026/10/10 17:56:27 | digest(7d): nanoGPT 1 任务 100% 成功
+- 2026/9/22 21:09:38 | success | 已创建 PLASTICITY.md （设计草案 v0.1，未写实现代码）。 核心设计 ：把"可塑性"这个模糊概念压成唯一可能成立的命题—— > 快速权重与线性注
 - 2026/9/22 21:04:47 | success | 这是一份"宣言式"架构。诊断（Transformer 的六个缺陷）基本成立，但处方需要按项目的纪律审一遍。先说结论，再逐条对证据。 结论先行 | 维度 | 评价
 - 2026/9/19 18:31:15 | success | 收尾完成。 per-R 复训尝试（为归因 mono-R@576 崩溃） ：未成功，已如实记录。
 - 从零训练：train recall 仅 0.025（size
 - 2026/9/19 16:36:30 | success | 路线 b 已闭环，结论翻转。 实现 ：给 p9_active_zoom.py 补 mono-R 臂——用 _at_res(R) 临时切换渲染画布、按 R/192
-- 2026/9/19 09:21:03 | success | P9（路线 b）已实现并跑完。新增 p9_active_zoom.py 、 results/paper/P9_RESULTS.md 、 p9_active_zoom_results.jso
-- 2026/9/19 09:18:00 | success | docs/ARCHITECTURE.md 已更新到 v0.2： - 撤销新颖性主张 ，新增 §1.5 先验工作表（A/B/C 均被 2025–26 工作覆盖，附 arXi
+- 2026/9/19 09:21:03 | success | P9（路线 b）已实现并跑完。新增 p9_active_zoom.py 、 P9_RESULTS.md 、 p9_active_zoom_results.jso
 <!-- MIO_CONTEXT_END -->

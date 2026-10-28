@@ -37,6 +37,9 @@ artifacts/
 _p0_preview.png
 _p3_preview.png
 
+# Agent 工具生成的镜像（内容等同 AGENTS.md 的 Mio 注入块，自动再生）
+CLAUDE.md
+
 # QGIS 桥运行时草稿（脚本再生，见 STRUCTURE.md §3）
 experiments/qgis/qgis_bridge/_*.log
 experiments/qgis/qgis_bridge/_*.png
