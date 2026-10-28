@@ -1,18 +1,14 @@
 """
-W29 采集（替代方案）：在**已验证的 W25 链**上挂录制器，而不是重写 UI 导航
+W29 采集：在**已验证的 W25/W26/W27 链**上挂录制器（按链轮转，保证多样性）
 
-背景：`collect_inloop.py` 自己实现了一遍 W23–W27 的菜单/对话框导航，端到端从未跑通，
-失败点每轮漂移。这里改用 `run_w25.run_chain`（已有 w25 结果、链路稳定），
-用 `inloop_rec.Recorder` 在 pyautogui / pywinauto 两层打补丁，链跑一遍示范自动落盘。
-
-与 collect_inloop 的差别：
-- 不再写 UI 逻辑，链的行为完全由 run_w25 决定；
-- 观察 = bridge truth/structure + 可见窗口清单（供遮挡/焦点归因）；
-- 指令由 Recorder 按动作生成（通用模板），相位/上下文由本脚本注入。
+背景：`collect_inloop.py` 自己重写了 UI 导航，从未端到端跑通；`run_w25` 单独重复跑
+虽然稳定，但每轮动作序列逐条相同（98 步 × N 份），加的是数据量不是覆盖度。
+本脚本把三条已验证的链排成队列轮转：w25 单主题、w26 四个主题变体、w27 深色重绘，
+每条链一个 task_id，示范自动落盘，并在汇总里报告**唯一步骤数**（不是样本数）。
 
 用法:
-    python experiments/computer_use/record_chain.py --trials 1
-    python experiments/computer_use/record_chain.py --trials 10 --out artifacts/computer_use_inloop
+    python experiments/computer_use/record_chain.py --rounds 1
+    python experiments/computer_use/record_chain.py --rounds 4 --chains w25,w26,w27
 """
 import argparse
 import json
@@ -25,8 +21,10 @@ HERE = Path(__file__).resolve().parent
 BR = ROOT / "experiments" / "qgis" / "qgis_bridge"
 sys.path[:0] = [str(HERE), str(BR), str(ROOT / "mio"), str(ROOT)]
 
-import collect_inloop as CI  # noqa: E402  (只用它的 ensure_qgis / main_qgis)
+import collect_inloop as CI  # noqa: E402  (只用 ensure_qgis)
 import run_w25  # noqa: E402
+import run_w26  # noqa: E402
+import run_w27  # noqa: E402
 from client import call  # noqa: E402
 from inloop_rec import Recorder  # noqa: E402
 
@@ -36,7 +34,6 @@ except Exception:
     pass
 
 OUT = ROOT / "artifacts" / "computer_use_inloop"
-TASK = "w25_chain"
 
 
 def qgis_observation():
@@ -69,13 +66,40 @@ def qgis_observation():
     return {"truth": truth, "affordances": struct[:60], "windows": windows[:20]}
 
 
+def build_queue(chains):
+    """把链名展开成 (task 名, 执行函数, reset 函数) 队列。"""
+    q = []
+    for c in chains:
+        if c == "w25":
+            q.append(("w25", lambda out_p, steps: run_w25.run_chain(out_p, steps),
+                      run_w25.reset_env))
+        elif c == "w26":
+            for tid in run_w26.THEMES:
+                q.append((f"w26_{tid}",
+                          (lambda t: lambda out_p, steps: run_w26.run_chain(t, out_p, steps))(tid),
+                          run_w26.reset_env))
+        elif c == "w27":
+            q.append(("w27", lambda out_p, steps: run_w27.run_chain(out_p, steps),
+                      run_w27.reset_env))
+        else:
+            raise SystemExit(f"未知链: {c}")
+    return q
+
+
+def signature(demo):
+    return (demo.get("action"), demo.get("instruction"),
+            tuple(demo.get("target_rect") or ()), tuple(demo.get("norm_coord") or ()))
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--trials", type=int, default=1)
+    ap.add_argument("--rounds", type=int, default=1)
+    ap.add_argument("--chains", default="w25,w26,w27")
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--shot-scale", type=float, default=0.6)
     args = ap.parse_args()
 
+    chains = [c.strip() for c in args.chains.split(",") if c.strip()]
     out_root = Path(args.out)
     OUT.mkdir(parents=True, exist_ok=True)
 
@@ -87,44 +111,55 @@ def main():
 
     rec = Recorder("qgis", out_root, obs_provider=qgis_observation,
                    shot_scale=args.shot_scale)
-    rec.install()
+    queue = build_queue(chains)
+    print(f"[plan] {len(chains)} 链 × {args.rounds} 轮 = {len(queue) * args.rounds} 次执行")
+
     rows = []
+    rec.install()
     try:
-        for i in range(args.trials):
-            out_p = OUT / "exports" / f"w25_t{i}.png"
-            out_p.parent.mkdir(parents=True, exist_ok=True)
-            task_id = f"{TASK}_t{i:02d}"
-            rec.new_task(task_id, task_name="thematic_map", chain="run_w25")
-            before = len(rec.demos)
-            steps = []
-            t0 = time.time()
-            ok, fail = False, ""
-            try:
-                ok, fail = run_w25.run_chain(out_p, steps)
-            except Exception as e:
-                import traceback
-                traceback.print_exc()
-                ok, fail = False, f"exception: {e}"
-            total = round(time.time() - t0, 1)
-            rec.end_task(bool(ok), verify={"fail": fail, "steps": len(steps)})
-            demos = len(rec.demos) - before
-            rows.append({"trial": i, "task_id": task_id, "ok": bool(ok), "fail": fail,
-                         "total_s": total, "demos": demos})
-            print(f"  t{i}: {'PASS' if ok else 'FAIL(' + fail + ')'} {total}s demos={demos}",
-                  flush=True)
+        for r in range(args.rounds):
+            for name, fn, reset in queue:
+                task_id = f"{name}_r{r:02d}"
+                out_p = OUT / "exports" / f"{task_id}.png"
+                out_p.parent.mkdir(parents=True, exist_ok=True)
+                reset()
+                rec.new_task(task_id, task_name=name, chain=name.split("_")[0])
+                before = len(rec.demos)
+                steps = []
+                t0 = time.time()
+                ok, fail = False, ""
+                try:
+                    ok, fail = fn(out_p, steps)
+                except Exception as e:
+                    import traceback
+                    traceback.print_exc()
+                    ok, fail = False, f"exception: {e}"
+                total = round(time.time() - t0, 1)
+                rec.end_task(bool(ok), verify={"fail": fail, "steps": len(steps)})
+                demos = len(rec.demos) - before
+                rows.append({"round": r, "chain": name, "task_id": task_id,
+                             "ok": bool(ok), "fail": fail, "total_s": total,
+                             "demos": demos})
+                print(f"  r{r} {name}: {'PASS' if ok else 'FAIL(' + fail + ')'} "
+                      f"{total}s demos={demos}", flush=True)
     finally:
         rec.uninstall()
 
+    sigs = {signature(d) for d in rec.demos}
     summary = {
         "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
-        "source": "run_w25.run_chain under inloop_rec.Recorder",
+        "source": "run_w25/w26/w27 under inloop_rec.Recorder",
+        "chains": chains, "rounds": args.rounds,
         "trials": rows,
-        "n_demos": sum(r["demos"] for r in rows),
-        "pass": sum(1 for r in rows if r["ok"]),
+        "n_demos": len(rec.demos),
+        "unique_steps": len(sigs),
+        "pass": sum(1 for x in rows if x["ok"]),
+        "n_runs": len(rows),
     }
     p = OUT / "record_chain_summary.json"
     p.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[out] {p}  demos={summary['n_demos']} pass={summary['pass']}/{len(rows)}")
+    print(f"[out] {p}  demos={summary['n_demos']} unique={summary['unique_steps']} "
+          f"pass={summary['pass']}/{summary['n_runs']}")
     return 0
 
 
