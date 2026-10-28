@@ -1,0 +1,83 @@
+{
+  "tasks": 10,
+  "pass": 6,
+  "variants": {
+    "nominal": 2,
+    "drift": 4,
+    "occlusion": 2,
+    "focus_error": 2
+  },
+  "n_demos": 243,
+  "rows": [
+    {
+      "task_id": "np_0001",
+      "variant": "nominal",
+      "ok": true,
+      "info": "{'file': 'artifacts\\\\computer_use_inloop\\\\notepad\\\\files\\\\np_0001.txt', 'bytes': 96, 'content_match': True}",
+      "s": 109.0
+    },
+    {
+      "task_id": "np_0002",
+      "variant": "drift",
+      "ok": true,
+      "info": "{'file': 'artifacts\\\\computer_use_inloop\\\\notepad\\\\files\\\\np_0002.txt', 'bytes': 85, 'content_match': True}",
+      "s": 108.5
+    },
+    {
+      "task_id": "np_0003",
+      "variant": "drift",
+      "ok": true,
+      "info": "{'file': 'artifacts\\\\computer_use_inloop\\\\notepad\\\\files\\\\np_0003.txt', 'bytes': 108, 'content_match': True}",
+      "s": 106.0
+    },
+    {
+      "task_id": "np_0004",
+      "variant": "occlusion",
+      "ok": false,
+      "info": "no clean window",
+      "s": 22.5
+    },
+    {
+      "task_id": "np_0005",
+      "variant": "focus_error",
+      "ok": false,
+      "info": "no new-window item",
+      "s": 12.9
+    },
+    {
+      "task_id": "np_0006",
+      "variant": "nominal",
+      "ok": false,
+      "info": "no new-window item",
+      "s": 14.0
+    },
+    {
+      "task_id": "np_0007",
+      "variant": "drift",
+      "ok": true,
+      "info": "{'file': 'artifacts\\\\computer_use_inloop\\\\notepad\\\\files\\\\np_0007.txt', 'bytes': 91, 'content_match': True}",
+      "s": 144.5
+    },
+    {
+      "task_id": "np_0008",
+      "variant": "drift",
+      "ok": false,
+      "info": "RuntimeError: typed mismatch: ''",
+      "s": 58.0
+    },
+    {
+      "task_id": "np_0009",
+      "variant": "occlusion",
+      "ok": true,
+      "info": "{'file': 'artifacts\\\\computer_use_inloop\\\\notepad\\\\files\\\\np_0009.txt', 'bytes': 92, 'content_match': True}",
+      "s": 150.0
+    },
+    {
+      "task_id": "np_0010",
+      "variant": "focus_error",
+      "ok": true,
+      "info": "{'file': 'artifacts\\\\computer_use_inloop\\\\notepad\\\\files\\\\np_0010.txt', 'bytes': 102, 'content_match': True}",
+      "s": 163.6
+    }
+  ]
+}
