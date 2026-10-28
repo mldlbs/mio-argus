@@ -145,13 +145,19 @@ def main():
     finally:
         rec.uninstall()
 
-    sigs = {signature(d) for d in rec.demos}
+    sigs, all_demos = set(), []
+    for r in rows:
+        p = out_root / "qgis" / r["task_id"] / "demo.json"
+        if p.exists():
+            part = json.loads(p.read_text(encoding="utf-8"))
+            all_demos.extend(part)
+            sigs.update(signature(d) for d in part)
     summary = {
         "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "source": "run_w25/w26/w27 under inloop_rec.Recorder",
         "chains": chains, "rounds": args.rounds,
         "trials": rows,
-        "n_demos": len(rec.demos),
+        "n_demos": len(all_demos),
         "unique_steps": len(sigs),
         "pass": sum(1 for x in rows if x["ok"]),
         "n_runs": len(rows),
