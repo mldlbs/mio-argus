@@ -1,0 +1,428 @@
+[
+  {
+    "site": "wikipedia",
+    "tasks": [
+      {
+        "task": "search",
+        "v1": {
+          "rect": [
+            220,
+            11,
+            502,
+            44
+          ],
+          "tag": "div",
+          "name": "Search"
+        },
+        "v1_class": "not-a-searchbox",
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "login",
+        "v1": {
+          "rect": [
+            831,
+            25,
+            95,
+            16
+          ],
+          "tag": "a",
+          "name": "Create account"
+        },
+        "v1_class": "ok",
+        "v2": {
+          "rect": [
+            831,
+            25,
+            95,
+            16
+          ],
+          "tag": "a",
+          "name": "Create account"
+        },
+        "v2_class": "ok",
+        "v2_state": "in_view",
+        "v1_is_v2": true
+      },
+      {
+        "task": "home",
+        "v1": {
+          "rect": [
+            495,
+            13080,
+            121,
+            17
+          ],
+          "tag": "a",
+          "name": "home appliances"
+        },
+        "v1_class": "deep-content",
+        "v2": null,
+        "v2_class": "deep-content",
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "logo",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      }
+    ]
+  },
+  {
+    "site": "mdn",
+    "tasks": [
+      {
+        "task": "search",
+        "v1": {
+          "rect": [
+            2,
+            -320,
+            981,
+            50
+          ],
+          "tag": "a",
+          "name": "Skip to search"
+        },
+        "v1_class": "out-of-doc",
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "login",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "home",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "logo",
+        "v1": {
+          "rect": [
+            16,
+            2785,
+            83,
+            24
+          ],
+          "tag": "a",
+          "name": "MDN logo"
+        },
+        "v1_class": "footer",
+        "v2": null,
+        "v2_class": "footer",
+        "v2_state": null,
+        "v1_is_v2": null
+      }
+    ]
+  },
+  {
+    "site": "python",
+    "tasks": [
+      {
+        "task": "search",
+        "v1": {
+          "rect": [
+            602,
+            90,
+            224,
+            37
+          ],
+          "tag": "input",
+          "name": "Search"
+        },
+        "v1_class": "ok",
+        "v2": {
+          "rect": [
+            602,
+            90,
+            224,
+            37
+          ],
+          "tag": "input",
+          "name": "Search"
+        },
+        "v2_class": "ok",
+        "v2_state": "in_view",
+        "v1_is_v2": true
+      },
+      {
+        "task": "login",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "home",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "logo",
+        "v1": {
+          "rect": [
+            1,
+            3,
+            165,
+            42
+          ],
+          "tag": "a",
+          "name": "Python"
+        },
+        "v1_class": "ok",
+        "v2": {
+          "rect": [
+            1,
+            3,
+            165,
+            42
+          ],
+          "tag": "a",
+          "name": "Python"
+        },
+        "v2_class": "ok",
+        "v2_state": "in_view",
+        "v1_is_v2": true
+      }
+    ]
+  },
+  {
+    "site": "pypi",
+    "tasks": [
+      {
+        "task": "search",
+        "v1": {
+          "rect": [
+            175,
+            282,
+            650,
+            50
+          ],
+          "tag": "form",
+          "name": "Search PyPI\nSearch"
+        },
+        "v1_class": "not-a-searchbox",
+        "v2": {
+          "rect": [
+            195,
+            282,
+            610,
+            50
+          ],
+          "tag": "input",
+          "name": "Type '/' to search projects"
+        },
+        "v2_class": "ok",
+        "v2_state": "in_view",
+        "v1_is_v2": false
+      },
+      {
+        "task": "login",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "home",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "logo",
+        "v1": {
+          "rect": [
+            30,
+            0,
+            65,
+            87
+          ],
+          "tag": "a",
+          "name": ""
+        },
+        "v1_class": "ok",
+        "v2": {
+          "rect": [
+            30,
+            0,
+            65,
+            87
+          ],
+          "tag": "a",
+          "name": ""
+        },
+        "v2_class": "ok",
+        "v2_state": "in_view",
+        "v1_is_v2": true
+      }
+    ]
+  },
+  {
+    "site": "github",
+    "tasks": [
+      {
+        "task": "search",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "login",
+        "v1": {
+          "rect": [
+            0,
+            0,
+            1000,
+            64
+          ],
+          "tag": "header",
+          "name": "Navigation Menu\nSign in"
+        },
+        "v1_class": "ok",
+        "v2": {
+          "rect": [
+            0,
+            0,
+            1000,
+            64
+          ],
+          "tag": "header",
+          "name": "Navigation Menu\nSign in"
+        },
+        "v2_class": "ok",
+        "v2_state": "in_view",
+        "v1_is_v2": true
+      },
+      {
+        "task": "home",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "logo",
+        "v1": {
+          "rect": [
+            484,
+            16,
+            32,
+            32
+          ],
+          "tag": "a",
+          "name": "Homepage"
+        },
+        "v1_class": "ok",
+        "v2": {
+          "rect": [
+            484,
+            16,
+            32,
+            32
+          ],
+          "tag": "a",
+          "name": "Homepage"
+        },
+        "v2_class": "ok",
+        "v2_state": "in_view",
+        "v1_is_v2": true
+      }
+    ]
+  },
+  {
+    "site": "hn",
+    "tasks": [
+      {
+        "task": "search",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "login",
+        "v1": {
+          "rect": [
+            880,
+            12,
+            32,
+            16
+          ],
+          "tag": "a",
+          "name": "login"
+        },
+        "v1_class": "ok",
+        "v2": {
+          "rect": [
+            880,
+            12,
+            32,
+            16
+          ],
+          "tag": "a",
+          "name": "login"
+        },
+        "v2_class": "ok",
+        "v2_state": "in_view",
+        "v1_is_v2": true
+      },
+      {
+        "task": "home",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      },
+      {
+        "task": "logo",
+        "v1": null,
+        "v1_class": null,
+        "v2": null,
+        "v2_class": null,
+        "v2_state": null,
+        "v1_is_v2": null
+      }
+    ]
+  }
+]
