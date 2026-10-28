@@ -104,13 +104,63 @@ def signature(demo):
             tuple(demo.get("target_rect") or ()), tuple(demo.get("norm_coord") or ()))
 
 
+def write_splits(out_root, val_every=3):
+    """按**链**划分 train/val（同链的所有轮次只落在一侧，避免同动作泄漏）。"""
+    d = Path(out_root) / "qgis"
+    tasks = sorted(p.name for p in d.iterdir() if p.is_dir() and (p / "demo.json").exists())
+    if not tasks:
+        return None
+    chains = []
+    for t in tasks:
+        base = "w25" if t.startswith("w25_chain_t") else t.rsplit("_r", 1)[0]
+        if base not in chains:
+            chains.append(base)
+    val_chains = [c for i, c in enumerate(chains) if i % val_every == val_every - 1]
+    val = [t for t in tasks
+           if ("w25" if t.startswith("w25_chain_t") else t.rsplit("_r", 1)[0]) in val_chains]
+    train = [t for t in tasks if t not in val]
+    sigs, per_task = set(), {}
+    for t in tasks:
+        part = json.loads((d / t / "demo.json").read_text(encoding="utf-8"))
+        per_task[t] = len(part)
+        sigs.update(signature(x) for x in part)
+    payload = {
+        "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "rule": f"按链划分：第 {val_every} 的倍数条链整体作为 val，同链各轮不跨侧",
+        "val_chains": val_chains,
+        "train": train, "val": val,
+        "n_train_tasks": len(train), "n_val_tasks": len(val),
+        "demos_train": sum(per_task[t] for t in train),
+        "demos_val": sum(per_task[t] for t in val),
+        "demos_total": sum(per_task.values()),
+        "unique_steps": len(sigs),
+        "per_task": per_task,
+    }
+    p = Path(out_root) / "qgis_splits.json"
+    p.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    return p, payload
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--rounds", type=int, default=1)
     ap.add_argument("--chains", default="w25,w26,w27")
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--shot-scale", type=float, default=0.6)
+    ap.add_argument("--write-splits", action="store_true",
+                    help="只扫描已有任务目录并写 qgis_splits.json（不采集）")
     args = ap.parse_args()
+
+    if args.write_splits:
+        res = write_splits(Path(args.out))
+        if res is None:
+            print("[splits] 没有找到任务目录")
+            return 1
+        p, payload = res
+        print(f"[out] {p}  train={payload['n_train_tasks']}任务/{payload['demos_train']}条 "
+              f"val={payload['n_val_tasks']}任务/{payload['demos_val']}条 "
+              f"unique={payload['unique_steps']}")
+        return 0
 
     chains = [c.strip() for c in args.chains.split(",") if c.strip()]
     out_root = Path(args.out)
