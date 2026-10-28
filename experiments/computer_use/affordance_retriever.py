@@ -169,8 +169,11 @@ def main():
     ap.add_argument("--encoder", default="t5", choices=["t5", "gpt2"])
     ap.add_argument("--steps", type=int, default=300)
     ap.add_argument("--lr", type=float, default=1e-3)
-    ap.add_argument("--temp", type=float, default=0.05)
+    ap.add_argument("--use-variants", action="store_true",
+                    help="用 instruction_variants.json 把训练查询扩成 原句+改写（测 K 对/示范 假设）")
+    ap.add_argument("--variants", default=str(DATA_ROOT / "instruction_variants.json"))
     ap.add_argument("--out", default=str(OUT))
+    ap.add_argument("--temp", type=float, default=0.05)
     ap.add_argument("--device", default="")
     args = ap.parse_args()
 
@@ -180,6 +183,20 @@ def main():
     qgis = qgis_candidates()
     qgis_nl = [dict(r, instruction=NO_LEAK.get(r["instruction"], r["instruction"])) for r in qgis]
     print(f"[data] notepad train={len(train_rows)} val={len(val_rows)}; qgis={len(qgis)}")
+
+    if args.use_variants:
+        vpath = Path(args.variants)
+        if vpath.exists():
+            variants = json.loads(vpath.read_text(encoding="utf-8"))
+            n0 = len(train_rows)
+            extra = []
+            for r in train_rows:
+                for v in variants.get(r["instruction"], []):
+                    extra.append(dict(r, instruction=v["text"]))
+            train_rows = train_rows + extra
+            print(f"[data] +variants -> train={len(train_rows)} (原 {n0} 条，改写 {len(extra)} 条)")
+        else:
+            print(f"[data] variants 缺失：{vpath}")
 
     enc = TextEncoder(args.encoder, device)
     print(f"[enc] {args.encoder} (frozen), dim=768")

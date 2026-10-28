@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "ts": "2026-10-28T13:05:06",
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "n": 6,
+    "chance": 0.01818181818181818
+  },
+  "rows": [
+    {
+      "mode": "open",
+      "instruction": "click the Zoom Full button",
+      "target": "Zoom Full",
+      "raw": "36",
+      "pick": "Redo",
+      "ok": false
+    },
+    {
+      "mode": "open",
+      "instruction": "click the Zoom to Selection button",
+      "target": "Zoom to Selection",
+      "raw": "51",
+      "pick": "Zoom to Selection",
+      "ok": true
+    },
+    {
+      "mode": "open",
+      "instruction": "click the Zoom Last button",
+      "target": "Zoom Last",
+      "raw": "37",
+      "pick": "Refresh",
+      "ok": false
+    },
+    {
+      "mode": "open",
+      "instruction": "click the Zoom to Native Resolution button",
+      "target": "Zoom to Native Resolution (100%)",
+      "raw": "50",
+      "pick": "Zoom to Native Resolution (100%)",
+      "ok": true
+    },
+    {
+      "mode": "open",
+      "instruction": "click the Refresh button",
+      "target": "Refresh",
+      "raw": "37",
+      "pick": "Refresh",
+      "ok": true
+    },
+    {
+      "mode": "open",
+      "instruction": "click the Undo button",
+      "target": "Undo",
+      "raw": "37",
+      "pick": "Refresh",
+      "ok": false
+    },
+    {
+      "mode": "noleak",
+      "instruction": "zoom the map to show the whole layer",
+      "target": "Zoom Full",
+      "raw": "52",
+      "pick": "关闭",
+      "ok": false
+    },
+    {
+      "mode": "noleak",
+      "instruction": "zoom the map to the currently selected features",
+      "target": "Zoom to Selection",
+      "raw": "52",
+      "pick": "关闭",
+      "ok": false
+    },
+    {
+      "mode": "noleak",
+      "instruction": "go back to the previous map view",
+      "target": "Zoom Last",
+      "raw": "21",
+      "pick": "New 3D Map View",
+      "ok": false
+    },
+    {
+      "mode": "noleak",
+      "instruction": "show the map at its native resolution",
+      "target": "Zoom to Native Resolution (100%)",
+      "raw": "50",
+      "pick": "Zoom to Native Resolution (100%)",
+      "ok": true
+    },
+    {
+      "mode": "noleak",
+      "instruction": "redraw the map view",
+      "target": "Refresh",
+      "raw": "22",
+      "pick": "New GeoPackage Layer…",
+      "ok": false
+    },
+    {
+      "mode": "noleak",
+      "instruction": "undo the last edit",
+      "target": "Undo",
+      "raw": "35",
+      "pick": "Paste Features",
+      "ok": false
+    }
+  ],
+  "open_top1": 0.5,
+  "noleak_top1": 0.16666666666666666
+}
