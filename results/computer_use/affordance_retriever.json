@@ -1,0 +1,468 @@
+{
+  "meta": {
+    "ts": "2026-10-28T12:49:03",
+    "encoder": "t5",
+    "steps": 300,
+    "lr": 0.001,
+    "temp": 0.05,
+    "n_train": 19,
+    "n_val": 8,
+    "n_qgis": 6
+  },
+  "arms": {
+    "R1_lexical@notepad_val": {
+      "arm": "R1_lexical",
+      "n": 8,
+      "top1": 0.75,
+      "top3": 1.0,
+      "mrr": 0.875,
+      "chance": 0.03257575757575758
+    },
+    "R1_lexical@qgis_open": {
+      "arm": "R1_lexical",
+      "n": 6,
+      "top1": 1.0,
+      "top3": 1.0,
+      "mrr": 1.0,
+      "chance": 0.018181818181818184
+    },
+    "R1_lexical@qgis_noleak": {
+      "arm": "R1_lexical",
+      "n": 6,
+      "top1": 0.5,
+      "top3": 0.5,
+      "mrr": 0.5411711711711712,
+      "chance": 0.018181818181818184
+    },
+    "R2_frozen@notepad_val": {
+      "arm": "R2_frozen",
+      "n": 8,
+      "top1": 0.0,
+      "top3": 0.25,
+      "mrr": 0.19006410256410258,
+      "chance": 0.03257575757575758
+    },
+    "R2_frozen@qgis_open": {
+      "arm": "R2_frozen",
+      "n": 6,
+      "top1": 1.0,
+      "top3": 1.0,
+      "mrr": 1.0,
+      "chance": 0.018181818181818184
+    },
+    "R2_frozen@qgis_noleak": {
+      "arm": "R2_frozen",
+      "n": 6,
+      "top1": 0.16666666666666666,
+      "top3": 0.5,
+      "mrr": 0.33768518518518514,
+      "chance": 0.018181818181818184
+    },
+    "R3_learned@notepad_train": {
+      "arm": "R3_learned",
+      "n": 19,
+      "top1": 0.42105263157894735,
+      "top3": 0.47368421052631576,
+      "mrr": 0.5657894736842105,
+      "chance": 0.032067022551428896
+    },
+    "R3_learned@notepad_val": {
+      "arm": "R3_learned",
+      "n": 8,
+      "top1": 0.5,
+      "top3": 0.5,
+      "mrr": 0.6125,
+      "chance": 0.03257575757575758
+    },
+    "R3_learned@qgis_open": {
+      "arm": "R3_learned",
+      "n": 6,
+      "top1": 0.0,
+      "top3": 0.0,
+      "mrr": 0.04211632828523893,
+      "chance": 0.018181818181818184
+    },
+    "R3_learned@qgis_noleak": {
+      "arm": "R3_learned",
+      "n": 6,
+      "top1": 0.0,
+      "top3": 0.0,
+      "mrr": 0.04355310472201537,
+      "chance": 0.018181818181818184
+    }
+  },
+  "detail": {
+    "R1_lexical@notepad_val": [
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 20,
+        "rank": 1,
+        "pick": "文件",
+        "target": "文件"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 33,
+        "rank": 1,
+        "pick": "另存为",
+        "target": "另存为"
+      },
+      {
+        "top1": false,
+        "top3": true,
+        "rr": 0.5,
+        "k": 40,
+        "rank": 2,
+        "pick": "文件名:",
+        "target": "文件名:"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 40,
+        "rank": 1,
+        "pick": "保存(S)",
+        "target": "保存(S)"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 20,
+        "rank": 1,
+        "pick": "文件",
+        "target": "文件"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 33,
+        "rank": 1,
+        "pick": "另存为",
+        "target": "另存为"
+      },
+      {
+        "top1": false,
+        "top3": true,
+        "rr": 0.5,
+        "k": 40,
+        "rank": 2,
+        "pick": "文件名:",
+        "target": "文件名:"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 40,
+        "rank": 1,
+        "pick": "保存(S)",
+        "target": "保存(S)"
+      }
+    ],
+    "R1_lexical@qgis_open": [
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Zoom Full",
+        "target": "Zoom Full"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Zoom to Selection",
+        "target": "Zoom to Selection"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Zoom Last",
+        "target": "Zoom Last"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Zoom to Native Resolution (100%)",
+        "target": "Zoom to Native Resolution (100%)"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Refresh",
+        "target": "Refresh"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Undo",
+        "target": "Undo"
+      }
+    ],
+    "R1_lexical@qgis_noleak": [
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.2,
+        "k": 55,
+        "rank": 5,
+        "pick": "Zoom to Layer(s)",
+        "target": "Zoom Full"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Zoom to Selection",
+        "target": "Zoom to Selection"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.02,
+        "k": 55,
+        "rank": 50,
+        "pick": "New Map View",
+        "target": "Zoom Last"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Zoom to Native Resolution (100%)",
+        "target": "Zoom to Native Resolution (100%)"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.02702702702702703,
+        "k": 55,
+        "rank": 37,
+        "pick": "New Map View",
+        "target": "Refresh"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Undo",
+        "target": "Undo"
+      }
+    ],
+    "R2_frozen@notepad_val": [
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.07692307692307693,
+        "k": 20,
+        "rank": 13,
+        "pick": "清除格式设置(Ctrl+空格)",
+        "target": "文件"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.1,
+        "k": 33,
+        "rank": 10,
+        "pick": "“新建 Markdown”选项卡",
+        "target": "另存为"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.08333333333333333,
+        "k": 40,
+        "rank": 12,
+        "pick": "上移到“notepad”(Alt + 向上键)",
+        "target": "文件名:"
+      },
+      {
+        "top1": false,
+        "top3": true,
+        "rr": 0.5,
+        "k": 40,
+        "rank": 2,
+        "pick": "上移到“notepad”(Alt + 向上键)",
+        "target": "保存(S)"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.07692307692307693,
+        "k": 20,
+        "rank": 13,
+        "pick": "清除格式设置(Ctrl+空格)",
+        "target": "文件"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.1,
+        "k": 33,
+        "rank": 10,
+        "pick": "“新建 Markdown”选项卡",
+        "target": "另存为"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.08333333333333333,
+        "k": 40,
+        "rank": 12,
+        "pick": "上移到“notepad”(Alt + 向上键)",
+        "target": "文件名:"
+      },
+      {
+        "top1": false,
+        "top3": true,
+        "rr": 0.5,
+        "k": 40,
+        "rank": 2,
+        "pick": "上移到“notepad”(Alt + 向上键)",
+        "target": "保存(S)"
+      }
+    ],
+    "R2_frozen@qgis_open": [
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Zoom Full",
+        "target": "Zoom Full"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Zoom to Selection",
+        "target": "Zoom to Selection"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Zoom Last",
+        "target": "Zoom Last"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Zoom to Native Resolution (100%)",
+        "target": "Zoom to Native Resolution (100%)"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Refresh",
+        "target": "Refresh"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Undo",
+        "target": "Undo"
+      }
+    ],
+    "R2_frozen@qgis_noleak": [
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.041666666666666664,
+        "k": 55,
+        "rank": 24,
+        "pick": "Zoom to Layer(s)",
+        "target": "Zoom Full"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.04,
+        "k": 55,
+        "rank": 25,
+        "pick": "Zoom to Layer(s)",
+        "target": "Zoom to Selection"
+      },
+      {
+        "top1": false,
+        "top3": false,
+        "rr": 0.1111111111111111,
+        "k": 55,
+        "rank": 9,
+        "pick": "New Map View",
+        "target": "Zoom Last"
+      },
+      {
+        "top1": true,
+        "top3": true,
+        "rr": 1.0,
+        "k": 55,
+        "rank": 1,
+        "pick": "Zoom to Native Resolution (100%)",
+        "target": "Zoom to Native Resolution (100%)"
+      },
+      {
+        "top1": false,
+        "top3": true,
+        "rr": 0.3333333333333333,
+        "k": 55,
+        "rank": 3,
+        "pick": "New Map View",
+        "target": "Refresh"
+      },
+      {
+        "top1": false,
+        "top3": true,
+        "rr": 0.5,
+        "k": 55,
+        "rank": 2,
+        "pick": "Save Layer Edits",
+        "target": "Undo"
+      }
+    ]
+  }
+}
