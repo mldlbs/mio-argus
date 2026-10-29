@@ -298,6 +298,10 @@ def main():
     ap.add_argument("--clip", type=float, default=1.0,
                     help="梯度裁剪范数；不裁剪时坐标头会迅速饱和到 (0,1) 并卡死")
     ap.add_argument("--val-ratio", type=float, default=0.25)
+    ap.add_argument("--dedup", action="store_true",
+                    help="按 action+instruction+rect+坐标 去重（W30 的「重复样本有没有用」消融）")
+    ap.add_argument("--splits", default="",
+                    help="qgis_splits.json 路径：给出则按其中的 task 列表划分，不再随机切")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--device", default="")
     args = ap.parse_args()
@@ -310,7 +314,31 @@ def main():
         print(f"[data] 没有可用示范（apps={apps}）；跳过：{json.dumps(skipped[:5], ensure_ascii=False)}")
         return 1
 
+    if args.dedup:
+        def sig(r):
+            return (r["action"], r["instruction"], tuple(r.get("target_rect") or ()),
+                    tuple(r.get("norm_coord") or ()))
+        seen, uniq = set(), []
+        for r in rows:
+            k = sig(r)
+            if k in seen:
+                continue
+            seen.add(k)
+            uniq.append(r)
+        print(f"[data] 去重 {len(rows)} -> {len(uniq)}")
+        rows = uniq
+
     train_rows, val_rows, val_tasks = split_by_task(rows, args.val_ratio, args.seed)
+    if args.splits:
+        sp = json.loads(Path(args.splits).read_text(encoding="utf-8"))
+        tr_set, va_set = set(sp.get("train") or []), set(sp.get("val") or [])
+        if tr_set or va_set:
+            train_rows = [r for r in rows if r["_task"] in tr_set]
+            val_rows = [r for r in rows if r["_task"] in va_set]
+            val_tasks = sorted(va_set)
+            print(f"[data] 按 splits 划分：train_tasks={len(tr_set)} val_tasks={len(va_set)}")
+        else:
+            print("[data] splits 文件没有 train/val 列表，退回随机划分")
     if not train_rows:
         print("[data] train 为空（任务数不足）")
         return 1

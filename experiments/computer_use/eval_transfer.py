@@ -188,7 +188,7 @@ def capture_qgis():
 
 
 # --------------------------------------------------------------------- eval ---
-def load_eval_rows(app, data_root, train_meta=None, split="all", mix=0):
+def load_eval_rows(app, data_root, train_meta=None, split="all", mix=0, use_frames=True):
     """app=qgis 时优先用 eval_qgis/frames.json（W28 同题），否则走 demo.json。
 
     mix>0 时再混入 N 条真实采集的 QGIS 样本（按指令去重），让动作准确率不再被
@@ -196,7 +196,7 @@ def load_eval_rows(app, data_root, train_meta=None, split="all", mix=0):
     """
     rows, skipped = load_demos(data_root, [app])
     frames = data_root / "eval_qgis" / "frames.json"
-    if app == "qgis" and frames.exists():
+    if app == "qgis" and frames.exists() and use_frames:
         payload = json.loads(frames.read_text(encoding="utf-8"))
         rows = [dict(r, _app="qgis", _task="qgis_eval", _screenshot=str(ROOT / r["screenshot"]))
                 for r in payload["rows"]]
@@ -237,6 +237,8 @@ def main():
     ap.add_argument("--split", default="all", choices=["all", "val", "train"])
     ap.add_argument("--mix-demos", type=int, default=0,
                     help="额外混入 N 条真实采集样本（按指令去重），避免 action_acc 被单一标签抬成 100%%")
+    ap.add_argument("--ignore-eval-frames", action="store_true",
+                    help="qgis 时不要用 eval_qgis/frames.json 覆盖，直接用 demo.json（W30 留出链评测）")
     ap.add_argument("--tag", default="")
     ap.add_argument("--shuffle-instructions", action="store_true",
                     help="对照：把指令在样本间轮换，预测不变即说明模型没在用指令定位")
@@ -250,7 +252,8 @@ def main():
 
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
     rows, skipped = load_eval_rows(args.app, Path(args.data_root), args.train_meta or None,
-                                   args.split, args.mix_demos)
+                                   args.split, args.mix_demos,
+                                   use_frames=not args.ignore_eval_frames)
     print(f"[data] app={args.app} split={args.split} n={len(rows)} skipped={len(skipped)}")
     if not rows:
         print("[data] 空评测集，终止")
