@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-10-29T20:16:33",
+    "updated_at": "2026-10-30T09:56:51",
     "qgis_eval": "artifacts\\computer_use_inloop\\eval_qgis\\frames.json"
   },
   "runs": {
@@ -7337,8 +7337,8 @@
       "coord_mae_norm": 0.20339105151689205,
       "coord_med_norm": 0.13995568454265594,
       "coord_med_px": 358.2865524291992,
-      "hit_n": 106,
-      "hit_rate": 0.0,
+      "hit_n": 216,
+      "hit_rate": 0.027777777777777776,
       "scroll_n": 0,
       "scroll_acc": null,
       "samples": [
@@ -10332,8 +10332,8 @@
       "split": "val",
       "n_rows": 626,
       "ckpt": "artifacts\\checkpoints\\w30_full.pth",
-      "note": "8 epoch, 1394 demos, held-out chains w26_v2+w27",
-      "ts": "2026-10-29T20:10:02"
+      "note": "regression head, held-out chains (hit metric fixed)",
+      "ts": "2026-10-30T09:55:20"
     },
     "W30_dedup_on_same_eval": {
       "n": 626,
@@ -10368,7 +10368,7 @@
       "coord_mae_norm": 0.4152042776919328,
       "coord_med_norm": 0.3064519912004471,
       "coord_med_px": 784.5170974731445,
-      "hit_n": 106,
+      "hit_n": 216,
       "hit_rate": 0.0,
       "scroll_n": 0,
       "scroll_acc": null,
@@ -13363,8 +13363,3039 @@
       "split": "val",
       "n_rows": 626,
       "ckpt": "artifacts\\checkpoints\\w30_dedup.pth",
-      "note": "dedup arm, evaluated on the same 626 held-out rows",
-      "ts": "2026-10-29T20:16:33"
+      "note": "dedup arm on same 626 rows (hit metric fixed)",
+      "ts": "2026-10-30T09:56:51"
+    },
+    "W30_A_grid128": {
+      "n": 626,
+      "action_acc": 0.987220447284345,
+      "per_class": {
+        "click": {
+          "n": 234,
+          "correct": 230
+        },
+        "type": {
+          "n": 86,
+          "correct": 84
+        },
+        "scroll": {
+          "n": 0,
+          "correct": 0
+        },
+        "move": {
+          "n": 0,
+          "correct": 0
+        },
+        "hotkey": {
+          "n": 46,
+          "correct": 46
+        },
+        "press": {
+          "n": 260,
+          "correct": 258
+        }
+      },
+      "coord_n": 234,
+      "coord_mae_norm": 0.21331489238983545,
+      "coord_med_norm": 0.1196044459939003,
+      "coord_med_px": 306.18738174438477,
+      "hit_n": 216,
+      "hit_rate": 0.05555555555555555,
+      "scroll_n": 0,
+      "scroll_acc": null,
+      "samples": [
+        {
+          "id": "w26_v2_r00:0",
+          "instruction": "Double-click the 'cities' treeitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            577.4,
+            465.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            21,
+            836,
+            293,
+            855
+          ],
+          "dist_center_px": 566.9
+        },
+        {
+          "id": "w26_v2_r00:1",
+          "instruction": "Click the combobox",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            616.4,
+            255.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            218,
+            34,
+            910,
+            58
+          ],
+          "dist_center_px": 216.2
+        },
+        {
+          "id": "w26_v2_r00:2",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1224.1,
+            538.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:3",
+          "instruction": "Type 'graduated'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            770.1,
+            492.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:4",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1150.9,
+            670.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:5",
+          "instruction": "Click the combobox",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            615.4,
+            257.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            302,
+            64,
+            880,
+            88
+          ],
+          "dist_center_px": 182.8
+        },
+        {
+          "id": "w26_v2_r00:6",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1120.2,
+            521.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:7",
+          "instruction": "Type 'pop_max'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            815.8,
+            450.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:8",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1125.5,
+            661.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:9",
+          "instruction": "Click the combobox",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            615.4,
+            257.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            302,
+            203,
+            910,
+            225
+          ],
+          "dist_center_px": 44.2
+        },
+        {
+          "id": "w26_v2_r00:10",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1120.1,
+            521.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:11",
+          "instruction": "Type 'color'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            772.0,
+            472.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:12",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1125.3,
+            661.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:13",
+          "instruction": "Click the 'Mode' combobox",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            614.8,
+            357.8
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            248,
+            656,
+            428,
+            680
+          ],
+          "dist_center_px": 415.8
+        },
+        {
+          "id": "w26_v2_r00:14",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1179.2,
+            530.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:15",
+          "instruction": "Type 'quantile'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            822.1,
+            473.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:16",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1142.3,
+            667.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:17",
+          "instruction": "Click the '5' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            908.3,
+            629.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            842,
+            660,
+            893,
+            676
+          ],
+          "dist_center_px": 55.9
+        },
+        {
+          "id": "w26_v2_r00:18",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1120.2,
+            521.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:19",
+          "instruction": "Type '5' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1016.2,
+            681.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            842,
+            660,
+            893,
+            676
+          ],
+          "dist_center_px": 149.3
+        },
+        {
+          "id": "w26_v2_r00:20",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            773.5,
+            633.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:21",
+          "instruction": "Click the 'Classify' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            625.5,
+            731.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            218,
+            688,
+            298,
+            708
+          ],
+          "dist_center_px": 369.1
+        },
+        {
+          "id": "w26_v2_r00:22",
+          "instruction": "Click the '确定' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            654.0,
+            729.8
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            572,
+            773,
+            652,
+            793
+          ],
+          "dist_center_px": 67.8
+        },
+        {
+          "id": "w26_v2_r00:23",
+          "instruction": "Click the 'Project' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            456.1,
+            129.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            6,
+            23,
+            54,
+            45
+          ],
+          "dist_center_px": 436.7
+        },
+        {
+          "id": "w26_v2_r00:24",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1160.2,
+            686.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:25",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1171.4,
+            699.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:26",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1133.7,
+            675.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:27",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1159.8,
+            686.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:28",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1164.5,
+            696.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:29",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1171.0,
+            697.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:30",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1134.9,
+            676.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:31",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1160.4,
+            687.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:32",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1164.6,
+            695.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:33",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1170.6,
+            697.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:34",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1159.9,
+            686.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:35",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1164.2,
+            695.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:36",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1170.3,
+            697.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:37",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1180.2,
+            685.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:38",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1177.6,
+            686.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:39",
+          "instruction": "Click the 'Zoom Full' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1282.0,
+            806.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            112,
+            88,
+            144,
+            119
+          ],
+          "dist_center_px": 1351.5
+        },
+        {
+          "id": "w26_v2_r00:40",
+          "instruction": "Click the 'Add Item' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            237.0,
+            47.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            181,
+            23,
+            243,
+            45
+          ],
+          "dist_center_px": 28.6
+        },
+        {
+          "id": "w26_v2_r00:41",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1199.5,
+            733.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:42",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1173.8,
+            693.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:43",
+          "instruction": "click the target control at (800, 500)",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            751.2,
+            533.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:44",
+          "instruction": "Click the '87.753' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1183.3,
+            684.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            638,
+            1265,
+            654
+          ],
+          "dist_center_px": 39.5
+        },
+        {
+          "id": "w26_v2_r00:45",
+          "instruction": "Type '8' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1304.7,
+            703.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            638,
+            1265,
+            654
+          ],
+          "dist_center_px": 126.9
+        },
+        {
+          "id": "w26_v2_r00:46",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1270.0,
+            768.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:47",
+          "instruction": "Click the '55.753' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.6,
+            685.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            666,
+            1265,
+            682
+          ],
+          "dist_center_px": 14.7
+        },
+        {
+          "id": "w26_v2_r00:48",
+          "instruction": "Type '26' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1283.1,
+            697.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            666,
+            1265,
+            682
+          ],
+          "dist_center_px": 94.5
+        },
+        {
+          "id": "w26_v2_r00:49",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1270.0,
+            768.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:50",
+          "instruction": "Click the '57.000' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.0,
+            686.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            694,
+            1233,
+            710
+          ],
+          "dist_center_px": 16.8
+        },
+        {
+          "id": "w26_v2_r00:51",
+          "instruction": "Type '195' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1287.2,
+            698.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            694,
+            1233,
+            710
+          ],
+          "dist_center_px": 111.7
+        },
+        {
+          "id": "w26_v2_r00:52",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1270.0,
+            768.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:53",
+          "instruction": "Click the '90.000' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.0,
+            686.8
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            722,
+            1233,
+            738
+          ],
+          "dist_center_px": 43.7
+        },
+        {
+          "id": "w26_v2_r00:54",
+          "instruction": "Type '176' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1293.6,
+            700.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            722,
+            1233,
+            738
+          ],
+          "dist_center_px": 121.8
+        },
+        {
+          "id": "w26_v2_r00:55",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1270.0,
+            768.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:56",
+          "instruction": "Click the '确定' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1298.3,
+            818.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1280,
+            815,
+            1360,
+            835
+          ],
+          "dist_center_px": 22.7
+        },
+        {
+          "id": "w26_v2_r00:57",
+          "instruction": "Click the 'Set to Map Canvas Extent' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            886.4,
+            538.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            2206,
+            805,
+            2230,
+            828
+          ],
+          "dist_center_px": 1360.3
+        },
+        {
+          "id": "w26_v2_r00:58",
+          "instruction": "Click the 'Add Item' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            172.4,
+            50.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            181,
+            23,
+            243,
+            45
+          ],
+          "dist_center_px": 42.9
+        },
+        {
+          "id": "w26_v2_r00:59",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1142.3,
+            687.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:60",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1158.1,
+            694.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:61",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1106.8,
+            677.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:62",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1143.8,
+            689.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:63",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1177.1,
+            692.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:64",
+          "instruction": "click the target control at (700, 250)",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1121.9,
+            358.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:65",
+          "instruction": "Click the '68.121' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1183.2,
+            684.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            638,
+            1265,
+            654
+          ],
+          "dist_center_px": 39.5
+        },
+        {
+          "id": "w26_v2_r00:66",
+          "instruction": "Type '8' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1266.5,
+            691.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            638,
+            1265,
+            654
+          ],
+          "dist_center_px": 87.9
+        },
+        {
+          "id": "w26_v2_r00:67",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1267.3,
+            766.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:68",
+          "instruction": "Click the '6.675' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.6,
+            686.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            666,
+            1265,
+            682
+          ],
+          "dist_center_px": 15.4
+        },
+        {
+          "id": "w26_v2_r00:69",
+          "instruction": "Type '6' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1262.4,
+            691.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            666,
+            1265,
+            682
+          ],
+          "dist_center_px": 72.9
+        },
+        {
+          "id": "w26_v2_r00:70",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1267.3,
+            766.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:71",
+          "instruction": "Click the '195.000' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.2,
+            686.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            694,
+            1233,
+            710
+          ],
+          "dist_center_px": 17.0
+        },
+        {
+          "id": "w26_v2_r00:72",
+          "instruction": "Type '150' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1258.2,
+            689.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            694,
+            1233,
+            710
+          ],
+          "dist_center_px": 83.6
+        },
+        {
+          "id": "w26_v2_r00:73",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1267.3,
+            766.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:74",
+          "instruction": "Click the '176.000' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.1,
+            686.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            722,
+            1233,
+            738
+          ],
+          "dist_center_px": 44.0
+        },
+        {
+          "id": "w26_v2_r00:75",
+          "instruction": "Type '14' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1262.1,
+            690.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            722,
+            1233,
+            738
+          ],
+          "dist_center_px": 95.2
+        },
+        {
+          "id": "w26_v2_r00:76",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1267.3,
+            766.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:77",
+          "instruction": "Click the '确定' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1299.5,
+            819.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1280,
+            815,
+            1360,
+            835
+          ],
+          "dist_center_px": 21.2
+        },
+        {
+          "id": "w26_v2_r00:78",
+          "instruction": "Click the 'Lorem ipsum' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1316.1,
+            693.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            2196,
+            842,
+            2520,
+            992
+          ],
+          "dist_center_px": 1065.5
+        },
+        {
+          "id": "w26_v2_r00:79",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1160.6,
+            526.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:80",
+          "instruction": "Type '中国城市人口分级设色专题图' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1624.3,
+            795.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            2196,
+            842,
+            2520,
+            992
+          ],
+          "dist_center_px": 743.6
+        },
+        {
+          "id": "w26_v2_r00:81",
+          "instruction": "Click the 'Add Item' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            171.7,
+            49.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            181,
+            23,
+            243,
+            45
+          ],
+          "dist_center_px": 43.3
+        },
+        {
+          "id": "w26_v2_r00:82",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1141.2,
+            687.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:83",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1157.7,
+            694.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:84",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1106.0,
+            676.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:85",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1142.8,
+            688.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:86",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1162.5,
+            704.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:87",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1149.8,
+            688.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:88",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1176.0,
+            690.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:89",
+          "instruction": "click the target control at (1300, 320)",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1202.7,
+            328.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:90",
+          "instruction": "Click the '185.910' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.9,
+            685.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            638,
+            1265,
+            654
+          ],
+          "dist_center_px": 40.6
+        },
+        {
+          "id": "w26_v2_r00:91",
+          "instruction": "Type '232' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1274.3,
+            694.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            638,
+            1265,
+            654
+          ],
+          "dist_center_px": 95.7
+        },
+        {
+          "id": "w26_v2_r00:92",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1266.4,
+            766.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:93",
+          "instruction": "Click the '20.000' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1181.8,
+            687.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            666,
+            1265,
+            682
+          ],
+          "dist_center_px": 16.6
+        },
+        {
+          "id": "w26_v2_r00:94",
+          "instruction": "Type '26' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1263.3,
+            691.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            666,
+            1265,
+            682
+          ],
+          "dist_center_px": 73.8
+        },
+        {
+          "id": "w26_v2_r00:95",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1266.4,
+            766.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:96",
+          "instruction": "Click the '150.000' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1181.8,
+            687.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            694,
+            1233,
+            710
+          ],
+          "dist_center_px": 16.1
+        },
+        {
+          "id": "w26_v2_r00:97",
+          "instruction": "Type '57' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1270.3,
+            692.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            694,
+            1233,
+            710
+          ],
+          "dist_center_px": 95.3
+        },
+        {
+          "id": "w26_v2_r00:98",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1266.4,
+            766.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:99",
+          "instruction": "Click the '14.000' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.3,
+            686.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            722,
+            1233,
+            738
+          ],
+          "dist_center_px": 44.0
+        },
+        {
+          "id": "w26_v2_r00:100",
+          "instruction": "Type '90' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1267.8,
+            692.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            722,
+            1233,
+            738
+          ],
+          "dist_center_px": 99.7
+        },
+        {
+          "id": "w26_v2_r00:101",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1266.4,
+            766.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:102",
+          "instruction": "Click the '确定' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1299.6,
+            819.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1280,
+            815,
+            1360,
+            835
+          ],
+          "dist_center_px": 21.0
+        },
+        {
+          "id": "w26_v2_r00:103",
+          "instruction": "Click the 'Export as Image…' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            820.6,
+            597.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            298,
+            49,
+            330,
+            80
+          ],
+          "dist_center_px": 735.1
+        },
+        {
+          "id": "w26_v2_r00:104",
+          "instruction": "click the target control at (651, 599)",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            813.8,
+            503.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:105",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1522.1,
+            636.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:106",
+          "instruction": "Press ctrl+v",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1192.5,
+            573.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r00:107",
+          "instruction": "Click the '保存(S)' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1249.5,
+            791.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            987,
+            692,
+            1075,
+            718
+          ],
+          "dist_center_px": 234.8
+        },
+        {
+          "id": "w26_v2_r00:108",
+          "instruction": "Click the '保存' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1270.9,
+            800.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1386,
+            938,
+            1466,
+            958
+          ],
+          "dist_center_px": 214.0
+        },
+        {
+          "id": "w26_v2_r00:109",
+          "instruction": "Click the '关闭' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            947.8,
+            622.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            2512,
+            0,
+            2560,
+            22
+          ],
+          "dist_center_px": 1701.9
+        },
+        {
+          "id": "w26_v2_r01:0",
+          "instruction": "Double-click the 'cities' treeitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            547.7,
+            359.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            21,
+            836,
+            293,
+            855
+          ],
+          "dist_center_px": 623.2
+        },
+        {
+          "id": "w26_v2_r01:1",
+          "instruction": "Click the combobox",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            614.4,
+            245.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            218,
+            34,
+            910,
+            58
+          ],
+          "dist_center_px": 205.3
+        },
+        {
+          "id": "w26_v2_r01:2",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1198.8,
+            530.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:3",
+          "instruction": "Type 'graduated'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            745.6,
+            470.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:4",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1142.9,
+            666.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:5",
+          "instruction": "Click the combobox",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            613.6,
+            246.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            302,
+            64,
+            880,
+            88
+          ],
+          "dist_center_px": 171.8
+        },
+        {
+          "id": "w26_v2_r01:6",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1106.9,
+            518.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:7",
+          "instruction": "Type 'pop_max'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            805.0,
+            441.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:8",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1112.7,
+            655.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:9",
+          "instruction": "Click the combobox",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            613.6,
+            246.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            302,
+            203,
+            910,
+            225
+          ],
+          "dist_center_px": 33.1
+        },
+        {
+          "id": "w26_v2_r01:10",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1106.8,
+            518.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:11",
+          "instruction": "Type 'color'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            756.5,
+            458.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:12",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1112.4,
+            655.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:13",
+          "instruction": "Click the 'Mode' combobox",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            614.9,
+            341.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            248,
+            656,
+            428,
+            680
+          ],
+          "dist_center_px": 428.2
+        },
+        {
+          "id": "w26_v2_r01:14",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1163.4,
+            525.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:15",
+          "instruction": "Type 'quantile'",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            807.5,
+            463.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:16",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1136.3,
+            664.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:17",
+          "instruction": "Click the '5' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            870.5,
+            614.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            842,
+            660,
+            893,
+            676
+          ],
+          "dist_center_px": 53.5
+        },
+        {
+          "id": "w26_v2_r01:18",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1106.9,
+            518.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:19",
+          "instruction": "Type '5' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            996.2,
+            677.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            842,
+            660,
+            893,
+            676
+          ],
+          "dist_center_px": 129.0
+        },
+        {
+          "id": "w26_v2_r01:20",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            751.8,
+            625.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:21",
+          "instruction": "Click the 'Classify' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            616.6,
+            731.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            218,
+            688,
+            298,
+            708
+          ],
+          "dist_center_px": 360.1
+        },
+        {
+          "id": "w26_v2_r01:22",
+          "instruction": "Click the '确定' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            638.4,
+            729.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            572,
+            773,
+            652,
+            793
+          ],
+          "dist_center_px": 59.8
+        },
+        {
+          "id": "w26_v2_r01:23",
+          "instruction": "Click the 'Project' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            515.4,
+            185.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            6,
+            23,
+            54,
+            45
+          ],
+          "dist_center_px": 508.3
+        },
+        {
+          "id": "w26_v2_r01:24",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1108.6,
+            647.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:25",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1155.1,
+            683.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:26",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1082.6,
+            643.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:27",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1108.9,
+            647.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:28",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1150.5,
+            684.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:29",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1147.8,
+            675.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:30",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1084.9,
+            646.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:31",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1109.0,
+            648.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:32",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1150.9,
+            684.6
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:33",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1146.7,
+            674.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:34",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1107.8,
+            647.2
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:35",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1149.7,
+            684.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:36",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1147.7,
+            676.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:37",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1177.6,
+            681.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:38",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1170.2,
+            679.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:39",
+          "instruction": "Click the 'Zoom Full' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1282.0,
+            806.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            112,
+            88,
+            144,
+            119
+          ],
+          "dist_center_px": 1351.5
+        },
+        {
+          "id": "w26_v2_r01:40",
+          "instruction": "Click the 'Add Item' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            237.0,
+            47.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            181,
+            23,
+            243,
+            45
+          ],
+          "dist_center_px": 28.6
+        },
+        {
+          "id": "w26_v2_r01:41",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1199.5,
+            733.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:42",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1173.8,
+            693.5
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:43",
+          "instruction": "click the target control at (800, 500)",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            751.2,
+            533.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:44",
+          "instruction": "Click the '87.753' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.9,
+            685.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            638,
+            1265,
+            654
+          ],
+          "dist_center_px": 40.2
+        },
+        {
+          "id": "w26_v2_r01:45",
+          "instruction": "Type '8' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1287.7,
+            698.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            638,
+            1265,
+            654
+          ],
+          "dist_center_px": 109.7
+        },
+        {
+          "id": "w26_v2_r01:46",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1270.0,
+            768.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:47",
+          "instruction": "Click the '55.753' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.6,
+            685.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            666,
+            1265,
+            682
+          ],
+          "dist_center_px": 14.7
+        },
+        {
+          "id": "w26_v2_r01:48",
+          "instruction": "Type '26' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1283.1,
+            697.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            666,
+            1265,
+            682
+          ],
+          "dist_center_px": 94.5
+        },
+        {
+          "id": "w26_v2_r01:49",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1270.0,
+            768.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:50",
+          "instruction": "Click the '57.000' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.0,
+            686.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            694,
+            1233,
+            710
+          ],
+          "dist_center_px": 16.8
+        },
+        {
+          "id": "w26_v2_r01:51",
+          "instruction": "Type '195' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1287.2,
+            698.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            694,
+            1233,
+            710
+          ],
+          "dist_center_px": 111.7
+        },
+        {
+          "id": "w26_v2_r01:52",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1270.0,
+            768.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:53",
+          "instruction": "Click the '90.000' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.0,
+            686.8
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            722,
+            1233,
+            738
+          ],
+          "dist_center_px": 43.7
+        },
+        {
+          "id": "w26_v2_r01:54",
+          "instruction": "Type '176' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1293.5,
+            700.0
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            722,
+            1233,
+            738
+          ],
+          "dist_center_px": 121.8
+        },
+        {
+          "id": "w26_v2_r01:55",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1270.0,
+            768.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:56",
+          "instruction": "Click the '确定' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1298.3,
+            818.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1280,
+            815,
+            1360,
+            835
+          ],
+          "dist_center_px": 22.7
+        },
+        {
+          "id": "w26_v2_r01:57",
+          "instruction": "Click the 'Set to Map Canvas Extent' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            918.6,
+            569.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            2206,
+            805,
+            2230,
+            828
+          ],
+          "dist_center_px": 1322.6
+        },
+        {
+          "id": "w26_v2_r01:58",
+          "instruction": "Click the 'Add Item' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            178.6,
+            50.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            181,
+            23,
+            243,
+            45
+          ],
+          "dist_center_px": 37.3
+        },
+        {
+          "id": "w26_v2_r01:59",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1158.3,
+            697.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:60",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1166.3,
+            699.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:61",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1124.0,
+            684.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:62",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1159.5,
+            698.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:63",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1176.5,
+            692.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:64",
+          "instruction": "click the target control at (700, 250)",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1093.1,
+            370.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:65",
+          "instruction": "Click the '68.121' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1183.1,
+            684.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            638,
+            1265,
+            654
+          ],
+          "dist_center_px": 39.6
+        },
+        {
+          "id": "w26_v2_r01:66",
+          "instruction": "Type '8' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1263.9,
+            691.3
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            638,
+            1265,
+            654
+          ],
+          "dist_center_px": 85.4
+        },
+        {
+          "id": "w26_v2_r01:67",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1269.0,
+            768.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:68",
+          "instruction": "Click the '6.675' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.4,
+            686.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            666,
+            1265,
+            682
+          ],
+          "dist_center_px": 15.6
+        },
+        {
+          "id": "w26_v2_r01:69",
+          "instruction": "Type '6' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1259.9,
+            690.5
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            666,
+            1265,
+            682
+          ],
+          "dist_center_px": 70.4
+        },
+        {
+          "id": "w26_v2_r01:70",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1269.0,
+            768.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:71",
+          "instruction": "Click the '195.000' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.0,
+            686.4
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            694,
+            1233,
+            710
+          ],
+          "dist_center_px": 16.9
+        },
+        {
+          "id": "w26_v2_r01:72",
+          "instruction": "Type '150' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1255.7,
+            689.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            694,
+            1233,
+            710
+          ],
+          "dist_center_px": 81.2
+        },
+        {
+          "id": "w26_v2_r01:73",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1269.0,
+            768.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:74",
+          "instruction": "Click the '176.000' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1182.0,
+            686.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            722,
+            1233,
+            738
+          ],
+          "dist_center_px": 43.8
+        },
+        {
+          "id": "w26_v2_r01:75",
+          "instruction": "Type '14' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1259.6,
+            690.1
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1118,
+            722,
+            1233,
+            738
+          ],
+          "dist_center_px": 93.1
+        },
+        {
+          "id": "w26_v2_r01:76",
+          "instruction": "Press tab",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1269.0,
+            768.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:77",
+          "instruction": "Click the '确定' button",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1299.5,
+            819.7
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            1280,
+            815,
+            1360,
+            835
+          ],
+          "dist_center_px": 21.2
+        },
+        {
+          "id": "w26_v2_r01:78",
+          "instruction": "Click the 'Lorem ipsum' edit",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1281.4,
+            689.9
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            2196,
+            842,
+            2520,
+            992
+          ],
+          "dist_center_px": 1100.3
+        },
+        {
+          "id": "w26_v2_r01:79",
+          "instruction": "Press ctrl+a",
+          "action_true": "hotkey",
+          "action_pred": "hotkey",
+          "action_ok": true,
+          "xy_pred_px": [
+            1207.3,
+            543.1
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:80",
+          "instruction": "Type '中国城市人口分级设色专题图' into the edit",
+          "action_true": "type",
+          "action_pred": "type",
+          "action_ok": true,
+          "xy_pred_px": [
+            1606.5,
+            786.6
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            2196,
+            842,
+            2520,
+            992
+          ],
+          "dist_center_px": 762.8
+        },
+        {
+          "id": "w26_v2_r01:81",
+          "instruction": "Click the 'Add Item' menuitem",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            177.7,
+            50.2
+          ],
+          "scroll_pred": 2,
+          "target_rect": [
+            181,
+            23,
+            243,
+            45
+          ],
+          "dist_center_px": 38.0
+        },
+        {
+          "id": "w26_v2_r01:82",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1157.4,
+            696.7
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:83",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1165.9,
+            698.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:84",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1123.5,
+            684.0
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:85",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1158.6,
+            697.9
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:86",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1167.1,
+            707.8
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:87",
+          "instruction": "Press down",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1164.7,
+            697.3
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:88",
+          "instruction": "Press enter",
+          "action_true": "press",
+          "action_pred": "press",
+          "action_ok": true,
+          "xy_pred_px": [
+            1176.8,
+            691.4
+          ],
+          "scroll_pred": 2
+        },
+        {
+          "id": "w26_v2_r01:89",
+          "instruction": "click the target control at (1300, 320)",
+          "action_true": "click",
+          "action_pred": "click",
+          "action_ok": true,
+          "xy_pred_px": [
+            1194.2,
+            331.5
+          ],
+          "scroll_pred": 2
+        }
+      ],
+      "majority_baseline": {
+        "action": "press",
+        "acc": 0.41533546325878595
+      },
+      "app": "qgis",
+      "split": "val",
+      "n_rows": 626,
+      "ckpt": "artifacts\\checkpoints\\w30_grid.pth",
+      "note": "grid head G=128, held-out chains (hit metric fixed)",
+      "ts": "2026-10-30T09:53:46"
     }
   }
 }

@@ -246,9 +246,11 @@ def evaluate(model, rows, device, tokenizer, image_processor, batch_size=BATCH_S
                 err = (cpred - ctrue).norm(dim=1)
                 coord_err.extend(err.tolist())
                 coord_n += int(mask.sum())
-                for row, keep, p in zip(batch_rows, mask.tolist(), cpred.tolist()):
-                    if not keep:
-                        continue
+                # cpred 已按 mask 压缩过，必须用 mask 的下标去取对应行；
+                # 直接和整批 batch_rows 做 zip 会只比对前缀，命中率被算错（W30 发现）。
+                keep_idx = mask.nonzero(as_tuple=False).flatten().tolist()
+                for i, p in zip(keep_idx, cpred.tolist()):
+                    row = batch_rows[i]
                     rect = row.get("target_rect")
                     if not rect:
                         continue
