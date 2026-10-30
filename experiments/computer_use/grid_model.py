@@ -51,6 +51,90 @@ class GridHead(nn.Module):
         return row_logits, col_logits, torch.stack([col, row], dim=-1)
 
 
+class SpatialCoordHead(nn.Module):
+    """先对视觉 token 网格出热力图选 token，再在该 token 内回归残差。
+
+    与 GridHead 的关键差别：输入是 (B, N, D) 的**空间 token**，不是全局池化向量，
+    因此可以表达"图上第几行第几列"；GridHead 只能从全局向量里记映射。
+    """
+
+    def __init__(self, d_model=768, hidden=256):
+        super().__init__()
+        self.score = nn.Sequential(nn.Linear(d_model, hidden), nn.GELU(),
+                                   nn.Linear(hidden, 1))
+        self.res = nn.Sequential(nn.Linear(d_model, hidden), nn.GELU(),
+                                 nn.Linear(hidden, 2), nn.Tanh())
+
+    @staticmethod
+    def token_centers(n, device, dtype):
+        g = int(round(n ** 0.5))
+        assert g * g == n, f"token 数 {n} 不是平方数"
+        ys = (torch.arange(g, device=device, dtype=dtype) + 0.5) / g
+        xs = (torch.arange(g, device=device, dtype=dtype) + 0.5) / g
+        yy, xx = torch.meshgrid(ys, xs, indexing="ij")
+        return torch.stack([xx.reshape(-1), yy.reshape(-1)], dim=-1), g
+
+    def forward(self, tokens):
+        centers, g = self.token_centers(tokens.size(1), tokens.device, tokens.dtype)
+        logits = self.score(tokens).squeeze(-1)            # B,N
+        p = F.softmax(logits, dim=-1)
+        coarse = p @ centers                                # B,2
+        feat = (p.unsqueeze(-1) * tokens).sum(1)            # B,D
+        res = self.res(feat)                                # B,2 in [-1,1]
+        xy = coarse + res * (0.5 / g)                       # 残差限制在半个 token 内
+        return logits, xy
+
+
+class SpatialModel(ComputerUseModelV3):
+    """复用 v3 主干，坐标头改成"token 热力图 + token 内残差"。"""
+
+    def __init__(self, num_actions=6, freeze_vit=True, freeze_gpt2=True):
+        super().__init__(num_actions=num_actions, freeze_vit=freeze_vit, freeze_gpt2=freeze_gpt2)
+        self.coord_head = SpatialCoordHead()
+
+    def forward(self, images, input_ids, attention_mask=None):
+        with torch.set_grad_enabled(self.training and any(p.requires_grad for p in self.parameters())):
+            visual_feat = self.vit(pixel_values=images, interpolate_pos_encoding=True).last_hidden_state
+        text_feat = self.gpt2(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state
+        fused = self.fusion(text_feat, visual_feat)
+
+        if attention_mask is not None:
+            seq_len = attention_mask.sum(dim=1) - 1
+            fused_last = torch.stack([fused[i, seq_len[i]] for i in range(fused.size(0))])
+        else:
+            fused_last = fused[:, -1, :]
+        fused_last = self.out_proj(fused_last)
+
+        coord_logits, coord_pred = self.coord_head(visual_feat[:, 1:])  # 去掉 CLS，只留 patch 网格
+        return {
+            "action_logits": self.action_head(fused_last),
+            "coord_pred": coord_pred,
+            "coord_logits": coord_logits,
+            "scroll_logits": self.scroll_head(fused_last),
+        }
+
+    def compute_loss(self, outputs, targets, action_weights=None):
+        device = outputs["action_logits"].device
+        action = targets["action"].to(device)
+        coords = targets["coords"].to(device)
+        scroll = targets["scroll"].to(device)
+        mask = targets.get("coord_mask", torch.ones_like(coords, dtype=torch.bool))
+        mask = mask.to(device=device).bool()
+
+        loss = F.cross_entropy(outputs["action_logits"], action, weight=action_weights)
+        loss = loss + F.cross_entropy(outputs["scroll_logits"], scroll)
+
+        if bool(mask.any()):
+            logits = outputs["coord_logits"]
+            g = int(round(logits.size(1) ** 0.5))
+            cx = torch.clamp((coords[:, 0] * g).long(), 0, g - 1)
+            cy = torch.clamp((coords[:, 1] * g).long(), 0, g - 1)
+            token = (cy * g + cx)[mask]
+            loss = loss + F.cross_entropy(logits[mask], token)
+            loss = loss + F.huber_loss(outputs["coord_pred"][mask], coords[mask], delta=0.1) * 10.0
+        return loss
+
+
 class GridModel(ComputerUseModelV3):
     """复用 v3 的 ViT/GPT-2/fusion/action/scroll，只把 coord 头换成网格分类。"""
 

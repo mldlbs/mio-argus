@@ -245,7 +245,7 @@ def main():
     ap.add_argument("--note", default="")
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--device", default="")
-    ap.add_argument("--head", default="v3", choices=["v3", "grid"])
+    ap.add_argument("--head", default="v3", choices=["v3", "grid", "spatial"])
     ap.add_argument("--grid", type=int, default=128)
     ap.add_argument("--img-size", type=int, default=224)
     args = ap.parse_args()
@@ -273,6 +273,9 @@ def main():
         from grid_model import GridModel
         model = GridModel(num_actions=len(ACTION_MAP), freeze_vit=True, freeze_gpt2=True,
                           grid=args.grid)
+    elif args.head == "spatial":
+        from grid_model import SpatialModel
+        model = SpatialModel(num_actions=len(ACTION_MAP), freeze_vit=True, freeze_gpt2=True)
     else:
         model = ComputerUseModelV3(num_actions=len(ACTION_MAP), freeze_vit=True, freeze_gpt2=True)
     ckpt = Path(args.ckpt)
