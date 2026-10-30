@@ -303,6 +303,9 @@ def main():
     ap.add_argument("--splits", default="",
                     help="qgis_splits.json 路径：给出则按其中的 task 列表划分，不再随机切")
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--head", default="v3", choices=["v3", "grid"],
+                    help="v3 = 原坐标回归；grid = 网格分类头（W30-A）")
+    ap.add_argument("--grid", type=int, default=128, help="grid 头每轴的 bin 数")
     ap.add_argument("--device", default="")
     args = ap.parse_args()
     apps = [a.strip() for a in args.apps.split(",") if a.strip()]
@@ -354,7 +357,12 @@ def main():
         {a: sum(1 for r in train_rows if r['action'] == a) for a in ACTION_MAP.values()}.items()
     ) if v} }")
 
-    model = ComputerUseModelV3(num_actions=len(ACTION_MAP), freeze_vit=True, freeze_gpt2=True)
+    if args.head == "grid":
+        from grid_model import GridModel
+        model = GridModel(num_actions=len(ACTION_MAP), freeze_vit=True, freeze_gpt2=True,
+                          grid=args.grid)
+    else:
+        model = ComputerUseModelV3(num_actions=len(ACTION_MAP), freeze_vit=True, freeze_gpt2=True)
     base = Path(args.base_ckpt)
     if base.exists():
         state = torch.load(base, map_location="cpu")

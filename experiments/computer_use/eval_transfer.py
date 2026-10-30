@@ -245,6 +245,8 @@ def main():
     ap.add_argument("--note", default="")
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--device", default="")
+    ap.add_argument("--head", default="v3", choices=["v3", "grid"])
+    ap.add_argument("--grid", type=int, default=128)
     args = ap.parse_args()
 
     if args.capture_qgis:
@@ -266,7 +268,12 @@ def main():
             r["instruction"] = text
         print("[data] 指令已轮换（对照臂）")
 
-    model = ComputerUseModelV3(num_actions=len(ACTION_MAP), freeze_vit=True, freeze_gpt2=True)
+    if args.head == "grid":
+        from grid_model import GridModel
+        model = GridModel(num_actions=len(ACTION_MAP), freeze_vit=True, freeze_gpt2=True,
+                          grid=args.grid)
+    else:
+        model = ComputerUseModelV3(num_actions=len(ACTION_MAP), freeze_vit=True, freeze_gpt2=True)
     ckpt = Path(args.ckpt)
     state = torch.load(ckpt, map_location="cpu")
     missing, unexpected = model.load_state_dict(state, strict=False)
