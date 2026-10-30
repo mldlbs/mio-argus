@@ -120,19 +120,21 @@ def split_by_task(rows, val_ratio, seed):
 
 # -------------------------------------------------------------------- dataset ---
 class DemoDataset(Dataset):
-    def __init__(self, rows, tokenizer, image_processor, max_len=MAX_LEN):
+    def __init__(self, rows, tokenizer, image_processor, max_len=MAX_LEN, img_size=None):
         self.rows = rows
         self.tokenizer = tokenizer
         self.image_processor = image_processor
         self.max_len = max_len
+        self.img_size = int(img_size or IMG_SIZE)
 
     def __len__(self):
         return len(self.rows)
 
     def __getitem__(self, idx):
         item = self.rows[idx]
-        img = Image.open(item["_screenshot"]).convert("RGB").resize((IMG_SIZE, IMG_SIZE))
-        pixel = self.image_processor(images=img, return_tensors="pt")["pixel_values"].squeeze(0)
+        img = Image.open(item["_screenshot"]).convert("RGB").resize((self.img_size, self.img_size))
+        pixel = self.image_processor(images=img, return_tensors="pt",
+                                     do_resize=False, do_center_crop=False)["pixel_values"].squeeze(0)
 
         enc = self.tokenizer(
             item["instruction"].strip(),
@@ -184,10 +186,10 @@ def select_score(metrics):
     return acc - 0.5 * (mae if mae is not None else 1.0)
 
 
-def evaluate(model, rows, device, tokenizer, image_processor, batch_size=BATCH_SIZE):
+def evaluate(model, rows, device, tokenizer, image_processor, batch_size=BATCH_SIZE, img_size=None):
     if not rows:
         return {"n": 0}
-    ds = DemoDataset(rows, tokenizer, image_processor)
+    ds = DemoDataset(rows, tokenizer, image_processor, img_size=img_size)
     loader = DataLoader(ds, batch_size=batch_size)
     model.eval()
     total = correct = scroll_total = scroll_ok = coord_n = 0
@@ -308,9 +310,14 @@ def main():
     ap.add_argument("--head", default="v3", choices=["v3", "grid"],
                     help="v3 = 原坐标回归；grid = 网格分类头（W30-A）")
     ap.add_argument("--grid", type=int, default=128, help="grid 头每轴的 bin 数")
+    ap.add_argument("--img-size", type=int, default=224,
+                    help="输入分辨率（A'：224→768，每 token 覆盖 183px→53px）")
+    ap.add_argument("--batch-size", type=int, default=BATCH_SIZE)
     ap.add_argument("--device", default="")
     args = ap.parse_args()
     apps = [a.strip() for a in args.apps.split(",") if a.strip()]
+    if args.img_size != 224 and args.head != "grid":
+        raise SystemExit("--img-size != 224 需要 --head grid（v3 的 forward 不做位置编码插值）")
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
     clip = float(args.clip)
 
@@ -354,7 +361,7 @@ def main():
 
     tokenizer = get_tokenizer()
     image_processor = get_image_processor()
-    train_ds = DemoDataset(train_rows, tokenizer, image_processor)
+    train_ds = DemoDataset(train_rows, tokenizer, image_processor, img_size=args.img_size)
     print(f"[data] 动作分布={ {k: v for k, v in sorted(
         {a: sum(1 for r in train_rows if r['action'] == a) for a in ACTION_MAP.values()}.items()
     ) if v} }")
@@ -390,7 +397,7 @@ def main():
         model.train()
         total_loss = 0.0
         correct = total = 0
-        for batch in DataLoader(train_ds, batch_size=BATCH_SIZE, sampler=sampler):
+        for batch in DataLoader(train_ds, batch_size=args.batch_size, sampler=sampler):
             images = batch["image"].to(device)
             outputs = model(images, batch["input_ids"].to(device), batch["attention_mask"].to(device))
             loss = model.compute_loss(outputs, batch, action_weights=action_weights)
@@ -407,7 +414,9 @@ def main():
             total += batch["action"].numel()
 
         train_acc = correct / max(total, 1)
-        val = evaluate(model, val_rows, device, tokenizer, image_processor) if val_rows else {"n": 0}
+        val = evaluate(model, val_rows, device, tokenizer, image_processor,
+                       batch_size=args.batch_size,
+                       img_size=args.img_size) if val_rows else {"n": 0}
         val_acc = val.get("action_acc", 0.0)
         history.append({"epoch": epoch, "loss": total_loss / max(total, 1),
                         "train_acc": train_acc, "val_action_acc": val_acc,
@@ -438,7 +447,9 @@ def main():
         "train_action_counts": {a: sum(1 for r in train_rows if r["action"] == a) for a in ACTION_MAP.values()},
         "val_action_counts": {a: sum(1 for r in val_rows if r["action"] == a) for a in ACTION_MAP.values()},
         "history": history,
-        "val_metrics": evaluate(model, val_rows, device, tokenizer, image_processor) if val_rows else {"n": 0},
+        "val_metrics": evaluate(model, val_rows, device, tokenizer, image_processor,
+                                batch_size=args.batch_size,
+                                img_size=args.img_size) if val_rows else {"n": 0},
         "skipped": skipped[:20],
         "skipped_n": len(skipped),
     }

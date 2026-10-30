@@ -247,6 +247,7 @@ def main():
     ap.add_argument("--device", default="")
     ap.add_argument("--head", default="v3", choices=["v3", "grid"])
     ap.add_argument("--grid", type=int, default=128)
+    ap.add_argument("--img-size", type=int, default=224)
     args = ap.parse_args()
 
     if args.capture_qgis:
@@ -282,7 +283,8 @@ def main():
     if missing or unexpected:
         print(f"[ckpt] missing={missing[:5]} unexpected={unexpected[:5]}")
 
-    metrics = evaluate(model, rows, device, get_tokenizer(), get_image_processor())
+    metrics = evaluate(model, rows, device, get_tokenizer(), get_image_processor(),
+                       img_size=args.img_size)
     metrics["app"] = args.app
     metrics["split"] = args.split
     metrics["n_rows"] = len(rows)

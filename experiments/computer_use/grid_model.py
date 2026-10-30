@@ -61,7 +61,7 @@ class GridModel(ComputerUseModelV3):
 
     def forward(self, images, input_ids, attention_mask=None):
         with torch.set_grad_enabled(self.training and any(p.requires_grad for p in self.parameters())):
-            visual_feat = self.vit(pixel_values=images).last_hidden_state
+            visual_feat = self.vit(pixel_values=images, interpolate_pos_encoding=True).last_hidden_state
         text_feat = self.gpt2(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state
         fused = self.fusion(text_feat, visual_feat)
 
