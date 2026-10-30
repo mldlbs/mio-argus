@@ -316,8 +316,8 @@ def main():
     ap.add_argument("--device", default="")
     args = ap.parse_args()
     apps = [a.strip() for a in args.apps.split(",") if a.strip()]
-    if args.img_size != 224 and args.head != "grid":
-        raise SystemExit("--img-size != 224 需要 --head grid（v3 的 forward 不做位置编码插值）")
+    if args.img_size != 224 and args.head not in ("grid", "spatial"):
+        raise SystemExit("--img-size != 224 需要 --head grid/spatial（v3 的 forward 不做位置编码插值）")
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
     clip = float(args.clip)
 
