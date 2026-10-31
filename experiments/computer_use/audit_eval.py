@@ -194,6 +194,10 @@ def predict_uground(model_path, limit=0, dtype="bfloat16"):
                     "vram_mb": int(vram), "raw": ans.strip()[:120], "parse_ok": pt is not None})
         if (i + 1) % 20 == 0:
             print(f"  {i + 1}/{len(rows)} last={ans.strip()[:40]!r}", flush=True)
+            PRED_DIR.mkdir(parents=True, exist_ok=True)
+            (PRED_DIR / "uground_v1_2b.partial.json").write_text(
+                json.dumps({"provider": "uground_v1_2b", "rows": out},
+                           ensure_ascii=False), encoding="utf-8")
     payload = {"provider": "uground_v1_2b",
                "meta": {"model": model_path, "n": len(out), "topk": 1,
                         "dtype": dtype, "device": device},
@@ -203,6 +207,50 @@ def predict_uground(model_path, limit=0, dtype="bfloat16"):
     p.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
     ok = sum(1 for x in out if x["parse_ok"])
     print(f"[uground] rows={len(out)} parsed={ok} -> {p}")
+    return 0
+
+
+# --------------------------------------------------------------- self model ---
+def predict_self(limit=0, head="grid", grid=128,
+                 ckpt=str(ROOT / "artifacts" / "checkpoints" / "w30_grid.pth")):
+    """自研模型也走同一套 manifest + 同一套评分，避免引用旧口径数字。"""
+    import torch
+    from PIL import Image
+    from mio_argus import ACTION_MAP, get_image_processor, get_tokenizer
+
+    if head == "grid":
+        from grid_model import GridModel
+        model = GridModel(num_actions=len(ACTION_MAP), grid=grid)
+    else:
+        from mio_argus import ComputerUseModelV3
+        model = ComputerUseModelV3(num_actions=len(ACTION_MAP))
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.load_state_dict(torch.load(ckpt, map_location="cpu"), strict=False)
+    model.to(device).eval()
+
+    tok, ip = get_tokenizer(), get_image_processor()
+    man = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    rows = man["rows"][:limit] if limit else man["rows"]
+    out = []
+    for r in rows:
+        img = Image.open(ROOT / r["image"]).convert("RGB").resize((224, 224))
+        px = ip(images=img, return_tensors="pt", do_resize=False,
+                do_center_crop=False)["pixel_values"].to(device)
+        enc = tok(r["instruction"], return_tensors="pt", truncation=True, max_length=64)
+        t0 = time.time()
+        with torch.no_grad():
+            o = model(px, enc["input_ids"].to(device), enc["attention_mask"].to(device))
+        lat = (time.time() - t0) * 1000
+        pt = [float(o["coord_pred"][0][0]), float(o["coord_pred"][0][1])]
+        out.append({"id": r["id"], "points": [pt], "latency_ms": round(lat, 1),
+                    "vram_mb": int(torch.cuda.max_memory_allocated() / 1e6) if torch.cuda.is_available() else 0,
+                    "raw": "grid_head", "parse_ok": True})
+    payload = {"provider": "self_grid128", "meta": {"n": len(out), "topk": 1,
+                                                    "ckpt": str(ckpt)}, "rows": out}
+    PRED_DIR.mkdir(parents=True, exist_ok=True)
+    p = PRED_DIR / "self_grid128.json"
+    p.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    print(f"[self] rows={len(out)} -> {p}")
     return 0
 
 
@@ -286,7 +334,7 @@ def structure_availability(man_rows):
 
 def do_score():
     man = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    files = sorted(PRED_DIR.glob("*.json"))
+    files = [f for f in sorted(PRED_DIR.glob("*.json")) if not f.name.endswith(".partial.json")]
     if not files:
         print("[score] 没有预测文件")
         return 1
@@ -318,7 +366,7 @@ def do_score():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--build-manifest", action="store_true")
-    ap.add_argument("--predict", default="", choices=["", "structure", "uground", "gui_actor"])
+    ap.add_argument("--predict", default="", choices=["", "structure", "uground", "gui_actor", "self"])
     ap.add_argument("--score", action="store_true")
     ap.add_argument("--topk", type=int, default=5)
     ap.add_argument("--model", default="osunlp/UGround-V1-2B")
@@ -331,6 +379,8 @@ def main():
         return predict_structure(args.topk)
     if args.predict == "uground":
         return predict_uground(args.model, args.limit, args.dtype)
+    if args.predict == "self":
+        return predict_self(args.limit)
     if args.score:
         return do_score()
     print("需要 --build-manifest / --predict / --score 之一")
