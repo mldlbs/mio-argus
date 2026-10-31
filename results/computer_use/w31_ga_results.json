@@ -1,0 +1,719 @@
+{
+  "meta": {
+    "ts": "2026-10-31T14:06:50",
+    "trials": 3,
+    "attempts": 5,
+    "locator": "GUI-Actor-2B",
+    "vram_mb": 4920,
+    "screen": [
+      2560,
+      1440
+    ]
+  },
+  "calibration": {
+    "s_native": 12971195.218654314
+  },
+  "oracle": {
+    "zoom_full": {
+      "ok": true,
+      "fail": null
+    },
+    "zoom_last": {
+      "ok": true,
+      "fail": null
+    },
+    "zoom_native": {
+      "ok": true,
+      "fail": null
+    }
+  },
+  "trials": [
+    {
+      "task": "zoom_full",
+      "trial": 1,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 59.8,
+      "rows": [
+        {
+          "attempt": 1,
+          "px": [
+            2348.5,
+            1384.8
+          ],
+          "in_window": true,
+          "ms": 10944.2,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 2,
+          "px": [
+            2342.1,
+            1386.1
+          ],
+          "in_window": true,
+          "ms": 10322.0,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 3,
+          "px": [
+            2483.3,
+            1381.5
+          ],
+          "in_window": true,
+          "ms": 10074.7,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 4,
+          "px": [
+            2342.1,
+            1386.0
+          ],
+          "in_window": true,
+          "ms": 10045.6,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 5,
+          "px": [
+            2342.0,
+            1386.0
+          ],
+          "in_window": true,
+          "ms": 10092.3,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        }
+      ]
+    },
+    {
+      "task": "zoom_full",
+      "trial": 2,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 58.8,
+      "rows": [
+        {
+          "attempt": 1,
+          "px": [
+            2339.9,
+            1385.3
+          ],
+          "in_window": true,
+          "ms": 10116.3,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 2,
+          "px": [
+            2342.6,
+            1385.8
+          ],
+          "in_window": true,
+          "ms": 10110.2,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 3,
+          "px": [
+            2331.3,
+            1385.9
+          ],
+          "in_window": true,
+          "ms": 10087.7,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 4,
+          "px": [
+            2342.6,
+            1385.8
+          ],
+          "in_window": true,
+          "ms": 10073.4,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 5,
+          "px": [
+            2342.6,
+            1385.8
+          ],
+          "in_window": true,
+          "ms": 10123.7,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        }
+      ]
+    },
+    {
+      "task": "zoom_full",
+      "trial": 3,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 58.7,
+      "rows": [
+        {
+          "attempt": 1,
+          "px": [
+            2333.0,
+            1386.1
+          ],
+          "in_window": true,
+          "ms": 10114.7,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 2,
+          "px": [
+            2333.0,
+            1386.1
+          ],
+          "in_window": true,
+          "ms": 10119.1,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 3,
+          "px": [
+            2342.8,
+            1386.0
+          ],
+          "in_window": true,
+          "ms": 10106.4,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 4,
+          "px": [
+            2333.0,
+            1386.1
+          ],
+          "in_window": true,
+          "ms": 10165.2,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 5,
+          "px": [
+            2333.2,
+            1386.1
+          ],
+          "in_window": true,
+          "ms": 9962.7,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        }
+      ]
+    },
+    {
+      "task": "zoom_last",
+      "trial": 1,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 58.9,
+      "rows": [
+        {
+          "attempt": 1,
+          "px": [
+            2380.9,
+            1387.0
+          ],
+          "in_window": true,
+          "ms": 9956.4,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "px": [
+            2386.7,
+            1387.7
+          ],
+          "in_window": true,
+          "ms": 10049.5,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "px": [
+            1588.7,
+            1354.8
+          ],
+          "in_window": true,
+          "ms": 10047.4,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "px": [
+            443.0,
+            655.5
+          ],
+          "in_window": true,
+          "ms": 10000.2,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "px": [
+            440.0,
+            657.9
+          ],
+          "in_window": true,
+          "ms": 9996.0,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    },
+    {
+      "task": "zoom_last",
+      "trial": 2,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 58.8,
+      "rows": [
+        {
+          "attempt": 1,
+          "px": [
+            2383.5,
+            1387.8
+          ],
+          "in_window": true,
+          "ms": 10028.4,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "px": [
+            2382.0,
+            1387.1
+          ],
+          "in_window": true,
+          "ms": 9953.4,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "px": [
+            2390.5,
+            1387.0
+          ],
+          "in_window": true,
+          "ms": 9956.9,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "px": [
+            2382.0,
+            1387.1
+          ],
+          "in_window": true,
+          "ms": 9985.3,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "px": [
+            2390.5,
+            1387.0
+          ],
+          "in_window": true,
+          "ms": 9971.3,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    },
+    {
+      "task": "zoom_last",
+      "trial": 3,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 58.5,
+      "rows": [
+        {
+          "attempt": 1,
+          "px": [
+            2390.5,
+            1387.0
+          ],
+          "in_window": true,
+          "ms": 9969.6,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "px": [
+            2381.8,
+            1387.2
+          ],
+          "in_window": true,
+          "ms": 9961.2,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "px": [
+            2390.8,
+            1387.0
+          ],
+          "in_window": true,
+          "ms": 9955.7,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "px": [
+            2381.8,
+            1387.2
+          ],
+          "in_window": true,
+          "ms": 9964.6,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "px": [
+            2390.8,
+            1387.0
+          ],
+          "in_window": true,
+          "ms": 9959.5,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    },
+    {
+      "task": "zoom_native",
+      "trial": 1,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 58.2,
+      "rows": [
+        {
+          "attempt": 1,
+          "px": [
+            2311.2,
+            1383.7
+          ],
+          "in_window": true,
+          "ms": 9989.6,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "px": [
+            2322.9,
+            1382.9
+          ],
+          "in_window": true,
+          "ms": 9955.1,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "px": [
+            2312.1,
+            1383.7
+          ],
+          "in_window": true,
+          "ms": 9960.5,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "px": [
+            2322.9,
+            1382.9
+          ],
+          "in_window": true,
+          "ms": 9967.5,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "px": [
+            2312.1,
+            1383.7
+          ],
+          "in_window": true,
+          "ms": 9962.8,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    },
+    {
+      "task": "zoom_native",
+      "trial": 2,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 58.1,
+      "rows": [
+        {
+          "attempt": 1,
+          "px": [
+            2312.1,
+            1383.7
+          ],
+          "in_window": true,
+          "ms": 9986.5,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "px": [
+            2323.8,
+            1382.9
+          ],
+          "in_window": true,
+          "ms": 10039.8,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "px": [
+            2312.8,
+            1383.7
+          ],
+          "in_window": true,
+          "ms": 9967.2,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "px": [
+            2323.8,
+            1382.9
+          ],
+          "in_window": true,
+          "ms": 9972.3,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "px": [
+            2312.8,
+            1383.7
+          ],
+          "in_window": true,
+          "ms": 9962.3,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    },
+    {
+      "task": "zoom_native",
+      "trial": 3,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 58.3,
+      "rows": [
+        {
+          "attempt": 1,
+          "px": [
+            2323.8,
+            1382.9
+          ],
+          "in_window": true,
+          "ms": 10061.8,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "px": [
+            2311.1,
+            1383.6
+          ],
+          "in_window": true,
+          "ms": 9962.0,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "px": [
+            2323.8,
+            1383.0
+          ],
+          "in_window": true,
+          "ms": 9973.1,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "px": [
+            2311.1,
+            1383.6
+          ],
+          "in_window": true,
+          "ms": 9979.6,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "px": [
+            2311.1,
+            1383.6
+          ],
+          "in_window": true,
+          "ms": 9973.6,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "n": 9,
+    "success": 0,
+    "rate": 0.0,
+    "success_at_1": 0.0,
+    "mean_attempts": 5.0,
+    "fails": {
+      "no_output": 0,
+      "out_of_window": 0,
+      "truth_fail": 45
+    }
+  }
+}
