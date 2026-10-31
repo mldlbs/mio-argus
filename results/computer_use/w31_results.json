@@ -1,0 +1,1109 @@
+{
+  "meta": {
+    "ts": "2026-10-31T10:22:52",
+    "trials": 3,
+    "attempts": 5,
+    "screen": [
+      2560,
+      1440
+    ]
+  },
+  "calibration": {
+    "s_native": 12971195.218654314,
+    "full": [
+      6099847.751334672,
+      1431547.4933364806,
+      17170376.822979383,
+      7506120.354172528
+    ],
+    "A": [
+      9421006.472828085,
+      3253919.3515872946,
+      13849218.10148597,
+      5683748.495921713
+    ],
+    "B": [
+      7760427.112081379,
+      2342733.4224618874,
+      15509797.462232675,
+      6594934.42504712
+    ]
+  },
+  "oracle": {
+    "zoom_full": {
+      "ok": true,
+      "px": [
+        375,
+        64
+      ],
+      "fail": null
+    },
+    "zoom_last": {
+      "ok": true,
+      "px": [
+        507,
+        64
+      ],
+      "fail": null
+    },
+    "zoom_native": {
+      "ok": true,
+      "px": [
+        474,
+        64
+      ],
+      "fail": null
+    }
+  },
+  "trials": [
+    {
+      "task": "zoom_full",
+      "trial": 1,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 10.0,
+      "rows": [
+        {
+          "attempt": 1,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48675617575645447,
+              0.48576924204826355
+            ],
+            "scroll": "none",
+            "ms": 404.3
+          },
+          "px": [
+            1246.1,
+            699.5
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 2,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48699772357940674,
+              0.4846247434616089
+            ],
+            "scroll": "none",
+            "ms": 77.1
+          },
+          "px": [
+            1246.7,
+            697.9
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 3,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4886039197444916,
+              0.48487135767936707
+            ],
+            "scroll": "none",
+            "ms": 81.6
+          },
+          "px": [
+            1250.8,
+            698.2
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 4,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4898098111152649,
+              0.48454082012176514
+            ],
+            "scroll": "none",
+            "ms": 210.5
+          },
+          "px": [
+            1253.9,
+            697.7
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 5,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49283578991889954,
+              0.48359230160713196
+            ],
+            "scroll": "none",
+            "ms": 78.1
+          },
+          "px": [
+            1261.7,
+            696.4
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        }
+      ]
+    },
+    {
+      "task": "zoom_full",
+      "trial": 2,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 9.1,
+      "rows": [
+        {
+          "attempt": 1,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4868004620075226,
+              0.48575106263160706
+            ],
+            "scroll": "none",
+            "ms": 65.6
+          },
+          "px": [
+            1246.2,
+            699.5
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 2,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48746195435523987,
+              0.484460711479187
+            ],
+            "scroll": "none",
+            "ms": 71.1
+          },
+          "px": [
+            1247.9,
+            697.6
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 3,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48855507373809814,
+              0.4849093556404114
+            ],
+            "scroll": "none",
+            "ms": 69.1
+          },
+          "px": [
+            1250.7,
+            698.3
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 4,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4901489317417145,
+              0.4843990206718445
+            ],
+            "scroll": "none",
+            "ms": 72.6
+          },
+          "px": [
+            1254.8,
+            697.5
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 5,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49317362904548645,
+              0.48344895243644714
+            ],
+            "scroll": "none",
+            "ms": 77.1
+          },
+          "px": [
+            1262.5,
+            696.2
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        }
+      ]
+    },
+    {
+      "task": "zoom_full",
+      "trial": 3,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 9.1,
+      "rows": [
+        {
+          "attempt": 1,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48675262928009033,
+              0.48576900362968445
+            ],
+            "scroll": "none",
+            "ms": 67.1
+          },
+          "px": [
+            1246.1,
+            699.5
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 2,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48699772357940674,
+              0.4846247434616089
+            ],
+            "scroll": "none",
+            "ms": 67.6
+          },
+          "px": [
+            1246.7,
+            697.9
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 3,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4886039197444916,
+              0.48487135767936707
+            ],
+            "scroll": "none",
+            "ms": 65.8
+          },
+          "px": [
+            1250.8,
+            698.2
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 4,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4898098111152649,
+              0.48454082012176514
+            ],
+            "scroll": "none",
+            "ms": 73.1
+          },
+          "px": [
+            1253.9,
+            697.7
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        },
+        {
+          "attempt": 5,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49283578991889954,
+              0.48359230160713196
+            ],
+            "scroll": "none",
+            "ms": 66.6
+          },
+          "px": [
+            1261.7,
+            696.4
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 7412111.553516751
+        }
+      ]
+    },
+    {
+      "task": "zoom_last",
+      "trial": 1,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 9.6,
+      "rows": [
+        {
+          "attempt": 1,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48204317688941956,
+              0.49338147044181824
+            ],
+            "scroll": "none",
+            "ms": 64.6
+          },
+          "px": [
+            1234.0,
+            710.5
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.47723448276519775,
+              0.49524983763694763
+            ],
+            "scroll": "none",
+            "ms": 69.7
+          },
+          "px": [
+            1221.7,
+            713.2
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.47557809948921204,
+              0.49592259526252747
+            ],
+            "scroll": "none",
+            "ms": 80.6
+          },
+          "px": [
+            1217.5,
+            714.1
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4813016355037689,
+              0.49380090832710266
+            ],
+            "scroll": "none",
+            "ms": 73.1
+          },
+          "px": [
+            1232.1,
+            711.1
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48243463039398193,
+              0.49269774556159973
+            ],
+            "scroll": "none",
+            "ms": 66.7
+          },
+          "px": [
+            1235.0,
+            709.5
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    },
+    {
+      "task": "zoom_last",
+      "trial": 2,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 9.6,
+      "rows": [
+        {
+          "attempt": 1,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48206257820129395,
+              0.49337196350097656
+            ],
+            "scroll": "none",
+            "ms": 69.6
+          },
+          "px": [
+            1234.1,
+            710.5
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.47723448276519775,
+              0.49524983763694763
+            ],
+            "scroll": "none",
+            "ms": 80.1
+          },
+          "px": [
+            1221.7,
+            713.2
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.47557809948921204,
+              0.49592259526252747
+            ],
+            "scroll": "none",
+            "ms": 65.0
+          },
+          "px": [
+            1217.5,
+            714.1
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4813016355037689,
+              0.49380090832710266
+            ],
+            "scroll": "none",
+            "ms": 74.0
+          },
+          "px": [
+            1232.1,
+            711.1
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48243463039398193,
+              0.49269774556159973
+            ],
+            "scroll": "none",
+            "ms": 69.4
+          },
+          "px": [
+            1235.0,
+            709.5
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    },
+    {
+      "task": "zoom_last",
+      "trial": 3,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 9.6,
+      "rows": [
+        {
+          "attempt": 1,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48206257820129395,
+              0.49337196350097656
+            ],
+            "scroll": "none",
+            "ms": 64.8
+          },
+          "px": [
+            1234.1,
+            710.5
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.47723448276519775,
+              0.49524983763694763
+            ],
+            "scroll": "none",
+            "ms": 79.6
+          },
+          "px": [
+            1221.7,
+            713.2
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.47557809948921204,
+              0.49592259526252747
+            ],
+            "scroll": "none",
+            "ms": 67.6
+          },
+          "px": [
+            1217.5,
+            714.1
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4813016355037689,
+              0.49380090832710266
+            ],
+            "scroll": "none",
+            "ms": 75.6
+          },
+          "px": [
+            1232.1,
+            711.1
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.48243463039398193,
+              0.49269774556159973
+            ],
+            "scroll": "none",
+            "ms": 68.8
+          },
+          "px": [
+            1235.0,
+            709.5
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    },
+    {
+      "task": "zoom_native",
+      "trial": 1,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 9.3,
+      "rows": [
+        {
+          "attempt": 1,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49478718638420105,
+              0.4828909635543823
+            ],
+            "scroll": "none",
+            "ms": 68.1
+          },
+          "px": [
+            1266.7,
+            695.4
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4942309260368347,
+              0.4833994209766388
+            ],
+            "scroll": "none",
+            "ms": 101.7
+          },
+          "px": [
+            1265.2,
+            696.1
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4919801652431488,
+              0.48494791984558105
+            ],
+            "scroll": "none",
+            "ms": 67.2
+          },
+          "px": [
+            1259.5,
+            698.3
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4936596155166626,
+              0.4837868809700012
+            ],
+            "scroll": "none",
+            "ms": 62.9
+          },
+          "px": [
+            1263.8,
+            696.7
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49490147829055786,
+              0.48395439982414246
+            ],
+            "scroll": "none",
+            "ms": 88.2
+          },
+          "px": [
+            1266.9,
+            696.9
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    },
+    {
+      "task": "zoom_native",
+      "trial": 2,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 9.0,
+      "rows": [
+        {
+          "attempt": 1,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4947918951511383,
+              0.4828876256942749
+            ],
+            "scroll": "none",
+            "ms": 73.3
+          },
+          "px": [
+            1266.7,
+            695.4
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49423086643218994,
+              0.4833994209766388
+            ],
+            "scroll": "none",
+            "ms": 74.6
+          },
+          "px": [
+            1265.2,
+            696.1
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49198004603385925,
+              0.48494791984558105
+            ],
+            "scroll": "none",
+            "ms": 65.7
+          },
+          "px": [
+            1259.5,
+            698.3
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49365973472595215,
+              0.48378682136535645
+            ],
+            "scroll": "none",
+            "ms": 66.0
+          },
+          "px": [
+            1263.8,
+            696.7
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49490147829055786,
+              0.48395439982414246
+            ],
+            "scroll": "none",
+            "ms": 76.6
+          },
+          "px": [
+            1266.9,
+            696.9
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    },
+    {
+      "task": "zoom_native",
+      "trial": 3,
+      "success": false,
+      "success_at": null,
+      "attempts": 5,
+      "elapsed_s": 9.1,
+      "rows": [
+        {
+          "attempt": 1,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.4947918951511383,
+              0.4828876256942749
+            ],
+            "scroll": "none",
+            "ms": 71.5
+          },
+          "px": [
+            1266.7,
+            695.4
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 2,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49423086643218994,
+              0.4833994209766388
+            ],
+            "scroll": "none",
+            "ms": 90.2
+          },
+          "px": [
+            1265.2,
+            696.1
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 3,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49198004603385925,
+              0.48494791984558105
+            ],
+            "scroll": "none",
+            "ms": 70.3
+          },
+          "px": [
+            1259.5,
+            698.3
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 4,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49365973472595215,
+              0.48378682136535645
+            ],
+            "scroll": "none",
+            "ms": 67.5
+          },
+          "px": [
+            1263.8,
+            696.7
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        },
+        {
+          "attempt": 5,
+          "pred": {
+            "action": "click",
+            "coord": [
+              0.49490147829055786,
+              0.48395439982414246
+            ],
+            "scroll": "none",
+            "ms": 69.7
+          },
+          "px": [
+            1266.9,
+            696.9
+          ],
+          "in_window": true,
+          "clicked": true,
+          "success": false,
+          "fail": "truth_fail",
+          "scale": 12971195.218654314
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "n_tasks": 9,
+    "success": 0,
+    "rate": 0.0,
+    "success_at_1": 0.0,
+    "success_at_k": 0.0,
+    "mean_attempts": 5.0,
+    "mean_elapsed_s": 9.377777777777778,
+    "fails": {
+      "action_wrong": 0,
+      "out_of_window": 0,
+      "truth_fail": 45
+    }
+  }
+}
