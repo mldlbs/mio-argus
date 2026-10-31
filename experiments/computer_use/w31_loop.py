@@ -108,6 +108,10 @@ def calibrate():
 
 
 def prepare(task, cal):
+    try:
+        call({"op": "close_dialogs"})   # 上一次尝试可能留下对话框，先清干净
+    except Exception:
+        pass
     if task == "zoom_full":
         call({"op": "set_extent", "box": cal["A"]})
     elif task == "zoom_last":
@@ -147,7 +151,7 @@ UIA_NAME = {
 }
 
 
-def run_model_task(task, instr, cal, brain, screen, attempt_cap):
+def run_model_task(task, instr, cal, brain, screen, attempt_cap, jitter=0.0, rng=None):
     prepare(task, cal)
     qg = qgis_window()
     wrect = ensure_visible(qg)
@@ -157,9 +161,17 @@ def run_model_task(task, instr, cal, brain, screen, attempt_cap):
         img = pyautogui.screenshot()
         pred = brain.predict(img, instr)
         x, y = pred["coord"][0] * screen[0], pred["coord"][1] * screen[1]
+        jx = jy = 0.0
+        if jitter > 0 and attempt > 1 and rng is not None:
+            # 在半径 jitter 的圆内均匀采样（"随机化重试"臂）
+            import math
+            r = jitter * math.sqrt(rng.random())
+            th = rng.uniform(0, 2 * math.pi)
+            jx, jy = r * math.cos(th), r * math.sin(th)
+            x, y = x + jx, y + jy
         inside = wrect[0] <= x <= wrect[2] and wrect[1] <= y <= wrect[3]
         row = {"attempt": attempt, "pred": pred, "px": [round(x, 1), round(y, 1)],
-               "in_window": inside}
+               "jitter": [round(jx, 1), round(jy, 1)], "in_window": inside}
         if pred["action"] != "click":
             row.update({"clicked": False, "success": False, "fail": "action_wrong"})
         elif not inside:
@@ -199,6 +211,10 @@ def main():
     ap.add_argument("--trials", type=int, default=3)
     ap.add_argument("--attempts", type=int, default=5)
     ap.add_argument("--dry", action="store_true", help="只做校准 + oracle 基线")
+    ap.add_argument("--jitter", type=float, default=0.0,
+                    help="重试半径（px）：>0 时第 2 次起在圆内随机扰动，用于检验"
+                         "「验证 + 随机搜索」能否偶然命中")
+    ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--ckpt", default=str(ROOT / "artifacts" / "checkpoints" / "w30_full.pth"))
     ap.add_argument("--out", default=str(OUT))
     args = ap.parse_args()
@@ -243,12 +259,15 @@ def main():
                "oracle": oracle, "trials": []}
 
     if not args.dry:
+        import random
+        rng = random.Random(args.seed)
         brain = make_brain(args.ckpt)
         log(f"[model] v3 on {brain.device}")
         for task, instr in TASKS.items():
             for t in range(1, args.trials + 1):
                 t0 = time.time()
-                rows = run_model_task(task, instr, cal, brain, screen, args.attempts)
+                rows = run_model_task(task, instr, cal, brain, screen, args.attempts,
+                                      jitter=args.jitter, rng=rng)
                 hit = any(r["success"] for r in rows)
                 payload["trials"].append({
                     "task": task, "trial": t, "success": hit,
