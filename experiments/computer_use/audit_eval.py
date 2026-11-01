@@ -332,6 +332,71 @@ def structure_availability(man_rows):
     return {"n": n, "inside": inside, "rate": inside / max(n, 1)}
 
 
+QUOTE_RE = re.compile(r"['\"\u2018\u2019\u201c\u201d]([^'\"\u2018\u2019\u201c\u201d]{1,40})['\"\u2018\u2019\u201c\u201d]")
+STOP = {"click", "double", "the", "on", "in", "of", "to", "a", "an", "button", "menuitem",
+        "menu", "edit", "combobox", "tab", "item", "treeitem", "checkbox", "and", "with"}
+
+
+def _tok(text):
+    return [t for t in TOKEN_RE.findall((text or "").lower()) if t not in STOP]
+
+
+def predict_structure_v2(topk=5):
+    """结构匹配 v2：引号内容优先 + IDF 加权重叠 + 短文本特异性。"""
+    man = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    rows = man["rows"]
+
+    # 全局 IDF（候选文本作语料）
+    df = Counter()
+    for r in rows:
+        for a in (r.get("affordances") or []):
+            for t in set(_tok(a.get("text", ""))):
+                df[t] += 1
+    total = max(len(rows), 1)
+    idf = {t: math.log(1 + total / (1 + c)) for t, c in df.items()}
+
+    out = []
+    for r in rows:
+        cands = [a for a in (r.get("affordances") or []) if a.get("text") and a.get("rect")]
+        if not cands:
+            out.append({"id": r["id"], "points": [], "parse_ok": False, "raw": "no_affordances"})
+            continue
+        quotes = [q.lower() for q in QUOTE_RE.findall(r["instruction"]) if q.strip()]
+        itoks = set(_tok(r["instruction"]))
+        scored = []
+        for a in cands:
+            label = a["text"]
+            low = label.lower()
+            ctoks = set(_tok(label))
+            base = sum(idf.get(t, 0.0) for t in (itoks & ctoks))
+            # 引号命中：强信号（+3），否则重罚
+            q_hit = sum(1 for q in quotes if q and q in low)
+            if quotes:
+                base += 3.0 * q_hit
+                if q_hit == 0:
+                    base -= 1.0
+            # 整段标签出现在指令里：加分
+            if len(low) >= 2 and low in r["instruction"].lower():
+                base += 1.5
+            # 特异性：短标签优先（同分时更容易是"那个控件"）
+            base -= 0.002 * len(low)
+            scored.append((base, a))
+        scored.sort(key=lambda x: -x[0])
+        pts = []
+        for _, a in scored[:topk]:
+            l, t, w, h = a["rect"]
+            pts.append([(l + w / 2) / r["screen"][0], (t + h / 2) / r["screen"][1]])
+        out.append({"id": r["id"], "points": pts, "latency_ms": 0.0, "vram_mb": 0,
+                    "raw": [a["text"] for _, a in scored[:topk]], "parse_ok": True})
+
+    payload = {"provider": "structure_v2", "meta": {"n": len(out), "topk": topk}, "rows": out}
+    PRED_DIR.mkdir(parents=True, exist_ok=True)
+    p = PRED_DIR / "structure_v2.json"
+    p.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    print(f"[structure_v2] rows={len(out)} -> {p}")
+    return 0
+
+
 def do_score():
     man = json.loads(MANIFEST.read_text(encoding="utf-8"))
     files = [f for f in sorted(PRED_DIR.glob("*.json")) if not f.name.endswith(".partial.json")]
@@ -366,7 +431,7 @@ def do_score():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--build-manifest", action="store_true")
-    ap.add_argument("--predict", default="", choices=["", "structure", "uground", "gui_actor", "self"])
+    ap.add_argument("--predict", default="", choices=["", "structure", "structure2", "uground", "gui_actor", "self"])
     ap.add_argument("--score", action="store_true")
     ap.add_argument("--topk", type=int, default=5)
     ap.add_argument("--model", default="osunlp/UGround-V1-2B")
@@ -377,6 +442,8 @@ def main():
         return build_manifest()
     if args.predict == "structure":
         return predict_structure(args.topk)
+    if args.predict == "structure2":
+        return predict_structure_v2(args.topk)
     if args.predict == "uground":
         return predict_uground(args.model, args.limit, args.dtype)
     if args.predict == "self":
