@@ -77,3 +77,23 @@
 - 本轮只有 **74 条样本**（w27_r03），因为 w26_v2 那次采集早早失败（2 条）。
 - 召回 91.9% 是在 74 条上测的，方差较大（±5 点量级）。
 - 候选数 332 包含大量不可见/装饰性 UIA 节点，尚未做可见性剪枝。
+
+## 8. 第二应用：Bigemap 的控件树
+
+采集脚本 `capture_uia_app.py` 已就绪；本次运行期 Bigemap 起不来（进程在、窗口缺失，
+说明卡在启动/更新检查），因此先用**健康运行时的一次 UIA 导出**（`bigemap_controls.txt`）
+整理为标准样本 `artifacts/uia_capture/bigemap/tree_legacy.json`：
+
+| 指标 | 值 |
+|---|---|
+| 控件总数 | 97 |
+| 有名字 | 97（100%） |
+| 名称+可操作（Button/Menu/Tab/Combo/TreeItem…） | **59** |
+| 类型分布 | Text 26 / Button 17 / TreeItem 9 / MenuItem 8 / RadioButton 8 / ComboBox 6 / TabItem 6 |
+
+两条结论：
+
+1. **标准 Qt 控件 UIA 覆盖良好**：菜单、工具栏、下拉、树项都在，且都带名字和矩形。
+2. **自绘控件确实缺失**：下载对话框里的"级别"表格（QTableWidget 自绘）在 97 个控件里
+   一个都找不到——这正是我们手动卡住的地方，也印证了"UIA 管标准控件、视觉管自绘控件"的分工。
+
