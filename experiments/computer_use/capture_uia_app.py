@@ -31,13 +31,16 @@ def capture(title_sub, app_name, max_nodes=4000):
     win = None
     for w in Desktop(backend="uia").windows(visible_only=True):
         try:
-            if title_sub in (w.window_text() or ""):
+            cls = w.element_info.class_name or ""
+            if title_sub in (w.window_text() or "") and cls.startswith("Qt"):
                 win = w
                 break
         except Exception:
             continue
     if win is None:
         raise SystemExit(f"window not found: {title_sub}")
+    print(f"[debug] chosen class={win.element_info.class_name!r} "
+          f"title={win.window_text()[:40]!r}")
 
     r = win.rectangle()
     out_dir = OUT / app_name
@@ -51,13 +54,21 @@ def capture(title_sub, app_name, max_nodes=4000):
             ct = c.element_info.control_type
             name = (c.window_text() or "").strip()
             rr = c.rectangle()
+            try:
+                enabled = bool(c.is_enabled())
+            except Exception:
+                enabled = True
+            try:
+                offscreen = bool(c.is_offscreen())
+            except Exception:
+                offscreen = False
             nodes.append({
                 "type": ct, "name": name,
                 "automation_id": c.element_info.auto_id or "",
                 "class": c.element_info.class_name or "",
                 "rect": [int(rr.left), int(rr.top), int(rr.right - rr.left), int(rr.bottom - rr.top)],
-                "enabled": bool(c.is_enabled()),
-                "offscreen": bool(c.is_offscreen()),
+                "enabled": enabled,
+                "offscreen": offscreen,
             })
         except Exception:
             continue
