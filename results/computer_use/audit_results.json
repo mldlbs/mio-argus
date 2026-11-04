@@ -1,5 +1,5 @@
 {
-  "ts": "2026-10-31T13:45:44",
+  "ts": "2026-11-01T09:29:09",
   "manifest_n": 216,
   "structure_availability": {
     "n": 216,
@@ -78,6 +78,30 @@
         }
       },
       "file": "structure_uia.json"
+    },
+    {
+      "provider": "structure_v2",
+      "n": 216,
+      "top1": 0.1574074074074074,
+      "topk": 0.1712962962962963,
+      "topk_k": 5,
+      "no_output": 0,
+      "invalid": 0,
+      "wrong": 182,
+      "latency_p50_ms": 0.0,
+      "latency_p90_ms": 0.0,
+      "vram_mb": 0,
+      "by_size": {
+        "large(>=100px)": {
+          "n": 4,
+          "top1": 0.0
+        },
+        "small(<50px)": {
+          "n": 212,
+          "top1": 0.16037735849056603
+        }
+      },
+      "file": "structure_v2.json"
     },
     {
       "provider": "uground_v1_2b",
