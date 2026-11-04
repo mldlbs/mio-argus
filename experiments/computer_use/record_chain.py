@@ -37,8 +37,15 @@ OUT = ROOT / "artifacts" / "computer_use_inloop"
 
 
 def qgis_observation():
-    """QGIS 侧观察：bridge truth / structure + 可见窗口，用于遮挡与焦点归因。"""
+    """QGIS 侧观察：bridge truth / structure + 可见窗口。
+
+    候选 = actions（QAction，带 text+rect，图标按钮的语义来源）
+         + widgets（控件，带 class/path/rect/text）
+    过滤：enabled、有 rect、有 text；不按面积裁剪（父容器可能是可操作目标），
+    保留 path/class 作为层级信息。同时记录旧口径（前 60 条 text 控件）用于同帧对照。
+    """
     truth, struct, windows = {}, [], []
+    legacy, stats = [], {}
     try:
         truth = (call({"op": "truth"}, timeout=5) or {}).get("truth") or {}
     except Exception:
@@ -46,10 +53,42 @@ def qgis_observation():
     try:
         st = call({"op": "structure"}, timeout=5) or {}
         widgets = st.get("widgets") or []
-        struct = [{"text": w.get("text", ""), "rect": w.get("rect"),
+        actions = st.get("actions") or []
+        legacy = [{"text": w.get("text", ""), "rect": w.get("rect"),
                    "cls": w.get("class", ""), "path": w.get("path", ""),
                    "enabled": w.get("enabled", True)}
-                  for w in widgets if w.get("text") and w.get("rect")]
+                  for w in widgets if w.get("text") and w.get("rect")][:60]
+
+        seen, cand = set(), []
+        for a in actions:
+            t = (a.get("text") or "").strip()
+            r = a.get("rect")
+            if not t or not r or not a.get("enabled", True):
+                continue
+            key = (t, tuple(r))
+            if key in seen:
+                continue
+            seen.add(key)
+            cand.append({"text": t, "rect": r, "cls": "QAction", "path": "",
+                         "enabled": True, "kind": "action",
+                         "shortcut": a.get("shortcut") or ""})
+        for w in widgets:
+            t = (w.get("text") or "").strip()
+            r = w.get("rect")
+            if not t or not r or not w.get("enabled", True):
+                continue
+            key = (t, tuple(r))
+            if key in seen:
+                continue
+            seen.add(key)
+            cand.append({"text": t, "rect": r, "cls": w.get("class", ""),
+                         "path": w.get("path", ""), "enabled": True,
+                         "kind": "widget", "objectName": w.get("objectName", "")})
+        struct = cand
+        stats = {"widgets": len(widgets), "actions": len(actions),
+                 "kept": len(cand), "legacy": len(legacy),
+                 "kinds": {"action": sum(1 for c in cand if c["kind"] == "action"),
+                           "widget": sum(1 for c in cand if c["kind"] == "widget")}}
     except Exception:
         pass
     try:
@@ -63,7 +102,48 @@ def qgis_observation():
                 continue
     except Exception:
         pass
-    return {"truth": truth, "affordances": struct[:60], "windows": windows[:20]}
+
+    # UIA 补充：bridge 给不到的菜单栏项 / 树项 / 标题栏按钮
+    try:
+        from pywinauto import Desktop
+        qg = None
+        for w in Desktop(backend="uia").windows(visible_only=True):
+            try:
+                if (w.element_info.class_name or "") == "QgisApp":
+                    qg = w
+                    break
+            except Exception:
+                continue
+        if qg is not None:
+            seen2 = {(c["text"], tuple(c["rect"])) for c in struct}
+            uia_add = 0
+            for c in qg.descendants():
+                try:
+                    ct = c.element_info.control_type
+                    if ct not in ("MenuItem", "TreeItem", "Button", "TabItem", "Edit", "ListItem"):
+                        continue
+                    t = (c.window_text() or "").strip()
+                    r = c.rectangle()
+                    if not t or r.width() < 4 or r.height() < 4:
+                        continue
+                    box = [int(r.left), int(r.top), int(r.width()), int(r.height())]
+                    key = (t, tuple(box))
+                    if key in seen2:
+                        continue
+                    seen2.add(key)
+                    struct.append({"text": t, "rect": box, "cls": ct, "path": "",
+                                   "enabled": bool(c.is_enabled()), "kind": "uia",
+                                   "control_type": ct})
+                    uia_add += 1
+                except Exception:
+                    continue
+            stats["uia_added"] = uia_add
+            stats["kept"] = len(struct)
+    except Exception:
+        pass
+
+    return {"truth": truth, "affordances": struct, "affordances_legacy": legacy,
+            "cand_stats": stats, "windows": windows[:20]}
 
 
 def build_queue(chains):
@@ -78,6 +158,13 @@ def build_queue(chains):
                 q.append((f"w26_{tid}",
                           (lambda t: lambda out_p, steps: run_w26.run_chain(t, out_p, steps))(tid),
                           run_w26.reset_env))
+        elif c.startswith("w26_"):
+            tid = c[4:]
+            if tid not in run_w26.THEMES:
+                raise SystemExit(f"未知主题: {c}")
+            q.append((c,
+                      (lambda t: lambda out_p, steps: run_w26.run_chain(t, out_p, steps))(tid),
+                      run_w26.reset_env))
         elif c == "w27":
             q.append(("w27", lambda out_p, steps: run_w27.run_chain(out_p, steps),
                       run_w27.reset_env))
