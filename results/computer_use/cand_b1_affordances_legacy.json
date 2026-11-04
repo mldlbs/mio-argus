@@ -1,14 +1,13 @@
 {
  "stage": "b1",
  "cands": "affordances_legacy",
- "n": 161,
- "hit": 49,
- "recall": 0.30434782608695654,
- "cand_median": 58,
+ "n": 74,
+ "hit": 23,
+ "recall": 0.3108108108108108,
+ "cand_median": 57,
  "cand_p90": 59,
  "hit_by_bucket": {
-  "input": 19,
-  "toolbar": 4,
-  "other": 26
+  "input": 4,
+  "other": 19
  }
 }

@@ -150,6 +150,58 @@ def lexical_scores(instr, cands, idf):
     return [sum(idf.get(t, 0.0) for t in (it & set(toks(a.get("text", ""))))) for a in cands]
 
 
+ROLE_PATTERNS = [
+    ("button", r"\bbutton\b"),
+    ("menuitem", r"\bmenuitem\b"),
+    ("menu", r"\bmenu\b"),
+    ("edit", r"\bedit\b"),
+    ("combobox", r"\bcombobox\b"),
+    ("treeitem", r"\btreeitem\b"),
+    ("tab", r"\btab\b"),
+    ("checkbox", r"\bcheckbox\b"),
+]
+
+
+def role_of(instruction):
+    low = (instruction or "").lower()
+    for role, pat in ROLE_PATTERNS:
+        if re.search(pat, low):
+            return role
+    return None
+
+
+def role_match(a, role):
+    if role is None:
+        return True
+    cls = ((a.get("cls") or "") + " " + (a.get("kind") or "") + " "
+           + (a.get("control_type") or "")).lower()
+    table = {
+        "button": ("button", "qaction", "toolbutton", "qpushbutton", "splitbutton"),
+        "menuitem": ("menuitem", "qaction", "menu"),
+        "menu": ("menu", "qaction", "menubar"),
+        "edit": ("edit", "lineedit", "spinbox", "qlineedit"),
+        "combobox": ("combobox",),
+        "treeitem": ("treeitem",),
+        "tab": ("tab",),
+        "checkbox": ("checkbox",),
+    }
+    return any(k in cls for k in table.get(role, ()))
+
+
+def rank_lexical2(instruction, cands, idf):
+    """先按角色词过滤，再词面排序；角色过滤为空时退回全量。"""
+    role = role_of(instruction)
+    idx = [i for i, a in enumerate(cands) if role_match(a, role)]
+    if not idx:
+        idx = list(range(len(cands)))
+    it = set(toks(instruction))
+    scores = [0.0] * len(cands)
+    for i in idx:
+        ct = set(toks(cands[i].get("text", "")))
+        scores[i] = sum(idf.get(t, 0.0) for t in (it & ct))
+    return scores
+
+
 def rank_metrics(scores, label, k=3):
     order = sorted(range(len(scores)), key=lambda i: -scores[i])
     rank = order.index(label) + 1 if label in order else None
@@ -180,7 +232,9 @@ def stage_b2(man, cands_name, ranker, limit=0):
     res = []
     for i, (r, cands) in enumerate(recallable):
         idx = label_index(r, cands)
-        if ranker == "lexical":
+        if ranker == "lexical2":
+            scores = rank_lexical2(r["instruction"], cands, idf)
+        elif ranker == "lexical":
             scores = lexical_scores(r["instruction"], cands, idf)
         else:
             lex = lexical_scores(r["instruction"], cands, idf)
@@ -224,7 +278,7 @@ def main():
     ap.add_argument("--stage", default="b1", choices=["b1", "b2"])
     ap.add_argument("--cands", default="affordances",
                     choices=["affordances", "affordances_legacy"])
-    ap.add_argument("--ranker", default="lexical", choices=["lexical", "qwen"])
+    ap.add_argument("--ranker", default="lexical", choices=["lexical", "lexical2", "qwen"])
     ap.add_argument("--manifest", default=str(DEFAULT_MANIFEST))
     ap.add_argument("--limit", type=int, default=0)
     args = ap.parse_args()
