@@ -4,6 +4,9 @@ torchvision
 pillow
 playwright
 pyautogui
+pywinauto
+pywin32
+rapidocr-onnxruntime
 gym
 numpy
 opencv-python

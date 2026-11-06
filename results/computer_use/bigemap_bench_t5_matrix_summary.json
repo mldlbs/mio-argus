@@ -1,0 +1,240 @@
+{
+  "trials": {
+    "total": 210,
+    "valid": 210,
+    "invalid": 0,
+    "invalid_rate": 0.0
+  },
+  "arms": {
+    "A": {
+      "n": 30,
+      "success": 0,
+      "sr": 0.0,
+      "ci": [
+        0.0,
+        0.114
+      ],
+      "invalid": 0,
+      "tasks": {
+        "T5": {
+          "n": 30,
+          "success": 0,
+          "sr": 0.0,
+          "ci": [
+            0.0,
+            0.114
+          ],
+          "retries_med": NaN,
+          "retries_iqr": [
+            NaN,
+            NaN
+          ],
+          "wall_med": NaN,
+          "wall_iqr": [
+            NaN,
+            NaN
+          ],
+          "takeovers": 0
+        }
+      }
+    },
+    "B": {
+      "n": 90,
+      "success": 90,
+      "sr": 1.0,
+      "ci": [
+        0.959,
+        1.0
+      ],
+      "invalid": 0,
+      "tasks": {
+        "T5": {
+          "n": 90,
+          "success": 90,
+          "sr": 1.0,
+          "ci": [
+            0.959,
+            1.0
+          ],
+          "retries_med": 0.0,
+          "retries_iqr": [
+            0.0,
+            0.0
+          ],
+          "wall_med": 4.4,
+          "wall_iqr": [
+            4.3,
+            4.8
+          ],
+          "takeovers": 0
+        }
+      }
+    },
+    "C": {
+      "n": 90,
+      "success": 89,
+      "sr": 0.989,
+      "ci": [
+        0.94,
+        0.998
+      ],
+      "invalid": 0,
+      "tasks": {
+        "T5": {
+          "n": 90,
+          "success": 89,
+          "sr": 0.989,
+          "ci": [
+            0.94,
+            0.998
+          ],
+          "retries_med": 0,
+          "retries_iqr": [
+            0.0,
+            0.0
+          ],
+          "wall_med": 8.0,
+          "wall_iqr": [
+            7.6,
+            8.5
+          ],
+          "takeovers": 0
+        }
+      }
+    }
+  },
+  "hit_rate_by_control_class": {
+    "A": {
+      "standard": {
+        "n": 30,
+        "hit": 30,
+        "hr": 1.0,
+        "ci": [
+          0.886,
+          1.0
+        ]
+      },
+      "table_row": {
+        "n": 30,
+        "hit": 30,
+        "hr": 1.0,
+        "ci": [
+          0.886,
+          1.0
+        ]
+      }
+    },
+    "B": {
+      "standard": {
+        "n": 180,
+        "hit": 180,
+        "hr": 1.0,
+        "ci": [
+          0.979,
+          1.0
+        ]
+      },
+      "table_row": {
+        "n": 90,
+        "hit": 90,
+        "hr": 1.0,
+        "ci": [
+          0.959,
+          1.0
+        ]
+      }
+    },
+    "C": {
+      "standard": {
+        "n": 179,
+        "hit": 179,
+        "hr": 1.0,
+        "ci": [
+          0.979,
+          1.0
+        ]
+      },
+      "table_row": {
+        "n": 90,
+        "hit": 89,
+        "hr": 0.989,
+        "ci": [
+          0.94,
+          0.998
+        ]
+      }
+    }
+  },
+  "silent_failure": {
+    "judged_steps": 1138,
+    "silent": 0,
+    "sfr": 0.0
+  },
+  "failure_classes": {
+    "timeout": 30,
+    "no_pattern": 1
+  },
+  "recovery": {
+    "A/F4": {
+      "n": 30,
+      "ok": 0,
+      "rr": 0.0
+    },
+    "B/F1": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    },
+    "B/F4": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    },
+    "B/F6": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    },
+    "C/F1": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    },
+    "C/F4": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    },
+    "C/F6": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    }
+  },
+  "segment_mean_ms_by_task": {
+    "A/T5": {
+      "reset": 3.9,
+      "perceive": 1964.2,
+      "decide": 0.0,
+      "act": 826.0,
+      "verify": 10447.6,
+      "recover": 0.0
+    },
+    "B/T5": {
+      "reset": 7.8,
+      "perceive": 221.3,
+      "decide": 0.0,
+      "act": 901.7,
+      "verify": 2330.9,
+      "recover": 0.0
+    },
+    "C/T5": {
+      "reset": 6.3,
+      "perceive": 2100.1,
+      "decide": 0.0,
+      "act": 970.1,
+      "verify": 2578.3,
+      "recover": 0.0
+    }
+  }
+}

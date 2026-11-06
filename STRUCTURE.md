@@ -26,7 +26,9 @@ nanoGPT/
 ├── docs/                                   # 手写文档（规范、架构、报告）
 │   ├── ARCHITECTURE.md  REPORT.md  HYPOTHESIS.md  ROADMAP.md
 │   ├── PLASTICITY.md  MIO_ENV.md  VM_TESTING.md
-│   └── EVAL_REPORT_TEMPLATE.md  EVAL_REPORT.md
+│   ├── EVAL_REPORT_TEMPLATE.md  EVAL_REPORT.md
+│   ├── BIGEMAP_EXEC_BENCH.md              # 无特权桌面执行基准协议（预注册）
+│   └── BIGEMAP_BENCH_RUNBOOK.md           # 从零到第一次跑通（配置/预检/排障）
 │
 ├── results/                                # 实验产物（json 由脚本生成，勿手改）
 │   ├── paper/          # P0–P9：*_results.json + P*_RESULTS.md
@@ -66,6 +68,7 @@ nanoGPT/
 | 实验结果 json | `results/<line>/` | 脚本写出路径必须指向此处，勿写根目录 |
 | 实验结果/发现文档（`*_RESULTS.md`、`*_FINDINGS.md`） | `results/<line>/` | 与其 json 同目录 |
 | 规范/架构/路线/总报告类手写文档 | `docs/` | 禁止放根目录 |
+| 执行基准/评测协议（`*_EXEC_BENCH.md`） | `docs/` | 先预注册指标、注入矩阵、reset 协议，再写 runner；结果落 `results/<line>/` |
 | taskhub 任务文档链（requirement/architecture/spec/data-model/api/test/runbook/plan） | `docs/taskhub/<task_id>/` | 由 taskhub scaffold 生成骨架后填充；与任务 doc_paths 保持一致 |
 | 数据集、checkpoint、缓存 | `artifacts/` | 不入 git；`.gitignore` 以 `artifacts/` 整体登记 |
 | 部署文件（Docker、api、依赖清单、bat/sh） | `infra/` | compose 相对路径以 `infra/` 为基准，build context 指回仓库根 |

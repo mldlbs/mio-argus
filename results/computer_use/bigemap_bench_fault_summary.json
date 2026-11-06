@@ -1,0 +1,222 @@
+{
+  "trials": {
+    "total": 270,
+    "valid": 270,
+    "invalid": 0,
+    "invalid_rate": 0.0
+  },
+  "arms": {
+    "A": {
+      "n": 90,
+      "success": 0,
+      "sr": 0.0,
+      "ci": [
+        0.0,
+        0.041
+      ],
+      "invalid": 0,
+      "tasks": {
+        "T3": {
+          "n": 90,
+          "success": 0,
+          "sr": 0.0,
+          "ci": [
+            0.0,
+            0.041
+          ],
+          "retries_med": NaN,
+          "retries_iqr": [
+            NaN,
+            NaN
+          ],
+          "wall_med": NaN,
+          "wall_iqr": [
+            NaN,
+            NaN
+          ],
+          "takeovers": 0
+        }
+      }
+    },
+    "B": {
+      "n": 90,
+      "success": 90,
+      "sr": 1.0,
+      "ci": [
+        0.959,
+        1.0
+      ],
+      "invalid": 0,
+      "tasks": {
+        "T3": {
+          "n": 90,
+          "success": 90,
+          "sr": 1.0,
+          "ci": [
+            0.959,
+            1.0
+          ],
+          "retries_med": 0.0,
+          "retries_iqr": [
+            0.0,
+            0.0
+          ],
+          "wall_med": 2.0,
+          "wall_iqr": [
+            1.6,
+            2.1
+          ],
+          "takeovers": 0
+        }
+      }
+    },
+    "C": {
+      "n": 90,
+      "success": 90,
+      "sr": 1.0,
+      "ci": [
+        0.959,
+        1.0
+      ],
+      "invalid": 0,
+      "tasks": {
+        "T3": {
+          "n": 90,
+          "success": 90,
+          "sr": 1.0,
+          "ci": [
+            0.959,
+            1.0
+          ],
+          "retries_med": 0.0,
+          "retries_iqr": [
+            0.0,
+            0.0
+          ],
+          "wall_med": 5.7,
+          "wall_iqr": [
+            5.6,
+            5.9
+          ],
+          "takeovers": 0
+        }
+      }
+    }
+  },
+  "hit_rate_by_control_class": {
+    "A": {
+      "table_row": {
+        "n": 90,
+        "hit": 0,
+        "hr": 0.0,
+        "ci": [
+          0.0,
+          0.041
+        ]
+      }
+    },
+    "B": {
+      "table_row": {
+        "n": 90,
+        "hit": 90,
+        "hr": 1.0,
+        "ci": [
+          0.959,
+          1.0
+        ]
+      }
+    },
+    "C": {
+      "table_row": {
+        "n": 90,
+        "hit": 90,
+        "hr": 1.0,
+        "ci": [
+          0.959,
+          1.0
+        ]
+      }
+    }
+  },
+  "silent_failure": {
+    "judged_steps": 810,
+    "silent": 90,
+    "sfr": 0.111
+  },
+  "failure_classes": {
+    "state_lost": 90
+  },
+  "recovery": {
+    "A/F1": {
+      "n": 30,
+      "ok": 0,
+      "rr": 0.0
+    },
+    "A/F4": {
+      "n": 30,
+      "ok": 0,
+      "rr": 0.0
+    },
+    "A/F6": {
+      "n": 30,
+      "ok": 0,
+      "rr": 0.0
+    },
+    "B/F1": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    },
+    "B/F4": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    },
+    "B/F6": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    },
+    "C/F1": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    },
+    "C/F4": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    },
+    "C/F6": {
+      "n": 30,
+      "ok": 30,
+      "rr": 1.0
+    }
+  },
+  "segment_mean_ms_by_task": {
+    "A/T3": {
+      "reset": 5.4,
+      "perceive": 1853.0,
+      "decide": 0.0,
+      "act": 146.5,
+      "verify": 2408.0,
+      "recover": 380.7
+    },
+    "B/T3": {
+      "reset": 6.1,
+      "perceive": 211.8,
+      "decide": 0.0,
+      "act": 170.4,
+      "verify": 629.0,
+      "recover": 869.3
+    },
+    "C/T3": {
+      "reset": 5.7,
+      "perceive": 1846.7,
+      "decide": 0.0,
+      "act": 170.6,
+      "verify": 1069.9,
+      "recover": 2718.6
+    }
+  }
+}

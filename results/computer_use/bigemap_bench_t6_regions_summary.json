@@ -1,0 +1,72 @@
+{
+  "trials": {
+    "total": 15,
+    "valid": 15,
+    "invalid": 0,
+    "invalid_rate": 0.0
+  },
+  "arms": {
+    "S": {
+      "n": 15,
+      "success": 15,
+      "sr": 1.0,
+      "ci": [
+        0.796,
+        1.0
+      ],
+      "invalid": 0,
+      "tasks": {
+        "T6": {
+          "n": 15,
+          "success": 15,
+          "sr": 1.0,
+          "ci": [
+            0.796,
+            1.0
+          ],
+          "retries_med": 0,
+          "retries_iqr": [
+            0.0,
+            0.0
+          ],
+          "wall_med": 14.4,
+          "wall_iqr": [
+            14.3,
+            14.7
+          ],
+          "takeovers": 0
+        }
+      }
+    }
+  },
+  "hit_rate_by_control_class": {
+    "S": {
+      "standard": {
+        "n": 15,
+        "hit": 15,
+        "hr": 1.0,
+        "ci": [
+          0.796,
+          1.0
+        ]
+      }
+    }
+  },
+  "silent_failure": {
+    "judged_steps": 60,
+    "silent": 0,
+    "sfr": 0.0
+  },
+  "failure_classes": {},
+  "recovery": {},
+  "segment_mean_ms_by_task": {
+    "S/T6": {
+      "reset": 94.9,
+      "perceive": 7738.3,
+      "decide": 0.0,
+      "act": 2.1,
+      "verify": 6648.8,
+      "recover": 0.0
+    }
+  }
+}

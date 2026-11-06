@@ -149,6 +149,11 @@ row.is_selected()      -> NoPatternInterfaceError
 row.get_toggle_state() -> AttributeError
 ```
 
+> **更正（2026-11-06，BIGEMAP_BENCH pilot）**：级别行**其实有复选框**（单元格左侧 ~14×14 字形，
+> 见 pilot 截图），只是 UIA 不暴露：点击前后 103 个节点逐字段完全相同，无 Toggle/Selection pattern。
+> 选中态只能用**像素差分**验证（勾选框暗像素占比 0.000 → 0.053）。
+> 见 `results/computer_use/BIGEMAP_BENCH_RESULTS.md` §4。
+
 9 个级别行**没有任何 Selection / Toggle / Invoke pattern**，表格里也没有复选框字形
 （截图核对过：`第N级` 文字紧贴单元格左边，无勾选框）。也就是说：
 

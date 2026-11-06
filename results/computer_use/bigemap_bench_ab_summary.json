@@ -1,0 +1,253 @@
+{
+  "trials": {
+    "total": 180,
+    "valid": 180,
+    "invalid": 0,
+    "invalid_rate": 0.0
+  },
+  "arms": {
+    "A": {
+      "n": 90,
+      "success": 90,
+      "sr": 1.0,
+      "ci": [
+        0.959,
+        1.0
+      ],
+      "invalid": 0,
+      "tasks": {
+        "T2": {
+          "n": 30,
+          "success": 30,
+          "sr": 1.0,
+          "ci": [
+            0.886,
+            1.0
+          ],
+          "retries_med": 0.0,
+          "retries_iqr": [
+            0.0,
+            0.0
+          ],
+          "wall_med": 4.2,
+          "wall_iqr": [
+            4.1,
+            4.3
+          ],
+          "takeovers": 0
+        },
+        "T3": {
+          "n": 30,
+          "success": 30,
+          "sr": 1.0,
+          "ci": [
+            0.886,
+            1.0
+          ],
+          "retries_med": 0.0,
+          "retries_iqr": [
+            0.0,
+            0.0
+          ],
+          "wall_med": 3.8,
+          "wall_iqr": [
+            3.6,
+            3.9
+          ],
+          "takeovers": 0
+        },
+        "T5": {
+          "n": 30,
+          "success": 30,
+          "sr": 1.0,
+          "ci": [
+            0.886,
+            1.0
+          ],
+          "retries_med": 0.0,
+          "retries_iqr": [
+            0.0,
+            0.0
+          ],
+          "wall_med": 4.7,
+          "wall_iqr": [
+            4.7,
+            4.7
+          ],
+          "takeovers": 0
+        }
+      }
+    },
+    "B": {
+      "n": 90,
+      "success": 90,
+      "sr": 1.0,
+      "ci": [
+        0.959,
+        1.0
+      ],
+      "invalid": 0,
+      "tasks": {
+        "T2": {
+          "n": 30,
+          "success": 30,
+          "sr": 1.0,
+          "ci": [
+            0.886,
+            1.0
+          ],
+          "retries_med": 0.0,
+          "retries_iqr": [
+            0.0,
+            0.0
+          ],
+          "wall_med": 0.7,
+          "wall_iqr": [
+            0.7,
+            0.7
+          ],
+          "takeovers": 0
+        },
+        "T3": {
+          "n": 30,
+          "success": 30,
+          "sr": 1.0,
+          "ci": [
+            0.886,
+            1.0
+          ],
+          "retries_med": 0.0,
+          "retries_iqr": [
+            0.0,
+            0.0
+          ],
+          "wall_med": 1.4,
+          "wall_iqr": [
+            1.3,
+            1.4
+          ],
+          "takeovers": 0
+        },
+        "T5": {
+          "n": 30,
+          "success": 30,
+          "sr": 1.0,
+          "ci": [
+            0.886,
+            1.0
+          ],
+          "retries_med": 0.0,
+          "retries_iqr": [
+            0.0,
+            0.0
+          ],
+          "wall_med": 3.5,
+          "wall_iqr": [
+            3.4,
+            3.5
+          ],
+          "takeovers": 0
+        }
+      }
+    }
+  },
+  "hit_rate_by_control_class": {
+    "A": {
+      "standard": {
+        "n": 90,
+        "hit": 90,
+        "hr": 1.0,
+        "ci": [
+          0.959,
+          1.0
+        ]
+      },
+      "table_row": {
+        "n": 60,
+        "hit": 60,
+        "hr": 1.0,
+        "ci": [
+          0.94,
+          1.0
+        ]
+      }
+    },
+    "B": {
+      "standard": {
+        "n": 120,
+        "hit": 120,
+        "hr": 1.0,
+        "ci": [
+          0.969,
+          1.0
+        ]
+      },
+      "table_row": {
+        "n": 60,
+        "hit": 60,
+        "hr": 1.0,
+        "ci": [
+          0.94,
+          1.0
+        ]
+      }
+    }
+  },
+  "silent_failure": {
+    "judged_steps": 660,
+    "silent": 0,
+    "sfr": 0.0
+  },
+  "failure_classes": {},
+  "recovery": {},
+  "segment_mean_ms_by_task": {
+    "A/T2": {
+      "reset": 11.0,
+      "perceive": 4002.2,
+      "decide": 0.0,
+      "act": 63.9,
+      "verify": 155.9,
+      "recover": 0.0
+    },
+    "A/T3": {
+      "reset": 9.2,
+      "perceive": 2736.0,
+      "decide": 0.0,
+      "act": 189.2,
+      "verify": 891.0,
+      "recover": 0.0
+    },
+    "A/T5": {
+      "reset": 3.6,
+      "perceive": 1830.2,
+      "decide": 0.0,
+      "act": 923.4,
+      "verify": 2029.3,
+      "recover": 0.0
+    },
+    "B/T2": {
+      "reset": 6.5,
+      "perceive": 268.7,
+      "decide": 0.0,
+      "act": 36.6,
+      "verify": 362.0,
+      "recover": 0.0
+    },
+    "B/T3": {
+      "reset": 9.3,
+      "perceive": 305.1,
+      "decide": 0.0,
+      "act": 176.5,
+      "verify": 877.3,
+      "recover": 0.0
+    },
+    "B/T5": {
+      "reset": 3.3,
+      "perceive": 190.6,
+      "decide": 0.0,
+      "act": 878.4,
+      "verify": 2043.9,
+      "recover": 0.0
+    }
+  }
+}
