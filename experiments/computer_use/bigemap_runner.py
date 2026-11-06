@@ -806,7 +806,8 @@ def wait_artifact(task_dir: Path, timeout: float = 180.0):
     return False, _ms(t0), tifs
 
 
-def run_t5(arm: str, trials: int, out_path: Path, fault: str | None = None) -> dict:
+def run_t5(arm: str, trials: int, out_path: Path, fault: str | None = None,
+           level: int = 16, region=None) -> dict:
     """T5：AOI → 任务名 → 第16级 → 确定 → 产物 GDAL 校验。"""
     recs: list[dict] = []
     runs = 0
@@ -825,9 +826,21 @@ def run_t5(arm: str, trials: int, out_path: Path, fault: str | None = None) -> d
         main = find_main(); h = main["hwnd"]
         pre = window_state(h)
 
-        # 0) 打开下载对话框（setup）
+        # 0) 打开下载对话框（setup：AOI 双击 或 区域面板图标）
         t0 = _now()
-        aoi, opened, dbl_ms, appear_ms = open_download(h)
+        if region:
+            sel = region_select(h, region)
+            exp_bounds = sel.get("bounds") or panel_bounds(h)
+            icon = panel_icon_point(h, region[-1])
+            if icon and 0 < icon[0] < 2500 and 0 < icon[1] < 1400:
+                pyautogui.click(*icon)
+            opened, appear_ms = wait_for(lambda: len(find_dialogs(h)) > 0, 5.0)
+            dbl_ms = 0.0
+            aoi = {"source": "region", "district": region[-1],
+                   "bounds": exp_bounds, "center": icon}
+        else:
+            aoi, opened, dbl_ms, appear_ms = open_download(h)
+            exp_bounds = AOI_BOUNDS
         dlgs = find_dialogs(h)
         setup_ok = bool(opened and dlgs)
         recs.append(make_step(
@@ -907,9 +920,9 @@ def run_t5(arm: str, trials: int, out_path: Path, fault: str | None = None) -> d
             print(f"[{trial}] FAIL name")
             continue
 
-        # 2) 勾选第16级
+        # 2) 勾选目标级别
         t0 = _now()
-        row, find_ms, rect = find_dataitem(dh, "第16级")
+        row, find_ms, rect = find_dataitem(dh, f"第{level}级")
         lvl_ok = False
         pre_ratio = post_ratio = -1.0
         if row is not None:
@@ -971,10 +984,11 @@ def run_t5(arm: str, trials: int, out_path: Path, fault: str | None = None) -> d
             rb = raster_wgs84_bounds(tif)
             if rb:
                 west, south, east, north, j = rb
-                dev = max(abs(west - AOI_BOUNDS[0]), abs(south - AOI_BOUNDS[1]),
-                          abs(east - AOI_BOUNDS[2]), abs(north - AOI_BOUNDS[3]))
-                art_ok = dev <= AOI_TOL_DEG and j.get("size", [0, 0])[0] > 0
-                detail = {"bounds": [west, south, east, north], "dev_deg": dev,
+                dev = max(abs(west - exp_bounds[0]), abs(south - exp_bounds[1]),
+                          abs(east - exp_bounds[2]), abs(north - exp_bounds[3]))
+                art_ok = dev <= (1e-3 if region else AOI_TOL_DEG) and j.get("size", [0, 0])[0] > 0
+                detail = {"bounds": [west, south, east, north], "expected": list(exp_bounds),
+                          "dev_deg": dev,
                           "size": j.get("size"), "sha256": sha,
                           "bytes": tif.stat().st_size, "path": str(tif)}
             else:
@@ -1740,7 +1754,7 @@ def panel_icon_point(h: int, district: str = "石景山区") -> list | None:
             if c.element_info.control_type == "Text" and \
                (c.window_text() or "").strip() == district:
                 rc = c.rectangle()
-                if rc.width() < 50:
+                if rc.width() < 50 or rc.top < 50:
                     continue
                 L, T, R, B = win32gui.GetWindowRect(h)
                 return [R - 162, rc.top + 30]
@@ -2124,6 +2138,9 @@ def main() -> None:
     ap.add_argument("--arm", default="S", choices=["A", "B", "C", "S"])
     ap.add_argument("--trials", type=int, default=5)
     ap.add_argument("--inject", default=None, choices=[None, "F1", "F2", "F4", "F6", "F8"])
+    ap.add_argument("--level", type=int, default=16, help="T5 下载级别（默认 16）")
+    ap.add_argument("--source", default="aoi", choices=["aoi", "region"],
+                    help="T5 入口：aoi=双击画布 AOI；region=区域面板下载图标")
     ap.add_argument("--region", default=CFG.get("t6_default_region", "北京市/北京城区/石景山区"),
                     help="省/市/区县，例如 河北省/石家庄市/长安区")
     ap.add_argument("--out", default=None)
@@ -2159,8 +2176,12 @@ def main() -> None:
         run_t5_pixel(args.arm, args.trials, out,
                      args.inject if args.inject in ("F1", "F4", "F6") else None)
     elif args.task == "T5":
+        region = None
+        if args.source == "region":
+            region = tuple(x.strip() for x in re.split(r"[/>]", args.region) if x.strip())
         run_t5(args.arm, args.trials, out,
-               args.inject if args.inject in ("F1", "F4", "F6") else None)
+               args.inject if args.inject in ("F1", "F4", "F6") else None,
+               args.level, region)
     elif args.task == "T4":
         if args.inject:
             print("[warn] T4 暂不支持注入，已忽略 --inject", file=sys.stderr)

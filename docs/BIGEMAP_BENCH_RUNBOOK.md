@@ -63,6 +63,9 @@ gdalinfo                   PASS D:\QGIS\bin\gdalinfo.exe GDAL 3.13.3
 # 基线
 python experiments/computer_use/bigemap_runner.py --task T1 --trials 5
 python experiments/computer_use/bigemap_runner.py --task T5 --trials 30 --arm B
+# 影像按行政区（不需要画 AOI）
+python experiments/computer_use/bigemap_runner.py --task T5 --trials 30 --arm B \
+  --source region --region "北京市/北京城区/海淀区" --level 12
 python experiments/computer_use/bigemap_runner.py --task T6 --trials 30 --arm B --region "河北省/石家庄市/长安区"
 
 # 故障（T3/T5/T6 支持 F1/F4/F6；T2 支持 F8）
