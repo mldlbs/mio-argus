@@ -1,0 +1,17 @@
+[
+  {
+    "phase": "down",
+    "ok": true,
+    "err": 0
+  },
+  {
+    "phase": "move",
+    "ok": true,
+    "err": 0
+  },
+  {
+    "phase": "up",
+    "ok": true,
+    "err": 0
+  }
+]
