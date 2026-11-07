@@ -1,7 +1,7 @@
 {
   "app_title_key": "Bigemap GIS Office",
   "screen": [2560, 1440],
-  "window_rect": [1344, 16, 2544, 916],
+  "window_rect": [1280, 0, 2560, 1392],
   "download_root": "F:/Program Files (x86)/BMDownload",
   "gdalinfo": "D:/QGIS/bin/gdalinfo.exe",
   "ogr2ogr": "D:/QGIS/bin/ogr2ogr.exe",

@@ -9,7 +9,7 @@
 |---|---|---|
 | Bigemap | 已安装、已授权、**正在运行** | 主窗口标题含 `Bigemap GIS Office` |
 | 显示 | 2560×1440，DPI 100%，任务栏不自动隐藏 | `--preflight` 的 screen |
-| 窗口 | 主窗摆在 `(1344,16,2544,916)`（runner 会自动摆） | `--preflight` 的 window_rect |
+| 窗口 | 主窗摆在 `(1280,0,2560,1392)`（runner 会自动摆） | `--preflight` 的 window_rect |
 | GDAL/OGR | `gdalinfo.exe` / `ogr2ogr.exe` 可执行 | `--preflight` 的 gdalinfo/ogr2ogr |
 | AOI | T4/T5 需要画布上**有一个蓝色 AOI 矩形** | `--preflight` 的 aoi |
 | Python | `pywinauto`、`pyautogui`、`pywin32`、`numpy`；A/C 臂另需 `rapidocr_onnxruntime` | `--preflight` 的 dep:* |
@@ -47,7 +47,7 @@ CHECK                      TAG  DETAIL
 dep:pywinauto              PASS
 screen                     PASS 2560x1440（期望 2560x1440）
 app                        PASS Bigemap GIS Office
-window_rect                PASS [1344, 16, 2544, 916]
+window_rect                PASS [1280, 0, 2560, 1392]
 aoi                        WARN size=None（T4/T5 需要）
 gdalinfo                   PASS D:\QGIS\bin\gdalinfo.exe GDAL 3.13.3
 ...

@@ -40,7 +40,7 @@
 
 | ID | 任务 | 控制类 | 主层 | 成功判据（可机械判定） |
 |---|---|---|---|---|
-| T1 | 窗口恢复 | window | L0 | 最小化 → 恢复后：`hwnd` 可枚举、rect 与 canonical `(1344,16,2544,916)` 差 ≤2px、`IsWindowVisible`、UIA 主窗节点 ≥200。**门控只看 restored**；`foreground_ok` 单独报告（受 OS 前台锁影响，见 F2） |
+| T1 | 窗口恢复 | window | L0 | 最小化 → 恢复后：`hwnd` 可枚举、rect 与 canonical `(1280,0,2560,1392)` 差 ≤2px、`IsWindowVisible`、UIA 主窗节点 ≥200。**门控只看 restored**；`foreground_ok` 单独报告（受 OS 前台锁影响，见 F2） |
 | T2 | 标准控件 | standard | L1–L2 | UIA `Invoke` 打开「导入边界」→ 3s 内出现「导入边界数据」且节点 ≥10、主窗变 disabled（模态）；再 `Close` → 2s 内消失、主窗恢复 enabled |
 | T3 | 无 pattern 表格行 | table_row | L2 | 滚动 ≤14 次找到「第16级」→ 截取单元格左侧勾选框 → 确保未勾选（残留则先清）→ 点击 → **像素差分**（暗像素占比 ≤0.02 → >0.02）。UIA 点击前后**无任何变化**（103 节点逐字段相同），尺寸/理论大小是静态估算，**不能**作为选中判据 |
 | T4 | 自绘画布 | canvas | L1–L2 | 视觉检测 AOI 蓝色边框 bbox → 双击内部 → 3s 内出现「下载对话框」（103±5 节点） |
@@ -144,7 +144,7 @@ W31 §6 的教训：上一次尝试残留的对话框/状态会让 oracle 误判
 ```json
 {"kind":"step","trial":"T5-B-0007","arm":"B","task":"T5","attempt":1,"step":3,
  "layer":"L2","control_class":"table_row","t0":1762300000.12,"t1":1762300000.51,
- "window":{"hwnd":132456,"rect":[1344,16,2544,916],"minimized":false,"foreground":true},
+ "window":{"hwnd":132456,"rect":[1280,0,2560,1392],"minimized":false,"foreground":true},
  "control":{"name":"第16级","type":"DataItem","rect":[1712,540,1790,562],"patterns":[]},
  "action":{"kind":"click","source":"uia_rect","coords":[1720,551]},
  "expect":{"pred":"row_size_nonzero","pre":"0x0"},
@@ -175,7 +175,7 @@ synthetic_rejected / state_lost / env / timeout / vacuous`。
 |---|---|
 | 会话 | 真实交互控制台会话（非 RDP 断开、非 Session 0）；`SendInput` 语义才成立 |
 | 显示 | 2560×1440，DPI 100%，任务栏不自动隐藏，锁屏/屏保关闭 |
-| 应用 | Bigemap 版本/build 记录在案；窗口 canonical `(1344,16,2544,916)` |
+| 应用 | Bigemap 版本/build 记录在案；窗口 canonical `(1280,0,2560,1392)` |
 | 网络 | 基线 VPN **关**（F7 单独注入）；Chrome 关闭（曾致 UIA 判 offscreen） |
 | 干扰 | 通知/专注助手关闭；电源计划高性能 |
 | 环境记录 | 每轮写 `env.json`：分辨率、DPI、版本、VPN 状态、时间戳 |
