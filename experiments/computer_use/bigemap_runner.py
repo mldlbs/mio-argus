@@ -508,6 +508,32 @@ def find_dataitem(h: int, name: str):
         return None, _ms(t0), None
 
 
+def find_level_row(h: int, level: int, max_scroll: int = 10):
+    """在级别表里找目标行；不可见时滚动表格。返回 (row, ms, rect)。"""
+    name = f"第{level}级"
+    row, ms, rect = find_dataitem(h, name)
+    if row:
+        return row, ms, rect
+    try:
+        w = Desktop(backend="uia").window(handle=h)
+        table = next((c for c in w.descendants()
+                      if c.element_info.control_type == "Table"), None)
+        if table is None:
+            return None, ms, None
+        rc = table.rectangle()
+        for _ in range(max_scroll):
+            pyautogui.moveTo((rc.left + rc.right) // 2, (rc.top + rc.bottom) // 2)
+            pyautogui.scroll(-240)
+            time.sleep(0.5)
+            row, ms2, rect = find_dataitem(h, name)
+            ms += ms2
+            if row:
+                return row, ms, rect
+    except Exception:
+        pass
+    return None, ms, None
+
+
 CHECKED_TH = 0.02   # 勾选框暗像素占比阈值（经验值：空 0.000 / 勾选 0.05）
 
 
@@ -859,6 +885,17 @@ def run_t5(arm: str, trials: int, out_path: Path, fault: str | None = None,
             continue
 
         dh = dlgs[0]["hwnd"]
+        # 应用会记住上次的 tab；T5 显式切回「影像」页
+        try:
+            w2 = Desktop(backend="uia").window(handle=dh)
+            for c in w2.descendants():
+                if c.element_info.control_type == "TabItem" and "影" in (c.window_text() or ""):
+                    rc = c.rectangle()
+                    pyautogui.click((rc.left + rc.right) // 2, (rc.top + rc.bottom) // 2)
+                    time.sleep(0.6)
+                    break
+        except Exception:
+            pass
         rec = None
         if fault in ("F1", "F4", "F6"):
             t_rec = _now()
@@ -922,7 +959,7 @@ def run_t5(arm: str, trials: int, out_path: Path, fault: str | None = None,
 
         # 2) 勾选目标级别
         t0 = _now()
-        row, find_ms, rect = find_dataitem(dh, f"第{level}级")
+        row, find_ms, rect = find_level_row(dh, level)
         lvl_ok = False
         pre_ratio = post_ratio = -1.0
         if row is not None:
@@ -1823,6 +1860,17 @@ def run_t6(arm: str, trials: int, out_path: Path, fault: str | None = None,
             continue
 
         dh = dlgs[0]["hwnd"]
+        # 应用会记住上次的 tab；T5 显式切回「影像」页
+        try:
+            w2 = Desktop(backend="uia").window(handle=dh)
+            for c in w2.descendants():
+                if c.element_info.control_type == "TabItem" and "影" in (c.window_text() or ""):
+                    rc = c.rectangle()
+                    pyautogui.click((rc.left + rc.right) // 2, (rc.top + rc.bottom) // 2)
+                    time.sleep(0.6)
+                    break
+        except Exception:
+            pass
         rec = None
         if fault in ("F1", "F4", "F6"):
             t_rec = _now()
