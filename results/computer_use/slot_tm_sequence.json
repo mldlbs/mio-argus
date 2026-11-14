@@ -1,0 +1,15 @@
+{
+  "ts": "2026-11-11T11:26:33",
+  "frames": 100,
+  "slots_per_frame": {
+    "min": 13,
+    "max": 13,
+    "mean": 13.0
+  },
+  "indices_seen": 13,
+  "cross_frame_consistency": 1.0,
+  "class_flips": 0,
+  "score_min": 0.963,
+  "score_median": 0.964,
+  "unknown_rate": 0.0
+}

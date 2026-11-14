@@ -36,18 +36,17 @@ nanoGPT/
 │   ├── web/            # web_*/site_*/real_site_* 结果 + WEB_*.md + SITE_HOLDOUT.md + REAL_SITE.md
 │   ├── computer_use/   # eval_results.json
 │   ├── winsim/         # WINSIM.md + WINSIM_RESULTS.md + winsim_w*_results.json
-│   ├── qgis/           # QGIS_FINDINGS.md + W1_RESULTS.md（qgis_bridge 运行产物就地，见 §3 例外）
-│   └── multipointer/   # 多指针 PoC：m*_results.json + MULTIPOINTER.md
+│   └── qgis/           # QGIS_FINDINGS.md + W1_RESULTS.md（qgis_bridge 运行产物就地，见 §3 例外）
 │
 ├── experiments/                            # 实验脚本按线分目录（线内扁平 import）
 │   ├── paper/          # p0–p9 脚本 + p0_env.py/p0_models.py/p3_env.py（线内共享）+ *_report.py
 │   ├── plasticity/     # q1_plasticity / q2_plasticity_query / q3_learned_gate / q4_importance_gate
 │   ├── computer_use/   # collect_* / make_synthetic_data / split_data / model_computer_use
 │   │                   # train_computer_use* / eval_model / gen_report / vlm_adapter / test_*
+│   │                   # ui_icons.py（图标模板匹配）+ duck_icons/（模板素材）
 │   ├── winsim/         # winsim_w0..w12.py + winsim/index.html（结果写 results/winsim/）
 │   ├── web/            # web_*.py  site_holdout.py  real_site_*.py  SITES.json
-│   ├── qgis/           # qgis_bridge/（自包含：脚本 + 数据 + 运行产物就地）
-│   └── multipointer/   # mp_core.py + run_m*.py（Win32 合成指针，不写驱动）
+│   └── qgis/           # qgis_bridge/（自包含：脚本 + 数据 + 运行产物就地）
 │
 ├── artifacts/                              # 大文件与数据集（全部 gitignored）
 │   ├── computer_use_data*/  synthetic_data/
@@ -67,7 +66,8 @@ nanoGPT/
 |---|---|---|
 | nanoGPT 核心模型/训练/采样 | 根目录 | 只有核心五件套（model/train/sample/bench/configurator）可留根 |
 | 新实验脚本 | `experiments/<line>/` | 先确认所属线；线内模块扁平 import，跨线依赖必须加路径引导并在本表登记 |
-| 多指针 PoC（Win32 合成指针，ctypes） | `experiments/multipointer/` | 不写驱动、不改目标应用；结果落 `results/multipointer/` |
+| 实验线内小型素材（图标模板等） | `experiments/<line>/<name>/` | 与脚本同线、单文件 <100KB；新增子目录先在本表登记 |
+| 经验闭环模块（原始观测采集 / 归因 / 规则库 / 回放验证） | `experiments/computer_use/exp_loop/` | 只存代码与 schema；**原始观测帧与经验产物写 `results/computer_use/exp_loop/`**（不在代码目录堆积） |
 | 实验结果 json | `results/<line>/` | 脚本写出路径必须指向此处，勿写根目录 |
 | 实验结果/发现文档（`*_RESULTS.md`、`*_FINDINGS.md`） | `results/<line>/` | 与其 json 同目录 |
 | 规范/架构/路线/总报告类手写文档 | `docs/` | 禁止放根目录 |

@@ -1,0 +1,117 @@
+{
+  "n_candidates": 380,
+  "n_selected": 2,
+  "rules": [
+    {
+      "rule_id": "A_G_x_>e_546",
+      "predicate": {
+        "feature": "G_x",
+        "op": ">=",
+        "thr": 0.546,
+        "all": [],
+        "family": "G",
+        "train": {
+          "recall": 0.367,
+          "fpr": 0.0,
+          "tp": 11,
+          "fn": 19,
+          "fp": 0,
+          "tn": 34
+        },
+        "val": {
+          "recall": 0.571,
+          "fpr": 0.0,
+          "tp": 20,
+          "fn": 15,
+          "fp": 0,
+          "tn": 43
+        }
+      },
+      "metrics": {
+        "train": {
+          "recall": 0.367,
+          "fpr": 0.0,
+          "tp": 11,
+          "fn": 19,
+          "fp": 0,
+          "tn": 34
+        },
+        "val": {
+          "recall": 0.571,
+          "fpr": 0.0,
+          "tp": 20,
+          "fn": 15,
+          "fp": 0,
+          "tn": 43
+        },
+        "test": {
+          "recall": 0.579,
+          "fpr": 0.0,
+          "tp": 22,
+          "fn": 16,
+          "fp": 0,
+          "tn": 27
+        }
+      },
+      "status": "active"
+    },
+    {
+      "rule_id": "A_T_len_b_>e_169000",
+      "predicate": {
+        "feature": "T_len_b",
+        "op": ">=",
+        "thr": 169,
+        "all": [],
+        "family": "T",
+        "train": {
+          "recall": 0.433,
+          "fpr": 0.0,
+          "tp": 13,
+          "fn": 17,
+          "fp": 0,
+          "tn": 34
+        },
+        "val": {
+          "recall": 0.257,
+          "fpr": 0.0,
+          "tp": 9,
+          "fn": 26,
+          "fp": 0,
+          "tn": 43
+        }
+      },
+      "metrics": {
+        "train": {
+          "recall": 0.433,
+          "fpr": 0.0,
+          "tp": 13,
+          "fn": 17,
+          "fp": 0,
+          "tn": 34
+        },
+        "val": {
+          "recall": 0.257,
+          "fpr": 0.0,
+          "tp": 9,
+          "fn": 26,
+          "fp": 0,
+          "tn": 43
+        },
+        "test": {
+          "recall": 0.184,
+          "fpr": 0.0,
+          "tp": 7,
+          "fn": 31,
+          "fp": 0,
+          "tn": 27
+        }
+      },
+      "status": "active"
+    }
+  ],
+  "split": {
+    "train": 64,
+    "val": 78,
+    "test": 65
+  }
+}

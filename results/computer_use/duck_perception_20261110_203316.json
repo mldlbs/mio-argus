@@ -1,0 +1,57 @@
+{
+  "ts": "2026-11-10T20:33:16",
+  "window": 5310310,
+  "runs_requested": 3,
+  "frames": 3,
+  "duration_s": 12.5,
+  "page": {
+    "hist": {
+      "duck": 3
+    },
+    "unknown_rate": 0.0,
+    "mean_confidence": 1.0
+  },
+  "row_icons": {
+    "mean": 15.0,
+    "min": 15,
+    "max": 15,
+    "jitter_px": 0.0
+  },
+  "components": {
+    "slots": 45,
+    "colored": 18,
+    "per_frame_slots": 15.0,
+    "per_frame_colored": 6.0
+  },
+  "state": {
+    "timer_changes": 0,
+    "queue_changes": 0
+  },
+  "labels": {},
+  "frames_detail": [
+    {
+      "i": 0,
+      "page": "duck",
+      "conf": 1.0,
+      "slots": 15,
+      "timer": "",
+      "queue": "? 繁殖5/5 质押"
+    },
+    {
+      "i": 1,
+      "page": "duck",
+      "conf": 1.0,
+      "slots": 15,
+      "timer": "",
+      "queue": "? 繁殖5/5 质押"
+    },
+    {
+      "i": 2,
+      "page": "duck",
+      "conf": 1.0,
+      "slots": 15,
+      "timer": "",
+      "queue": "? 繁殖5/5 质押"
+    }
+  ]
+}

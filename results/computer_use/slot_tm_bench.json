@@ -1,0 +1,42 @@
+{
+  "ts": "2026-11-12T18:11:32",
+  "n_classes_rows": 26,
+  "perturbations": 156,
+  "stability": 1.0,
+  "coverage": 1.0,
+  "unknown_ratio": 0.0,
+  "duck_recall": 1.0,
+  "padlock_as_duck": 0.0,
+  "empty_as_duck": 0.0,
+  "other_as_duck": 0.0,
+  "confusion": {
+    "duck": {
+      "duck": 16,
+      "padlock": 0,
+      "empty": 0,
+      "other": 0,
+      "unknown": 0
+    },
+    "padlock": {
+      "duck": 0,
+      "padlock": 10,
+      "empty": 0,
+      "other": 0,
+      "unknown": 0
+    },
+    "empty": {
+      "duck": 0,
+      "padlock": 0,
+      "empty": 0,
+      "other": 0,
+      "unknown": 0
+    },
+    "other": {
+      "duck": 0,
+      "padlock": 0,
+      "empty": 0,
+      "other": 0,
+      "unknown": 0
+    }
+  }
+}

@@ -1,0 +1,2160 @@
+{
+  "params": {
+    "no_visual_change": {
+      "thr": 3.0
+    },
+    "text_unchanged": {},
+    "empty_recognition": {
+      "min_energy": 6.0
+    },
+    "target_is_sentence": {
+      "max_chars": 6
+    },
+    "click_off_icon": {
+      "tol": 0.018
+    }
+  },
+  "per_episode": [
+    {
+      "episode": "ep_gap_01",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_02",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_03",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_04",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.024,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_05",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 282
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_sent_01",
+      "hypotheses": [
+        {
+          "detector": "target_is_sentence",
+          "evidence": {
+            "text_len": 28,
+            "max_chars": 6,
+            "sample": "观看我们合作伙伴的广告，每天最多可赚取6610。"
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.026,
+            "tol": 0.018,
+            "icons": 9
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_nav_01",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_02",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_03",
+      "hypotheses": [
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 153
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_nav_04",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 2.895,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_nav_05",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_06",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_ocr_01",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_02",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_03",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_04",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_05",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_06",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_07",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_08",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_01",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_02",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_03",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_04",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_05",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_06",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_07",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_08",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_good_01",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_02",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_03",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_04",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_05",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_06",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_07",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_08",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_09",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_10",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_11",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_12",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_13",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_14",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_15",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_16",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_17",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_18",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_19",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_20",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_21",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_22",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_23",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_24",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_gap_01_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_02_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_03_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.027,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_04_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.029,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_05_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_06_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_07_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_08_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.027,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_09_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.027,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_10_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_sent_01_62957",
+      "hypotheses": [
+        {
+          "detector": "target_is_sentence",
+          "evidence": {
+            "text_len": 28,
+            "max_chars": 6,
+            "sample": "观看我们合作伙伴的广告，每天最多可赚取6610。"
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.026,
+            "tol": 0.018,
+            "icons": 9
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_nav_01_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_02_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_03_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_04_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 2.895,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_nav_05_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_06_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_ocr_01_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_02_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_03_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_04_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_05_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_06_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_07_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_08_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_01_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_02_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_03_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_04_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_05_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_06_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_07_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_08_62957",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_good_03_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_04_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_05_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_06_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_07_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_08_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_09_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_10_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_11_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_12_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_13_62957",
+      "hypotheses": [
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_good_15_62957",
+      "hypotheses": [
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_good_17_62957",
+      "hypotheses": [
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_good_19_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_20_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_21_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_22_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_23_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_24_62957",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_gap_01_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 86
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.026,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_sent_01_63211",
+      "hypotheses": [
+        {
+          "detector": "target_is_sentence",
+          "evidence": {
+            "text_len": 28,
+            "max_chars": 6,
+            "sample": "观看我们合作伙伴的广告，每天最多可赚取6610。"
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.026,
+            "tol": 0.018,
+            "icons": 9
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_nav_01_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_02_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_03_63211",
+      "hypotheses": [
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 153
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_nav_04_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 2.895,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_nav_05_63211",
+      "hypotheses": [
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 152
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_nav_06_63211",
+      "hypotheses": [
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 152
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_01_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_02_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_03_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_04_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_05_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_06_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_07_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_08_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "empty_recognition",
+          "evidence": {
+            "channel": "fast",
+            "energy": 76.08095793358072,
+            "min_energy": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_01_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_02_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_03_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_04_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_05_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_06_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_07_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_08_63211",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_good_01_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_02_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_03_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_04_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_05_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_06_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_07_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_08_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_09_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_10_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_11_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_12_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_13_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_14_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_15_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_16_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_17_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_18_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_19_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_20_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_21_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_22_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_23_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_24_63211",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_gap_01_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_02_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_03_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.027,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_04_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.029,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_05_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_06_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_07_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_08_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.027,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_09_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.027,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_gap_10_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        },
+        {
+          "detector": "text_unchanged",
+          "evidence": {
+            "len": 164
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.028,
+            "tol": 0.018,
+            "icons": 18
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_sent_01_63473",
+      "hypotheses": [
+        {
+          "detector": "target_is_sentence",
+          "evidence": {
+            "text_len": 28,
+            "max_chars": 6,
+            "sample": "观看我们合作伙伴的广告，每天最多可赚取6610。"
+          }
+        },
+        {
+          "detector": "click_off_icon",
+          "evidence": {
+            "nearest": 0.026,
+            "tol": 0.018,
+            "icons": 9
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_nav_01_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_02_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_03_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_04_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 2.895,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_nav_05_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_nav_06_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_ocr_01_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_02_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_03_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_04_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_05_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_06_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_07_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_ocr_08_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_01_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_02_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_03_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_04_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_05_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_06_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_07_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_blank_08_63473",
+      "hypotheses": [
+        {
+          "detector": "no_visual_change",
+          "evidence": {
+            "frame_diff": 0.0,
+            "threshold": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "episode": "ep_good_03_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_04_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_05_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_06_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_07_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_08_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_09_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_10_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_11_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_12_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_13_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_14_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_15_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_16_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_17_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_18_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_19_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_20_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_21_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_22_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_23_63473",
+      "hypotheses": []
+    },
+    {
+      "episode": "ep_good_24_63473",
+      "hypotheses": []
+    }
+  ]
+}

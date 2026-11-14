@@ -1,0 +1,55 @@
+{
+  "verdicts": [
+    {
+      "rule_id": "A_G_x_>e_546",
+      "premise": "positional",
+      "gaps": [
+        "no_counterexample_inside_region",
+        "one_sided_threshold"
+      ],
+      "coverage": {
+        "n_hit": 53,
+        "n_pos": 53,
+        "n_neg": 0
+      },
+      "verdict": "insufficient",
+      "reason": "不可构造：向右无路可走；试过的位置：['0.678=缝隙']"
+    },
+    {
+      "rule_id": "A_T_len_b_>e_169000",
+      "premise": "page_identity",
+      "gaps": [
+        "no_counterexample_inside_region",
+        "one_sided_threshold"
+      ],
+      "coverage": {
+        "n_hit": 29,
+        "n_pos": 29,
+        "n_neg": 0
+      },
+      "verdict": "refuted",
+      "reason": "反例成立：长文本页面上完成了一次有效动作（子标签切换成功）",
+      "counterexample": {
+        "x": null
+      }
+    }
+  ],
+  "metrics": {
+    "discovery_rate": 2,
+    "discovery_detail": {
+      "A_G_x_>e_546": [
+        "A_G_x_>e_546"
+      ],
+      "A_T_len_b_>e_169000": [
+        "A_T_len_b_>e_169000"
+      ]
+    },
+    "falsification_rate": 1.0,
+    "n_tested": 1,
+    "n_refuted": 1,
+    "n_insufficient": 1,
+    "robust_discovery_rate": 0.0,
+    "robust_mechanisms": [],
+    "note": "Robust 只统计「通过反例测试 + 独立 test」；生产监督验证尚未接入"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "ts": "2026-11-10T20:16:19",
+  "window": 5310310,
+  "runs_requested": 5,
+  "frames": 5,
+  "duration_s": 20.1,
+  "page": {
+    "hist": {
+      "unknown": 5
+    },
+    "unknown_rate": 1.0,
+    "mean_confidence": 0.5
+  },
+  "row_icons": {
+    "mean": 4.0,
+    "min": 4,
+    "max": 4,
+    "jitter_px": 0.0
+  },
+  "components": {
+    "candidates": 65,
+    "accepted": 20,
+    "rejected": 45,
+    "reject_rate": 0.6923
+  },
+  "state": {
+    "timer_changes": 0,
+    "queue_changes": 0
+  },
+  "labels": {},
+  "frames_detail": [
+    {
+      "i": 0,
+      "page": "unknown",
+      "conf": 0.5,
+      "icons": 4,
+      "timer": "完美！你的鸭子已准备好质押",
+      "queue": "开始质押 或 升级鸭子"
+    },
+    {
+      "i": 1,
+      "page": "unknown",
+      "conf": 0.5,
+      "icons": 4,
+      "timer": "完美！你的鸭子已准备好质押",
+      "queue": "开始质押 或 升级鸭子"
+    },
+    {
+      "i": 2,
+      "page": "unknown",
+      "conf": 0.5,
+      "icons": 4,
+      "timer": "完美！你的鸭子已准备好质押",
+      "queue": "开始质押 或 升级鸭子"
+    },
+    {
+      "i": 3,
+      "page": "unknown",
+      "conf": 0.5,
+      "icons": 4,
+      "timer": "完美！你的鸭子已准备好质押",
+      "queue": "开始质押 或 升级鸭子"
+    },
+    {
+      "i": 4,
+      "page": "unknown",
+      "conf": 0.5,
+      "icons": 4,
+      "timer": "完美！你的鸭子已准备好质押",
+      "queue": "开始质押 或 升级鸭子"
+    }
+  ]
+}

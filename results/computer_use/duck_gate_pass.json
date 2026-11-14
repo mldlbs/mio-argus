@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "page_accuracy": 1.0,
+  "duck_recall": 1.0,
+  "jitter_px": 0.0,
+  "runs": 100,
+  "stability": 0.993,
+  "coverage": 1.0,
+  "unknown_rate": 0.0,
+  "padlock_as_duck": 0.0,
+  "scope": "slot-row duck/padlock (empty/other unreachable, A1)",
+  "ts": "2026-11-11T13:01:27"
+}

@@ -1,0 +1,831 @@
+{
+  "ts": "2026-11-10T21:31:52",
+  "frames": [
+    {
+      "frame": 0,
+      "slots": [
+        {
+          "i": 0,
+          "file": "f000_s00.png",
+          "box": [
+            0,
+            627,
+            11,
+            71
+          ],
+          "pred": "empty",
+          "conf": 1.0,
+          "evidence": {
+            "ink_ratio": 0.0,
+            "comps": 0,
+            "aspect": 0.0,
+            "fill": 0.0,
+            "top_ratio": 0.0,
+            "sat": 0.0,
+            "edge": 0.0,
+            "solidity": 0.0,
+            "lr_sym": 0.0,
+            "why": "ink_below_empty"
+          }
+        },
+        {
+          "i": 1,
+          "file": "f000_s01.png",
+          "box": [
+            42,
+            654,
+            16,
+            13
+          ],
+          "pred": "padlock",
+          "conf": 1.0,
+          "evidence": {
+            "ink_ratio": 0.627,
+            "comps": 1,
+            "aspect": 1.2,
+            "fill": 0.711,
+            "top_ratio": 0.286,
+            "sat": 50.0,
+            "edge": 0.1699,
+            "solidity": 0.855,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 2,
+          "file": "f000_s02.png",
+          "box": [
+            73,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 49.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 3,
+          "file": "f000_s03.png",
+          "box": [
+            101,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 49.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 4,
+          "file": "f000_s04.png",
+          "box": [
+            129,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 49.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 5,
+          "file": "f000_s05.png",
+          "box": [
+            157,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 49.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 6,
+          "file": "f000_s06.png",
+          "box": [
+            185,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 49.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 7,
+          "file": "f000_s07.png",
+          "box": [
+            213,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 81.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 8,
+          "file": "f000_s08.png",
+          "box": [
+            241,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 1.0,
+          "evidence": {
+            "ink_ratio": 0.704,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.905,
+            "top_ratio": 0.893,
+            "sat": 123.6,
+            "edge": 0.1481,
+            "solidity": 0.985,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 9,
+          "file": "f000_s09.png",
+          "box": [
+            268,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 10,
+          "file": "f000_s10.png",
+          "box": [
+            296,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 11,
+          "file": "f000_s11.png",
+          "box": [
+            324,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 12,
+          "file": "f000_s12.png",
+          "box": [
+            352,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 13,
+          "file": "f000_s13.png",
+          "box": [
+            380,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 81.6,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 14,
+          "file": "f000_s14.png",
+          "box": [
+            408,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 81.6,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 15,
+          "file": "f000_s15.png",
+          "box": [
+            436,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 16,
+          "file": "f000_s16.png",
+          "box": [
+            464,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        }
+      ]
+    },
+    {
+      "frame": 1,
+      "slots": [
+        {
+          "i": 0,
+          "file": "f001_s00.png",
+          "box": [
+            0,
+            627,
+            11,
+            71
+          ],
+          "pred": "empty",
+          "conf": 1.0,
+          "evidence": {
+            "ink_ratio": 0.0,
+            "comps": 0,
+            "aspect": 0.0,
+            "fill": 0.0,
+            "top_ratio": 0.0,
+            "sat": 0.0,
+            "edge": 0.0,
+            "solidity": 0.0,
+            "lr_sym": 0.0,
+            "why": "ink_below_empty"
+          }
+        },
+        {
+          "i": 1,
+          "file": "f001_s01.png",
+          "box": [
+            42,
+            654,
+            16,
+            13
+          ],
+          "pred": "padlock",
+          "conf": 1.0,
+          "evidence": {
+            "ink_ratio": 0.627,
+            "comps": 1,
+            "aspect": 1.2,
+            "fill": 0.711,
+            "top_ratio": 0.286,
+            "sat": 50.0,
+            "edge": 0.1699,
+            "solidity": 0.855,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 2,
+          "file": "f001_s02.png",
+          "box": [
+            73,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 49.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 3,
+          "file": "f001_s03.png",
+          "box": [
+            101,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 49.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 4,
+          "file": "f001_s04.png",
+          "box": [
+            129,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 49.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 5,
+          "file": "f001_s05.png",
+          "box": [
+            157,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 49.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 6,
+          "file": "f001_s06.png",
+          "box": [
+            185,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 49.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 7,
+          "file": "f001_s07.png",
+          "box": [
+            213,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 0.94,
+          "evidence": {
+            "ink_ratio": 0.667,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.857,
+            "top_ratio": 0.833,
+            "sat": 81.5,
+            "edge": 0.1481,
+            "solidity": 1.0,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 8,
+          "file": "f001_s08.png",
+          "box": [
+            241,
+            654,
+            10,
+            14
+          ],
+          "pred": "duck",
+          "conf": 1.0,
+          "evidence": {
+            "ink_ratio": 0.704,
+            "comps": 1,
+            "aspect": 0.857,
+            "fill": 0.905,
+            "top_ratio": 0.893,
+            "sat": 123.6,
+            "edge": 0.1481,
+            "solidity": 0.985,
+            "lr_sym": 1.0,
+            "rule": "top_ratio>=0.68"
+          }
+        },
+        {
+          "i": 9,
+          "file": "f001_s09.png",
+          "box": [
+            268,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 10,
+          "file": "f001_s10.png",
+          "box": [
+            296,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 11,
+          "file": "f001_s11.png",
+          "box": [
+            324,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 12,
+          "file": "f001_s12.png",
+          "box": [
+            352,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 13,
+          "file": "f001_s13.png",
+          "box": [
+            380,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 81.6,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 14,
+          "file": "f001_s14.png",
+          "box": [
+            408,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 81.6,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 15,
+          "file": "f001_s15.png",
+          "box": [
+            436,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        },
+        {
+          "i": 16,
+          "file": "f001_s16.png",
+          "box": [
+            464,
+            653,
+            12,
+            16
+          ],
+          "pred": "padlock",
+          "conf": 0.728,
+          "evidence": {
+            "ink_ratio": 0.564,
+            "comps": 1,
+            "aspect": 0.875,
+            "fill": 0.705,
+            "top_ratio": 0.516,
+            "sat": 49.4,
+            "edge": 0.1964,
+            "solidity": 0.971,
+            "lr_sym": 1.0,
+            "rule": "top_ratio<=0.58"
+          }
+        }
+      ]
+    }
+  ]
+}

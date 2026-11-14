@@ -1,0 +1,49 @@
+{
+  "actions": {
+    "feed": true,
+    "collect": true,
+    "merge": true,
+    "crack": true,
+    "buy": false,
+    "breed": true,
+    "slot": true,
+    "daily": true,
+    "ads": true,
+    "sell": true
+  },
+  "feed_cap": 200,
+  "feed_max_clicks": 400,
+  "feed_rounds": 10,
+  "ad_max": 5,
+  "ad_timeout": 90,
+  "crack_min_level": 12,
+  "merge_budget": 40,
+  "claim_max_clicks": 3,
+  "interval": 60,
+  "tiers": {
+    "routine": {
+      "enabled": true,
+      "interval": 3600,
+      "tasks": [
+        "collect",
+        "daily",
+        "ads",
+        "slot",
+        "feed",
+        "sell"
+      ]
+    },
+    "upgrade": {
+      "enabled": true,
+      "interval": 180,
+      "tasks": [
+        "merge"
+      ]
+    }
+  },
+  "allow_risk3": true,
+  "merge_seconds": 240,
+  "crack_policy": "isolated",
+  "crack_max": 3,
+  "slot_max_price": 300
+}

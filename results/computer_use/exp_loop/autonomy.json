@@ -1,0 +1,16 @@
+{
+  "test_pos": 38,
+  "test_neg": 27,
+  "human_covered_pos": 18,
+  "residual_pos": 20,
+  "human_ok": [
+    "empty_recognition"
+  ],
+  "auto_new": [
+    "A_G_x_>e_546",
+    "A_T_len_b_>e_169000"
+  ],
+  "auto_rediscovered": [],
+  "auto_rejected_test": [],
+  "autonomy_rate": 0.667
+}

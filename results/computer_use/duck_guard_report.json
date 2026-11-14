@@ -1,0 +1,76 @@
+{
+  "window_hours": 3.0,
+  "events": 112,
+  "cycles": 7,
+  "productive_cycles": 4,
+  "cycle_success_rate": 0.571,
+  "actions": [
+    [
+      "nav",
+      65
+    ],
+    [
+      "merge",
+      11
+    ],
+    [
+      "feed",
+      10
+    ],
+    [
+      "badges",
+      7
+    ],
+    [
+      "collect",
+      7
+    ],
+    [
+      "cycle_end",
+      7
+    ],
+    [
+      "env_blocked",
+      4
+    ],
+    [
+      "feed_progress",
+      1
+    ]
+  ],
+  "feed_runs": 6,
+  "feeds_total": 44,
+  "feed_price_range": [
+    8,
+    12
+  ],
+  "vision_merges": 1,
+  "vision_merge_ok": 1,
+  "merge_levels": [
+    [
+      3,
+      1
+    ]
+  ],
+  "denials": [],
+  "blocked": [
+    [
+      "nav_failed",
+      7
+    ]
+  ],
+  "page_check_failed": 0,
+  "errors": 0,
+  "env_blocked": 4,
+  "env_blocked_reasons": [
+    [
+      "tomato_overlay",
+      4
+    ]
+  ],
+  "cycles_by_hour": {
+    "14": 4,
+    "15": 1,
+    "16": 2
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "ts": "2026-11-11T12:46:26",
+  "per_page": {
+    "duck": 1.0,
+    "egg": 1.0,
+    "market": 1.0,
+    "task": 1.0
+  },
+  "overall_accuracy": 1.0,
+  "samples": 32
+}

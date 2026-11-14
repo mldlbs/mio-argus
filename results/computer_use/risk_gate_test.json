@@ -1,0 +1,10 @@
+{
+  "page": "egg",
+  "confidence": 1.0,
+  "require_page_duck": "BLOCKED:duck->egg",
+  "authorize_feed": "DENY:page_not_duck",
+  "authorize_merge": "ALLOW:ok",
+  "authorize_buy": "DENY:risk_l3_denied",
+  "authorize_crack": "DENY:risk_l3_denied",
+  "authorize_breed": "DENY:page_not_duck"
+}
