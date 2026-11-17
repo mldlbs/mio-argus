@@ -44,6 +44,7 @@ nanoGPT/
 │   ├── computer_use/   # collect_* / make_synthetic_data / split_data / model_computer_use
 │   │                   # train_computer_use* / eval_model / gen_report / vlm_adapter / test_*
 │   │                   # ui_icons.py（图标模板匹配）+ duck_icons/（模板素材）
+│   │                   # duck_task.py（任务页里程碑爱心识别）
 │   ├── winsim/         # winsim_w0..w12.py + winsim/index.html（结果写 results/winsim/）
 │   ├── web/            # web_*.py  site_holdout.py  real_site_*.py  SITES.json
 │   └── qgis/           # qgis_bridge/（自包含：脚本 + 数据 + 运行产物就地）
@@ -71,7 +72,7 @@ nanoGPT/
 | 实验结果 json | `results/<line>/` | 脚本写出路径必须指向此处，勿写根目录 |
 | 实验结果/发现文档（`*_RESULTS.md`、`*_FINDINGS.md`） | `results/<line>/` | 与其 json 同目录 |
 | 规范/架构/路线/总报告类手写文档 | `docs/` | 禁止放根目录 |
-| 执行基准/评测协议（`*_EXEC_BENCH.md`） | `docs/` | 先预注册指标、注入矩阵、reset 协议，再写 runner；结果落 `results/<line>/` |
+| 执行基准/评测协议（`*_EXEC_BENCH.md`、`DUCK_BENCH.md`） | `docs/` | 先预注册指标、注入矩阵、reset 协议，再写 runner；结果落 `results/<line>/` |
 | taskhub 任务文档链（requirement/architecture/spec/data-model/api/test/runbook/plan） | `docs/taskhub/<task_id>/` | 由 taskhub scaffold 生成骨架后填充；与任务 doc_paths 保持一致 |
 | 数据集、checkpoint、缓存 | `artifacts/` | 不入 git；`.gitignore` 以 `artifacts/` 整体登记 |
 | 部署文件（Docker、api、依赖清单、bat/sh） | `infra/` | compose 相对路径以 `infra/` 为基准，build context 指回仓库根 |
