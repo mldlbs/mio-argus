@@ -177,6 +177,24 @@ def test_eval_order_independence():
     assert a4["acc_by_step"] == b4["acc_by_step"]
 
 
+def test_train_modes_differ_only_in_progress():
+    """mixed 与 zero 必须共享同一任务流，差别只在进度条覆盖。"""
+    a = M.build_train_data(CFG, 30, 100, 1.0, 0, mode="zero")
+    b = M.build_train_data(CFG, 30, 100, 1.0, 0, mode="mixed")
+    assert np.array_equal(a["slots"], b["slots"])
+    assert np.array_equal(a["inst"], b["inst"])
+
+    fg = np.array([52, 138, 72], dtype=np.uint8).reshape(3, 1, 1)
+
+    def has_fg(img):
+        return bool(np.all(img == fg, axis=0).any())
+
+    assert sum(has_fg(x) for x in a["images"]) == 0, "zero 模式不该有进度条填充"
+    assert 0 < sum(has_fg(x) for x in b["images"]) < 30, "mixed 模式应有部分填充"
+    with pytest.raises(ValueError):
+        M.build_train_data(CFG, 2, 100, 1.0, 0, mode="bogus")
+
+
 def test_parse_cands_defaults_to_all():
     """CLI 默认必须覆盖全部 4 个候选（防止静默只跑一个）。"""
     assert [c[0] for c in M.parse_cands("all")] == [c[0] for c in M.CANDS]

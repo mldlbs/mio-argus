@@ -342,6 +342,7 @@ def main():
     ap.add_argument("--cands", default="all")
     ap.add_argument("--rhos", default="0.3,0.0",
                     help="逗号分隔；0.3 为主条件，0.0 为对照（都会评估）")
+    ap.add_argument("--train-mode", choices=("zero", "mixed"), default="zero")
     ap.add_argument("--epochs", type=int, default=20)
     ap.add_argument("--out", default="results/paper/e1l_m1_prescan.jsonl")
     ap.add_argument("--gate-out", default="results/paper/e1l_m1_prescan_gate.jsonl")
@@ -376,7 +377,7 @@ def main():
     for name, s in units:
         d = next(m["d"] for m in matrix if m["cand"] == name)
         w = next(m["w"] for m in matrix if m["cand"] == name)
-        tr = build_train_data(cfg, 3000, 100, d, s)
+        tr = build_train_data(cfg, 3000, 100, d, s, mode=args.train_mode)
         models[(name, s)] = NNPolicy(H4.train(w, tr, args.epochs, device, seed=s), device)
         print(f"[train] {name} seed={s} 完成（累计 {len(models)}/{len(units)}）", flush=True)
 
@@ -408,15 +409,30 @@ def main():
     print("[check] 矩阵完整：4 候选 × 3 seed × 2 ρ × 4 H 全部产生", flush=True)
 
 
-def build_train_data(cfg, n, split_seed, d, seed_for_decoys):
-    """单步训练数据：progress=0、无标记；干扰项密度与评估一致。"""
+def build_train_data(cfg, n, split_seed, d, seed_for_decoys, mode="zero"):
+    """单步训练数据；干扰项密度与评估一致。
+
+    mode="zero"  ：progress 恒为 0（本轮 M1 用的原协议，默认，行为不变）
+    mode="mixed" ：progress 覆盖评估中可达的中间状态（M1b 诊断臂 B）
+                   H_eval ~ U{1,2,4,8}；t ~ U[0, H_eval-1]；progress ~ U[0, t]
+                   （不取 progress=H，因为那一步在评估中不会作为"待决策"状态出现）
+    """
     scripts = build_scripts(cfg, split_seed, 0.0, n)
     imgs = np.zeros((n, 3, IMG_SIZE, IMG_SIZE), dtype=np.uint8)
     inst = np.zeros((n, len(LABELS)), dtype=np.float32)
     slots = np.zeros(n, dtype=np.int64)
     for i in range(n):
         st = scripts[i][0]
-        img, _ = render_state(cfg, st.labels, 0, 1, [False] * cfg.num_slots,
+        if mode == "mixed":
+            mrng = np.random.default_rng(split_seed * 1_000_003 + 90_001 + i)
+            h_eval = int(mrng.choice([1, 2, 4, 8]))
+            t = int(mrng.integers(0, h_eval))
+            prog = int(mrng.integers(0, t + 1))
+        elif mode == "zero":
+            prog = 0
+        else:
+            raise ValueError(f"未知 mode: {mode}")
+        img, _ = render_state(cfg, st.labels, prog, 1, [False] * cfg.num_slots,
                               [False] * cfg.num_slots, st.labels[st.target_slot],
                               d=d, level="flat",
                               decoy_seed=seed_for_decoys * 1_000_003 + i,
