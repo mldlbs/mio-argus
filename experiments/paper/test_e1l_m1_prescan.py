@@ -183,15 +183,34 @@ def test_rows_consumed_by_band_gate(tmp_path):
     rows = []
     for H in (1, 2):
         r = M.evaluate(M.OraclePolicy(), CFG, script, H, 0.0, 4, 0.0)
-        rows.append({"cond": "cand", "x": H, "seed": 0, "value": round(r["rate"], 4)})
+        rows.append({"cond": "cand@r0.0", "x": H, "seed": 0, "value": round(r["rate"], 4)})
     p = tmp_path / "rows.jsonl"
     p.write_text("\n".join(json.dumps(r) for r in rows), encoding="utf-8")
 
     here = Path(__file__).parent
     out = subprocess.run(
         [sys.executable, str(here / "prescan_gate.py"), "--runs", str(p),
-         "--band", "0.2,0.9"],
+         "--band", "0.2,0.9", "--monotone", "--monotone-dir", "down"],
         capture_output=True, text=True, encoding="utf-8", cwd=str(here))
     # 全对的替身策略 rate=1.0 → 顶出 [0.2,0.9] 上限，门禁必须拦下（exit 1）
     assert out.returncode == 1, out.stdout[-400:]
     assert "FAIL" in out.stdout
+
+
+def test_gate_monotone_direction(tmp_path):
+    """H 曲线应下降：用 down 判通过，用 up 判违规（防止把方向搞反）。"""
+    rows = [{"cond": "c@r0.3", "x": H, "seed": 0, "value": v}
+            for H, v in ((1, 0.85), (2, 0.72), (4, 0.52), (8, 0.27))]
+    p = tmp_path / "rows.jsonl"
+    p.write_text("\n".join(json.dumps(r) for r in rows), encoding="utf-8")
+    here = Path(__file__).parent
+    down = subprocess.run(
+        [sys.executable, str(here / "prescan_gate.py"), "--runs", str(p),
+         "--band", "0.2,0.9", "--monotone", "--monotone-dir", "down"],
+        capture_output=True, text=True, encoding="utf-8", cwd=str(here))
+    up = subprocess.run(
+        [sys.executable, str(here / "prescan_gate.py"), "--runs", str(p),
+         "--band", "0.2,0.9", "--monotone", "--monotone-dir", "up"],
+        capture_output=True, text=True, encoding="utf-8", cwd=str(here))
+    assert down.returncode == 0, down.stdout[-400:]
+    assert up.returncode == 1, up.stdout[-400:]

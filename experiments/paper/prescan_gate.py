@@ -23,6 +23,17 @@ from collections import defaultdict
 from pathlib import Path
 
 
+def monotone_violations(xs, ys, direction, tol):
+    """返回违反单调方向的相邻点描述（容差内的抖动不算）。"""
+    out = []
+    for i in range(len(ys) - 1):
+        if direction == "up" and ys[i + 1] < ys[i] - tol:
+            out.append(f"{xs[i]:g}({ys[i]:.3f})>{xs[i+1]:g}({ys[i+1]:.3f})")
+        if direction == "down" and ys[i + 1] > ys[i] + tol:
+            out.append(f"{xs[i]:g}({ys[i]:.3f})<{xs[i+1]:g}({ys[i+1]:.3f})")
+    return out
+
+
 def load(path, ccol, xcol, ycol, scol):
     rows = []
     for line in Path(path).read_text(encoding="utf-8").splitlines():
@@ -49,6 +60,8 @@ def main():
     ap.add_argument("--max-gap-ratio", type=float, default=2.5)
     ap.add_argument("--monotone", action="store_true",
                     help="声明将使用单调插值（见协议 §5）")
+    ap.add_argument("--monotone-dir", choices=("up", "down"), default="up",
+                    help="单调方向：阈值型指标用 up（越高越易）；H 曲线用 down（越高越难）")
     ap.add_argument("--monotone-tol", type=float, default=0.05,
                     help="单调性容差：允许的回落幅度，默认 0.05 ≈ 3×SE（n_test=1000 时）")
     ap.add_argument("--report", default="")
@@ -99,11 +112,10 @@ def main():
                                 f"[{lo + args.margin:.2f}, {hi - args.margin:.2f}]"
                                 + ("" if not bad else "；越界：" + ", ".join(bad[:3]))))
                 if args.monotone:
-                    drops = [f"{xs[i]:g}({ys[i]:.3f})>{xs[i+1]:g}({ys[i+1]:.3f})"
-                             for i in range(len(ys) - 1)
-                             if ys[i + 1] < ys[i] - args.monotone_tol]
+                    drops = monotone_violations(xs, ys, args.monotone_dir,
+                                                args.monotone_tol)
                     results.append(("G5", c, s, not drops,
-                                    "非递减" if not drops else "超容差回落 " + ", ".join(drops[:3])))
+                                    "符合方向" if not drops else "反向超容差 " + ", ".join(drops[:3])))
                 continue
 
             # G1 严格内部
@@ -136,11 +148,9 @@ def main():
 
             # G5 单调性（仅在声明单调插值时强制；容差内回落不算违反）
             if args.monotone:
-                bad = [f"{xs[i]:g}({ys[i]:.3f})>{xs[i+1]:g}({ys[i+1]:.3f})"
-                       for i in range(len(ys) - 1)
-                       if ys[i + 1] < ys[i] - args.monotone_tol]
+                bad = monotone_violations(xs, ys, args.monotone_dir, args.monotone_tol)
                 results.append(("G5", c, s, not bad,
-                                "非递减" if not bad else "超容差回落 " + ", ".join(bad[:3])))
+                                "符合方向" if not bad else "反向超容差 " + ", ".join(bad[:3])))
             else:
                 results.append(("G5", c, s, True, "未声明单调插值（跳过）"))
 

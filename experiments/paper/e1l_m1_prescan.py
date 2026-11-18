@@ -349,8 +349,8 @@ def main():
                 with Path(args.out).open("a", encoding="utf-8") as fh:
                     fh.write(json.dumps(row, ensure_ascii=False) + "\n")
                 with Path(args.gate_out).open("a", encoding="utf-8") as fh:
-                    fh.write(json.dumps({"cond": name, "x": H, "seed": s,
-                                         "value": row["rate"]},
+                    fh.write(json.dumps({"cond": f"{name}@r{args.rho}", "x": H,
+                                         "seed": s, "value": row["rate"]},
                                         ensure_ascii=False) + "\n")
                 print(f"[full] {name} s{s} H{H}: {row['rate']:.3f} "
                       f"CI=[{row['ci_lo']}, {row['ci_hi']}]", flush=True)
