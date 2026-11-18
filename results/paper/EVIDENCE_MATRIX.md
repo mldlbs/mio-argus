@@ -29,7 +29,7 @@
 | 原始结果 | ρ=0.3, H=8：`cls_task` k=1 **1.000** vs k=8 **0.0767**（gap +0.923）；ρ=0 时各 k **逐位相同**（0.0700/0.0700/0.0700）；ρ=1, H=8：k=1 0.9967 vs k=8 0.0000 |
 | 脚本 | `experiments/paper/p1_horizon.py` |
 | 复现 | `python experiments/paper/p1_horizon.py` |
-| 等级 | **B** |
+| 等级 | **B（测量降权）** |
 | 理由 | 数据扎实、与 `P1_RESULTS.md` 一致；但**没有大模型基线**（作者在文末也承认"同等参数下的比较"），因此"替代参数"这一句未被检验，只证明了"重观察是长程任务的必要条件" |
 
 ### H2 — 动作空间压缩（结构替代感知容量）
@@ -40,8 +40,8 @@
 | 原始结果 | 同为 106,112 参数：fill=0.75 `cls` 1.000 / `reg` 0.997；fill=0.55 `cls` 0.9995 / `reg` **0.8085**；fill=0.40 `cls` 1.000 / `reg` **0.511**；grid=4 时 `cls` 1.000 / `reg(coord)` 0.962 / `reg(gauss)` 0.3195 |
 | 脚本 | `experiments/paper/p0_h2.py`、`p0_regloss.py` |
 | 复现 | `python experiments/paper/p0_h2.py`、`python experiments/paper/p0_regloss.py` |
-| 等级 | **B** |
-| 理由 | 确实证明"结构化选择对精度更鲁棒"；但假设原文是"用**少得多的参数**达到同成功率"，P0 的 `width` 固定为 32，**没有做参数规模扫描** → 该句未被直接检验 |
+| 等级 | **B（cls 分支作废，仅回归/解析器分支保留）** |
+| 理由 | P0 的 `cls` 优势已被 M3 证实来自颜色捷径（C6），**不得**再作为结构化动作有效的证据；剩余有效证据是 P7/P8 的解析器瓶颈与 `reg` 对比，以及 P0 的 `reg` 内部对比。假设原文"用少得多的参数达到同成功率"仍未做参数扫描 |
 
 ### H2-边界 — 真实解析器下的反转
 
@@ -52,7 +52,7 @@
 | 脚本 | `experiments/paper/p7_realistic_ui.py`、`p8_learned_parser.py` |
 | 复现 | `python experiments/paper/p7_realistic_ui.py`、`python experiments/paper/p8_learned_parser.py` |
 | 等级 | **否证（对 H2 的适用边界）** |
-| 理由 | 一旦元素解析不完美，`cls` 的成功率被 `parser_recall` 直接封顶，而**坐标回归反超**（0.977 vs 0.833）；学习式解析器 recall 仅 0.52 → H2 的收益完全取决于外部解析器质量 |
+| 理由 | 一旦元素解析不完美，`cls` 的成功率被 `parser_recall` 直接封顶，而**坐标回归反超**（0.977 vs 0.833）；学习式解析器 recall 仅 0.52 → H2 的收益完全取决于外部解析器质量。另见 C6：`cls` 与 `reg` 的差距部分来自颜色查找 |
 
 ### H3a — 重新接地式 verifier
 
