@@ -177,6 +177,25 @@ def test_eval_order_independence():
     assert a4["acc_by_step"] == b4["acc_by_step"]
 
 
+def test_matrix_covers_both_rhos_without_extra_training():
+    """执行矩阵：96 个评估格 = 4 候选 × 3 seed × 2 ρ × 4 H；训练只有 12 次。"""
+    mx = M.expand_matrix(M.CANDS, [0, 1, 2], [0.3, 0.0])
+    assert len(mx) == 96
+    assert len(M.train_units(mx)) == 12
+    tags = {m["tag"] for m in mx}
+    assert tags == {f"{c[0]}@r{r}" for c in M.CANDS for r in (0.3, 0.0)}
+    for t in tags:
+        assert sum(1 for m in mx if m["tag"] == t) == 12
+    assert all(m["tag"].endswith(("@r0.3", "@r0.0")) for m in mx)
+
+
+def test_completeness_detects_missing_row():
+    mx = M.expand_matrix(M.CANDS[:1], [0], [0.3, 0.0])
+    rows = [{"cond": m["tag"], "seed": m["seed"], "x": m["H"]} for m in mx]
+    assert M.check_completeness(rows, mx) == []
+    assert len(M.check_completeness(rows[:-1], mx)) == 1
+
+
 def test_rows_consumed_by_band_gate(tmp_path):
     """统计输出能直接被 prescan_gate 的 B 模式消费（门禁用实测值，不用预测）。"""
     script = M.build_scripts(CFG, seed=4, rho=0.0, n_tasks=2)

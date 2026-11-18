@@ -296,13 +296,37 @@ def evaluate(policy, cfg, scripts, H, d, seed, rho, level="flat"):
 
 # ------------------------------------------------------------------- main
 
+def expand_matrix(cands, seeds, rhos, hs=HS):
+    """执行矩阵（纯函数，可测试）：候选 × seed × ρ × H。
+
+    **训练只按 (候选, seed)** —— ρ 是评估参数，不重训。
+    返回的每一项都带 rho 与 tag（`name@r0.3`），保证两套曲线不会混。
+    """
+    return [{"cand": n, "d": d, "w": w, "seed": sd, "rho": r, "H": H,
+             "tag": f"{n}@r{r}"}
+            for (n, d, w) in cands for sd in seeds for r in rhos for H in hs]
+
+
+def train_units(matrix):
+    """需要训练的 (候选, seed) 组合（12 个 = 4 × 3，与 ρ 无关）。"""
+    return sorted({(m["cand"], m["seed"]) for m in matrix})
+
+
+def check_completeness(rows, matrix):
+    """核对写出的行是否覆盖整个矩阵；返回缺失的 (tag, seed, H) 列表。"""
+    have = {(r["cond"], r["seed"], r["x"]) for r in rows}
+    want = {(m["tag"], m["seed"], m["H"]) for m in matrix}
+    return sorted(want - have)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", choices=("logic", "full"), default="logic")
     ap.add_argument("--tasks", type=int, default=20)
     ap.add_argument("--seeds", default="0")
     ap.add_argument("--cands", default="d1w16")
-    ap.add_argument("--rho", type=float, default=RHO)
+    ap.add_argument("--rhos", default="0.3,0.0",
+                    help="逗号分隔；0.3 为主条件，0.0 为对照（都会评估）")
     ap.add_argument("--epochs", type=int, default=20)
     ap.add_argument("--out", default="results/paper/e1l_m1_prescan.jsonl")
     ap.add_argument("--gate-out", default="results/paper/e1l_m1_prescan_gate.jsonl")
@@ -310,50 +334,65 @@ def main():
 
     cfg = EnvCfg6()
     seeds = [int(s) for s in args.seeds.split(",")]
+    rhos = [float(v) for v in args.rhos.split(",")]
     cands = [c for c in CANDS if c[0] in args.cands.split(",")]
+    if not cands:
+        raise SystemExit(f"未知候选：{args.cands}")
+    matrix = expand_matrix(cands, seeds, rhos)
+    units = train_units(matrix)
+    print(f"[matrix] 训练 {len(units)} 次（候选×seed），评估 {len(matrix)} 格"
+          f"（×{len(rhos)} 个 ρ）；ρ = {rhos}", flush=True)
 
     if args.stage == "logic":
-        # 不训练：用测试替身验证"多步 + 误差累积 + 统计"链路
-        for name, d, _w in cands:
-            for s in seeds:
-                scripts = build_scripts(cfg, s, args.rho, args.tasks)
-                for H in HS:
-                    r = evaluate(OraclePolicy(), cfg, scripts, H, d, s, args.rho)
-                    print(f"[logic] {name} s{s} H{H}: rate={r['rate']:.3f} "
-                          f"CI=[{r['ci'][0]:.3f}, {r['ci'][1]:.3f}] "
-                          f"step0={r['acc_by_step'][0]:.2f}")
+        for m in matrix:
+            scripts = build_scripts(cfg, m["seed"], m["rho"], args.tasks)
+            r = evaluate(OraclePolicy(), cfg, scripts, m["H"], m["d"], m["seed"], m["rho"])
+            print(f"[logic] {m['tag']} s{m['seed']} H{m['H']}: rate={r['rate']:.3f} "
+                  f"CI=[{r['ci'][0]:.3f}, {r['ci'][1]:.3f}]")
         return
 
     import torch
     import h4_density as H4
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
-    if Path(args.out).exists():
-        Path(args.out).unlink()
-    if Path(args.gate_out).exists():
-        Path(args.gate_out).unlink()
+    for f in (args.out, args.gate_out):
+        if Path(f).exists():
+            Path(f).unlink()
 
-    for name, d, w in cands:
-        for s in seeds:
-            tr = build_train_data(cfg, 3000, 100, d, s)
-            model = H4.train(w, tr, args.epochs, device, seed=s)
-            policy = NNPolicy(model, device)
-            for H in HS:
-                scripts = build_scripts(cfg, s, args.rho, N_TASKS)
-                r = evaluate(policy, cfg, scripts, H, d, s, args.rho)
-                row = {"cand": name, "d": d, "w": w, "seed": s, "H": H,
-                       "rho": args.rho, "n": r["n"], "success": r["success"],
-                       "rate": round(r["rate"], 4),
-                       "ci_lo": round(r["ci"][0], 4), "ci_hi": round(r["ci"][1], 4),
-                       "acc_by_step": [round(v, 4) for v in r["acc_by_step"]]}
-                with Path(args.out).open("a", encoding="utf-8") as fh:
-                    fh.write(json.dumps(row, ensure_ascii=False) + "\n")
-                with Path(args.gate_out).open("a", encoding="utf-8") as fh:
-                    fh.write(json.dumps({"cond": f"{name}@r{args.rho}", "x": H,
-                                         "seed": s, "value": row["rate"]},
-                                        ensure_ascii=False) + "\n")
-                print(f"[full] {name} s{s} H{H}: {row['rate']:.3f} "
-                      f"CI=[{row['ci_lo']}, {row['ci_hi']}]", flush=True)
+    models = {}
+    for name, s in units:
+        d = next(m["d"] for m in matrix if m["cand"] == name)
+        w = next(m["w"] for m in matrix if m["cand"] == name)
+        tr = build_train_data(cfg, 3000, 100, d, s)
+        models[(name, s)] = NNPolicy(H4.train(w, tr, args.epochs, device, seed=s), device)
+        print(f"[train] {name} seed={s} 完成（累计 {len(models)}/{len(units)}）", flush=True)
+
+    for m in matrix:
+        policy = models[(m["cand"], m["seed"])]
+        scripts = build_scripts(cfg, m["seed"], m["rho"], N_TASKS)
+        r = evaluate(policy, cfg, scripts, m["H"], m["d"], m["seed"], m["rho"])
+        row = {"cand": m["cand"], "tag": m["tag"], "d": m["d"], "w": m["w"],
+               "seed": m["seed"], "H": m["H"], "rho": m["rho"], "n": r["n"],
+               "success": r["success"], "rate": round(r["rate"], 4),
+               "ci_lo": round(r["ci"][0], 4), "ci_hi": round(r["ci"][1], 4),
+               "acc_by_step": [round(v, 4) for v in r["acc_by_step"]]}
+        with Path(args.out).open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps(row, ensure_ascii=False) + "\n")
+        with Path(args.gate_out).open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps({"cond": m["tag"], "x": m["H"], "seed": m["seed"],
+                                 "value": row["rate"]}, ensure_ascii=False) + "\n")
+        print(f"[eval] {m['tag']} s{m['seed']} H{m['H']}: {row['rate']:.3f} "
+              f"CI=[{row['ci_lo']}, {row['ci_hi']}]", flush=True)
+
+    rows = [json.loads(x) for x in Path(args.gate_out).read_text(
+        encoding="utf-8").splitlines() if x.strip()]
+    missing = check_completeness(rows, matrix)
+    print(f"\n[check] gate 行数 {len(rows)} / 期望 {len(matrix)}；"
+          f"缺失 {len(missing)}", flush=True)
+    if missing:
+        print("[check] 缺失示例:", missing[:5], flush=True)
+        raise SystemExit(1)
+    print("[check] 矩阵完整：4 候选 × 3 seed × 2 ρ × 4 H 全部产生", flush=True)
 
 
 def build_train_data(cfg, n, split_seed, d, seed_for_decoys):

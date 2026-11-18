@@ -86,9 +86,24 @@ H4 的 runner 只有单步（训练与评估都是），M1 需要多步 rollout�
 | 任务数 | **500 / (候选, seed, H)**（裁定 22 批准；只增加评估量，不增加训练） |
 | 运行数 | 4 候选 × 3 seed = **12 次短训练**（w8–w24，约 10–25 s/次） |
 | 数据 | 复用 `h4_density.py` 的生成器（配对任务流，`config_fp` 记录） |
-| 判据 | 门禁 **B 模式**：`--band 0.2,0.9 --margin 0.05 --monotone`；ρ=0.3 曲线上同一判据 |
+| 判据 | 门禁 **B 模式**：`--band 0.2,0.9 --margin 0.05 --monotone --monotone-dir down`；**ρ=0.3 与 ρ=0.0 两套曲线都必须过**（`cond` 带 `@r0.3` / `@r0.0` 标签） |
 | 输出 | `results/paper/E1L_M1_PRESCAN.jsonl` + 门禁报告 |
 
+
+### 3.0 执行命令（裁定 23 修正后，唯一版本）
+
+```powershell
+# 12 次训练 + 96 格评估（4 候选 × 3 seed × 2 ρ × 4 H）
+python experiments/paper/e1l_m1_prescan.py --stage full --tasks 500 `
+  --seeds 0,1,2 --rhos 0.3,0.0 --out results/paper/e1l_m1_prescan.jsonl
+
+# 两套 ρ 曲线一起过门禁（cond 已带 @r0.3 / @r0.0）
+python experiments/paper/prescan_gate.py --runs results/paper/e1l_m1_prescan_gate.jsonl `
+  --band 0.2,0.9 --margin 0.05 --monotone --monotone-dir down
+```
+
+`--rho`（单值）已废弃：它只评估一个 ρ，会让"对照条件"变成口头承诺。
+现在 `--rhos` 是列表，且 full 模式结束时会自检 `4×3×2×4=96` 行是否齐全，缺一行即 exit 1。
 
 ### 3.1 运行前锁定的配置（裁定 22）
 
