@@ -63,7 +63,19 @@ class EnvCfg:
     fill: float = 0.80         # 元素尺寸 / 格子尺寸（越小 → 精度要求越高）
     jitter: int = 6            # 元素在格子内的随机偏移
     color_by_label: bool = True
+    color_mode: str = "auto"   # "auto"（沿用 color_by_label）| "by_label" | "permuted"
     pad: int = 3
+
+    @property
+    def color_scheme(self) -> str:
+        """颜色规则：by_label（标签→颜色一一对应）或 permuted（样本内置换、与标签无关）。
+
+        "permuted" 是 M3 消融用：颜色仍互不相同，但每个样本独立置换，与标签无关。
+        注意：旧的 `color_by_label=False` 走的是"有放回随机色"（会重复），已被本字段取代。
+        """
+        if self.color_mode in ("by_label", "permuted"):
+            return self.color_mode
+        return "by_label" if self.color_by_label else "permuted"
 
     @property
     def num_slots(self) -> int:
@@ -138,7 +150,8 @@ def render(elements: List[Element], cfg: EnvCfg) -> np.ndarray:
     return np.transpose(arr, (2, 0, 1))
 
 
-def make_sample(rng: np.random.Generator, cfg: EnvCfg = DEFAULT) -> Sample:
+def make_sample(rng: np.random.Generator, cfg: EnvCfg = DEFAULT,
+                color_seed: int | None = None) -> Sample:
     vocab = LABELS[:cfg.label_vocab]
     # 唯一性优先：能达到则不放回，否则放回
     replace = cfg.num_slots > len(vocab)
@@ -156,11 +169,19 @@ def make_sample(rng: np.random.Generator, cfg: EnvCfg = DEFAULT) -> Sample:
         ey2 = int(np.clip(ey1 + eh, ey1 + 1, cfg.img_size - 1))
 
         label = vocab[int(assigned[slot])]
-        color = PALETTE[LABEL_TO_ID[label] % len(PALETTE)] if cfg.color_by_label \
-            else PALETTE[int(rng.integers(0, len(PALETTE)))]
+        color = PALETTE[LABEL_TO_ID[label] % len(PALETTE)]
 
         elements.append(Element(slot, (ex1, ey1, ex2, ey2), label,
                                 str(rng.choice(["button", "input", "icon"])), color))
+
+    # M3：permuted 消融只改颜色，**不动** rng 流（保证标签/位置/类型逐位一致）。
+    # 颜色排列只由 (color_seed) 决定，**不读取标签**，也不消耗环境 rng。
+    if cfg.color_scheme == "permuted":
+        if color_seed is None:
+            raise ValueError("permuted 模式必须提供 color_seed（不允许退回按标签派生）")
+        perm = np.random.default_rng(int(color_seed) & 0xFFFFFFFF).permutation(len(PALETTE))
+        for slot, e in enumerate(elements):
+            e.color = PALETTE[int(perm[slot])]
 
     target_slot = int(rng.integers(0, cfg.num_slots))
     t = elements[target_slot]

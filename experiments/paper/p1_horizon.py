@@ -45,7 +45,7 @@ GRID = 6
 
 # ---------- 布局渲染（与 p0_env.make_sample 相同的尺寸逻辑，但标签由外部给定）----------
 
-def build_elements(labels, cfg: EnvCfg, rng) -> list:
+def build_elements(labels, cfg: EnvCfg, rng, color_seed: int | None = None) -> list:
     els = []
     for slot in range(cfg.num_slots):
         bx1, by1, bx2, by2 = cfg.slot_bbox(slot)
@@ -59,11 +59,19 @@ def build_elements(labels, cfg: EnvCfg, rng) -> list:
         label = labels[slot]
         color = PALETTE[LABEL_TO_ID[label] % len(PALETTE)]
         els.append(Element(slot, (ex1, ey1, ex2, ey2), label, "button", color))
+
+    # M3：permuted 只改颜色，不消耗 rng；排列只由 color_seed 决定（与标签无关）
+    if cfg.color_scheme == "permuted":
+        if color_seed is None:
+            raise ValueError("permuted 模式必须提供 color_seed（不允许退回按标签派生）")
+        perm = np.random.default_rng(int(color_seed) & 0xFFFFFFFF).permutation(len(PALETTE))
+        for slot, e in enumerate(els):
+            e.color = PALETTE[int(perm[slot])]
     return els
 
 
-def render_layout(labels, cfg, rng):
-    els = build_elements(labels, cfg, rng)
+def render_layout(labels, cfg, rng, color_seed: int | None = None):
+    els = build_elements(labels, cfg, rng, color_seed=color_seed)
     return render(els, cfg), els
 
 
@@ -111,11 +119,13 @@ def rollout(model, head, cfg, device, H, rho, k, n_tasks, seed=0):
         # 布局未变 → 复用同一张屏幕（真实 UI 静态时像素完全一致）。
         # 若每步重渲染，jitter 会变化，造成"布局没变但观察失效"的伪影。
         screens, prev = [], None
-        for labels, _ in task:
+        for t, (labels, _) in enumerate(task):
             if prev is not None and labels == prev:
                 screens.append(screens[-1])
             else:
-                screens.append(render_layout(labels, cfg, rng))
+                # 颜色排列的 seed 由 (rollout seed, 步序号) 决定，与标签无关
+                screens.append(render_layout(labels, cfg, rng,
+                                             color_seed=seed * 100_003 + t))
             prev = labels
 
         obs_idx = None

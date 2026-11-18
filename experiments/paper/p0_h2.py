@@ -61,7 +61,9 @@ def build_dataset(n: int, seed: int, cfg: EnvCfg) -> dict:
     centers = np.zeros((n, S, 2), dtype=np.float32)
 
     for i in range(n):
-        s = make_sample(rng, cfg)
+        # M3：颜色排列的 seed 由 (数据集 seed, 样本序号) 唯一确定，
+        # train/test 的 seed 不同 → 两套索引空间天然不重叠。
+        s = make_sample(rng, cfg, color_seed=seed * 1_000_003 + i)
         imgs[i] = (s.image * 255.0).astype(np.uint8)
         inst[i] = instruction_onehot(s.instruction, len(LABELS))
         slots[i] = s.target_slot
@@ -74,9 +76,13 @@ def build_dataset(n: int, seed: int, cfg: EnvCfg) -> dict:
 
 
 def env_key(cfg) -> str:
-    """缓存 key 必须覆盖**所有**影响数据的 env 参数，否则会读到陈旧数据。"""
+    """缓存 key 必须覆盖**所有**影响数据的 env 参数，否则会读到陈旧数据。
+
+    尾缀 `v2` 表示颜色排列改为"由 color_seed 决定"（M3 加固），
+    与早期 `cm*` 缓存（由标签哈希派生）不兼容。
+    """
     return (f"g{cfg.grid}_i{cfg.img_size}_v{cfg.label_vocab}"
-            f"_f{cfg.fill}_j{cfg.jitter}_c{int(cfg.color_by_label)}")
+            f"_f{cfg.fill}_j{cfg.jitter}_cm{cfg.color_scheme}v2")
 
 
 def load_or_build(n: int, seed: int, cfg: EnvCfg, tag: str) -> dict:
