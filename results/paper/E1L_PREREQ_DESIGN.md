@@ -66,6 +66,14 @@ H4 的 runner 只有单步（训练与评估都是），M1 需要多步 rollout�
 
 输出：`results/paper/e1l_m1_prescan.jsonl`（一行一个 (候选, seed, H, ρ)）。
 
+**已实现**：`experiments/paper/e1l_m1_prescan.py`（约 330 行，含渲染 + 脚本 + rollout + 统计）
++ `experiments/paper/test_e1l_m1_prescan.py`（11 个逻辑测试，不训练）。
+渲染器契约：`flat + d=0 + bar_total=H` 时必须与 `p3_env.render_ui` **逐像素相同**（有测试保证）。
+
+**进度条口径的一处刻意修改**：进度条默认按 **H_MAX=8** 着色（`bar_total=H_MAX`），
+不按当前评估用的 H。否则同一 `progress` 在 H=4 与 H=8 下会画出不同长度的条，
+观测分布随 H 变化，"同一任务只改 rollout 长度"就不成立（该问题由前缀一致性测试发现）。
+
 ---
 
 ## 3. M1 预扫描（设计）
