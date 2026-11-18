@@ -116,11 +116,18 @@ def main():
     d3, d4 = delta("C3"), delta("C4")
     m3, lo3, hi3 = t_ci(d3)
     m4, lo4, hi4 = t_ci(d4)
+    computable = all(r is not None for r in rhos) and all(d is not None for d in d3)
     crit1 = all(r is not None and r > 0 for r in rhos)
     crit2 = lo3 is not None and lo3 > 0
     crit3 = lo4 is not None and lo4 <= 0 <= hi4
-    verdict = "成立" if (crit1 and crit2 and crit3) else (
-        "否证（背景熵本身有效）" if (lo4 is not None and lo4 > 0) else "否证（机制不成立/无效应）")
+    if not computable:
+        verdict = "不可判定（C2/C3 的 params_needed 在 7 档内不可估；按 §4.7 记 null，不删 seed、不外推）"
+    elif lo4 is not None and lo4 > 0:
+        verdict = "否证（背景熵本身有效）"
+    elif crit1 and crit2 and crit3:
+        verdict = "成立"
+    else:
+        verdict = "否证（机制不成立/无效应）"
 
     pn_med = {}
     for c in CONDS:
@@ -150,20 +157,38 @@ def main():
     A("| 判据 | 观测 | 结论 |")
     A("|---|---|---|")
     A(f"| ① 3 seed 的 ρ 全部 > 0 | {[None if r is None else round(r, 3) for r in rhos]} | "
-      f"{'✅' if crit1 else '❌'} |")
+      f"{'✅' if crit1 else ('— 不可计算' if not computable else '❌')} |")
     A(f"| ② Δ(C3−C0) 95% CI 下限 > 0 | Δ̅={m3 if m3 is None else format(m3, '+,.0f')}，"
       f"CI=[{lo3 if lo3 is None else format(lo3, '+,.0f')}, {hi3 if hi3 is None else format(hi3, '+,.0f')}] | "
-      f"{'✅' if crit2 else '❌'} |")
+      f"{'✅' if crit2 else ('— 不可计算' if not computable else '❌')} |")
     A(f"| ③ Δ(C4−C0) 95% CI 覆盖 0 | Δ̅={m4 if m4 is None else format(m4, '+,.0f')}，"
       f"CI=[{lo4 if lo4 is None else format(lo4, '+,.0f')}, {hi4 if hi4 is None else format(hi4, '+,.0f')}] | "
       f"{'✅' if crit3 else '❌'} |")
     A(f"\n**H4-G 判定：{verdict}**\n")
 
+    # 描述性：固定 width 下的密度排序（不是预注册判据，标注 post-hoc）
+    A("### 0.1 描述性证据（**post-hoc**，不参与判定）\n")
+    order_ok, order_all = 0, 0
+    for w in WIDTHS:
+        vals = [mean([acc[(c, w, s)] for s in SEEDS]) for c in ("C0", "C1", "C2", "C3")]
+        order_all += 1
+        order_ok += int(all(vals[i] > vals[i + 1] for i in range(3)))
+    A(f"- 在固定 width 上严格满足 `C0 > C1 > C2 > C3` 的档位：**{order_ok}/{order_all}**")
+    A("- 每个 width 的四条件排序：")
+    for w in WIDTHS:
+        vals = [(c, mean([acc[(c, w, s)] for s in SEEDS])) for c in ("C0", "C1", "C2", "C3")]
+        srt = " > ".join(f"{c} {v:.3f}" for c, v in sorted(vals, key=lambda t: -t[1]))
+        A(f"  - w{w}: {srt}")
+
     if pn_med["C0"] and pn_med["C3"]:
         ratio = pn_med["C3"] / pn_med["C0"]
         censored = any(per["C0"][s][1] == "left" for s in SEEDS)
-        A(f"- 效应量 `C3/C0` = **{ratio:.2f}×**"
-          + ("（**上界**：C0 在 w4 已饱和，真实 C0 需求 ≤ 4,208）" if censored else ""))
+        A(f"\n- 效应量 `C3/C0` = **{ratio:.2f}×**"
+          + ("（**上界**：C0 在 w4 已饱和，真实 C0 需求 ≤ 该值）" if censored else ""))
+    elif pn_med["C0"] and pn_med["C3"] is None:
+        lo_ratio = max(params[("C0", w)] for w in WIDTHS) / pn_med["C0"]
+        A(f"\n- C3 在最大 width（{max(params[('C0', w)] for w in WIDTHS):,} 参数）仍未达 0.80 → "
+          f"`C3/C0` **≥ {lo_ratio:.1f}×**（下界；C0 又左截断，真实比值只会更大）")
     A("")
 
     A("## 1. 逐条件 `params_needed(0.80)`\n")
@@ -219,7 +244,15 @@ def main():
     A("- B-res：本分辨率元素无文字（4–8 px），任务靠颜色区分 → 只覆盖颜色/形状特征空间重叠；")
     A("- B-col：C6 已证实颜色是主导线索 → 本实验测的是颜色维度的干扰密度；")
     A("- B-scale：最大 106K 参数，不外推到十亿级；")
-    A("- B-p5：P5 只作背景，其 `params_needed` 数值不与本表并列。")
+    A("- B-p5：P5 只作背景，其 `params_needed` 数值不与本表并列；")
+    A("- B-base：预注册截断规则里写的 `4,208` 是 P5（`inst_dim=32`）的参数量；本 harness 为 "
+      "`inst_dim=64`，最小 width（w4）是 **6,768** 参数。规则不变，只是基线数值不同；")
+    A("- B-noise：C4 的 `params_needed` 落在最小档附近，但其准确率**随 width 单调下降**"
+      "（w6 0.922 → w32 0.611），说明噪声条件下「无成本」仅指「能较早越过 0.80」，"
+      "不代表噪声无影响（与 P5 的 E1-noise 形态一致）；")
+    A("- B-single：干扰项颜色 i.i.d 抽取，因此「只出现一次的颜色」统计上等于目标色 —— "
+      "这是一个可利用的捷径，模型显然没有利用（否则 C3 不会随密度变差）；"
+      "但该统计量的存在意味着本实验的操纵不只是「相似度」，还叠加了「独特性」。")
 
     Path(args.out_md).write_text("\n".join(L) + "\n", encoding="utf-8")
     Path(args.out_json).write_text(json.dumps(summary, ensure_ascii=False, indent=2),

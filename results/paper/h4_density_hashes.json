@@ -1,0 +1,68 @@
+{
+  "config_fp": "3047c7c75f80371b",
+  "proto": "h4-v1.0",
+  "device": "cuda",
+  "torch": "2.11.0+cu128",
+  "numpy": "2.5.2",
+  "run": {
+    "n_tr": 3000,
+    "n_te": 1000,
+    "epochs": 20
+  },
+  "conds": {
+    "0": {
+      "name": "C0",
+      "level": "flat",
+      "decoys": 0,
+      "img_hash_train": "fe6672bfff6e5dc4",
+      "img_hash_test": "a22bf0e8907c8876",
+      "base_hash_train": "fe7a750d5e457edb",
+      "base_hash_test": "6d2a151034b34344"
+    },
+    "1": {
+      "name": "C1",
+      "level": "flat",
+      "decoys": 1,
+      "img_hash_train": "ee1cf9ff32ed9ec1",
+      "img_hash_test": "457a22c3ca809ffe",
+      "base_hash_train": "fe7a750d5e457edb",
+      "base_hash_test": "6d2a151034b34344"
+    },
+    "2": {
+      "name": "C2",
+      "level": "flat",
+      "decoys": 2,
+      "img_hash_train": "76b15df0195ea56b",
+      "img_hash_test": "22644565c2923088",
+      "base_hash_train": "fe7a750d5e457edb",
+      "base_hash_test": "6d2a151034b34344"
+    },
+    "3": {
+      "name": "C3",
+      "level": "flat",
+      "decoys": 4,
+      "img_hash_train": "bc5a7a93dfe9cf1e",
+      "img_hash_test": "2e69cc50e23712cb",
+      "base_hash_train": "fe7a750d5e457edb",
+      "base_hash_test": "6d2a151034b34344"
+    },
+    "4": {
+      "name": "C4",
+      "level": "noise",
+      "decoys": 0,
+      "img_hash_train": "8e0384cec1b8c458",
+      "img_hash_test": "381e1f44668dbece",
+      "base_hash_train": "fe7a750d5e457edb",
+      "base_hash_test": "6d2a151034b34344"
+    },
+    "5": {
+      "name": "C5",
+      "level": "natural",
+      "decoys": 0,
+      "img_hash_train": "97e486adb802a0d4",
+      "img_hash_test": "0b043b5d1ce2aa37",
+      "base_hash_train": "fe7a750d5e457edb",
+      "base_hash_test": "6d2a151034b34344"
+    }
+  }
+}
