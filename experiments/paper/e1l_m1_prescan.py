@@ -11,6 +11,17 @@
    直到 UI 重随机（ρ）才被清掉。没有"每步重置到正确状态"。
 3. **H 参数**：任务脚本一次生成到 H_MAX=8，H 只截断执行长度 —— 同一 (seed, ρ) 下
    H=4 是 H=8 的**前缀**（同一任务、同一模型）。
+
+状态机口径（两种掩码不同作用域，不得互相推导）
+------------------------------------------------
+| 量 | 含义 | UI 重随机（ρ）时 |
+|---|---|---|
+| `progress` | **累计**已完成的目标数（0..H），任务进度 | **保留**（任务目标是 H 个连续目标，不随布局改变） |
+| `done[slot]` | **当前布局**中"这个格子已被点过" | 清零（布局换了，旧格子不再指同一元素） |
+| `wrong[slot]` | **当前布局**中"这个格子被误点过" | 清零（同上） |
+
+不变量：`progress == 前 t 步中正确的步数`；`success ⇔ progress == H`。
+这与 `p3_env`/`h3b` 的语义一致（漂移只重置标记，不重置进度）。
 4. **统计**：逐 (候选, seed, H) 报 成功数/总数/成功率/Wilson 95% CI，并报逐 step 正确率。
 
 用法：
@@ -37,9 +48,10 @@ S = GRID * GRID
 H_MAX = 8
 HS = [1, 2, 4, 8]
 RHO = 0.3
-N_TASKS = 300
+N_TASKS = 500
 
-CANDS = [("d1w12", 1.0, 12), ("d1w16", 1.0, 16), ("d1w24", 1.0, 24), ("d05w8", 0.5, 8)]
+CANDS = [("d1w8", 1.0, 8), ("d1w12", 1.0, 12),
+         ("d1w16", 1.0, 16), ("d1w24", 1.0, 24)]
 
 
 # ------------------------------------------------------------------ 渲染
@@ -183,12 +195,16 @@ def build_scripts(cfg, seed, rho, n_tasks, h_max=H_MAX):
 # ---------------------------------------------------------------- rollout
 
 def rollout(policy, cfg, script, H, d, seed, task_idx, rho, level="flat",
-            keep_frames=False):
-    """在**同一条任务脚本**上前缀截断执行 H 步；返回轨迹与状态。"""
+            keep_frames=False, keep_states=False):
+    """在**同一条任务脚本**上前缀截断执行 H 步；返回轨迹与状态。
+
+    `progress` 是累计量（不随 ρ 重置）；`wrong`/`done` 是当前布局的标记（随 ρ 清空）。
+    `keep_states=True` 时返回每一步**渲染前**的 (progress, wrong, done)，供审计与测试。
+    """
     wrong = [False] * cfg.num_slots
     done = [False] * cfg.num_slots
     progress = 0
-    frames, actions, step_ok = [], [], []
+    frames, actions, step_ok, states = [], [], [], []
 
     for t in range(H):
         st = script[t]
@@ -199,6 +215,8 @@ def rollout(policy, cfg, script, H, d, seed, task_idx, rho, level="flat",
         geom = task_idx * 100 + t          # 与 H 无关 → 前缀一致
         decoy_seed = (seed * 1_000_003 + task_idx * 97 + t * 13
                       + int(round(d * 10)) * 17 + int(round(rho * 100)) * 29)
+        if keep_states:
+            states.append((progress, list(wrong), list(done)))
         img, els = render_state(cfg, st.labels, progress, H, wrong, done,
                                 st.labels[st.target_slot], d=d, level=level,
                                 decoy_seed=decoy_seed, geom_seed=geom)
@@ -218,7 +236,8 @@ def rollout(policy, cfg, script, H, d, seed, task_idx, rho, level="flat",
             wrong[act] = True               # 标记**留在屏幕上**，进入下一步输入
 
     return {"success": progress == H, "progress": progress,
-            "frames": frames, "actions": actions, "step_ok": step_ok}
+            "frames": frames, "actions": actions, "step_ok": step_ok,
+            "states": states}
 
 
 # ------------------------------------------------------------------ 政策

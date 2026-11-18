@@ -144,6 +144,39 @@ def test_stats_shape_and_ci_cover_rate():
     assert never["ci"][0] == 0.0 and never["ci"][1] > 0.0
 
 
+def test_progress_is_cumulative_done_is_per_layout():
+    """状态机口径：progress 累计不重置；wrong/done 是"当前布局"的标记，随 ρ 清空。"""
+    script = M.build_scripts(CFG, seed=7, rho=1.0, n_tasks=1)[0]
+    r = M.rollout(M.OraclePolicy(), CFG, script, 8, 0.0, 7, 0, 1.0, keep_states=True)
+    assert r["success"] and r["progress"] == 8
+    for t, (prog, wrong, done) in enumerate(r["states"]):
+        assert prog == t, f"step {t}: progress 应为累计值 {t}，实际 {prog}"
+        assert not any(done), f"step {t}: 漂移后 done 必须清空"
+        assert not any(wrong), f"step {t}: 全对时不应有 wrong"
+
+    # ρ=0：错一步后，标记保留到下一步的输入里；progress 只加正确的步
+    script2 = M.build_scripts(CFG, seed=7, rho=0.0, n_tasks=1)[0]
+    r2 = M.rollout(M.OraclePolicy(wrong_steps={1}), CFG, script2, 4, 0.0, 7, 0, 0.0,
+                   keep_states=True)
+    assert r2["progress"] == 3
+    wrong_slot = (script2[1].target_slot + 1) % 36
+    prog_at_2, wrong_at_2, done_at_2 = r2["states"][2]
+    assert prog_at_2 == 1
+    assert wrong_at_2[wrong_slot] is True
+    assert done_at_2[script2[0].target_slot] is True
+
+
+def test_eval_order_independence():
+    """H 之间的结果与评估顺序无关（随机流只由 seed/task/t 决定）。"""
+    scripts = M.build_scripts(CFG, seed=8, rho=0.3, n_tasks=5)
+    a4 = M.evaluate(M.OraclePolicy(wrong_steps={2}), CFG, scripts, 4, 0.0, 8, 0.3)
+    a8 = M.evaluate(M.OraclePolicy(wrong_steps={2}), CFG, scripts, 8, 0.0, 8, 0.3)
+    b8 = M.evaluate(M.OraclePolicy(wrong_steps={2}), CFG, scripts, 8, 0.0, 8, 0.3)
+    b4 = M.evaluate(M.OraclePolicy(wrong_steps={2}), CFG, scripts, 4, 0.0, 8, 0.3)
+    assert (a4["success"], a8["success"]) == (b4["success"], b8["success"])
+    assert a4["acc_by_step"] == b4["acc_by_step"]
+
+
 def test_rows_consumed_by_band_gate(tmp_path):
     """统计输出能直接被 prescan_gate 的 B 模式消费（门禁用实测值，不用预测）。"""
     script = M.build_scripts(CFG, seed=4, rho=0.0, n_tasks=2)
