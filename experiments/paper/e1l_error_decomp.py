@@ -115,10 +115,17 @@ def main():
         s, p, idx = independence_index(cells, r["success"], r["n"], 8)
         if idx is not None:
             idx8.append(idx)
+    import statistics
+    below = sum(1 for x in idx8 if x < 0.9)
+    mid = sum(1 for x in idx8 if 0.9 <= x <= 1.1)
+    above = sum(1 for x in idx8 if x > 1.1)
     A(f"- M1 的 {len(idx8)} 个 (候选,ρ,seed) 格在 H=8 上的独立性指数："
-      f"中位数 **{sorted(idx8)[len(idx8) // 2]:.2f}**，范围 {min(idx8):.2f}–{max(idx8):.2f}")
-    A("- 多数格 < 1 → 错误成串是**普遍形态**，不是某一臂的偶然；"
-      "越难的配置聚簇越强（指数越低）。\n")
+      f"中位数 **{statistics.median(idx8):.2f}**，范围 {min(idx8):.2f}–{max(idx8):.2f}")
+    A(f"- 分布：**{below} 个 < 0.9**（错误成串）、{mid} 个在 0.9–1.1（近似独立）、"
+      f"{above} 个 > 1.1（成功多于独立步预测，可能是抽样噪声或负相关）")
+    A("- 结论只按多数形态说：**错误成串占 {}/{}**，但不普遍；"
+      "不能宣称\"所有配置都成串\"。".format(below, len(idx8)))
+    A("")
 
     A("## 5. 证据缺口（明确记录，不追加实验）\n")
     A("| 缺口 | 现有日志为何不够 | 需要什么 |")

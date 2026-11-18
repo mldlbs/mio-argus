@@ -1,6 +1,6 @@
 # E1-L 前置设计：M1–M3（v0.1 设计稿，未执行）
 
-> 状态：**设计已执行（M1 预扫描 2026-11-18），结论：M1 未通过**。结果见 `E1L_M1_RESULTS.md` / `E1L_M1_GATE.md`；不启动 E1-L、不跑 36 次、不改 P3。
+> 状态：**M1 支线已关闭（2026-11-18 裁定 26）：M1 未通过，M1b 部分支持后冻结**。结果见 `E1L_M1_RESULTS.md` / `E1L_M1_GATE.md`；不启动 E1-L、不跑 36 次、不改 P3。
 > 上位文件：`NEXT_EXPERIMENT.md`（E1-L 预注册，已暂停）、`EVIDENCE_GAPS.md` §7.4（M1–M3）
 > 方法依据：`docs/PRESCAN_PROTOCOL.md` v1.0（预扫描门禁，模式 B = 区间型）
 
