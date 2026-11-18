@@ -177,6 +177,15 @@ def test_eval_order_independence():
     assert a4["acc_by_step"] == b4["acc_by_step"]
 
 
+def test_parse_cands_defaults_to_all():
+    """CLI 默认必须覆盖全部 4 个候选（防止静默只跑一个）。"""
+    assert [c[0] for c in M.parse_cands("all")] == [c[0] for c in M.CANDS]
+    assert [c[0] for c in M.parse_cands("")] == [c[0] for c in M.CANDS]
+    assert len(M.parse_cands("d1w8,d1w24")) == 2
+    with pytest.raises(SystemExit):
+        M.parse_cands("d2w8")
+
+
 def test_matrix_covers_both_rhos_without_extra_training():
     """执行矩阵：96 个评估格 = 4 候选 × 3 seed × 2 ρ × 4 H；训练只有 12 次。"""
     mx = M.expand_matrix(M.CANDS, [0, 1, 2], [0.3, 0.0])

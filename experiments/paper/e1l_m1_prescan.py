@@ -296,6 +296,21 @@ def evaluate(policy, cfg, scripts, H, d, seed, rho, level="flat"):
 
 # ------------------------------------------------------------------- main
 
+def parse_cands(spec):
+    """候选解析：空/"all" = 全部；未知名字直接报错。
+
+    默认必须是"全部"：曾经因为 CLI 默认只跑 `d1w16`，执行矩阵与批准的矩阵不一致，
+    而脚本仍然照常输出结果（裁定 23 的同一类问题）。"""
+    names = {c[0] for c in CANDS}
+    if spec.strip().lower() in ("", "all"):
+        return list(CANDS)
+    want = [x.strip() for x in spec.split(",") if x.strip()]
+    bad = [w for w in want if w not in names]
+    if bad:
+        raise SystemExit(f"未知候选 {bad}；可用：{sorted(names)}")
+    return [c for c in CANDS if c[0] in want]
+
+
 def expand_matrix(cands, seeds, rhos, hs=HS):
     """执行矩阵（纯函数，可测试）：候选 × seed × ρ × H。
 
@@ -324,7 +339,7 @@ def main():
     ap.add_argument("--stage", choices=("logic", "full"), default="logic")
     ap.add_argument("--tasks", type=int, default=20)
     ap.add_argument("--seeds", default="0")
-    ap.add_argument("--cands", default="d1w16")
+    ap.add_argument("--cands", default="all")
     ap.add_argument("--rhos", default="0.3,0.0",
                     help="逗号分隔；0.3 为主条件，0.0 为对照（都会评估）")
     ap.add_argument("--epochs", type=int, default=20)
@@ -335,13 +350,11 @@ def main():
     cfg = EnvCfg6()
     seeds = [int(s) for s in args.seeds.split(",")]
     rhos = [float(v) for v in args.rhos.split(",")]
-    cands = [c for c in CANDS if c[0] in args.cands.split(",")]
-    if not cands:
-        raise SystemExit(f"未知候选：{args.cands}")
+    cands = parse_cands(args.cands)
     matrix = expand_matrix(cands, seeds, rhos)
     units = train_units(matrix)
-    print(f"[matrix] 训练 {len(units)} 次（候选×seed），评估 {len(matrix)} 格"
-          f"（×{len(rhos)} 个 ρ）；ρ = {rhos}", flush=True)
+    print(f"[matrix] 候选 {[c[0] for c in cands]}；训练 {len(units)} 次（候选×seed），"
+          f"评估 {len(matrix)} 格（×{len(rhos)} 个 ρ）；ρ = {rhos}", flush=True)
 
     if args.stage == "logic":
         for m in matrix:
