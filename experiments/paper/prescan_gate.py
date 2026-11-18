@@ -37,7 +37,10 @@ def load(path, ccol, xcol, ycol, scol):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs", required=True)
-    ap.add_argument("--threshold", type=float, required=True)
+    ap.add_argument("--threshold", type=float, default=None,
+                    help="阈值型指标（模式 A）")
+    ap.add_argument("--band", default="",
+                    help="区间型指标（模式 B），如 0.2,0.9：要求每点都落在带内")
     ap.add_argument("--cond-col", default="cond")
     ap.add_argument("--x-col", default="x")
     ap.add_argument("--value-col", default="value")
@@ -55,6 +58,13 @@ def main():
     curves = defaultdict(dict)   # (cond, seed) -> {x: value}
     for r in rows:
         curves[(r["cond"], r["seed"])][r["x"]] = r["value"]
+
+    band = None
+    if args.band:
+        lo, hi = (float(v) for v in args.band.split(","))
+        band = (lo, hi)
+    elif args.threshold is None:
+        raise SystemExit("必须给 --threshold（模式 A）或 --band LO,HI（模式 B）")
 
     conds = sorted({c for c, _ in curves}, key=str)
     seeds = sorted({s for _, s in curves})
@@ -79,6 +89,22 @@ def main():
             kv = curves[key]
             xs = sorted(kv)
             ys = [kv[x] for x in xs]
+
+            if band is not None:
+                lo, hi = band
+                inside = [lo + args.margin <= v <= hi - args.margin for v in ys]
+                bad = [f"x={xs[i]:g} v={ys[i]:.3f}" for i, okv in enumerate(inside) if not okv]
+                results.append(("B1", c, s, not bad,
+                                f"[{min(ys):.3f}, {max(ys):.3f}] 需全点落在 "
+                                f"[{lo + args.margin:.2f}, {hi - args.margin:.2f}]"
+                                + ("" if not bad else "；越界：" + ", ".join(bad[:3]))))
+                if args.monotone:
+                    drops = [f"{xs[i]:g}({ys[i]:.3f})>{xs[i+1]:g}({ys[i+1]:.3f})"
+                             for i in range(len(ys) - 1)
+                             if ys[i + 1] < ys[i] - args.monotone_tol]
+                    results.append(("G5", c, s, not drops,
+                                    "非递减" if not drops else "超容差回落 " + ", ".join(drops[:3])))
+                continue
 
             # G1 严格内部
             g1 = min(ys) < thr < max(ys)
@@ -124,8 +150,9 @@ def main():
     L = []
     A = L.append
     A("# 预扫描门禁报告\n")
-    A(f"> 输入：`{args.runs}`　阈值={thr:.2f}　margin={args.margin}　"
-      f"max_gap_ratio={args.max_gap_ratio}　单调插值={'是' if args.monotone else '未声明'}")
+    mode = (f"阈值={thr:.2f}" if band is None else f"区间=[{band[0]:.2f}, {band[1]:.2f}]")
+    A(f"> 输入：`{args.runs}`　{mode}　margin={args.margin}　"
+      f"max_gap_ratio={args.max_gap_ratio}　单调={'是' if args.monotone else '未声明'}")
     A(f"> 条件 {len(conds)} 个，seed {len(seeds)} 个，检查 {len(results)} 项\n")
     A(f"## 结论：{'PASS — 允许启动正式矩阵' if ok else 'FAIL — 正式矩阵不得启动'}\n")
     A("| 门 | 条件 | seed | 结果 | 详情 |")
@@ -138,7 +165,7 @@ def main():
         for g, c, s, good, d in fails:
             by[c].add(g)
         for c in sorted(by, key=str):
-            A(f"- **{c}**：{[g for g in ('G1','G2','G3','G4','G5') if g in by[c]]}")
+            A(f"- **{c}**：{[g for g in ('B1','G1','G2','G3','G4','G5') if g in by[c]]}")
         A("\n按 `docs/PRESCAN_PROTOCOL.md` §5 处理这些形态（分别标 `≤`/`>`/`null`），"
           "或另开预注册扩大扫描范围；**不得**在原协议上追加后直接混入主分析。")
 
