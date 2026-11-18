@@ -177,6 +177,63 @@ def test_eval_order_independence():
     assert a4["acc_by_step"] == b4["acc_by_step"]
 
 
+def test_state_consistency_invariants():
+    """裁定 25 的必要检查：progress / 条长 / done / wrong 必须彼此一致。"""
+    labels = M.fresh_labels(CFG, np.random.default_rng(21))
+    zero_masks = [False] * 36
+
+    # 1) 条长随 progress 单调、progress=0 时为空
+    fills = []
+    for p in range(0, 9):
+        img, _ = M.render_state(CFG, labels, p, 8, zero_masks, zero_masks,
+                                labels[0], geom_seed=3)
+        fills.append(M.bar_fill_px(img))
+        M.assert_state_consistent(CFG, p, zero_masks, zero_masks)
+    assert fills[0] == 0
+    assert all(fills[i] < fills[i + 1] for i in range(8)), fills
+
+    # 2) 训练数据（mixed）：done 数 == progress，且 done 不含目标
+    tr = M.build_train_data(CFG, 40, 100, 1.0, 0, mode="mixed")
+    cfg = CFG
+    scripts = M.build_scripts(cfg, 100, 0.0, 40)
+    seen = set()
+    for i, st in enumerate(tr["states"]):
+        img = tr["images"][i].astype(np.float32) / 255.0
+        fg = M.bar_fill_px(img)
+        assert fg in fills, "训练图的条长必须是某个合法 progress 的条长"
+        assert fills.index(fg) == st["progress"], "条长必须与记录的 progress 一致"
+        seen.add(st["progress"])
+        # 关键不变量：灰色已完成数 == 进度，且目标未被标记
+        assert sum(st["done"]) == st["progress"], (i, st["progress"])
+        assert not st["done"][st["target"]]
+        assert st["target"] == scripts[i][0].target_slot
+    assert len(seen) > 1, "mixed 必须覆盖多个 progress"
+    assert max(seen) > 0
+
+    # zero 模式：progress 恒 0、无 done
+    z = M.build_train_data(CFG, 10, 100, 1.0, 0, mode="zero")
+    assert all(s["progress"] == 0 and not any(s["done"]) for s in z["states"])
+
+    # 3) 违规必须被抓到
+    bad = [False] * 36
+    for s in range(3):
+        bad[s] = True
+    with pytest.raises(AssertionError):
+        M.assert_state_consistent(CFG, 1, bad, bad)          # done 与 wrong 重叠
+    with pytest.raises(AssertionError):
+        M.assert_state_consistent(CFG, 1, zero_masks, bad)   # done(3) > progress(1)
+
+
+def test_rollout_states_are_consistent():
+    """多步 rollout 产生的每个状态都必须满足不变量（含漂移后的状态）。"""
+    script = M.build_scripts(CFG, seed=9, rho=0.5, n_tasks=1)[0]
+    r = M.rollout(M.OraclePolicy(wrong_steps={0, 3}), CFG, script, 8, 1.0, 9, 0, 0.5,
+                  keep_states=True)
+    for p, wrong, done in r["states"]:
+        M.assert_state_consistent(CFG, p, wrong, done)
+        assert sum(done) == 0 or sum(done) <= p
+
+
 def test_train_modes_differ_only_in_progress():
     """mixed 与 zero 必须共享同一任务流，差别只在进度条覆盖。"""
     a = M.build_train_data(CFG, 30, 100, 1.0, 0, mode="zero")

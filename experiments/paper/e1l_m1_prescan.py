@@ -65,6 +65,35 @@ def make_bg(level, rng):
     raise ValueError(f"未知背景: {level}")
 
 
+def assert_state_consistent(cfg, progress, wrong, done):
+    """状态机一致性（裁定 25 的"必要检查"）。
+
+    规则：
+      1. 0 <= progress <= H_MAX；
+      2. `done` 与 `wrong` 不得同时为真（一个格子不能既已完成又被误点）；
+      3. `sum(done) <= progress` —— 灰色"已完成"格子数不得超过进度；
+         相等 = 当前布局内从未发生过漂移；小于 = 发生过漂移（标记被清）但仍可达；
+      4. `sum(wrong) <= progress + 1` 的弱约束不设：误点可以多于进度（每步最多 1 次）。
+    返回 None；违反时抛 AssertionError（带诊断信息）。
+    """
+    n = cfg.num_slots
+    if not (0 <= progress <= H_MAX):
+        raise AssertionError(f"progress 越界: {progress}")
+    if len(wrong) != n or len(done) != n:
+        raise AssertionError(f"掩码长度错误: wrong={len(wrong)} done={len(done)} n={n}")
+    if any(w and d for w, d in zip(wrong, done)):
+        raise AssertionError("存在同时 done 且 wrong 的格子")
+    if sum(done) > progress:
+        raise AssertionError(f"done 数 {sum(done)} 超过 progress={progress}")
+
+
+def bar_fill_px(img):
+    """进度条区里 BAR_FG 颜色的像素数（用于验证"条长与 progress 一致"）。"""
+    seg = img[:, BAR_Y0:BAR_Y1 + 1, :]
+    fg = np.array(BAR_FG, dtype=np.float32).reshape(3, 1, 1) / 255.0
+    return int(np.all(np.isclose(seg, fg, atol=1e-6), axis=0).sum())
+
+
 def gen_decoys(cfg, target_color, d, rng, top):
     """与 H4 同一条规则（2×2 子格、同调色板、排除目标色），格框换成带进度条的版本。
 
@@ -421,26 +450,37 @@ def build_train_data(cfg, n, split_seed, d, seed_for_decoys, mode="zero"):
     imgs = np.zeros((n, 3, IMG_SIZE, IMG_SIZE), dtype=np.uint8)
     inst = np.zeros((n, len(LABELS)), dtype=np.float32)
     slots = np.zeros(n, dtype=np.int64)
+    states = []
     for i in range(n):
         st = scripts[i][0]
+        done = [False] * cfg.num_slots
         if mode == "mixed":
             mrng = np.random.default_rng(split_seed * 1_000_003 + 90_001 + i)
             h_eval = int(mrng.choice([1, 2, 4, 8]))
             t = int(mrng.integers(0, h_eval))
             prog = int(mrng.integers(0, t + 1))
+            # 状态一致性：进度条显示 prog，就必须有 prog 个"已完成"格子（灰色），
+            # 且不能包含当前目标（目标还没被点）。这样生成的是状态机**可达**的状态，
+            # 不是"只改数字、标记对不上"的假状态。
+            cand = [slt for slt in range(cfg.num_slots) if slt != st.target_slot]
+            for slt in mrng.choice(cand, size=prog, replace=False):
+                done[int(slt)] = True
         elif mode == "zero":
             prog = 0
         else:
             raise ValueError(f"未知 mode: {mode}")
         img, _ = render_state(cfg, st.labels, prog, 1, [False] * cfg.num_slots,
-                              [False] * cfg.num_slots, st.labels[st.target_slot],
+                              done, st.labels[st.target_slot],
                               d=d, level="flat",
                               decoy_seed=seed_for_decoys * 1_000_003 + i,
                               geom_seed=i)
         imgs[i] = (img * 255).astype(np.uint8)
         inst[i] = instruction_onehot(f"click {st.labels[st.target_slot]}", len(LABELS))
         slots[i] = st.target_slot
-    return {"images": imgs, "inst": inst, "slots": slots}
+        assert_state_consistent(cfg, prog, [False] * cfg.num_slots, done)
+        states.append({"progress": prog, "done": list(done),
+                       "target": int(st.target_slot)})
+    return {"images": imgs, "inst": inst, "slots": slots, "states": states}
 
 
 def EnvCfg6():

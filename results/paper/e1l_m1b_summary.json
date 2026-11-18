@@ -1,0 +1,19 @@
+{
+  "gap_A": 0.1488571428571428,
+  "gap_B": 0.04228571428571426,
+  "D1": true,
+  "rate_A_H8": 0.04,
+  "rate_B_H8": 0.092,
+  "D2": false,
+  "delta_prog0": -0.05984350547730832,
+  "delta_prog_pos": 0.05750110908026185,
+  "D3": true,
+  "D3_reversed": false,
+  "verdict": "部分支持",
+  "H_used": 8,
+  "H_reported": [
+    1,
+    4,
+    8
+  ]
+}
