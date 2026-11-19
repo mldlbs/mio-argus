@@ -138,6 +138,10 @@ class ComputerUseModelV3(nn.Module):
 
         self.action_emb = nn.Embedding(10, 768)
         self.fusion = CrossAttentionFusion(d_model=768, n_heads=8)
+        # 观察分辨率：ViT 在 224 预训练，pos_embed 只有 197 个位置。
+        # 只有显式设 True 才做位置编码插值（用于 >224 的零样本迁移实验）；
+        # 默认 False，保持原有 224 行为完全不变。
+        self.interpolate_pos = False
         self.out_proj = nn.Linear(768, 768)
 
         self.action_head = nn.Sequential(
@@ -164,7 +168,8 @@ class ComputerUseModelV3(nn.Module):
 
     def forward(self, images, input_ids, attention_mask=None):
         with torch.set_grad_enabled(self.training and any(p.requires_grad for p in self.parameters())):
-            vit_out = self.vit(pixel_values=images)
+            vit_out = self.vit(pixel_values=images,
+                               interpolate_pos_encoding=self.interpolate_pos)
             visual_feat = vit_out.last_hidden_state
 
         gpt2_out = self.gpt2(input_ids=input_ids, attention_mask=attention_mask)

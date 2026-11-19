@@ -16,6 +16,7 @@
 > **下一阶段方向（2026-11-19）**：换实验载体 —— **H-Crossing Benchmark**，见 `H_CROSSING_DESIGN.md`。
 > 当前唯一该做的是**不训练的可行性审计 A1–A6**；审计不过不写正式预注册、不启动训练。
 > E1-L 保持暂停，M1/M1b 支线保持关闭，均不参与 H-Crossing 主分析。
+> **H-Crossing 现状（2026-11-19）：暂不可建** —— small 臂坐标头不能定位（`H_CROSSING_SMALL_ARM_AUDIT.md`），A2 判 FAIL；不启动阶段 B、不重训坐标头。
 
 > 依据：`EVIDENCE_MATRIX.md` + `EVIDENCE_GAPS.md`
 > 结论先行：**P0–P9 从未检验过项目最核心的那条主张**——"小模型靠闭环，在长任务上反超大模型"。
