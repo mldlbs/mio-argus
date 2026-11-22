@@ -132,10 +132,34 @@ def compute_class_weights(data):
     return counts, weights
 
 
+def coord_metrics(pred, gt, mask, hit_tol=0.02):
+    """坐标指标：MAE、±tol 命中率、预测/真值标准差比。
+
+    pred/gt: [N,2]（归一坐标）；mask: [N] bool（只有 click/move 为 True）。
+    hit_tol=0.02 是"两个轴都在 2% 归一幅度内"，x 方向≈38px@1920。
+    std 比 <1 表示输出被收缩（向均值塌），这是 0/84 的直接特征。
+    """
+    if int(mask.sum()) == 0:
+        return None
+    p, g = pred[mask], gt[mask]
+    err = (p - g).abs()
+    return {
+        "n": int(mask.sum()),
+        "mae_x": err[:, 0].mean().item(),
+        "mae_y": err[:, 1].mean().item(),
+        "hit_2pct": (err < hit_tol).all(dim=1).float().mean().item(),
+        "std_ratio_x": (p[:, 0].std(unbiased=False) /
+                        g[:, 0].std(unbiased=False).clamp_min(1e-6)).item(),
+        "std_ratio_y": (p[:, 1].std(unbiased=False) /
+                        g[:, 1].std(unbiased=False).clamp_min(1e-6)).item(),
+    }
+
+
 def evaluate(model, loader, device):
     model.eval()
     per_class = {action: {"total": 0, "correct": 0} for action in ACTION_MAP.values()}
     total, correct = 0, 0
+    preds, gts, masks = [], [], []
     with torch.no_grad():
         for batch in loader:
             images = batch["image"].to(device)
@@ -152,10 +176,26 @@ def evaluate(model, loader, device):
                 name = ACTION_MAP[label]
                 per_class[name]["total"] += 1
                 per_class[name]["correct"] += int(label == pred)
-    return correct / max(total, 1), per_class
+
+            preds.append(outputs["coord_pred"].detach().cpu())
+            gts.append(batch["coords"].cpu())
+            masks.append(batch["coord_mask"].bool().cpu())
+    coord = coord_metrics(torch.cat(preds), torch.cat(gts), torch.cat(masks))
+    return correct / max(total, 1), per_class, coord
 
 
-def train():
+
+def fmt_coord(c):
+    if not c:
+        return "n/a"
+    return (f"n={c['n']} MAE x={c['mae_x']:.4f} y={c['mae_y']:.4f} "
+            f"hit2%={c['hit_2pct']:.3f} "
+            f"std_ratio x={c['std_ratio_x']:.2f} y={c['std_ratio_y']:.2f}")
+
+
+def train(out_path=MODEL_OUT, epochs=EPOCHS, metrics_out="", note=""):
+    import time as _time
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"[env] device={device}, torch={torch.__version__}")
 
@@ -179,9 +219,11 @@ def train():
     dataset = RealDatasetV3(data, tokenizer, image_processor, train_idx)
     val_dataset = RealDatasetV3(data, tokenizer, image_processor, val_idx)
     counts, class_weights = compute_class_weights(data)
+    n_coord = sum(1 for i in train_idx if data[i]["action"] in ("click", "move"))
     print(f"[data] train={len(dataset)} val={len(val_dataset)}")
     print(f"[data] 类别分布={counts.astype(int).tolist()}")
     print(f"[data] 类别权重={np.round(class_weights, 3).tolist()}")
+    print(f"[data] 参与 coord loss 的 train 样本={n_coord}/{len(dataset)}")
 
     model = ComputerUseModelV3(num_actions=6, freeze_vit=True, freeze_gpt2=True).to(device)
     print(f"[model] 参数量={sum(p.numel() for p in model.parameters()):,}")
@@ -190,12 +232,15 @@ def train():
     action_weights = torch.tensor(class_weights, dtype=torch.float, device=device)
     optimizer = optim.Adam(model.parameters(), lr=LR)
     val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE)
+    history = []
+    t0 = _time.time()
 
-    for epoch in range(1, EPOCHS + 1):
+    for epoch in range(1, epochs + 1):
         model.train()
         total_loss = 0.0
         correct = 0
         total = 0
+        tp, tg, tm = [], [], []
         for batch in DataLoader(dataset, batch_size=BATCH_SIZE, sampler=WeightedRandomSampler(
             [1.0 / counts[ACTION_TO_IDX[data[idx]["action"]]] for idx in train_idx],
             num_samples=len(train_idx),
@@ -218,17 +263,61 @@ def train():
             total += action_labels.size(0)
             correct += pred.eq(action_labels).sum().item()
 
+            tp.append(outputs["coord_pred"].detach().cpu())
+            tg.append(batch["coords"].cpu())
+            tm.append(batch["coord_mask"].bool().cpu())
+
         acc = 100.0 * correct / max(total, 1)
-        val_acc, val_per_class = evaluate(model, val_loader, device)
+        train_coord = coord_metrics(torch.cat(tp), torch.cat(tg), torch.cat(tm))
+        val_acc, val_per_class, val_coord = evaluate(model, val_loader, device)
         print(
-            f"Epoch {epoch}: loss={total_loss / len(dataset):.4f}, "
+            f"Epoch {epoch}: loss={total_loss / max(len(dataset), 1):.4f}, "
             f"acc={acc:.2f}%, val_acc={val_acc * 100:.2f}%"
         )
-        print(f"[val] 类别准确率={val_per_class}")
+        print(f"[train] coord {fmt_coord(train_coord)}")
+        print(f"[val] coord {fmt_coord(val_coord)}   ({_time.time() - t0:.0f}s)")
+        history.append({"epoch": epoch, "loss": total_loss / max(len(dataset), 1),
+                        "acc": acc, "val_acc": val_acc,
+                        "train_coord": train_coord, "val_coord": val_coord})
 
-    torch.save(model.state_dict(), MODEL_OUT)
-    print("模型已保存")
+    _Path(out_path).parent.mkdir(parents=True, exist_ok=True)
+    torch.save(model.state_dict(), out_path)
+    print(f"[save] {out_path}")
+
+    # 全部 168 条坐标样本 —— 与 COORD_HEAD_FINDINGS.md 的探针同一批，可直接比较
+    coord_idx = [i for i in range(len(data)) if data[i]["action"] in ("click", "move")]
+    coord_loader = DataLoader(RealDatasetV3(data, tokenizer, image_processor, coord_idx),
+                              batch_size=BATCH_SIZE)
+    _, _, full_coord = evaluate(model, coord_loader, device)
+    print(f"[all168] coord {fmt_coord(full_coord)}")
+
+    if metrics_out:
+        payload = {
+            "out": out_path,
+            "note": note,
+            "epochs": epochs,
+            "train_size": len(dataset),
+            "val_size": len(val_dataset),
+            "n_coord_train": n_coord,
+            "final_coord_all168": full_coord,
+            "history": history,
+            "elapsed_sec": round(_time.time() - t0, 1),
+            "coord_mask_fix": True,
+        }
+        p = _Path(metrics_out)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"[metrics] {p}")
 
 
 if __name__ == "__main__":
-    train()
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=MODEL_OUT,
+                    help="checkpoint 路径（默认会覆盖正式 checkpoint，重训请显式指定新路径）")
+    ap.add_argument("--epochs", type=int, default=EPOCHS)
+    ap.add_argument("--metrics-out", default="")
+    ap.add_argument("--note", default="")
+    args = ap.parse_args()
+    train(out_path=args.out, epochs=args.epochs, metrics_out=args.metrics_out, note=args.note)
