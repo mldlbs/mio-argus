@@ -1,0 +1,78 @@
+{
+  "ckpt": "artifacts/checkpoints/inloop_f1_all.pth",
+  "apps": [
+    "qgis",
+    "notepad"
+  ],
+  "img_size": 224,
+  "val_rows": 748,
+  "metrics": {
+    "orig": {
+      "n": 748,
+      "action_acc": 0.9973262032085561,
+      "coord_n": 267,
+      "coord_mae_norm": 0.1150501522746579,
+      "coord_med_norm": 0.05557219311594963,
+      "hit_n": 236,
+      "hit_rate": 0.038135593220338986
+    },
+    "gray": {
+      "n": 748,
+      "action_acc": 0.9986631016042781,
+      "coord_n": 267,
+      "coord_mae_norm": 0.1723832291610232,
+      "coord_med_norm": 0.0984116867184639,
+      "hit_n": 236,
+      "hit_rate": 0.0
+    },
+    "swap_img": {
+      "n": 748,
+      "action_acc": 0.9933155080213903,
+      "coord_n": 267,
+      "coord_mae_norm": 0.18812667721819676,
+      "coord_med_norm": 0.11177761852741241,
+      "hit_n": 236,
+      "hit_rate": 0.025423728813559324
+    },
+    "swap_text": {
+      "n": 748,
+      "action_acc": 0.32219251336898397,
+      "coord_n": 267,
+      "coord_mae_norm": 0.3466194039175796,
+      "coord_med_norm": 0.3248147666454315,
+      "hit_n": 236,
+      "hit_rate": 0.00423728813559322
+    }
+  },
+  "delta_mae": {
+    "gray": 0.0573,
+    "swap_img": 0.0731,
+    "swap_text": 0.2316
+  },
+  "pixel_sensitivity": {
+    "gray": 115.072,
+    "swap_img": 254.53650000000002,
+    "swap_text": 665.1095
+  },
+  "image_over_text": 0.38269863834451323,
+  "g6_sensitivity": "IMAGE_USED",
+  "g6b_image_helpful": true,
+  "g6b_paired": {
+    "gray": {
+      "n": 266,
+      "delta": 0.05744458136019206,
+      "ci": [
+        0.04179633756910443,
+        0.07275297345941063
+      ]
+    },
+    "swap_img": {
+      "n": 266,
+      "delta": 0.07236828029075203,
+      "ci": [
+        0.05574016969542008,
+        0.08913599001580702
+      ]
+    }
+  }
+}
