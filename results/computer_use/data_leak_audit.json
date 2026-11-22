@@ -1,0 +1,20 @@
+[
+  {
+    "path": "D:\\work\\code\\nanoGPT\\artifacts\\computer_use_data_expanded\\expanded_training_data.json",
+    "rows": 600,
+    "with_xy": 200,
+    "leak": 200,
+    "leak_rate": 1.0,
+    "verdict": "LEAKED",
+    "example": "move cursor to 1700 720"
+  },
+  {
+    "path": "D:\\work\\code\\nanoGPT\\artifacts\\computer_use_data_real_balanced\\balanced_training_data.json",
+    "rows": 504,
+    "with_xy": 168,
+    "leak": 168,
+    "leak_rate": 1.0,
+    "verdict": "LEAKED",
+    "example": "move mouse to 509 849"
+  }
+]

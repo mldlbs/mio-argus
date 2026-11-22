@@ -1,0 +1,25 @@
+{
+  "ckpt": "artifacts/checkpoints/inloop_notepad_long.pth",
+  "res": 224,
+  "n": 84,
+  "delta_coord_l1": {
+    "gray": 0.0047261108245168415,
+    "swap_img": 0.0020046917100747428,
+    "swap_text": 0.0327447374306974
+  },
+  "delta_feat_rel": {
+    "gray": 0.019152234162565722,
+    "swap_img": 0.015005360827409546,
+    "swap_text": 0.15685059665915657
+  },
+  "action_click_acc": {
+    "orig": "81/84",
+    "gray": "80/84",
+    "swap_img": "81/84",
+    "swap_text": "81/84"
+  },
+  "image_effect": 0.0047261108245168415,
+  "text_effect": 0.0327447374306974,
+  "image_over_text": 0.14433192003812578,
+  "verdict": "IMAGE_USED"
+}
