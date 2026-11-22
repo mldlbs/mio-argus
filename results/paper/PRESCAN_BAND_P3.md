@@ -18,7 +18,7 @@ python experiments/paper/prescan_gate.py --runs <p3 cls rows>.jsonl --band 0.2,0
 
 # 预扫描门禁报告
 
-> 输入：`C:\Users\gf191\AppData\Local\Temp\opencode\band_p3.jsonl`　区间=[0.20, 0.90]　margin=0.02　max_gap_ratio=2.5　单调=未声明
+> 输入：`<p3 cls rows>.jsonl`　区间=[0.20, 0.90]　margin=0.02　max_gap_ratio=2.5　单调=未声明
 > 条件 1 个，seed 1 个，检查 3 项
 
 ## 结论：FAIL — 正式矩阵不得启动
