@@ -71,10 +71,15 @@ class RealDatasetV3(Dataset):
 
         action = ACTION_TO_IDX[item["action"]]
         params = item["params"]
+        # 只有 click/move 带坐标。其余动作（type/scroll/hotkey/press）没有 x/y，
+        # 若照旧写成 (0,0) 且 coord_mask 恒为 True，坐标头会被 336/504 个零目标
+        # 训练成"输出条件中位数"（见 results/paper/COORD_HEAD_FINDINGS.md）。
+        # 与 train_inloop.py 一致：无坐标的样本 coord_mask=False，不参与 coord loss。
+        has_xy = item["action"] in ("click", "move") and "x" in params and "y" in params
         coords = torch.tensor([
             params.get("x", 0) / 1920.0,
             params.get("y", 0) / 1080.0,
-        ], dtype=torch.float)
+        ] if has_xy else (0.0, 0.0), dtype=torch.float)
         scroll = 2
         if "direction" in params:
             if params["direction"] == "up":
@@ -89,7 +94,7 @@ class RealDatasetV3(Dataset):
             "attention_mask": text_enc["attention_mask"],
             "action": torch.tensor(ACTION_TO_IDX[item["action"]], dtype=torch.long),
             "coords": coords,
-            "coord_mask": torch.tensor(True, dtype=torch.bool),
+            "coord_mask": torch.tensor(has_xy, dtype=torch.bool),
             "scroll": torch.tensor(scroll, dtype=torch.long),
         }
 

@@ -265,6 +265,8 @@ MoE + 路由器优于等参数单体"，**不构成研究贡献**。
 6. 若重启 P4：先在同一渲染管线内做到**信息对称**，并用专精者复现基线（≈0.75）。
 7. ~~核实 GroundCUA / SEA / AlphaEvolve，定稿第 4 节的 delta~~ ✅ 已核实（含 SEA 近邻工作 SEAgent），见 §4
 8. ~~H4 窄域低熵~~ ✅ 成立（机制被修正为"结构化类元素干扰"，见 P5）
+9. **流程层（2026-11-22）**：证伪/不可测/放弃三态分离 + A0 臂门禁 + 组合响应树，见 `docs/RESEARCH_PORTFOLIO.md`；
+   首单为 L-COORD（坐标头归因，`results/paper/COORD_HEAD_FINDINGS.md`），H-Crossing 降为平台客户。
 
 ### 当前可交付成果
 
