@@ -1,0 +1,93 @@
+{
+ "summary": {
+  "model": "qwen3-vl:8b",
+  "n": 5,
+  "hits": 0,
+  "acc": 0.0,
+  "median_wall_s": 3.4,
+  "total_min": 0.4,
+  "unparsed": 5
+ },
+ "rows": [
+  {
+   "id": "w26_v2_r00:0",
+   "instruction": "Double-click the 'cities' treeitem",
+   "xy": null,
+   "rect_img": [
+    12.6,
+    501.6,
+    175.8,
+    513.0
+   ],
+   "hit": false,
+   "wall_s": 7.6,
+   "img_tok": 1373,
+   "out_tok": 96,
+   "raw": ""
+  },
+  {
+   "id": "w26_v2_r00:1",
+   "instruction": "Click the combobox",
+   "xy": null,
+   "rect_img": [
+    130.8,
+    20.4,
+    546.0,
+    34.8
+   ],
+   "hit": false,
+   "wall_s": 3.4,
+   "img_tok": 1369,
+   "out_tok": 96,
+   "raw": ""
+  },
+  {
+   "id": "w26_v2_r00:5",
+   "instruction": "Click the combobox",
+   "xy": null,
+   "rect_img": [
+    181.2,
+    38.4,
+    528.0,
+    52.8
+   ],
+   "hit": false,
+   "wall_s": 3.4,
+   "img_tok": 1369,
+   "out_tok": 96,
+   "raw": ""
+  },
+  {
+   "id": "w26_v2_r00:9",
+   "instruction": "Click the combobox",
+   "xy": null,
+   "rect_img": [
+    181.2,
+    121.8,
+    546.0,
+    135.0
+   ],
+   "hit": false,
+   "wall_s": 3.3,
+   "img_tok": 1369,
+   "out_tok": 96,
+   "raw": ""
+  },
+  {
+   "id": "w26_v2_r00:13",
+   "instruction": "Click the 'Mode' combobox",
+   "xy": null,
+   "rect_img": [
+    148.8,
+    393.6,
+    256.8,
+    408.0
+   ],
+   "hit": false,
+   "wall_s": 3.4,
+   "img_tok": 1372,
+   "out_tok": 96,
+   "raw": ""
+  }
+ ]
+}
