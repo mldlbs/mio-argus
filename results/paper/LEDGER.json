@@ -1,0 +1,21 @@
+{
+ "version": 1,
+ "facts": [
+  {
+   "id": "f0001",
+   "sig": "34ca17e712509412",
+   "check": "data_leak",
+   "fact": "leaked dataset: expanded_training_data.json,balanced_training_data.json",
+   "ts": 1795862469.4899526,
+   "date": "2026-11-28 18:41"
+  },
+  {
+   "id": "f0002",
+   "sig": "a38d4b7f058f81f1",
+   "check": "g6_coverage",
+   "fact": "checkpoints without G6: _smoke_768,_smoke_grid,_smoke_qgis,_smoke_spatial,computer_use_model,computer_use_model_advanced,computer_use_model_real_v2,computer_use_model_v2",
+   "ts": 1795862469.4899526,
+   "date": "2026-11-28 18:41"
+  }
+ ]
+}

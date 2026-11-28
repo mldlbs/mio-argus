@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "note": "已确认的 FAIL：不再每天报警，但事实仍进 LEDGER.json。新增条目前必须写清理由与日期。",
+ "acked": [
+  {
+   "check": "data_leak",
+   "match": "expanded_training_data.json",
+   "reason": "历史数据集（v3_real/expanded 训练用），泄露已在 VISION_ABLATION_FINDINGS.md 记录；新训练一律走 inloop",
+   "date": "2026-11-28"
+  }
+ ]
+}
