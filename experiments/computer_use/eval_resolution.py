@@ -32,9 +32,9 @@ MODEL_PATH = ROOT / "artifacts/checkpoints/computer_use_model_v3_real.pth"
 MANIFEST = ROOT / "artifacts/computer_use_inloop/audit_manifest.json"
 
 
-def load_model(device):
+def load_model(device, ckpt=MODEL_PATH):
     m = ComputerUseModelV3(num_actions=6, freeze_vit=True, freeze_gpt2=True).to(device)
-    state = torch.load(MODEL_PATH, map_location=device)
+    state = torch.load(ckpt, map_location=device)
     m.load_state_dict(state.get("model", state))
     m.eval()
     return m
@@ -108,6 +108,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--env", choices=("real", "synthetic"), required=True)
     ap.add_argument("--res", default="224,1024")
+    ap.add_argument("--ckpt", default=str(MODEL_PATH), help="要评测的 checkpoint")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--n", type=int, default=200)
     ap.add_argument("--out", default="")
@@ -115,8 +116,8 @@ def main():
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     res_list = [int(v) for v in args.res.split(",")]
-    model, tok, proc = load_model(device), get_tokenizer(), get_image_processor()
-    print(f"[setup] device={device} ckpt={MODEL_PATH.name} res={res_list}", flush=True)
+    model, tok, proc = load_model(device, args.ckpt), get_tokenizer(), get_image_processor()
+    print(f"[setup] device={device} ckpt={Path(args.ckpt).name} res={res_list}", flush=True)
 
     out = []
     for res in res_list:
