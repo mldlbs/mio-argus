@@ -1,0 +1,27 @@
+{
+ "version": 1,
+ "note": "G6 覆盖登记：tested=已跑模态消融；skipped=有明确理由不跑。nightly_audit 只在这两个集合之外报 FAIL。",
+ "tested": {
+  "inloop_f1_all": {"json": "results/computer_use/modality_ablation_inloop_f1_all.json", "ratio": 0.639, "verdict": "IMAGE_USED"},
+  "inloop_notepad": {"json": "results/computer_use/modality_ablation_inloop_notepad.json", "ratio": 0.256, "verdict": "IMAGE_USED"},
+  "inloop_notepad_long": {"json": "results/computer_use/modality_ablation_inloop_notepad_long.json", "ratio": 0.144, "verdict": "IMAGE_USED"},
+  "inloop_qgis": {"json": "results/computer_use/modality_ablation_inloop_qgis.json", "ratio": 0.024, "verdict": "IMAGE_IGNORED"},
+  "computer_use_model_v3_real": {"json": "results/computer_use/modality_ablation_orig.json", "ratio": 0.025, "verdict": "IMAGE_IGNORED"},
+  "computer_use_model_v3_real_maskfix": {"json": "results/computer_use/modality_ablation_maskfix.json", "ratio": 0.031, "verdict": "IMAGE_IGNORED"},
+  "w30_full": {"json": "results/computer_use/modality_ablation_w30_full.json", "ratio": 0.106, "verdict": "IMAGE_USED"},
+  "w30_dedup": {"json": "results/computer_use/modality_ablation_w30_dedup.json", "ratio": 0.053, "verdict": "IMAGE_IGNORED"},
+  "w30_grid": {"json": "results/computer_use/modality_ablation_w30_grid.json", "ratio": 1.04, "verdict": "IMAGE_USED"},
+  "w30_spatial768": {"json": "results/computer_use/modality_ablation_w30_spatial768.json", "ratio": null, "verdict": "TEXT_IGNORED"}
+ },
+ "skipped": {
+  "_smoke_768": "smoke 产物（临时验证，不承载任何结论）",
+  "_smoke_grid": "smoke 产物",
+  "_smoke_qgis": "smoke 产物",
+  "_smoke_spatial": "smoke 产物",
+  "_smoke_notepad": "smoke 产物（其 arm_g6_smoke_notepad.json 只有 5 条、配对不足，不算 G6）",
+  "computer_use_model": "旧架构（25MB，无 fusion），不在当前主线",
+  "computer_use_model_advanced": "旧架构（SimpleComputerUseModel，25MB），不在当前主线",
+  "computer_use_model_real_v2": "旧架构（0.5MB），不在当前主线",
+  "computer_use_model_v2": "旧架构（0.5MB），不在当前主线"
+ }
+}

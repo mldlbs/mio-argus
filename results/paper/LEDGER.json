@@ -16,6 +16,14 @@
    "fact": "checkpoints without G6: _smoke_768,_smoke_grid,_smoke_qgis,_smoke_spatial,computer_use_model,computer_use_model_advanced,computer_use_model_real_v2,computer_use_model_v2",
    "ts": 1795862469.4899526,
    "date": "2026-11-28 18:41"
+  },
+  {
+   "id": "f0003",
+   "sig": "a466ec39a3a9dc29",
+   "check": "g6_coverage",
+   "fact": "IMAGE_IGNORED checkpoints: computer_use_model_v3_real,computer_use_model_v3_real_maskfix,inloop_qgis,w30_dedup",
+   "ts": 1795865367.02851,
+   "date": "2026-11-28 19:29"
   }
  ]
 }

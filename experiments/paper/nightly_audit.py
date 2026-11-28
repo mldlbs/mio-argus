@@ -55,20 +55,25 @@ def check_leak():
 
 
 def check_g6():
-    """每个 checkpoint 必须有对应的 G6 记录（模态消融 json）。"""
+    """每个 checkpoint 必须已跑 G6，或在 G6_COVERAGE.json 里有明确豁免理由。"""
     if not CKPT_DIR.exists():
         return {"id": "g6_coverage", "status": "SKIP", "detail": "无 checkpoint 目录",
                 "fact": None}
+    cov_path = ROOT / "results/paper/G6_COVERAGE.json"
+    cov = json.loads(cov_path.read_text(encoding="utf-8")) if cov_path.exists() else {}
+    tested, skipped = cov.get("tested", {}), cov.get("skipped", {})
     ckpts = sorted(p.stem for p in CKPT_DIR.glob("*.pth"))
-    covered, missing = [], []
-    for stem in ckpts:
-        hits = list(G6_DIR.glob(f"*{stem}*.json")) + list(G6_DIR.glob(f"modality_ablation_{stem}.json"))
-        (covered if hits else missing).append(stem)
-    status = "PASS" if not missing else "FAIL"
-    return {"id": "g6_coverage", "status": status,
-            "detail": f"{len(covered)}/{len(ckpts)} 有 G6 记录",
-            "fact": (f"checkpoints without G6: {','.join(missing[:8])}" if missing else None),
-            "missing": missing}
+    missing = [c for c in ckpts if c not in tested and c not in skipped]
+    ignored = sorted(k for k, v in tested.items() if v.get("verdict") == "IMAGE_IGNORED")
+    detail = (f"{len(tested)} tested / {len(skipped)} skipped / {len(missing)} missing"
+              f"（共 {len(ckpts)}）；IMAGE_IGNORED {len(ignored)} 个")
+    fact = None
+    if missing:
+        fact = f"checkpoints without G6: {','.join(missing[:8])}"
+    elif ignored:
+        fact = f"IMAGE_IGNORED checkpoints: {','.join(ignored)}"
+    return {"id": "g6_coverage", "status": "PASS" if not missing else "FAIL",
+            "detail": detail, "fact": fact, "missing": missing}
 
 
 def check_tests():

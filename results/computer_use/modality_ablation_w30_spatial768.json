@@ -1,0 +1,25 @@
+{
+  "ckpt": "artifacts/checkpoints/w30_spatial768.pth",
+  "res": 224,
+  "n": 84,
+  "delta_coord_l1": {
+    "gray": 0.10833069327331725,
+    "swap_img": 0.1483288554563409,
+    "swap_text": 0.0
+  },
+  "delta_feat_rel": {
+    "gray": 0.0825338706233494,
+    "swap_img": 0.05555425769592557,
+    "swap_text": 0.13424943053195135
+  },
+  "action_click_acc": {
+    "orig": "84/84",
+    "gray": "84/84",
+    "swap_img": "84/84",
+    "swap_text": "84/84"
+  },
+  "image_effect": 0.1483288554563409,
+  "text_effect": 0.0,
+  "image_over_text": 148328855.45634088,
+  "verdict": "IMAGE_USED"
+}

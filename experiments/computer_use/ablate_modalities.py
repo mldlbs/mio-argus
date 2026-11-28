@@ -32,19 +32,28 @@ from mio_argus import ComputerUseModelV3, get_image_processor, get_tokenizer  # 
 DATA = ROOT / "artifacts/computer_use_data_real_balanced/balanced_training_data.json"
 
 
-def load(ckpt, device):
-    m = ComputerUseModelV3(num_actions=6, freeze_vit=True, freeze_gpt2=True).to(device)
+def load(ckpt, device, head="v3", grid=128):
+    if head == "grid":
+        from grid_model import GridModel
+        m = GridModel(num_actions=6, freeze_vit=True, freeze_gpt2=True, grid=grid).to(device)
+    elif head == "spatial":
+        from grid_model import SpatialModel
+        m = SpatialModel(num_actions=6, freeze_vit=True, freeze_gpt2=True).to(device)
+    else:
+        m = ComputerUseModelV3(num_actions=6, freeze_vit=True, freeze_gpt2=True).to(device)
     state = torch.load(ckpt, map_location=device)
-    m.load_state_dict(state.get("model", state))
+    missing, unexpected = m.load_state_dict(state.get("model", state), strict=False)
+    if missing or unexpected:
+        print(f"[ckpt] missing={len(missing)} unexpected={len(unexpected)}")
     m.eval()
     buf = {}
     m.out_proj.register_forward_hook(lambda mod, i, o: buf.__setitem__("f", i[0].detach()))
     return m, buf
 
 
-def run(ckpt, n, res, out_path):
+def run(ckpt, n, res, out_path, head="v3", grid=128):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model, buf = load(ckpt, device)
+    model, buf = load(ckpt, device, head=head, grid=grid)
     tok, proc = get_tokenizer(), get_image_processor()
 
     data = json.loads(DATA.read_text(encoding="utf-8"))
@@ -116,5 +125,7 @@ if __name__ == "__main__":
     ap.add_argument("--n", type=int, default=84)
     ap.add_argument("--res", type=int, default=224)
     ap.add_argument("--out", default="results/computer_use/modality_ablation.json")
+    ap.add_argument("--head", default="v3", choices=["v3", "grid", "spatial"])
+    ap.add_argument("--grid", type=int, default=128)
     a = ap.parse_args()
-    run(a.ckpt, a.n, a.res, a.out)
+    run(a.ckpt, a.n, a.res, a.out, head=a.head, grid=a.grid)

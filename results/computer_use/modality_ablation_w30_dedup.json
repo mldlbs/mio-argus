@@ -1,0 +1,25 @@
+{
+  "ckpt": "artifacts/checkpoints/w30_dedup.pth",
+  "res": 224,
+  "n": 84,
+  "delta_coord_l1": {
+    "gray": 0.003711642608756111,
+    "swap_img": 0.003056705707595462,
+    "swap_text": 0.0697742627844924
+  },
+  "delta_feat_rel": {
+    "gray": 0.018681213012689258,
+    "swap_img": 0.015269250582579068,
+    "swap_text": 0.1293889126963833
+  },
+  "action_click_acc": {
+    "orig": "84/84",
+    "gray": "84/84",
+    "swap_img": "84/84",
+    "swap_text": "84/84"
+  },
+  "image_effect": 0.003711642608756111,
+  "text_effect": 0.0697742627844924,
+  "image_over_text": 0.053195010031421464,
+  "verdict": "IMAGE_IGNORED"
+}
